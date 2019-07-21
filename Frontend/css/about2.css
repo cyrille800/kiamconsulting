@@ -1,0 +1,2531 @@
+body {
+	margin: 0;
+	padding: 0;
+}
+:root {
+	--web-view-ids: Web_1920___3;
+}
+#Web_1920___3 * {
+	margin: 0;
+	padding: 0;
+}
+#Web_1920___3 {
+	position: absolute;
+	box-sizing: border-box;
+	background: #E5E5E5;
+	width: 100%;
+	height: 4315px;
+	background-color: rgba(250,250,250,1);
+	overflow: hidden;
+	margin: 0;
+	padding: 0;
+	--web-view-name: Web 1920 – 3;
+	--web-view-id: Web_1920___3;
+	--web-enable-deep-linking: true;
+}
+#Rectangle_4 {
+	filter: drop-shadow(0px 3px 46px rgba(0, 0, 0, 0.031));
+	fill: rgba(252,252,252,1);
+}
+.Rectangle_4 {
+	position: absolute;
+	overflow: visible;
+	width: 1738px;
+	height: 308px;
+	left: 0px;
+	top: 0px;
+}
+#Rectangle_7 {
+	fill: rgba(240,240,240,1);
+}
+.Rectangle_7 {
+	position: absolute;
+	overflow: visible;
+	width: 1px;
+	height: 25px;
+	left: 273px;
+	top: 38px;
+}
+#Path_46 {
+	fill: rgba(255,255,255,1);
+}
+.Path_46 {
+	transform: rotate(180deg);
+	overflow: visible;
+	position: absolute;
+	top: 429.026px;
+	left: 29.367px;
+	width: 11.747px;
+	height: 16.781px;
+}
+#Rectangle_394 {
+	fill: rgba(255,255,255,1);
+}
+.Rectangle_394 {
+	position: absolute;
+	overflow: visible;
+	width: 25.172px;
+	height: 2.517px;
+	left: 854.166px;
+	top: 657.251px;
+}
+#Rectangle_395 {
+	opacity: 0.5;
+	fill: rgba(255,255,255,1);
+}
+.Rectangle_395 {
+	position: absolute;
+	overflow: visible;
+	width: 25.172px;
+	height: 2.517px;
+	left: 885.211px;
+	top: 657.251px;
+}
+#Rectangle_396 {
+	opacity: 0.5;
+	fill: rgba(255,255,255,1);
+}
+.Rectangle_396 {
+	position: absolute;
+	overflow: visible;
+	width: 25.172px;
+	height: 2.517px;
+	left: 916.256px;
+	top: 657.251px;
+}
+#Group_156 {
+	position: absolute;
+	width: 1611px;
+	height: 536.799px;
+	left: -11px;
+	top: 3776.575px;
+	overflow: visible;
+}
+#background {
+	filter: drop-shadow(0px -3px 46px rgba(0, 0, 0, 0.031));
+	fill: rgba(42,47,54,1);
+	stroke: rgb(166, 166, 166);
+	stroke-width: 2px;
+	stroke-linejoin: miter;
+	stroke-linecap: butt;
+	stroke-miterlimit: 4;
+	shape-rendering: auto;
+}
+.background {
+	position: absolute;
+	overflow: visible;
+	width: 1747.888px;
+	height: 673.633px;
+	left: 0.829px;
+	top: 0px;
+}
+#Adresse {
+	position: absolute;
+	left: 169.143px;
+	top: 354.039px;
+	overflow: visible;
+	width: 50px;
+	white-space: nowrap;
+	line-height: 18px;
+	margin-top: -2.5px;
+	text-align: left;
+	font-family: Acumin Pro;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 13px;
+	color: rgba(141,144,147,1);
+	letter-spacing: 0.25px;
+}
+#Follow_us {
+	position: absolute;
+	left: 1277.395px;
+	top: 381.4px;
+	overflow: visible;
+	width: 56px;
+	white-space: nowrap;
+	line-height: 23px;
+	margin-top: -5.5px;
+	text-align: left;
+	font-family: Acumin Pro;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 12px;
+	color: rgba(252,252,252,1);
+	letter-spacing: 0.5px;
+}
+#Group_138 {
+	position: absolute;
+	width: 335.798px;
+	height: 192.85px;
+	left: 139.294px;
+	top: 64.196px;
+	overflow: visible;
+}
+#Ellipse_1 {
+	fill: url(#LinearGradientFill1);
+}
+.Ellipse_1 {
+	position: absolute;
+	overflow: visible;
+	width: 8.292px;
+	height: 8.291px;
+	left: 0px;
+	top: 2.135px;
+}
+#Website_slogan {
+	position: absolute;
+	left: 0px;
+	top: 51.054px;
+	overflow: visible;
+	width: 92px;
+	white-space: nowrap;
+	line-height: 18px;
+	margin-top: -2.5px;
+	text-align: left;
+	font-family: Acumin Pro;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 13px;
+	color: rgba(141,144,147,1);
+	letter-spacing: 0.25px;
+}
+#Lorem_ipsum_dolor_sit_amet__so {
+	opacity: 0.576;
+	position: absolute;
+	left: 0px;
+	top: 73.44px;
+	overflow: hidden;
+	width: 336.798px;
+	height: 119.41px;
+	line-height: 22px;
+	margin-top: -3.5px;
+	text-align: left;
+	font-family: Acumin Pro;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 15px;
+	color: rgba(77,80,84,1);
+	letter-spacing: 0.25px;
+}
+#KIAM {
+	position: absolute;
+	left: 16.288px;
+	top: 0px;
+	overflow: visible;
+	width: 53px;
+	white-space: nowrap;
+	text-align: center;
+	font-family: Acumin Pro;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 18px;
+	color: rgba(141,144,147,1);
+	letter-spacing: 1px;
+}
+#CONSULTING {
+	position: absolute;
+	left: 81.789px;
+	top: 0px;
+	overflow: visible;
+	width: 130px;
+	white-space: nowrap;
+	text-align: left;
+	font-family: Acumin Pro;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 18px;
+	color: rgba(141,144,147,1);
+	letter-spacing: 1px;
+}
+#Line_1 {
+	fill: transparent;
+}
+.Line_1 {
+	overflow: visible;
+	position: absolute;
+	top: 0.415px;
+	left: 569.251px;
+	width: 0px;
+	height: 475.444px;
+}
+#Group_139 {
+	position: absolute;
+	width: 247.081px;
+	height: 261.653px;
+	left: 751.667px;
+	top: 30.201px;
+	overflow: visible;
+}
+#Opening_Hours_ {
+	position: absolute;
+	left: 52.235px;
+	top: 0px;
+	overflow: visible;
+	width: 95px;
+	white-space: nowrap;
+	text-align: center;
+	font-family: Acumin Pro;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 12px;
+	color: rgba(141,144,147,1);
+	letter-spacing: 1px;
+}
+#Repeat_Grid_5 {
+	position: absolute;
+	width: 51.406px;
+	height: 189.042px;
+	left: 0px;
+	top: 57.687px;
+	overflow: hidden;
+}
+#Repeat_Grid_5_0 {
+	position: absolute;
+	width: 60px;
+	height: 15px;
+	left: 1px;
+	top: 0px;
+	overflow: visible;
+}
+#Monday {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	overflow: visible;
+	width: 61px;
+	white-space: nowrap;
+	text-align: center;
+	font-family: Acumin Pro;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 15px;
+	color: rgba(77,80,84,1);
+	letter-spacing: 1px;
+}
+#Repeat_Grid_5_1 {
+	position: absolute;
+	width: 60px;
+	height: 15px;
+	left: 1px;
+	top: 51px;
+	overflow: visible;
+}
+#Monday_A2_Text_9 {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	overflow: visible;
+	width: 61px;
+	white-space: nowrap;
+	text-align: center;
+	font-family: Acumin Pro;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 15px;
+	color: rgba(77,80,84,1);
+	letter-spacing: 1px;
+}
+#Repeat_Grid_5_2 {
+	position: absolute;
+	width: 60px;
+	height: 15px;
+	left: 1px;
+	top: 102px;
+	overflow: visible;
+}
+#Monday_A2_Text_10 {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	overflow: visible;
+	width: 61px;
+	white-space: nowrap;
+	text-align: center;
+	font-family: Acumin Pro;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 15px;
+	color: rgba(77,80,84,1);
+	letter-spacing: 1px;
+}
+#Repeat_Grid_5_3 {
+	position: absolute;
+	width: 60px;
+	height: 15px;
+	left: 1px;
+	top: 153px;
+	overflow: visible;
+}
+#Monday_A2_Text_11 {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	overflow: visible;
+	width: 61px;
+	white-space: nowrap;
+	text-align: center;
+	font-family: Acumin Pro;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 15px;
+	color: rgba(77,80,84,1);
+	letter-spacing: 1px;
+}
+#Repeat_Grid_6 {
+	position: absolute;
+	width: 58.868px;
+	height: 196.504px;
+	left: 75.036px;
+	top: 65.149px;
+	overflow: hidden;
+}
+#Repeat_Grid_6_0 {
+	position: absolute;
+	width: 10px;
+	height: 0px;
+	left: 0px;
+	top: 0.5px;
+	overflow: visible;
+}
+#Line_2 {
+	fill: transparent;
+	stroke: rgb(252, 252, 252);
+	stroke-width: 1px;
+	stroke-linejoin: miter;
+	stroke-linecap: butt;
+	stroke-miterlimit: 4;
+	shape-rendering: auto;
+}
+.Line_2 {
+	overflow: visible;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 10px;
+	height: 1px;
+}
+#Repeat_Grid_6_1 {
+	position: absolute;
+	width: 10px;
+	height: 0px;
+	left: 13px;
+	top: 0.5px;
+	overflow: visible;
+}
+#Line_2_A2_Line_3 {
+	fill: transparent;
+	stroke: rgb(252, 252, 252);
+	stroke-width: 1px;
+	stroke-linejoin: miter;
+	stroke-linecap: butt;
+	stroke-miterlimit: 4;
+	shape-rendering: auto;
+}
+.Line_2_A2_Line_3 {
+	overflow: visible;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 10px;
+	height: 1px;
+}
+#Repeat_Grid_6_2 {
+	position: absolute;
+	width: 10px;
+	height: 0px;
+	left: 26px;
+	top: 0.5px;
+	overflow: visible;
+}
+#Line_2_A2_Line_4 {
+	fill: transparent;
+	stroke: rgb(252, 252, 252);
+	stroke-width: 1px;
+	stroke-linejoin: miter;
+	stroke-linecap: butt;
+	stroke-miterlimit: 4;
+	shape-rendering: auto;
+}
+.Line_2_A2_Line_4 {
+	overflow: visible;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 10px;
+	height: 1px;
+}
+#Repeat_Grid_6_3 {
+	position: absolute;
+	width: 10px;
+	height: 0px;
+	left: 39px;
+	top: 0.5px;
+	overflow: visible;
+}
+#Line_2_A2_Line_5 {
+	fill: transparent;
+	stroke: rgb(252, 252, 252);
+	stroke-width: 1px;
+	stroke-linejoin: miter;
+	stroke-linecap: butt;
+	stroke-miterlimit: 4;
+	shape-rendering: auto;
+}
+.Line_2_A2_Line_5 {
+	overflow: visible;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 10px;
+	height: 1px;
+}
+#Repeat_Grid_6_4 {
+	position: absolute;
+	width: 10px;
+	height: 0px;
+	left: 52px;
+	top: 0.5px;
+	overflow: visible;
+}
+#Line_2_A2_Line_6 {
+	fill: transparent;
+	stroke: rgb(252, 252, 252);
+	stroke-width: 1px;
+	stroke-linejoin: miter;
+	stroke-linecap: butt;
+	stroke-miterlimit: 4;
+	shape-rendering: auto;
+}
+.Line_2_A2_Line_6 {
+	overflow: visible;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 10px;
+	height: 1px;
+}
+#Repeat_Grid_6_5 {
+	position: absolute;
+	width: 10px;
+	height: 0px;
+	left: 0px;
+	top: 51.5px;
+	overflow: visible;
+}
+#Line_2_A2_Line_7 {
+	fill: transparent;
+	stroke: rgb(252, 252, 252);
+	stroke-width: 1px;
+	stroke-linejoin: miter;
+	stroke-linecap: butt;
+	stroke-miterlimit: 4;
+	shape-rendering: auto;
+}
+.Line_2_A2_Line_7 {
+	overflow: visible;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 10px;
+	height: 1px;
+}
+#Repeat_Grid_6_6 {
+	position: absolute;
+	width: 10px;
+	height: 0px;
+	left: 13px;
+	top: 51.5px;
+	overflow: visible;
+}
+#Line_2_A2_Line_8 {
+	fill: transparent;
+	stroke: rgb(252, 252, 252);
+	stroke-width: 1px;
+	stroke-linejoin: miter;
+	stroke-linecap: butt;
+	stroke-miterlimit: 4;
+	shape-rendering: auto;
+}
+.Line_2_A2_Line_8 {
+	overflow: visible;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 10px;
+	height: 1px;
+}
+#Repeat_Grid_6_7 {
+	position: absolute;
+	width: 10px;
+	height: 0px;
+	left: 26px;
+	top: 51.5px;
+	overflow: visible;
+}
+#Line_2_A2_Line_9 {
+	fill: transparent;
+	stroke: rgb(252, 252, 252);
+	stroke-width: 1px;
+	stroke-linejoin: miter;
+	stroke-linecap: butt;
+	stroke-miterlimit: 4;
+	shape-rendering: auto;
+}
+.Line_2_A2_Line_9 {
+	overflow: visible;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 10px;
+	height: 1px;
+}
+#Repeat_Grid_6_8 {
+	position: absolute;
+	width: 10px;
+	height: 0px;
+	left: 39px;
+	top: 51.5px;
+	overflow: visible;
+}
+#Line_2_A2_Line_10 {
+	fill: transparent;
+	stroke: rgb(252, 252, 252);
+	stroke-width: 1px;
+	stroke-linejoin: miter;
+	stroke-linecap: butt;
+	stroke-miterlimit: 4;
+	shape-rendering: auto;
+}
+.Line_2_A2_Line_10 {
+	overflow: visible;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 10px;
+	height: 1px;
+}
+#Repeat_Grid_6_9 {
+	position: absolute;
+	width: 10px;
+	height: 0px;
+	left: 52px;
+	top: 51.5px;
+	overflow: visible;
+}
+#Line_2_A2_Line_11 {
+	fill: transparent;
+	stroke: rgb(252, 252, 252);
+	stroke-width: 1px;
+	stroke-linejoin: miter;
+	stroke-linecap: butt;
+	stroke-miterlimit: 4;
+	shape-rendering: auto;
+}
+.Line_2_A2_Line_11 {
+	overflow: visible;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 10px;
+	height: 1px;
+}
+#Repeat_Grid_6_10 {
+	position: absolute;
+	width: 10px;
+	height: 0px;
+	left: 0px;
+	top: 102.5px;
+	overflow: visible;
+}
+#Line_2_A2_Line_12 {
+	fill: transparent;
+	stroke: rgb(252, 252, 252);
+	stroke-width: 1px;
+	stroke-linejoin: miter;
+	stroke-linecap: butt;
+	stroke-miterlimit: 4;
+	shape-rendering: auto;
+}
+.Line_2_A2_Line_12 {
+	overflow: visible;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 10px;
+	height: 1px;
+}
+#Repeat_Grid_6_11 {
+	position: absolute;
+	width: 10px;
+	height: 0px;
+	left: 13px;
+	top: 102.5px;
+	overflow: visible;
+}
+#Line_2_A2_Line_13 {
+	fill: transparent;
+	stroke: rgb(252, 252, 252);
+	stroke-width: 1px;
+	stroke-linejoin: miter;
+	stroke-linecap: butt;
+	stroke-miterlimit: 4;
+	shape-rendering: auto;
+}
+.Line_2_A2_Line_13 {
+	overflow: visible;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 10px;
+	height: 1px;
+}
+#Repeat_Grid_6_12 {
+	position: absolute;
+	width: 10px;
+	height: 0px;
+	left: 26px;
+	top: 102.5px;
+	overflow: visible;
+}
+#Line_2_A2_Line_14 {
+	fill: transparent;
+	stroke: rgb(252, 252, 252);
+	stroke-width: 1px;
+	stroke-linejoin: miter;
+	stroke-linecap: butt;
+	stroke-miterlimit: 4;
+	shape-rendering: auto;
+}
+.Line_2_A2_Line_14 {
+	overflow: visible;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 10px;
+	height: 1px;
+}
+#Repeat_Grid_6_13 {
+	position: absolute;
+	width: 10px;
+	height: 0px;
+	left: 39px;
+	top: 102.5px;
+	overflow: visible;
+}
+#Line_2_A2_Line_15 {
+	fill: transparent;
+	stroke: rgb(252, 252, 252);
+	stroke-width: 1px;
+	stroke-linejoin: miter;
+	stroke-linecap: butt;
+	stroke-miterlimit: 4;
+	shape-rendering: auto;
+}
+.Line_2_A2_Line_15 {
+	overflow: visible;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 10px;
+	height: 1px;
+}
+#Repeat_Grid_6_14 {
+	position: absolute;
+	width: 10px;
+	height: 0px;
+	left: 52px;
+	top: 102.5px;
+	overflow: visible;
+}
+#Line_2_A2_Line_16 {
+	fill: transparent;
+	stroke: rgb(252, 252, 252);
+	stroke-width: 1px;
+	stroke-linejoin: miter;
+	stroke-linecap: butt;
+	stroke-miterlimit: 4;
+	shape-rendering: auto;
+}
+.Line_2_A2_Line_16 {
+	overflow: visible;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 10px;
+	height: 1px;
+}
+#Repeat_Grid_6_15 {
+	position: absolute;
+	width: 10px;
+	height: 0px;
+	left: 0px;
+	top: 153.5px;
+	overflow: visible;
+}
+#Line_2_A2_Line_17 {
+	fill: transparent;
+	stroke: rgb(252, 252, 252);
+	stroke-width: 1px;
+	stroke-linejoin: miter;
+	stroke-linecap: butt;
+	stroke-miterlimit: 4;
+	shape-rendering: auto;
+}
+.Line_2_A2_Line_17 {
+	overflow: visible;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 10px;
+	height: 1px;
+}
+#Repeat_Grid_6_16 {
+	position: absolute;
+	width: 10px;
+	height: 0px;
+	left: 13px;
+	top: 153.5px;
+	overflow: visible;
+}
+#Line_2_A2_Line_18 {
+	fill: transparent;
+	stroke: rgb(252, 252, 252);
+	stroke-width: 1px;
+	stroke-linejoin: miter;
+	stroke-linecap: butt;
+	stroke-miterlimit: 4;
+	shape-rendering: auto;
+}
+.Line_2_A2_Line_18 {
+	overflow: visible;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 10px;
+	height: 1px;
+}
+#Repeat_Grid_6_17 {
+	position: absolute;
+	width: 10px;
+	height: 0px;
+	left: 26px;
+	top: 153.5px;
+	overflow: visible;
+}
+#Line_2_A2_Line_19 {
+	fill: transparent;
+	stroke: rgb(252, 252, 252);
+	stroke-width: 1px;
+	stroke-linejoin: miter;
+	stroke-linecap: butt;
+	stroke-miterlimit: 4;
+	shape-rendering: auto;
+}
+.Line_2_A2_Line_19 {
+	overflow: visible;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 10px;
+	height: 1px;
+}
+#Repeat_Grid_6_18 {
+	position: absolute;
+	width: 10px;
+	height: 0px;
+	left: 39px;
+	top: 153.5px;
+	overflow: visible;
+}
+#Line_2_A2_Line_20 {
+	fill: transparent;
+	stroke: rgb(252, 252, 252);
+	stroke-width: 1px;
+	stroke-linejoin: miter;
+	stroke-linecap: butt;
+	stroke-miterlimit: 4;
+	shape-rendering: auto;
+}
+.Line_2_A2_Line_20 {
+	overflow: visible;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 10px;
+	height: 1px;
+}
+#Repeat_Grid_6_19 {
+	position: absolute;
+	width: 10px;
+	height: 0px;
+	left: 52px;
+	top: 153.5px;
+	overflow: visible;
+}
+#Line_2_A2_Line_21 {
+	fill: transparent;
+	stroke: rgb(252, 252, 252);
+	stroke-width: 1px;
+	stroke-linejoin: miter;
+	stroke-linecap: butt;
+	stroke-miterlimit: 4;
+	shape-rendering: auto;
+}
+.Line_2_A2_Line_21 {
+	overflow: visible;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 10px;
+	height: 1px;
+}
+#ID07_30_1967 {
+	position: absolute;
+	left: 150.902px;
+	top: 57.687px;
+	overflow: hidden;
+	width: 97.179px;
+	height: 12.437px;
+	text-align: center;
+	font-family: Acumin Pro;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 15px;
+	color: rgba(77,80,84,1);
+	letter-spacing: 1px;
+}
+#ID09_14_1965 {
+	position: absolute;
+	left: 150.902px;
+	top: 101.631px;
+	overflow: hidden;
+	width: 97.179px;
+	height: 12.437px;
+	text-align: center;
+	font-family: Acumin Pro;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 15px;
+	color: rgba(77,80,84,1);
+	letter-spacing: 1px;
+}
+#ID04_19_2008 {
+	position: absolute;
+	left: 150.902px;
+	top: 145.575px;
+	overflow: hidden;
+	width: 97.179px;
+	height: 12.437px;
+	text-align: center;
+	font-family: Acumin Pro;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 15px;
+	color: rgba(77,80,84,1);
+	letter-spacing: 1px;
+}
+#ID06_25_1991 {
+	position: absolute;
+	left: 150.902px;
+	top: 189.519px;
+	overflow: hidden;
+	width: 97.179px;
+	height: 12.437px;
+	text-align: center;
+	font-family: Acumin Pro;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 15px;
+	color: rgba(77,80,84,1);
+	letter-spacing: 1px;
+}
+#ID12_06_1975 {
+	position: absolute;
+	left: 150.902px;
+	top: 233.462px;
+	overflow: hidden;
+	width: 97.179px;
+	height: 12.437px;
+	text-align: center;
+	font-family: Acumin Pro;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 15px;
+	color: rgba(77,80,84,1);
+	letter-spacing: 1px;
+}
+#Group_140 {
+	position: absolute;
+	width: 188.213px;
+	height: 230.975px;
+	left: 1274.373px;
+	top: 45.955px;
+	overflow: visible;
+}
+#Navigation_ {
+	position: absolute;
+	left: 30.678px;
+	top: 0px;
+	overflow: visible;
+	width: 69px;
+	white-space: nowrap;
+	text-align: center;
+	font-family: Acumin Pro;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 12px;
+	color: rgba(141,144,147,1);
+	letter-spacing: 1px;
+}
+#Repeat_Grid_7 {
+	position: absolute;
+	width: 41.457px;
+	height: 171.63px;
+	left: 0px;
+	top: 59.345px;
+	overflow: hidden;
+}
+#Repeat_Grid_7_0 {
+	position: absolute;
+	width: 50px;
+	height: 15px;
+	left: 0px;
+	top: 0px;
+	overflow: visible;
+}
+#page_1 {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	overflow: visible;
+	width: 51px;
+	white-space: nowrap;
+	text-align: center;
+	font-family: Acumin Pro;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 15px;
+	color: rgba(77,80,84,1);
+	letter-spacing: 1px;
+}
+#Repeat_Grid_7_1 {
+	position: absolute;
+	width: 50px;
+	height: 15px;
+	left: 0px;
+	top: 47px;
+	overflow: visible;
+}
+#page_1_A2_Text_19 {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	overflow: visible;
+	width: 51px;
+	white-space: nowrap;
+	text-align: center;
+	font-family: Acumin Pro;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 15px;
+	color: rgba(77,80,84,1);
+	letter-spacing: 1px;
+}
+#Repeat_Grid_7_2 {
+	position: absolute;
+	width: 50px;
+	height: 15px;
+	left: 0px;
+	top: 94px;
+	overflow: visible;
+}
+#page_1_A2_Text_20 {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	overflow: visible;
+	width: 51px;
+	white-space: nowrap;
+	text-align: center;
+	font-family: Acumin Pro;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 15px;
+	color: rgba(77,80,84,1);
+	letter-spacing: 1px;
+}
+#Repeat_Grid_7_3 {
+	position: absolute;
+	width: 50px;
+	height: 15px;
+	left: 0px;
+	top: 141px;
+	overflow: visible;
+}
+#page_1_A2_Text_21 {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	overflow: visible;
+	width: 51px;
+	white-space: nowrap;
+	text-align: center;
+	font-family: Acumin Pro;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 15px;
+	color: rgba(77,80,84,1);
+	letter-spacing: 1px;
+}
+#Repeat_Grid_8 {
+	position: absolute;
+	width: 31.507px;
+	height: 162.51px;
+	left: 156.706px;
+	top: 56.858px;
+	overflow: hidden;
+}
+#Repeat_Grid_8_0 {
+	position: absolute;
+	width: 36px;
+	height: 36px;
+	left: 1px;
+	top: 0px;
+	overflow: visible;
+}
+#links_ {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	overflow: visible;
+	width: 37px;
+	white-space: nowrap;
+	text-align: center;
+	font-family: Acumin Pro;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 15px;
+	color: rgba(77,80,84,1);
+	letter-spacing: 1px;
+}
+#Repeat_Grid_8_1 {
+	position: absolute;
+	width: 36px;
+	height: 36px;
+	left: 1px;
+	top: 56px;
+	overflow: visible;
+}
+#links__A2_Text_23 {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	overflow: visible;
+	width: 37px;
+	white-space: nowrap;
+	text-align: center;
+	font-family: Acumin Pro;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 15px;
+	color: rgba(77,80,84,1);
+	letter-spacing: 1px;
+}
+#Repeat_Grid_8_2 {
+	position: absolute;
+	width: 36px;
+	height: 36px;
+	left: 1px;
+	top: 112px;
+	overflow: visible;
+}
+#links__A2_Text_24 {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	overflow: visible;
+	width: 37px;
+	white-space: nowrap;
+	text-align: center;
+	font-family: Acumin Pro;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 15px;
+	color: rgba(77,80,84,1);
+	letter-spacing: 1px;
+}
+#Line_3 {
+	fill: transparent;
+}
+.Line_3 {
+	overflow: visible;
+	position: absolute;
+	top: 324.957px;
+	left: 580.511px;
+	width: 995.251px;
+	height: 0.477px;
+}
+#btn__face__rounded {
+	position: absolute;
+	width: 22.228px;
+	height: 22.228px;
+	left: 1411.714px;
+	top: 376.425px;
+	overflow: visible;
+}
+#Ellipse_35 {
+	filter: drop-shadow(0px 2px 5px rgba(0, 0, 0, 0.2));
+	fill: rgba(60,93,150,1);
+}
+.Ellipse_35 {
+	position: absolute;
+	overflow: visible;
+	width: 37.228px;
+	height: 37.228px;
+	left: 0px;
+	top: 0px;
+}
+#Facebook {
+	fill: rgba(255,255,255,1);
+}
+.Facebook {
+	transform: matrix(1,0,0,1,0,0);
+	overflow: visible;
+	position: absolute;
+	top: 8.083px;
+	left: 9.699px;
+	width: 3.018px;
+	height: 6.466px;
+}
+#btn_twi__rounded {
+	position: absolute;
+	width: 22.228px;
+	height: 22.228px;
+	left: 1477.168px;
+	top: 376.425px;
+	overflow: visible;
+}
+#Ellipse_36 {
+	filter: drop-shadow(0px 2px 5px rgba(0, 0, 0, 0.2));
+	fill: rgba(99,174,235,1);
+}
+.Ellipse_36 {
+	position: absolute;
+	overflow: visible;
+	width: 37.228px;
+	height: 37.228px;
+	left: 0px;
+	top: 0px;
+}
+#twitter {
+	fill: rgba(255,255,255,1);
+}
+.twitter {
+	transform: matrix(1,0,0,1,0,0);
+	overflow: visible;
+	position: absolute;
+	top: 8.487px;
+	left: 8.083px;
+	width: 6.466px;
+	height: 5.252px;
+}
+#btn__insta__rounded {
+	position: absolute;
+	width: 22.228px;
+	height: 22.228px;
+	left: 1534.332px;
+	top: 376.425px;
+	overflow: visible;
+}
+#Ellipse_38 {
+	filter: drop-shadow(0px 2px 5px rgba(0, 0, 0, 0.2));
+	fill: rgba(71,115,153,1);
+}
+.Ellipse_38 {
+	position: absolute;
+	overflow: visible;
+	width: 37.228px;
+	height: 37.228px;
+	left: 0px;
+	top: 0px;
+}
+#instagram {
+	fill: rgba(255,255,255,1);
+}
+.instagram {
+	transform: matrix(1,0,0,1,0,0);
+	overflow: visible;
+	position: absolute;
+	top: 7.679px;
+	left: 7.679px;
+	width: 6.466px;
+	height: 6.466px;
+}
+#Subscribe_to_our_newsletter {
+	position: absolute;
+	left: 587.888px;
+	top: 393.837px;
+	overflow: visible;
+	width: 134px;
+	white-space: nowrap;
+	text-align: left;
+	font-family: Arial;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 11px;
+	color: rgba(141,144,147,1);
+}
+#Group_100 {
+	position: absolute;
+	width: 163.912px;
+	height: 23.044px;
+	left: 838.437px;
+	top: 388.033px;
+	overflow: visible;
+}
+#Rectangle_4_A2_Rectangle_7 {
+	fill: rgba(252,252,252,1);
+	stroke: rgb(90, 183, 206);
+	stroke-width: 1px;
+	stroke-linejoin: miter;
+	stroke-linecap: butt;
+	stroke-miterlimit: 4;
+	shape-rendering: auto;
+}
+.Rectangle_4_A2_Rectangle_7 {
+	position: absolute;
+	overflow: visible;
+	width: 163.912px;
+	height: 23.044px;
+	left: 0px;
+	top: 0px;
+}
+#Adresse_email {
+	opacity: 0.807;
+	position: absolute;
+	left: 13.062px;
+	top: 8.49px;
+	overflow: visible;
+	width: 47px;
+	white-space: nowrap;
+	text-align: left;
+	font-family: Acumin Pro;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 7px;
+	color: rgba(64,64,64,1);
+	letter-spacing: 0.25px;
+}
+#Rectangle_2 {
+	filter: drop-shadow(0px 3px 10px rgba(0, 0, 0, 0.11));
+	fill: rgba(42,191,204,1);
+}
+.Rectangle_2 {
+	position: absolute;
+	overflow: visible;
+	width: 105.062px;
+	height: 53.044px;
+	left: 983.252px;
+	top: 388.033px;
+}
+#OK_ {
+	position: absolute;
+	left: 1015.032px;
+	top: 394.704px;
+	overflow: visible;
+	width: 13px;
+	white-space: nowrap;
+	line-height: 14px;
+	margin-top: -3px;
+	text-align: center;
+	font-family: Acumin Pro;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 8px;
+	color: rgba(240,240,240,1);
+}
+#ID497_Evergreen_Rd__Roseville_ {
+	opacity: 0.6;
+	position: absolute;
+	left: 168.848px;
+	top: 385.545px;
+	overflow: visible;
+	width: 214px;
+	white-space: nowrap;
+	line-height: 18px;
+	margin-top: -3px;
+	text-align: left;
+	font-family: Acumin Pro;
+	font-style: normal;
+	font-weight: lighter;
+	font-size: 12px;
+	color: rgba(77,80,84,1);
+	letter-spacing: 0.25px;
+}
+#Rectangle_434 {
+	fill: rgba(33,38,45,1);
+}
+.Rectangle_434 {
+	position: absolute;
+	overflow: visible;
+	width: 1611px;
+	height: 60.526px;
+	left: 0px;
+	top: 476.273px;
+}
+#Copyright___2018__IMEDICODesig {
+	position: absolute;
+	left: 660.314px;
+	top: 496.172px;
+	overflow: visible;
+	width: 257px;
+	white-space: nowrap;
+	text-align: center;
+	font-family: Acumin Pro;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 10px;
+	color: rgba(141,144,147,1);
+	letter-spacing: 1px;
+}
+#block {
+	position: absolute;
+	width: 1599px;
+	height: 579.088px;
+	left: 0px;
+	top: 169.756px;
+	overflow: visible;
+}
+#image {
+	filter: drop-shadow(0px 5px 10px rgba(0, 0, 0, 0.102));
+	fill: url(#image_A2_Rectangle_11_pattern);
+}
+.image {
+	position: absolute;
+	overflow: visible;
+	width: 1626.498px;
+	height: 609.088px;
+	left: 0.563px;
+	top: 0px;
+}
+#gradient {
+	opacity: 0.796;
+	filter: blur(0px);
+	fill: url(#LinearGradientFill2);
+}
+.gradient {
+	position: absolute;
+	overflow: visible;
+	width: 1596.498px;
+	height: 579.088px;
+	left: 0.563px;
+	top: 0px;
+}
+#waves {
+	position: absolute;
+	width: 1599px;
+	height: 92.155px;
+	left: 0px;
+	top: 486.933px;
+	overflow: visible;
+}
+#wave {
+	opacity: 0.136;
+	fill: url(#RadialGradientFill3);
+}
+.wave {
+	transform: matrix(1,0,0,1,0,0);
+	overflow: visible;
+	position: absolute;
+	top: 3.392px;
+	left: 0.563px;
+	width: 1598.437px;
+	height: 88.763px;
+}
+#wave_A2_Path_5 {
+	opacity: 0.136;
+	fill: url(#RadialGradientFill4);
+}
+.wave_A2_Path_5 {
+	transform: matrix(1,0,0,1,0,0);
+	overflow: visible;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 1597.061px;
+	height: 92.154px;
+}
+#Group_153 {
+	position: absolute;
+	width: 109.771px;
+	height: 109.771px;
+	left: 712.53px;
+	top: 2674px;
+	overflow: visible;
+}
+#base {
+	fill: transparent;
+	stroke: rgb(255, 255, 255);
+	stroke-width: 2px;
+	stroke-linejoin: miter;
+	stroke-linecap: butt;
+	stroke-miterlimit: 4;
+	shape-rendering: auto;
+}
+.base {
+	transform: matrix(1,0,0,1,0,0);
+	overflow: visible;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 109.771px;
+	height: 109.771px;
+}
+#icon {
+	fill: rgba(255,255,255,1);
+}
+.icon {
+	transform: matrix(1,0,0,1,0,0);
+	overflow: visible;
+	position: absolute;
+	top: 26.778px;
+	left: 40.955px;
+	width: 44.613px;
+	height: 55.766px;
+}
+#Background_block {
+	filter: drop-shadow(0px 5px 35px rgba(0, 0, 0, 0.031));
+	fill: rgba(252,252,252,1);
+}
+.Background_block {
+	position: absolute;
+	overflow: visible;
+	width: 1573.281px;
+	height: 736.134px;
+	left: 47.431px;
+	top: 1927px;
+}
+#Background_block_A2_Rectangle_14 {
+	filter: drop-shadow(0px 5px 35px rgba(0, 0, 0, 0.031));
+	fill: rgba(252,252,252,1);
+}
+.Background_block_A2_Rectangle_14 {
+	position: absolute;
+	overflow: visible;
+	width: 1497.371px;
+	height: 680.745px;
+	left: 84.431px;
+	top: 1167px;
+}
+#Main_image {
+	position: absolute;
+	width: 722.995px;
+	height: 400.513px;
+	left: 111.027px;
+	top: 1988.217px;
+	overflow: visible;
+}
+#block_A2_Group_44 {
+	position: absolute;
+	width: 722.995px;
+	height: 400.513px;
+	left: 0px;
+	top: 0px;
+	overflow: visible;
+}
+#image_A2_Rectangle_15 {
+	filter: drop-shadow(0px 5px 10px rgba(0, 0, 0, 0.102));
+	fill: url(#image_A2_Rectangle_16_pattern);
+}
+.image_A2_Rectangle_15 {
+	position: absolute;
+	overflow: visible;
+	width: 751.712px;
+	height: 430.512px;
+	left: 0.289px;
+	top: 0px;
+}
+#gradient_A2_Rectangle_17 {
+	filter: blur(3.863px);
+	fill: url(#LinearGradientFill5);
+}
+.gradient_A2_Rectangle_17 {
+	position: absolute;
+	overflow: visible;
+	width: 721.712px;
+	height: 116.233px;
+	left: 0.289px;
+	top: 284.28px;
+}
+#waves_A2_Group_45 {
+	position: absolute;
+	width: 722.995px;
+	height: 109.544px;
+	left: 0px;
+	top: 290.969px;
+	overflow: visible;
+}
+#wave_A2_Path_8 {
+	opacity: 0.136;
+	fill: url(#RadialGradientFill6);
+}
+.wave_A2_Path_8 {
+	transform: matrix(1,0,0,1,0,0);
+	overflow: visible;
+	position: absolute;
+	top: 0px;
+	left: 0.289px;
+	width: 722.706px;
+	height: 109.544px;
+}
+#wave_A2_Path_9 {
+	opacity: 0.136;
+	fill: url(#RadialGradientFill7);
+}
+.wave_A2_Path_9 {
+	transform: matrix(1,0,0,1,0,0);
+	overflow: visible;
+	position: absolute;
+	top: 13.458px;
+	left: 0px;
+	width: 722px;
+	height: 96.085px;
+}
+#content {
+	position: absolute;
+	width: 589.819px;
+	height: 66.119px;
+	left: 32.646px;
+	top: 310.276px;
+	overflow: visible;
+}
+#texts {
+	position: absolute;
+	width: 589.819px;
+	height: 66.119px;
+	left: 0px;
+	top: 0px;
+	overflow: visible;
+}
+#Title_of_horizontal_gallery {
+	position: absolute;
+	left: 0.376px;
+	top: 18.454px;
+	overflow: hidden;
+	width: 492.817px;
+	height: 47.664px;
+	text-align: left;
+	font-family: Acumin Pro;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 32px;
+	color: rgba(240,240,240,1);
+	letter-spacing: -0.1px;
+}
+#Lorem_ipsum_dolor_sit_amet__so_A2_Text_31 {
+	opacity: 0.569;
+	position: absolute;
+	left: 0.376px;
+	top: 51.939px;
+	overflow: hidden;
+	width: 590.444px;
+	height: 14.074px;
+	text-align: left;
+	font-family: Acumin Pro;
+	font-style: normal;
+	font-weight: lighter;
+	font-size: 15px;
+	color: rgba(252,252,252,1);
+}
+#TYPE_OF_GALLERY {
+	opacity: 0.35;
+	filter: blur(30px);
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	overflow: hidden;
+	width: 174.595px;
+	height: 12.579px;
+	text-align: left;
+	font-family: Acumin Pro;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 15px;
+	color: rgba(240,240,240,1);
+	letter-spacing: 0.25px;
+}
+#Small_images {
+	position: absolute;
+	width: 719.709px;
+	height: 116.563px;
+	left: 114.376px;
+	top: 2408.571px;
+	overflow: hidden;
+}
+#Small_images_0 {
+	position: absolute;
+	width: 177px;
+	height: 121px;
+	left: -3px;
+	top: 0px;
+	overflow: visible;
+}
+#ID4e10199a338b3fa287fa51550c3b {
+	filter: drop-shadow(0px 5px 10px rgba(0, 0, 0, 0.051));
+	fill: url(#ID4e10199a338b3fa287fa51550c3b_A2_Rectangle_19_pattern);
+}
+.ID4e10199a338b3fa287fa51550c3b {
+	position: absolute;
+	overflow: visible;
+	width: 207px;
+	height: 151px;
+	left: 0px;
+	top: 0px;
+}
+#Small_images_1 {
+	position: absolute;
+	width: 177px;
+	height: 121px;
+	left: 194px;
+	top: 0px;
+	overflow: visible;
+}
+#ID3a81d9179ea21240f0af7770e994 {
+	filter: drop-shadow(0px 5px 10px rgba(0, 0, 0, 0.051));
+	fill: url(#ID3a81d9179ea21240f0af7770e994_A2_Rectangle_21_pattern);
+}
+.ID3a81d9179ea21240f0af7770e994 {
+	position: absolute;
+	overflow: visible;
+	width: 207px;
+	height: 151px;
+	left: 0px;
+	top: 0px;
+}
+#Small_images_2 {
+	position: absolute;
+	width: 177px;
+	height: 121px;
+	left: 391px;
+	top: 0px;
+	overflow: visible;
+}
+#f38a30480f400e4ab9a6e00a7aa47e {
+	filter: drop-shadow(0px 5px 10px rgba(0, 0, 0, 0.051));
+	fill: url(#f38a30480f400e4ab9a6e00a7aa47e_A2_Rectangle_23_pattern);
+}
+.f38a30480f400e4ab9a6e00a7aa47e {
+	position: absolute;
+	overflow: visible;
+	width: 207px;
+	height: 151px;
+	left: 0px;
+	top: 0px;
+}
+#Small_images_3 {
+	position: absolute;
+	width: 177px;
+	height: 121px;
+	left: 588px;
+	top: 0px;
+	overflow: visible;
+}
+#f38a30480f400e4ab9a6e00a7aa47e_A2_Rectangle_24 {
+	filter: drop-shadow(0px 5px 10px rgba(0, 0, 0, 0.051));
+	fill: url(#f38a30480f400e4ab9a6e00a7aa47e_A2_Rectangle_25_pattern);
+}
+.f38a30480f400e4ab9a6e00a7aa47e_A2_Rectangle_24 {
+	position: absolute;
+	overflow: visible;
+	width: 207px;
+	height: 151px;
+	left: 0px;
+	top: 0px;
+}
+#block_A2_Group_52 {
+	position: absolute;
+	width: 357.221px;
+	height: 262.549px;
+	left: 308.054px;
+	top: 747.771px;
+	overflow: visible;
+}
+#image_A2_Rectangle_26 {
+	filter: drop-shadow(0px 5px 35px rgba(0, 0, 0, 0.031));
+	fill: rgba(252,252,252,1);
+}
+.image_A2_Rectangle_26 {
+	position: absolute;
+	overflow: visible;
+	width: 462.221px;
+	height: 367.549px;
+	left: 0px;
+	top: 0px;
+}
+#b89d9a976608763fd05e3f6a9464b0 {
+	opacity: 0.72;
+	filter: drop-shadow(0px 5px 10px rgba(0, 0, 0, 0.051));
+	fill: rgba(39,129,111,1);
+}
+.b89d9a976608763fd05e3f6a9464b0 {
+	position: absolute;
+	overflow: visible;
+	width: 387.002px;
+	height: 204.71px;
+	left: 308.273px;
+	top: 574.134px;
+}
+#Title_of_image_card {
+	position: absolute;
+	left: 345.422px;
+	top: 828.593px;
+	overflow: hidden;
+	width: 284.092px;
+	height: 24.467px;
+	text-align: left;
+	font-family: Acumin Pro;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 20px;
+	color: rgba(64,64,64,1);
+}
+#Lorem_ipsum_dolor_sit_amet__so_A2_Text_34 {
+	position: absolute;
+	left: 346.162px;
+	top: 882.421px;
+	overflow: hidden;
+	width: 279.774px;
+	height: 80.742px;
+	text-align: left;
+	font-family: Acumin Pro;
+	font-style: normal;
+	font-weight: lighter;
+	font-size: 15px;
+	color: rgba(64,64,64,1);
+}
+#block_A2_Group_53 {
+	position: absolute;
+	width: 357.221px;
+	height: 262.549px;
+	left: 657.935px;
+	top: 747.771px;
+	overflow: visible;
+}
+#image_A2_Rectangle_28 {
+	filter: drop-shadow(0px 5px 35px rgba(0, 0, 0, 0.031));
+	fill: rgba(252,252,252,1);
+}
+.image_A2_Rectangle_28 {
+	position: absolute;
+	overflow: visible;
+	width: 462.221px;
+	height: 367.549px;
+	left: 0px;
+	top: 0px;
+}
+#b89d9a976608763fd05e3f6a9464b0_A2_Rectangle_29 {
+	opacity: 0.72;
+	filter: drop-shadow(0px 5px 10px rgba(0, 0, 0, 0.051));
+	fill: rgba(211,129,126,1);
+}
+.b89d9a976608763fd05e3f6a9464b0_A2_Rectangle_29 {
+	position: absolute;
+	overflow: visible;
+	width: 387.002px;
+	height: 204.71px;
+	left: 658.153px;
+	top: 574.134px;
+}
+#Title_of_image_card_A2_Text_35 {
+	position: absolute;
+	left: 695.303px;
+	top: 828.593px;
+	overflow: hidden;
+	width: 284.092px;
+	height: 24.467px;
+	text-align: left;
+	font-family: Acumin Pro;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 20px;
+	color: rgba(64,64,64,1);
+}
+#Lorem_ipsum_dolor_sit_amet__so_A2_Text_36 {
+	position: absolute;
+	left: 696.042px;
+	top: 882.421px;
+	overflow: hidden;
+	width: 279.774px;
+	height: 80.742px;
+	text-align: left;
+	font-family: Acumin Pro;
+	font-style: normal;
+	font-weight: lighter;
+	font-size: 15px;
+	color: rgba(64,64,64,1);
+}
+#block_A2_Group_54 {
+	position: absolute;
+	width: 357.221px;
+	height: 262.549px;
+	left: 1007.816px;
+	top: 747.771px;
+	overflow: visible;
+}
+#image_A2_Rectangle_30 {
+	filter: drop-shadow(0px 5px 35px rgba(0, 0, 0, 0.031));
+	fill: rgba(252,252,252,1);
+}
+.image_A2_Rectangle_30 {
+	position: absolute;
+	overflow: visible;
+	width: 462.221px;
+	height: 367.549px;
+	left: 0px;
+	top: 0px;
+}
+#b89d9a976608763fd05e3f6a9464b0_A2_Rectangle_31 {
+	opacity: 0.72;
+	filter: drop-shadow(0px 5px 10px rgba(0, 0, 0, 0.051));
+	fill: rgba(94,165,183,1);
+}
+.b89d9a976608763fd05e3f6a9464b0_A2_Rectangle_31 {
+	position: absolute;
+	overflow: visible;
+	width: 387.002px;
+	height: 204.71px;
+	left: 1008.033px;
+	top: 574.134px;
+}
+#Title_of_image_card_A2_Text_37 {
+	position: absolute;
+	left: 1045.184px;
+	top: 828.593px;
+	overflow: hidden;
+	width: 284.092px;
+	height: 24.467px;
+	text-align: left;
+	font-family: Acumin Pro;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 20px;
+	color: rgba(64,64,64,1);
+}
+#Lorem_ipsum_dolor_sit_amet__so_A2_Text_38 {
+	position: absolute;
+	left: 1045.923px;
+	top: 882.421px;
+	overflow: hidden;
+	width: 279.774px;
+	height: 80.742px;
+	text-align: left;
+	font-family: Acumin Pro;
+	font-style: normal;
+	font-weight: lighter;
+	font-size: 15px;
+	color: rgba(64,64,64,1);
+}
+#Group_152 {
+	position: absolute;
+	width: 116.944px;
+	height: 116.944px;
+	left: 746.766px;
+	top: 370.292px;
+	overflow: visible;
+}
+#base_A2_Path_10 {
+	fill: transparent;
+	stroke: rgb(255, 255, 255);
+	stroke-width: 2px;
+	stroke-linejoin: miter;
+	stroke-linecap: butt;
+	stroke-miterlimit: 4;
+	shape-rendering: auto;
+}
+.base_A2_Path_10 {
+	transform: matrix(1,0,0,1,0,0);
+	overflow: visible;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 116.944px;
+	height: 116.944px;
+}
+#icon_A2_Path_11 {
+	fill: rgba(255,255,255,1);
+}
+.icon_A2_Path_11 {
+	transform: matrix(1,0,0,1,0,0);
+	overflow: visible;
+	position: absolute;
+	top: 28.528px;
+	left: 43.631px;
+	width: 47.528px;
+	height: 59.41px;
+}
+#Group_155 {
+	position: absolute;
+	width: 1326.947px;
+	height: 818.913px;
+	left: 117.522px;
+	top: 2710.018px;
+	overflow: visible;
+}
+#Group_120 {
+	position: absolute;
+	width: 1326.947px;
+	height: 818.913px;
+	left: 0px;
+	top: 0px;
+	overflow: visible;
+}
+#image_A2_Rectangle_32 {
+	filter: drop-shadow(0px 5px 10px rgba(0, 0, 0, 0.102));
+	fill: url(#image_A2_Rectangle_33_pattern);
+}
+.image_A2_Rectangle_32 {
+	position: absolute;
+	overflow: visible;
+	width: 1354.427px;
+	height: 848.913px;
+	left: 0.567px;
+	top: 0px;
+}
+#gradient_A2_Rectangle_34 {
+	filter: blur(14.006px);
+	fill: url(#LinearGradientFill8);
+}
+.gradient_A2_Rectangle_34 {
+	position: absolute;
+	overflow: visible;
+	width: 1324.427px;
+	height: 818.913px;
+	left: 0.567px;
+	top: 0px;
+}
+#waves_A2_Group_58 {
+	position: absolute;
+	width: 1326.947px;
+	height: 163.471px;
+	left: 0px;
+	top: 655.442px;
+	overflow: visible;
+}
+#wave_A2_Path_12 {
+	opacity: 0.136;
+	fill: url(#RadialGradientFill9);
+}
+.wave_A2_Path_12 {
+	transform: matrix(1,0,0,1,0,0);
+	overflow: visible;
+	position: absolute;
+	top: 0px;
+	left: 0.567px;
+	width: 1326.38px;
+	height: 163.471px;
+}
+#wave_A2_Path_13 {
+	opacity: 0.136;
+	fill: url(#RadialGradientFill10);
+}
+.wave_A2_Path_13 {
+	transform: matrix(1,0,0,1,0,0);
+	overflow: visible;
+	position: absolute;
+	top: 10.92px;
+	left: 0px;
+	width: 1324.994px;
+	height: 152.551px;
+}
+#Group_154 {
+	position: absolute;
+	width: 124.08px;
+	height: 118.139px;
+	left: 620.517px;
+	top: 350.689px;
+	overflow: visible;
+}
+#Ellipse_41 {
+	fill: rgba(42,191,204,1);
+	stroke: rgb(112, 112, 112);
+	stroke-width: 1px;
+	stroke-linejoin: miter;
+	stroke-linecap: butt;
+	stroke-miterlimit: 4;
+	shape-rendering: auto;
+}
+.Ellipse_41 {
+	position: absolute;
+	overflow: visible;
+	width: 124.08px;
+	height: 118.139px;
+	left: 0px;
+	top: 0px;
+}
+#icon_A2_Path_14 {
+	fill: rgba(255,255,255,1);
+}
+.icon_A2_Path_14 {
+	transform: matrix(1,0,0,1,0,0);
+	overflow: visible;
+	position: absolute;
+	top: 31.504px;
+	left: 48.805px;
+	width: 45.929px;
+	height: 54.663px;
+}
+#Lorem_ipsum_dolor_sit_amet__co {
+	position: absolute;
+	left: 929.259px;
+	top: 2093.04px;
+	overflow: hidden;
+	width: 540.874px;
+	height: 398.327px;
+	text-align: left;
+	font-family: Acumin Pro;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 18px;
+	color: rgba(64,64,64,1);
+}
+#NOS_PRICIPALES {
+	position: absolute;
+	left: 941.947px;
+	top: 2037.123px;
+	overflow: visible;
+	width: 158px;
+	white-space: nowrap;
+	text-align: left;
+	font-family: Acumin Pro;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 20px;
+	color: rgba(64,64,64,1);
+}
+#Ellipse_2 {
+	fill: url(#LinearGradientFill11);
+}
+.Ellipse_2 {
+	position: absolute;
+	overflow: visible;
+	width: 19.575px;
+	height: 18.943px;
+	left: 909.333px;
+	top: 2037.127px;
+}
+#QUALITES {
+	position: absolute;
+	left: 1107.039px;
+	top: 2036.854px;
+	overflow: visible;
+	width: 95px;
+	white-space: nowrap;
+	text-align: left;
+	font-family: Acumin Pro;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 20px;
+	color: rgba(5,80,99,1);
+}
+#Lorem_ipsum_dolor_sit_amet__co_A2_Text_42 {
+	position: absolute;
+	left: 309.933px;
+	top: 1376.145px;
+	overflow: hidden;
+	width: 989.469px;
+	height: 209.145px;
+	text-align: center;
+	font-family: Acumin Pro;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 18px;
+	color: rgba(64,64,64,1);
+}
+#NOS_PRICIPALES_A2_Text_43 {
+	position: absolute;
+	left: 570.014px;
+	top: 1267.74px;
+	overflow: visible;
+	width: 307px;
+	white-space: nowrap;
+	text-align: left;
+	font-family: Acumin Pro;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 39px;
+	color: rgba(64,64,64,1);
+}
+#NOS_PRICIPALES_A2_Text_44 {
+	position: absolute;
+	left: 703.612px;
+	top: 1622.666px;
+	overflow: visible;
+	width: 107px;
+	white-space: nowrap;
+	text-align: left;
+	font-family: Acumin Pro;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 13px;
+	color: rgba(64,64,64,1);
+}
+#Ellipse_42 {
+	fill: url(#LinearGradientFill12);
+}
+.Ellipse_42 {
+	position: absolute;
+	overflow: visible;
+	width: 39.527px;
+	height: 38.251px;
+	left: 504.158px;
+	top: 1267.75px;
+}
+#QUALITES_A2_Text_45 {
+	position: absolute;
+	left: 893.031px;
+	top: 1267.994px;
+	overflow: visible;
+	width: 185px;
+	white-space: nowrap;
+	text-align: left;
+	font-family: Acumin Pro;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 39px;
+	color: rgba(5,80,99,1);
+}
+#QUALITES_A2_Text_46 {
+	position: absolute;
+	left: 826.576px;
+	top: 1622.666px;
+	overflow: visible;
+	width: 65px;
+	white-space: nowrap;
+	text-align: left;
+	font-family: Acumin Pro;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 13px;
+	color: rgba(64,64,64,1);
+}
+#Group_186 {
+	position: absolute;
+	width: 1600px;
+	height: 129.082px;
+	left: -1px;
+	top: 0px;
+	overflow: visible;
+}
+#Group_183 {
+	position: absolute;
+	width: 578px;
+	height: 16px;
+	left: 714px;
+	top: 106px;
+	overflow: visible;
+}
+#A_PROPOS {
+	position: absolute;
+	left: 125px;
+	top: 0px;
+	overflow: visible;
+	width: 85px;
+	white-space: nowrap;
+	text-align: center;
+	font-family: Acumin Pro;
+	font-style: normal;
+	font-weight: lighter;
+	font-size: 16px;
+	color: rgba(64,64,64,1);
+	letter-spacing: 0.5px;
+}
+#ACCUEIL {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	overflow: visible;
+	width: 73px;
+	white-space: nowrap;
+	text-align: center;
+	font-family: Acumin Pro;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 16px;
+	color: rgba(45,137,171,1);
+	letter-spacing: 0.5px;
+}
+#SERVICES_ {
+	position: absolute;
+	left: 262px;
+	top: 0px;
+	overflow: visible;
+	width: 87px;
+	white-space: nowrap;
+	text-align: center;
+	font-family: Acumin Pro;
+	font-style: normal;
+	font-weight: lighter;
+	font-size: 16px;
+	color: rgba(64,64,64,1);
+	letter-spacing: 0.5px;
+}
+#BLOG {
+	position: absolute;
+	left: 401px;
+	top: 0px;
+	overflow: visible;
+	width: 47px;
+	white-space: nowrap;
+	text-align: center;
+	font-family: Acumin Pro;
+	font-style: normal;
+	font-weight: lighter;
+	font-size: 16px;
+	color: rgba(64,64,64,1);
+	letter-spacing: 0.5px;
+}
+#CONTACT {
+	position: absolute;
+	left: 500px;
+	top: 0px;
+	overflow: visible;
+	width: 79px;
+	white-space: nowrap;
+	text-align: center;
+	font-family: Acumin Pro;
+	font-style: normal;
+	font-weight: lighter;
+	font-size: 16px;
+	color: rgba(64,64,64,1);
+	letter-spacing: 0.5px;
+}
+#Group_182 {
+	position: absolute;
+	width: 181px;
+	height: 16px;
+	left: 89px;
+	top: 106px;
+	overflow: visible;
+}
+#Ellipse_1_A2_Ellipse_8 {
+	fill: url(#LinearGradientFill13);
+}
+.Ellipse_1_A2_Ellipse_8 {
+	position: absolute;
+	overflow: visible;
+	width: 14.772px;
+	height: 15.772px;
+	left: 0px;
+	top: 0px;
+}
+#KIAM_A2_Text_52 {
+	position: absolute;
+	left: 21px;
+	top: 0px;
+	overflow: visible;
+	width: 47px;
+	white-space: nowrap;
+	text-align: center;
+	font-family: Acumin Pro;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 16px;
+	color: rgba(64,64,64,1);
+	letter-spacing: 1px;
+}
+#CONSULTING_A2_Text_53 {
+	position: absolute;
+	left: 74px;
+	top: 1px;
+	overflow: visible;
+	width: 108px;
+	white-space: nowrap;
+	text-align: left;
+	font-family: Acumin Pro;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 15px;
+	color: rgba(64,64,64,1);
+	letter-spacing: 1px;
+}
+#Rectangle_440 {
+	fill: rgba(7,79,132,1);
+	stroke: rgb(112, 112, 112);
+	stroke-width: 1px;
+	stroke-linejoin: miter;
+	stroke-linecap: butt;
+	stroke-miterlimit: 4;
+	shape-rendering: auto;
+}
+.Rectangle_440 {
+	position: absolute;
+	overflow: visible;
+	width: 1600px;
+	height: 63px;
+	left: 0px;
+	top: 0px;
+}
+#Group_181 {
+	position: absolute;
+	width: 145px;
+	height: 16px;
+	left: 16px;
+	top: 24px;
+	overflow: visible;
+}
+#Phone {
+	position: absolute;
+	width: 16px;
+	height: 16px;
+	left: 0px;
+	top: 0px;
+	overflow: visible;
+}
+#Rectangle_320 {
+	fill: transparent;
+}
+.Rectangle_320 {
+	position: absolute;
+	overflow: visible;
+	width: 16px;
+	height: 16px;
+	left: 0px;
+	top: 0px;
+}
+#Path_110 {
+	fill: rgba(255,255,255,1);
+}
+.Path_110 {
+	transform: matrix(1,0,0,1,0,0);
+	overflow: visible;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 16px;
+	height: 16px;
+}
+#_44_345_678_903 {
+	position: absolute;
+	left: 28px;
+	top: 1px;
+	overflow: visible;
+	width: 118px;
+	white-space: nowrap;
+	line-height: 22px;
+	margin-top: -3.5px;
+	text-align: left;
+	font-family: Acumin Pro;
+	font-style: normal;
+	font-weight: lighter;
+	font-size: 15px;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.25px;
+}
+#Group_180 {
+	position: absolute;
+	width: 163px;
+	height: 16px;
+	left: 208px;
+	top: 24px;
+	overflow: visible;
+}
+#Messages {
+	position: absolute;
+	width: 16px;
+	height: 16px;
+	left: 0px;
+	top: 0px;
+	overflow: visible;
+}
+#Rectangle_117 {
+	fill: transparent;
+}
+.Rectangle_117 {
+	position: absolute;
+	overflow: visible;
+	width: 16px;
+	height: 16px;
+	left: 0px;
+	top: 0px;
+}
+#Path_50 {
+	fill: rgba(255,255,255,1);
+}
+.Path_50 {
+	transform: matrix(1,0,0,1,0,0);
+	overflow: visible;
+	position: absolute;
+	top: 2px;
+	left: 0px;
+	width: 16px;
+	height: 12px;
+}
+#adobexd_mail_com {
+	position: absolute;
+	left: 28px;
+	top: 1px;
+	overflow: visible;
+	width: 136px;
+	white-space: nowrap;
+	line-height: 22px;
+	margin-top: -3.5px;
+	text-align: left;
+	font-family: Acumin Pro;
+	font-style: normal;
+	font-weight: lighter;
+	font-size: 15px;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.25px;
+}
+#Plan_de_travail___1 {
+	fill: url(#Plan_de_travail___1_A2_Rectangle_39_pattern);
+}
+.Plan_de_travail___1 {
+	position: absolute;
+	overflow: visible;
+	width: 108.5px;
+	height: 63px;
+	left: 1433px;
+	top: 0px;
+}
+#Symbol_8___9 {
+	position: absolute;
+	width: 140.942px;
+	height: 33.341px;
+	left: 1363px;
+	top: 95.741px;
+	overflow: visible;
+}
+#Rectangle_2_A2_Rectangle_40 {
+	fill: transparent;
+	stroke: rgb(92, 176, 197);
+	stroke-width: 3px;
+	stroke-linejoin: miter;
+	stroke-linecap: butt;
+	stroke-miterlimit: 4;
+	shape-rendering: auto;
+}
+.Rectangle_2_A2_Rectangle_40 {
+	position: absolute;
+	overflow: visible;
+	width: 140.941px;
+	height: 33.341px;
+	left: 0px;
+	top: 0px;
+}
+#CONNEXION {
+	position: absolute;
+	left: 28.471px;
+	top: 11.134px;
+	overflow: visible;
+	width: 85px;
+	white-space: nowrap;
+	line-height: 29px;
+	margin-top: -7.5px;
+	text-align: center;
+	font-family: Acumin Pro;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 14px;
+	color: rgba(64,64,64,1);
+}
