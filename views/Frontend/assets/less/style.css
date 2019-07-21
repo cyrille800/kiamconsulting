@@ -6652,3 +6652,9 @@ ul.uv_scl_icon li:hover a {
 .selectize-input.focus {
   border-color: #074F84;
 }
+.navbar.nav-scroll.home-1{
+  background: white;
+}
+#myCarousel{
+  height: 300px;
+}
