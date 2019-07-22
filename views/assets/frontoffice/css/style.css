@@ -1156,6 +1156,7 @@ ul li {
 .uv-header-contact {
   text-align: left;
   margin-top:10px; 
+ 
 }
 .uv-header-contact a {
   display: inline-block;
@@ -6655,6 +6656,6 @@ ul.uv_scl_icon li:hover a {
 .navbar.nav-scroll.home-1{
   background: white;
 }
-#myCarousel{
-  height: 300px;
+.fa.fa-phone{
+  margin-left: 15px;
 }
