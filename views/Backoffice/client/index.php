@@ -1,14 +1,4 @@
 <!DOCTYPE html>
-<!--
-Theme: Keen - The Ultimate Bootstrap Admin Theme
-Author: KeenThemes
-Website: http://www.keenthemes.com/
-Contact: support@keenthemes.com
-Follow: www.twitter.com/keenthemes
-Dribbble: www.dribbble.com/keenthemes
-Like: www.facebook.com/keenthemes
-License: You must have a valid license purchased only from https://themes.getbootstrap.com/product/keen-the-ultimate-bootstrap-admin-theme/ in order to legally use the theme for your project.
--->
 <html lang="en" >
     <!-- begin::Head -->
     <head>
@@ -87,11 +77,16 @@ include "bout_code/navbar_horizontal.php";
 ?>
                         </div>
                     </div>
-                    <!-- end:: Header -->
-<?php 
-include "bout_code/page_vierge.php";
-?>
-                    <!-- begin:: Footer -->
+<div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--ver kt-grid--stretch" style="height:110vh;">
+                        <div class="kt-container kt-body  kt-grid kt-grid--ver"  id="kt_body">
+                            <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor">
+                    <iframe src="bienvenu.php" style="height:100%;border:none;background-color: #f2f3fa;padding:0px;margin:0px;" class="col-md-12" name="frame1">
+                        
+                    </iframe>
+                        </div>
+                    </div>
+                </div>
+
 <?php 
 include "bout_code/footer.php";
 ?>
@@ -170,6 +165,8 @@ include "bout_code/navbar_vertical_droit.php";
         <script src="../../assets/Backoffice/js/demo4/pages/dashboard.js" type="text/javascript">
         </script>
         <!--end::Page Scripts -->
+
+
     </body>
     <!-- end::Body -->
 </html>
