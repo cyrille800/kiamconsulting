@@ -1,43 +1,44 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.4
--- http://www.phpmyadmin.net
+-- version 4.8.4
+-- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Jul 21, 2019 at 04:06 PM
--- Server version: 5.6.12-log
--- PHP Version: 5.4.12
+-- Hôte : 127.0.0.1:3306
+-- Généré le :  lun. 22 juil. 2019 à 23:09
+-- Version du serveur :  5.7.24
+-- Version de PHP :  7.2.14
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `kiam_consulting`
+-- Base de données :  `kiam_consulting`
 --
-CREATE DATABASE IF NOT EXISTS `kiam_consulting` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `kiam_consulting`;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `activite`
+-- Structure de la table `activite`
 --
 
+DROP TABLE IF EXISTS `activite`;
 CREATE TABLE IF NOT EXISTS `activite` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `titre` varchar(255) DEFAULT NULL,
   `etat` int(11) DEFAULT NULL,
   `description` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `activite`
+-- Déchargement des données de la table `activite`
 --
 
 INSERT INTO `activite` (`id`, `titre`, `etat`, `description`) VALUES
@@ -49,9 +50,10 @@ INSERT INTO `activite` (`id`, `titre`, `etat`, `description`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `admin_root`
+-- Structure de la table `admin_root`
 --
 
+DROP TABLE IF EXISTS `admin_root`;
 CREATE TABLE IF NOT EXISTS `admin_root` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(255) DEFAULT NULL,
@@ -66,15 +68,15 @@ CREATE TABLE IF NOT EXISTS `admin_root` (
   `etat` int(11) NOT NULL DEFAULT '0',
   `date_deconnexion` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `admin_root`
+-- Déchargement des données de la table `admin_root`
 --
 
 INSERT INTO `admin_root` (`id`, `username`, `email`, `password`, `nom`, `prenom`, `compagny_name`, `phone`, `date_ajout`, `role`, `etat`, `date_deconnexion`) VALUES
 (1, 'admins', 'admin@gmail.com', 'c4ca4238a0b923820dcc509a6f75849b', 'armand', 'cyrille', 'kiam consulting', 54426394, '2019-06-30 22:37:36', '', 1, '2019-07-15 03:26:19'),
-(6, 'cyrille80', 'kayonzeukoufabriceraoul1@esprit.tn', '81dc9bdb52d04dc20036dbd8313ed055', 'armand', 'nzeukou', NULL, NULL, '2019-07-02 03:33:55', 'Droit d''acces,Ajouter une ecole,Supprimer une ecole,Modifier une ecole,Afficher une ecole,', 0, '2019-07-15 21:53:30'),
+(6, 'cyrille80', 'kayonzeukoufabriceraoul1@esprit.tn', '81dc9bdb52d04dc20036dbd8313ed055', 'armand', 'nzeukou', NULL, NULL, '2019-07-02 03:33:55', 'Droit d\'acces,Ajouter une ecole,Supprimer une ecole,Modifier une ecole,Afficher une ecole,', 0, '2019-07-15 21:53:30'),
 (7, 'romuald', 'romuald@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', NULL, NULL, NULL, NULL, '2019-07-04 19:15:13', 'Ajouter une ecole,', 0, '2019-07-06 18:01:22'),
 (13, 'ju', 'akougangnzeukou@esprit.tn', 'c4ca4238a0b923820dcc509a6f75849b', NULL, NULL, NULL, NULL, '2019-07-06 18:08:48', 'Ajouter une ecole,', 1, '2019-07-06 18:01:13'),
 (14, 'uio1', 'avar1d@esprit.tn', 'c4ca4238a0b923820dcc509a6f75849b', NULL, NULL, NULL, NULL, '2019-07-09 22:13:47', 'Ajouter administrateur,Afficher la liste administrateur,Supprimer une ecole,', 0, '2019-07-09 21:14:25'),
@@ -83,9 +85,10 @@ INSERT INTO `admin_root` (`id`, `username`, `email`, `password`, `nom`, `prenom`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `concours`
+-- Structure de la table `concours`
 --
 
+DROP TABLE IF EXISTS `concours`;
 CREATE TABLE IF NOT EXISTS `concours` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `titre` varchar(255) DEFAULT NULL,
@@ -93,10 +96,10 @@ CREATE TABLE IF NOT EXISTS `concours` (
   `heure` varchar(255) NOT NULL,
   `date_concour` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `concours`
+-- Déchargement des données de la table `concours`
 --
 
 INSERT INTO `concours` (`id`, `titre`, `description`, `heure`, `date_concour`) VALUES
@@ -105,9 +108,28 @@ INSERT INTO `concours` (`id`, `titre`, `description`, `heure`, `date_concour`) V
 -- --------------------------------------------------------
 
 --
--- Table structure for table `message`
+-- Structure de la table `etudiant`
 --
 
+DROP TABLE IF EXISTS `etudiant`;
+CREATE TABLE IF NOT EXISTS `etudiant` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nom` varchar(50) NOT NULL,
+  `prenom` varchar(50) NOT NULL,
+  `sexe` varchar(10) NOT NULL,
+  `adresseMail` varchar(50) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `password` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `message`
+--
+
+DROP TABLE IF EXISTS `message`;
 CREATE TABLE IF NOT EXISTS `message` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_expediteur` int(11) DEFAULT NULL,
@@ -115,10 +137,10 @@ CREATE TABLE IF NOT EXISTS `message` (
   `message` varchar(255) DEFAULT NULL,
   `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=51 ;
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `message`
+-- Déchargement des données de la table `message`
 --
 
 INSERT INTO `message` (`id`, `id_expediteur`, `id_receveur`, `message`, `date`) VALUES
@@ -134,9 +156,10 @@ INSERT INTO `message` (`id`, `id_expediteur`, `id_receveur`, `message`, `date`) 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `proccedure`
+-- Structure de la table `proccedure`
 --
 
+DROP TABLE IF EXISTS `proccedure`;
 CREATE TABLE IF NOT EXISTS `proccedure` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `titre` varchar(255) DEFAULT NULL,
@@ -144,10 +167,10 @@ CREATE TABLE IF NOT EXISTS `proccedure` (
   `fichier` int(11) DEFAULT NULL,
   `id_active` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `proccedure`
+-- Déchargement des données de la table `proccedure`
 --
 
 INSERT INTO `proccedure` (`id`, `titre`, `description`, `fichier`, `id_active`) VALUES
@@ -160,9 +183,10 @@ INSERT INTO `proccedure` (`id`, `titre`, `description`, `fichier`, `id_active`) 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `qizz`
+-- Structure de la table `qizz`
 --
 
+DROP TABLE IF EXISTS `qizz`;
 CREATE TABLE IF NOT EXISTS `qizz` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_concour` int(11) DEFAULT NULL,
@@ -170,10 +194,10 @@ CREATE TABLE IF NOT EXISTS `qizz` (
   `reponse` varchar(255) DEFAULT NULL,
   `autre_reponse` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `qizz`
+-- Déchargement des données de la table `qizz`
 --
 
 INSERT INTO `qizz` (`id`, `id_concour`, `question`, `reponse`, `autre_reponse`) VALUES
@@ -184,9 +208,10 @@ INSERT INTO `qizz` (`id`, `id_concour`, `question`, `reponse`, `autre_reponse`) 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `school`
+-- Structure de la table `school`
 --
 
+DROP TABLE IF EXISTS `school`;
 CREATE TABLE IF NOT EXISTS `school` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `titre` varchar(255) DEFAULT NULL,
@@ -194,10 +219,10 @@ CREATE TABLE IF NOT EXISTS `school` (
   `site` varchar(255) DEFAULT NULL,
   `nombre_place` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `school`
+-- Déchargement des données de la table `school`
 --
 
 INSERT INTO `school` (`id`, `titre`, `ville`, `site`, `nombre_place`) VALUES
@@ -207,9 +232,10 @@ INSERT INTO `school` (`id`, `titre`, `ville`, `site`, `nombre_place`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `task`
+-- Structure de la table `task`
 --
 
+DROP TABLE IF EXISTS `task`;
 CREATE TABLE IF NOT EXISTS `task` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_receveur` int(11) DEFAULT NULL,
@@ -217,10 +243,10 @@ CREATE TABLE IF NOT EXISTS `task` (
   `date_ajout` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `etat` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `task`
+-- Déchargement des données de la table `task`
 --
 
 INSERT INTO `task` (`id`, `id_receveur`, `message`, `date_ajout`, `etat`) VALUES
@@ -228,6 +254,7 @@ INSERT INTO `task` (`id`, `id_receveur`, `message`, `date_ajout`, `etat`) VALUES
 (5, 6, 'moi', '2019-07-15 20:52:02', 1),
 (8, 7, 'toto', '2019-07-15 21:35:54', 0),
 (9, 6, 'ne te renferme pas sur toi', '2019-07-18 16:08:42', 0);
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

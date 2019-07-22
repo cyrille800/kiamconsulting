@@ -8,7 +8,7 @@ class etudiant{
 	private $nom;
 	private $prenom;
 	private $sexe;
-	private $adresseadresseMail;
+	private $adresseMail;
 	private $username;
 	private $password;
 	

@@ -422,6 +422,19 @@ iframe {
   }
 }
 
+/* 
+RADIo BUTTONS AND CHECKBOXES
+ */
+ .custom-control.custom-radio.custom-control-inline{
+   margin-bottom: 5%;
+ }
+
+.custom-control.custom-radio.custom-control-inline:nth-child(2){
+margin-left:25%;
+}
+.custom-control.custom-radio.custom-control-inline:nth-child(3){
+margin-right:25%;
+}
 
 /*//////////////////////////////////////////////////////////////////
 [ Responsive ]*/
