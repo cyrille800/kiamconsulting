@@ -33,9 +33,11 @@
 			<a href="index.php">
 				<img src="../assets/Backoffice/media/logos/logo-5.png" alt="" >
 			</a>
-			<div style="float:right;margin-right:17%;border-bottom:2px solid #242939;padding:1%;" >
-				<a href="inscription.php" class="txt1" style="font-size:23px;">S'inscrire</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<a href="index.php" class="txt1" style="font-size:23px;">connexion</a>
+			<div style="float:right;margin-right:17%;" >
+			  <ul class="snip1189">
+				<li><a href="inscription.php" >S'inscrire</a></li>
+				<li><a href="index.php" >connexion</a></li>
+				</ul>
 							</div>
 		</aside>
 <center style="margin-top:7%;">
@@ -56,13 +58,13 @@
 
 					
 					<div class="wrap-input100 validate-input m-b-16" data-validate = "Username is required">
-						<input class="input100" type="text" name="mail" placeholder="saisir votre mail">
+						<input class="input100" type="text" name="username" placeholder="Saisir	votre nom d'utilisateur">
 						<span class="focus-input100"></span>
 					</div>
 					
 					
 					<div class="wrap-input100 validate-input m-b-16" data-validate = "Password is required">
-						<input class="input100" type="text" name="username" placeholder="saisir votre nnom d'utilisateur">
+						<input class="input100" type="text" name="mail" placeholder="saisir votre adresse mail">
 						<span class="focus-input100"></span>
 					</div>
 
@@ -142,7 +144,7 @@ $("#customRadioInline1").click(function(){
 })
 $("#inscription").click(function(){
 	swal.fire({
-  title: 'Are you sure?',
+  title: 'Êtes vous sûr?',
   text: "Vous ne pourriez plus faire marche arrière!",
   type: 'warning',
   showCancelButton: true,
