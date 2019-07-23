@@ -77,7 +77,7 @@ include "bout_code/navbar_horizontal.php";
 ?>
                         </div>
                     </div>
-<div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--ver kt-grid--stretch" style="height:110vh;">
+<div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--ver kt-grid--stretch" style="height:128vh;">
                         <div class="kt-container kt-body  kt-grid kt-grid--ver"  id="kt_body">
                             <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor">
                     <iframe src="bienvenu.php" style="height:100%;border:none;background-color: #f2f3fa;padding:0px;margin:0px;" class="col-md-12" name="frame1">

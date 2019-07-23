@@ -1,6 +1,12 @@
+/* 
+MENU
+ */
+
+@import url('https://fonts.googleapis.com/css?family=Quicksand:300,400,500&display=swap');
+
 @import url(https://fonts.googleapis.com/css?family=Raleway:400,500);
 .snip1189 {
-  font-family: Quicksand, 'Arial Narrow', Arial, sans-serif,'Raleway', Arial, sans-serif;
+  font-family: Quicksand, 'Arial Narrow','Raleway', Arial, sans-serif;
   text-align: center;
   text-transform: uppercase;
   font-weight: 500;
@@ -103,8 +109,9 @@ body, html {
 
 /*---------------------------------------------*/
 a {
-	font-family: Ubuntu-Regular;
-	font-size: 14px;
+  font-family: Quicksand;
+  font-weight:medium;
+	font-size: 17px;
 	line-height: 1.7;
 	color: #666666;
 	margin: 0px;
@@ -240,7 +247,9 @@ iframe {
 .login100-form {
   width: 100%;
 }
-
+.login100-form.validate-form{
+  margin-top: 70px;
+}
 .login100-form-title {
   font-family: Ubuntu-Bold;
   font-size: 30px;
@@ -495,7 +504,7 @@ iframe {
 }
 
 /* 
-RADIo BUTTONS AND CHECKBOXES
+RADIO BUTTONS AND CHECKBOXES
  */
  .custom-control.custom-radio.custom-control-inline{
    margin-bottom: 5%;
@@ -510,3 +519,4 @@ margin-right:25%;
 
 /*//////////////////////////////////////////////////////////////////
 [ Responsive ]*/
+ 
