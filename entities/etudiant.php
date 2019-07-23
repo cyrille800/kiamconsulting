@@ -64,6 +64,7 @@ public function __construct($a,$b,$c,$d,$e,$f){
 }
 
 function ajouter(){
+
 	if(self::verifiers("adresseMail",$this->get_adresseMail())==true && self::verifiers("username",$this->get_username())==true ){
 
 		$req=config::$bdd->prepare("insert into etudiant(nom,prenom,sexe,adresseMail,username,password) VALUE(:nom,:prenom,:sexe,:adresseMail,:username,:password)");
@@ -85,8 +86,7 @@ function ajouter(){
 		echo "ce nom existe deja <br>";
 	}
 
-		  	return 0;
-	  	
+		  	return 0; 	
 }
 
 public static function verifiers($type,$valeur){

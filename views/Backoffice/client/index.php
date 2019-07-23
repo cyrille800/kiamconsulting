@@ -1,3 +1,11 @@
+<?php 
+session_start();
+$_SESSION["id"]=1;
+$_SESSION["type"]=1;
+include "../../../entities/class_client.php";
+if(isset($_SESSION["id"]) && isset($_SESSION["type"])){
+if(client::verifiers("id",$_SESSION["id"]) == false){
+?>
 <!DOCTYPE html>
 <html lang="en" >
     <!-- begin::Head -->
@@ -170,3 +178,11 @@ include "bout_code/navbar_vertical_droit.php";
     </body>
     <!-- end::Body -->
 </html>
+<?php
+}else{
+header("location:../../pages_error/404.html");
+}
+}else{
+header("location:../../pages_error/404.html");
+}
+?>

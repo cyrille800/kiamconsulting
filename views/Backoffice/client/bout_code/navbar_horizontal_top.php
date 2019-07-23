@@ -13,46 +13,14 @@
                                     </div>
                                     
                                     <h1 class="kt-header__brand-title">
-                                    Customer Relationship Management
+                                    <?php 
+                                    echo "Bonjour, ".client::retourne_valeur("id",$_SESSION["id"],"email");
+                                    ?>
                                     </h1>
                                 </div>
                                 <!-- end:: Brand -->
                                 <!-- begin:: Topbar -->
                                 <div class="kt-header__topbar">
-                                    <!--begin: Search -->
-                                    <div class="kt-header__topbar-item kt-header__topbar-item--search dropdown">
-                                        <div class="kt-header__topbar-wrapper" data-toggle="dropdown" data-offset="10px,10px">
-                                            <span class="kt-header__topbar-icon" >
-                                                <i class="la la-search" style="font-size:25px;">
-                                                </i>
-                                            </span>
-                                        </div>
-                                        <div class="dropdown-menu dropdown-menu-fit dropdown-menu-right dropdown-menu-anim dropdown-menu-lg">
-                                            <div class="kt-quick-search kt-quick-search--dropdown kt-quick-search--result-compact" id="kt_quick_search_dropdown">
-                                                <form method="get" class="kt-quick-search__form">
-                                                    <div class="input-group">
-                                                        <div class="input-group-prepend">
-                                                            <span class="input-group-text">
-                                                                <i class="flaticon2-search-1">
-                                                                </i>
-                                                            </span>
-                                                        </div>
-                                                        <input type="text" class="form-control kt-quick-search__input" placeholder="Search...">
-                                                        <div class="input-group-append">
-                                                            <span class="input-group-text">
-                                                                <i class="la la-close kt-quick-search__close">
-                                                                </i>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </form>
-                                                <div class="kt-quick-search__wrapper kt-scroll" data-scroll="true" data-height="325" data-mobile-height="200">
-                                                    
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--end: Search -->
                                     <!--begin: Notifications -->
                                     <div class="kt-header__topbar-item dropdown">
                                         <div class="kt-header__topbar-wrapper" data-toggle="dropdown" data-offset="10px,10px">
@@ -257,13 +225,22 @@
                                     <div class="kt-header__topbar-item kt-header__topbar-item--langs">
                                         <div class="kt-header__topbar-wrapper" data-toggle="dropdown" data-offset="10px,10px">
                                             <span class="kt-header__topbar-icon">
-                                                <img class="" src="../../assets/Backoffice/media/flags/020-flag.svg" alt="" />
+                                                <img class="" src="../../assets/Backoffice/media/flags/016-spain.svg" alt="" />
                                             </span>
                                             
                                         </div>
                                         <div class="dropdown-menu dropdown-menu-fit dropdown-menu-right dropdown-menu-anim">
                                             <ul class="kt-nav kt-margin-t-10 kt-margin-b-10">
-                                                <li class="kt-nav__item kt-nav__item--active">
+                                                <li class="kt-nav__item  kt-nav__item--active">
+                                                    <a href="#" class="kt-nav__link">
+                                                        <span class="kt-nav__link-icon">
+                                                            <img src="../../assets/Backoffice/media/flags/016-spain.svg" alt="" />
+                                                        </span>
+                                                        <span class="kt-nav__link-text">
+                                                        français</span>
+                                                    </a>
+                                                </li>  
+                                                <li class="kt-nav__item">
                                                     <a href="#" class="kt-nav__link">
                                                         <span class="kt-nav__link-icon">
                                                             <img src="../../assets/Backoffice/media/flags/020-flag.svg" alt="" />
@@ -271,26 +248,7 @@
                                                         <span class="kt-nav__link-text">
                                                         English</span>
                                                     </a>
-                                                </li>
-                                                <li class="kt-nav__item">
-                                                    <a href="#" class="kt-nav__link">
-                                                        <span class="kt-nav__link-icon">
-                                                            <img src="../../assets/Backoffice/media/flags/016-spain.svg" alt="" />
-                                                        </span>
-                                                        <span class="kt-nav__link-text">
-                                                        Spanish</span>
-                                                    </a>
-                                                </li>
-                                                <li class="kt-nav__item">
-                                                    <a href="#" class="kt-nav__link">
-                                                        <span class="kt-nav__link-icon">
-                                                            <img src="../../assets/Backoffice/media/flags/017-germany.svg" alt="" />
-                                                        </span>
-                                                        <span class="kt-nav__link-text">
-                                                        German</span>
-                                                    </a>
-                                                </li>
-                                            </ul>
+                                                </li>                                          </ul>
                                         </div>
                                     </div>
                                     <!--end: Languages -->
@@ -309,9 +267,18 @@
                                                     S</span>
                                                 </div>
                                                 <div class="kt-user-card-v4__name">
-                                                    Sean Stone
+                                    <?php 
+                                    echo client::retourne_valeur("id",$_SESSION["id"],"username");
+                                    ?>
                                                     <small>
-                                                    Product Designer</small>
+                                                                                        <?php 
+                                    $v=client::retourne_valeur("id",$_SESSION["id"],"type");
+                                    if(intval($v)==1){
+                                        echo " statut : étudiant";
+                                    }else{
+                                        echo " statut : patient";
+                                    }
+                                    ?></small>
                                                 </div>
                                                 <div class="kt-user-card-v4__badge kt-hidden">
                                                     <span class="btn btn-label-primary btn-sm btn-bold btn-font-md">
@@ -322,27 +289,17 @@
                                                 <li class="kt-nav__item">
                                                     <a href="/keen/preview/demo4/custom/user/profile-v1.html" class="kt-nav__link">
                                                         <span class="kt-nav__link-icon">
-                                                            <i class="flaticon2-schedule">
+                                                            <i class="la la-user" style="font-size:25px;">
                                                             </i>
                                                         </span>
                                                         <span class="kt-nav__link-text">
-                                                        My Profile</span>
+                                                        Mon profil</span>
                                                     </a>
                                                 </li>
                                                 <li class="kt-nav__item">
                                                     <a href="/keen/preview/demo4/custom/user/profile-v1.html" class="kt-nav__link">
                                                         <span class="kt-nav__link-icon">
-                                                            <i class="flaticon2-writing">
-                                                            </i>
-                                                        </span>
-                                                        <span class="kt-nav__link-text">
-                                                        Tasks</span>
-                                                    </a>
-                                                </li>
-                                                <li class="kt-nav__item">
-                                                    <a href="/keen/preview/demo4/custom/user/profile-v1.html" class="kt-nav__link">
-                                                        <span class="kt-nav__link-icon">
-                                                            <i class="flaticon2-mail-1">
+                                                            <i class="la la-envelope">
                                                             </i>
                                                         </span>
                                                         <span class="kt-nav__link-text">
@@ -352,11 +309,11 @@
                                                 <li class="kt-nav__item">
                                                     <a href="/keen/preview/demo4/custom/user/profile-v1.html" class="kt-nav__link">
                                                         <span class="kt-nav__link-icon">
-                                                            <i class="flaticon2-drop">
+                                                            <i class="la la-eyedropper">
                                                             </i>
                                                         </span>
                                                         <span class="kt-nav__link-text">
-                                                        Settings</span>
+                                                        Configuration</span>
                                                     </a>
                                                 </li>
                                                 <li class="kt-nav__item kt-nav__item--custom kt-margin-t-15">
