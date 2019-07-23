@@ -28,20 +28,22 @@
 </head>
 <body>
 	
-	<div class="limiter" style="background-image:url('../assets/Backoffice/image/login.svg');background-repeat:no-repeat;background-position:left 90% top 90%;height:100%;background-size:50%;">
+	<div class="limiter" style="background-image:url('../assets/Backoffice/image/login.svg');background-repeat:no-repeat;background-position:left 80% top 110%;height:100%;background-size:50%;">
 		<aside style="padding-left:15%;padding-top:2%;">
 			<a href="index.php">
 				<img src="../assets/Backoffice/media/logos/logo-5.png" alt="" >
 			</a>
-			<div style="float:right;margin-right:17%;border-bottom:2px solid #242939;padding:1%;" >
-				<a href="inscription.php" class="txt1" style="font-size:23px;">S'inscrire</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<a href="index.php" class="txt1" style="font-size:23px;">connexion</a>
+			<div style="float:right;margin-right:17%;" >
+			  <ul class="snip1189">
+				<li><a href="inscription.php" >S'inscrire</a></li>
+				<li><a href="index.php" >connexion</a></li>
+				</ul>
 							</div>
 		</aside>
-<center style="margin-top:7%;">
+<center >
 		<div class="" style="">
 			<div class="wrap-login100">
-				<form class="login100-form validate-form flex-sb flex-w">
+				<form class="login100-form validate-form ">
 					<span class="login100-form-title p-b-51">
 						Inscription
 					</span>
@@ -56,23 +58,23 @@
 
 					
 					<div class="wrap-input100 validate-input m-b-16" data-validate = "Username is required">
-						<input class="input100" type="text" name="mail" placeholder="saisir votre mail">
+						<input class="input100" type="text" name="username" placeholder=" nom d'utilisateur">
 						<span class="focus-input100"></span>
 					</div>
 					
 					
 					<div class="wrap-input100 validate-input m-b-16" data-validate = "Password is required">
-						<input class="input100" type="text" name="username" placeholder="saisir votre nnom d'utilisateur">
+						<input class="input100" type="text" name="mail" placeholder=" adresse mail">
 						<span class="focus-input100"></span>
 					</div>
 
 					<div class="wrap-input100 validate-input m-b-16" data-validate = "Password is required">
-						<input class="input100" type="password" name="password" placeholder="saisir le password">
+						<input class="input100" type="password" name="password" placeholder=" password">
 						<span class="focus-input100"></span>
 					</div>
 
 					<div class="wrap-input100 validate-input m-b-16" data-validate = "Password is required">
-						<input class="input100" type="password" name="cpassword" placeholder="Confirmer le password">
+						<input class="input100" type="password" name="cpassword" placeholder="Confirmer  password">
 						<span class="focus-input100"></span>
 					</div>
 
@@ -107,8 +109,12 @@
 	<script src="js/main.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 	<script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+	<!-- <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.js"></script> -->
+	<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.min.js"></script>
+	<!-- <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/additional-methods.js"></script> -->
+	<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/additional-methods.min.js"></script>
 	<script>
-$(function(){
+		$(function(){
 	
 	//  DIFFERENT ALERTS 
 
@@ -139,10 +145,10 @@ $("#customRadioInline1").click(function(){
         }
       })
 	})
-})
+
 $("#inscription").click(function(){
 	swal.fire({
-  title: 'Are you sure?',
+  title: 'Êtes vous sûr?',
   text: "Vous ne pourriez plus faire marche arrière!",
   type: 'warning',
   showCancelButton: true,
@@ -157,9 +163,50 @@ $("#inscription").click(function(){
       'Succès'
     )
   }
+}) 
+})
+// FORM VALIDATION
+
+
+$.validator.addMethod('strongPassword', function(value, element) {
+    return this.optional(element) 
+      || value.length >= 6
+      && /\d/.test(value)
+      && /[a-z]/i.test(value);
+  }, 'Your password must be at least 6 characters long and contain at least one number and one char\'.')
+
+$(".login100-form.validate-form").validate({
+	rules:{
+		email: {
+        required: true,
+        email: true,
+        remote: "http://localhost:3000/inputValidator"
+      },
+      password: {
+        required: true,
+        strongPassword: true
+      },
+      cpassword: {
+        required: true,
+        equalTo: '#password'
+      },
+      username: {
+        required: true,
+        nowhitespace: true,
+        lettersonly: true
+      },
+	},
+	messages: {
+      email: {
+        required: '<br>Please enter an email address.',
+        email: '<br>Please enter a <em>valid</em> email address.',
+        remote: $.validator.format("{0} is already associated with an account.")
+      }
+    }
 })
 	
 })
+
 	</script>
 
 </body>

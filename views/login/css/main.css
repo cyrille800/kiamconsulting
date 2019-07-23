@@ -1,4 +1,82 @@
+/* 
+MENU
+ */
 
+@import url('https://fonts.googleapis.com/css?family=Quicksand:300,400,500&display=swap');
+
+@import url(https://fonts.googleapis.com/css?family=Raleway:400,500);
+.snip1189 {
+  font-family: Quicksand, 'Arial Narrow','Raleway', Arial, sans-serif;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+.snip1189 * {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transition: all 0.35s ease;
+  transition: all 0.35s ease;
+}
+.snip1189 li {
+  display: inline-block;
+  list-style: outside none none;
+  margin: 0 1em;
+  padding: 0;
+}
+.snip1189 a {
+  padding: 0.5em 0.8em;
+  margin: 0.2em 0;
+  display: block;
+  color: rgba(0, 0, 0, 1);
+  position: relative;
+  text-decoration: none;
+}
+.snip1189 a:before,
+.snip1189 a:after {
+  height: 14px;
+  width: 14px;
+  position: absolute;
+  content: '';
+  -webkit-transition: all 0.35s ease;
+  transition: all 0.35s ease;
+  opacity: 0;
+  
+}
+.snip1189 a:before {
+  left: 0;
+  top: 0;
+  border-left: 3px solid #5467f7;
+  border-top: 3px solid #5467f7;
+  -webkit-transform: translate(100%, 50%);
+  transform: translate(100%, 50%);
+}
+.snip1189 a:after {
+  right: 0;
+  bottom: 0;
+  border-right: 3px solid #5467f7;
+  border-bottom: 3px solid #5467f7;
+  -webkit-transform: translate(-100%, -50%);
+  transform: translate(-100%, -50%);
+}
+.snip1189 a:hover,
+.snip1189 .current a {
+  color: #5467f7;
+  transform: scale(1.1,1.1);
+  font-weight: 500;
+
+}
+.snip1189 a:hover:before,
+.snip1189 .current a:before,
+.snip1189 a:hover:after,
+.snip1189 .current a:after {
+  -webkit-transform: translate(0%, 0%);
+  transform: translate(0%, 0%);
+  opacity: 1;
+  color: #5467f7;
+
+
+}
 
 
 
@@ -31,8 +109,9 @@ body, html {
 
 /*---------------------------------------------*/
 a {
-	font-family: Ubuntu-Regular;
-	font-size: 14px;
+  font-family: Quicksand;
+  font-weight:medium;
+	font-size: 17px;
 	line-height: 1.7;
 	color: #666666;
 	margin: 0px;
@@ -168,7 +247,9 @@ iframe {
 .login100-form {
   width: 100%;
 }
-
+.login100-form.validate-form{
+  margin-top: 70px;
+}
 .login100-form-title {
   font-family: Ubuntu-Bold;
   font-size: 30px;
@@ -423,7 +504,7 @@ iframe {
 }
 
 /* 
-RADIo BUTTONS AND CHECKBOXES
+RADIO BUTTONS AND CHECKBOXES
  */
  .custom-control.custom-radio.custom-control-inline{
    margin-bottom: 5%;
@@ -438,3 +519,4 @@ margin-right:25%;
 
 /*//////////////////////////////////////////////////////////////////
 [ Responsive ]*/
+ 
