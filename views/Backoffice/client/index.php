@@ -1,7 +1,5 @@
 <?php 
 session_start();
-$_SESSION["id"]=1;
-$_SESSION["type"]=1;
 include "../../../entities/class_client.php";
 if(isset($_SESSION["id"]) && isset($_SESSION["type"])){
 if(client::verifiers("id",$_SESSION["id"]) == false){
@@ -42,6 +40,25 @@ if(client::verifiers("id",$_SESSION["id"]) == false){
         <!--begin::Layout Skins(used by all pages) -->
         <!--end::Layout Skins -->
         <link rel="shortcut icon" href="../../assets/Backoffice/media/logos/favicon.ico" />
+        <style type="text/css">
+*::-webkit-scrollbar {
+    width: 5px;
+    border-radius:5px;
+}
+ 
+*::-webkit-scrollbar-track {
+   background-color:white;
+}
+ 
+*::-webkit-scrollbar-thumb {
+  background-color: #474f63;
+  outline: 1px solid slategrey;
+    border-radius:5px;
+}
+iframe{
+    overflow:hidden;
+}
+        </style>
     </head>
     <!-- end::Head -->
     <!-- begin::Body -->
@@ -52,7 +69,7 @@ if(client::verifiers("id",$_SESSION["id"]) == false){
         
         <!-- begin:: Page -->
         <!-- begin:: Header Mobile -->
-        <div id="kt_header_mobile" class="kt-header-mobile " >
+        <div id="kt_header_mobile" class="kt-header-mobile " style="padding:3.5%;background-color:#242939;">
             <div class="kt-header-mobile__logo">
                 <a href="/keen/preview/demo4/index.html">
                     <img alt="Logo" src="../../assets/Backoffice/media/logos/logo-5.png"/>
@@ -61,11 +78,11 @@ if(client::verifiers("id",$_SESSION["id"]) == false){
             <div class="kt-header-mobile__toolbar">
                 
                 <button class="kt-header-mobile__toolbar-toggler" id="kt_header_mobile_toggler">
-                <span>
+                <span  style="color:white;">
                 </span>
                 </button>
                 <button class="kt-header-mobile__toolbar-topbar-toggler" id="kt_header_mobile_topbar_toggler">
-                <i class="flaticon-more-1">
+                <i class="la la-ellipsis-v"  style="color:white;">
                 </i>
                 </button>
             </div>

@@ -4,7 +4,7 @@
                                 <!-- begin:: Brand -->
                                 <div class="kt-header__brand   kt-grid__item" id="kt_header_brand">
                                     <div class="kt-header__brand-logo">
-                                        <a href="/keen/preview/demo4/index.html">
+                                        <a href="index.php">
                                             <img alt="Logo" src="../../assets/Backoffice/media/logos/logo-4.png" class="kt-header__brand-logo-default"/>
                                             <img alt="Logo" src="../../assets/Backoffice/media/logos/logo-4-sticky.png" class="kt-header__brand-logo-sticky"/>
                                             
@@ -256,12 +256,12 @@
                                     <!--begin: User -->
                                     <div class="kt-header__topbar-item kt-header__topbar-item--user">
                                         <div class="kt-header__topbar-wrapper" data-toggle="dropdown" data-offset="10px,10px">
-                                            <img alt="Pic" src="../../assets/Backoffice/media/users/300_21.jpg"/>
+                                            <img alt="Pic" src="../../assets/Backoffice/media/users/<?php echo $_SESSION["id"];?>.png"/>
                                         </div>
                                         <div class="dropdown-menu dropdown-menu-fit dropdown-menu-right dropdown-menu-anim dropdown-menu-md">
                                             <div class="kt-user-card-v4 kt-user-card-v4--skin-light kt-notification-item-padding-x">
                                                 <div class="kt-user-card-v4__avatar">
-                                                    <img class="kt-hidden-" alt="Pic" src="../../assets/Backoffice/media/users/300_25.jpg" />
+                                                    <img class="kt-hidden-" alt="Pic" src="../../assets/Backoffice/media/users/<?php echo $_SESSION["id"];?>.png" />
                                                     <!--use below badge element instead the user avatar to display username's first letter(remove kt-hidden class to display it) -->
                                                     <span class="kt-badge kt-badge--username kt-badge--unified-success kt-badge--lg kt-badge--rounded kt-badge--bold kt-hidden">
                                                     S</span>
@@ -287,7 +287,7 @@
                                             </div>
                                             <ul class="kt-nav kt-margin-b-10">
                                                 <li class="kt-nav__item">
-                                                    <a href="/keen/preview/demo4/custom/user/profile-v1.html" class="kt-nav__link">
+                                                    <a href="update_client.php" class="kt-nav__link"  target="frame1">
                                                         <span class="kt-nav__link-icon">
                                                             <i class="la la-user" style="font-size:25px;">
                                                             </i>
@@ -317,8 +317,8 @@
                                                     </a>
                                                 </li>
                                                 <li class="kt-nav__item kt-nav__item--custom kt-margin-t-15">
-                                                    <a href="/keen/preview/demo4/custom/user/login-v1.html" target="_blank" class="btn btn-label-brand btn-upper btn-sm btn-bold">
-                                                    Sign Out</a>
+                                                    <a href="../../login/deconnexion.php" class="btn btn-label-brand btn-upper btn-sm btn-bold">
+                                                    Se deconnecter</a>
                                                 </li>
                                             </ul>
                                         </div>

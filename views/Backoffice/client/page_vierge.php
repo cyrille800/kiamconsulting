@@ -47,8 +47,11 @@
                                 
                                 <!-- begin:: Content -->
                                 <div class="kt-content kt-grid__item kt-grid__item--fluid" style="background-color:white;">
+<div class="preload" style="position:fixed;width:100%;height:100%;background:white;left:0;top:0;z-index:100;padding-top:10%;">
+<center><div class="lds-ring"><div></div><div></div><div></div><div></div></div></center>
+</div>
                                     <!--begin::Dashboard 5-->
-                                    
+
 
                     <center>
                         page vierge
@@ -61,6 +64,11 @@
         <script src="../../assets/Backoffice/vendors/global/vendors.bundle.js" type="text/javascript">
         </script>
         <script src="../../assets/Backoffice/js/demo4/scripts.bundle.js" type="text/javascript">
+        </script>
+        <script>
+                $(window).on("load",function(){
+           $(".preload").fadeOut("fast");
+        })
         </script>
 </body>
 </html>
