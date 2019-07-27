@@ -34,9 +34,11 @@
 			<a href="index.php">
 				<img src="../assets/Backoffice/media/logos/logo-5.png" alt="" >
 			</a>
-			<div style="float:right;margin-right:17%;border-bottom:2px solid #242939;padding:1%;" >
-				<a href="inscription.php" class="txt1" style="font-size:23px;">S'inscrire</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<a href="index.php" class="txt1" style="font-size:23px;">connexion</a>
+			<div style="float:right;margin-right:17%;padding:1%;" >
+			<ul class="snip1189">
+				<li><a href="inscription.php" >S'inscrire</a></li>
+				<li><a href="index.php" >connexion</a></li>
+			</ul>
 							</div>
 		</aside>
 <center style="margin-top:7%;">
@@ -48,14 +50,14 @@
 					</span>
 
 					
-					<div class="wrap-input100 validate-input m-b-16" data-validate = "Username is required">
-						<input class="input100" type="text" name="username" placeholder="Username">
+					<div class="wrap-input100 validate-input m-b-16" >
+						<input class="input100" type="text" name="login" placeholder="Username Or Login">
 						<span class="focus-input100"></span>
 					</div>
 					
 					
-					<div class="wrap-input100 validate-input m-b-16" data-validate = "Password is required">
-						<input class="input100" type="password" name="pass" placeholder="Password">
+					<div class="wrap-input100 validate-input m-b-16" >
+						<input class="input100" type="password" name="password" placeholder="Password">
 						<span class="focus-input100"></span>
 					</div>
 					
@@ -104,6 +106,73 @@
 	<script src="vendor/countdowntime/countdowntime.js"></script>
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>
+	<!-- <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.js"></script> -->
+	<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.min.js"></script>
+	<!-- <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/additional-methods.js"></script> -->
+	<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/additional-methods.min.js"></script>
+	<script>
+	$(function(){
+		// FORM VALIDATION
+$.validator.setDefaults({
+    errorClass: 'alert alert-validate',
+    highlight: function(element) {
+      $(element).removeClass('help-block');
+    },
+    errorPlacement: function (error, element) {
+      if (element.prop('type') === 'text'  || element.prop('type') === 'password') {
+element.after(error);
+}
+
+    }
+  });
+
+
+
+$(".login100-form.validate-form").validate({
+	onkeyup:(element)=> {
+           $(element).valid(); 
+    },
+	
+	rules:{
+	  login: {
+        required: true,
+		
+      },
+      password: {
+        required: true,
+       
+      },
+	
+	},
+	submitHandler: function(form) {
+            request = $.ajax({
+                type: "POST",
+                cache: false,
+                url: "connexion.php",
+                data: $(form).serialize(),
+                timeout: 3000
+            });
+            // Called on success.
+            request.done(function(msg) {
+                alert(msg);
+            });
+            // Called on failure.
+            request.fail(function (jqXHR, textStatus, errorThrown){
+                alert('failed');
+                // log the error to the console
+                console.error(
+                    "The following error occurred: " + textStatus, errorThrown
+                );
+            });
+            return false;
+        }
+	
+	
+
+
+})
+	})
+	</script>
 
 </body>
 </html>

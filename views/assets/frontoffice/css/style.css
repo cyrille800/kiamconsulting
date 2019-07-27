@@ -6661,3 +6661,63 @@ ul.uv_scl_icon li:hover a {
   margin-left: 15px;
 
 }
+.waves{
+  position: absolute;
+  top:20%;
+  z-index: 2;
+}
+.carousel-inner{
+  background-image: white;
+}
+/* .item img:after{
+  border: 2px solid red; 
+  background-image: linear-gradient(to top right, #183C77,#9C3695);
+  background-color: red;
+  display:block;
+  position: relative;
+  content:"";
+} */
+.gradient{
+  background-image:linear-gradient(to  right, rgba(24, 60, 119, 0.72), rgba(156, 54, 149, 0.73));
+}
+.carousel-content {
+  position: absolute;
+  bottom: 40%;
+  left: 5%;
+  z-index: 20;
+  color: white;
+  text-shadow: 0 1px 2px rgba(0,0,0,.6);
+
+}
+.carousel-content h1{
+  font-family: sans-serif;
+  font-weight:Semibold;
+  font-size: 32;
+  width: 70%;
+  margin-bottom:50px;
+}
+.carousel-content p{
+  font-family: sans-serif;
+  font-weight:Light;
+  font-size: 15;
+  width: 40%;
+  margin-bottom:50px;
+}
+.glyphicon.glyphicon-chevron-left{
+left:0;
+}
+.glyphicon.glyphicon-chevron-right{
+  right:0;
+  }
+.carousel-content .btn.btn-dark{
+  background-color: rgba(1, 0,2, 0.5);
+  color:white;
+  width:100px;
+  border-radius: 50px;
+  /* margin-left:50px; */
+
+  }
+  .carousel-content .btn.btn-dark:hover,  .carousel-content .btn.btn-dark:hover:focus,  .carousel-content .btn.btn-dark:hover:active{
+  background-color: rgba(204, 0,0, 0.5);
+ 
+  }
