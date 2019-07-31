@@ -1,4 +1,6 @@
-
+<?php 
+include "../../../entities/class_ecole.php";
+?>
 <!DOCTYPE html>
 <html lang="en" >
 	<head>
@@ -91,6 +93,38 @@ include "bout_code/action_rapide.php";
 <?php 
 include "bout_code/liste_mode.php";
 ?>
+
+						<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content">
+									<form method="post" action="">
+<div class="modal-header">
+										<h5 class="modal-title" id="exampleModalLabel">Selectionner l'etablissement</h5>
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+									<div class="modal-body">
+										<div class="btn-group col-12">
+							<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Choisir l'école
+							</button>
+							<div class="dropdown-menu col-12" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 38px, 0px);">
+								<?php 
+								ecole::afficher_liste();
+								?>
+							</div>
+						</div>
+									</div>
+									<div class="modal-footer">
+										<input type="button"  class="btn btn-outline-brand" data-dismiss="modal" value="close">
+										<button type="submit" class="btn btn-brand">Valider</button>
+									</div>
+									</form>
+								</div>
+							</div>
+						</div>
+
+
 	<script src="../../assets/Backoffice/js/jquery.js" type="text/javascript">
 	</script>
 	
@@ -140,7 +174,13 @@ include "bout_code/liste_mode.php";
 	<!--end::Page Vendors -->
 	<script src="../../assets/Backoffice/js/demo1/pages/dashboard.js" type="text/javascript">
 	</script>
-	
+	<script>
+		$(function(){
+$(".click").click(function(){
+	$('[data-dismiss="modal"]').trigger("click");
+})
+		})
+	</script>
 </body>
 <!-- end::Body -->
 </html>

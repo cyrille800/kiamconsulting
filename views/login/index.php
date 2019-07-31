@@ -1,3 +1,6 @@
+<?php 
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,23 +47,26 @@
 <center style="margin-top:7%;">
 		<div class="" style="">
 			<div class="wrap-login100">
-				<form class="login100-form validate-form flex-sb flex-w">
+				<form class="login100-form validate-form flex-sb flex-w" method="post" action="" id="formulaire" autocomplete="off">
 					<span class="login100-form-title p-b-51">
 						Login
 					</span>
 
 					
-					<div class="wrap-input100 validate-input m-b-16" >
-						<input class="input100" type="text" name="login" placeholder="Username Or Login">
+					<div class="wrap-input100 validate-input m-b-16" data-validate = "Username is required">
+						<input class="input100" type="text" name="operation" value="connexion" style="display:none;">
+						<input class="input100" type="text" name="username" placeholder="Username">
 						<span class="focus-input100"></span>
 					</div>
 					
 					
-					<div class="wrap-input100 validate-input m-b-16" >
+					<div class="wrap-input100 validate-input m-b-16" data-validate = "Password is required">
 						<input class="input100" type="password" name="password" placeholder="Password">
 						<span class="focus-input100"></span>
 					</div>
-					
+					<div class="erreur" style="background-color:rgba(255,0,0,0.1);color:red;padding:2%;width:100%;border-radius:7px;display:none;">
+						message
+					</div>
 					<div class="flex-sb-m w-full p-t-3 p-b-24">
 						<div class="contact100-form-checkbox">
 							<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
@@ -77,7 +83,7 @@
 					</div>
 
 					<div class="container-login100-form-btn m-t-17">
-						<button class="login100-form-btn" style="background-color: #242939;">
+						<button class="login100-form-btn" type="submit" style="background-color: #242939;">
 							Login
 						</button><br>
 					</div>
@@ -106,73 +112,49 @@
 	<script src="vendor/countdowntime/countdowntime.js"></script>
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>
-	<!-- <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.js"></script> -->
-	<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.min.js"></script>
-	<!-- <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/additional-methods.js"></script> -->
-	<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/additional-methods.min.js"></script>
-	<script>
+	<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+<script>
 	$(function(){
-		// FORM VALIDATION
-$.validator.setDefaults({
-    errorClass: 'alert alert-validate',
-    highlight: function(element) {
-      $(element).removeClass('help-block');
-    },
-    errorPlacement: function (error, element) {
-      if (element.prop('type') === 'text'  || element.prop('type') === 'password') {
-element.after(error);
+if(Cookies.get("username")!=undefined){
+$("[name='username']").val(Cookies.get("username"))
+$("[name='password']").val(Cookies.get("password"))
+$("[name='remember-me']").attr("checked","checked")	
+}
+$("#formulaire").submit(function(e){
+e.preventDefault();
+
+$.ajax({
+    type : 'POST',
+    url : '../../entities/client.php',
+   data:  new FormData(this),
+   contentType: false,
+         cache: false,
+   processData:false,
+    success: function(data){
+if(data!="ok"){
+    $(".erreur").text(data)
+    $(".erreur").fadeIn("fast");
+    setTimeout(function(){
+    $(".erreur").fadeOut("fast");	
+    },2000)
+}else{
+    $(".erreur").hide();
+    if($("[name='remember-me']").prop("checked")==true){
+Cookies.set('username',$("[name='username']").val(), { expires: 360, path: '' });
+Cookies.set('password',$("[name='password']").val(), { expires: 360, path: '' });
+}else{
+	Cookies.remove('username',{ path: '' });
+	Cookies.remove('password',{ path: '' });
 }
 
+
+    document.location.href="../Backoffice/client/index.php";
+}      
     }
-  });
-
-
-
-$(".login100-form.validate-form").validate({
-	onkeyup:(element)=> {
-           $(element).valid(); 
-    },
-	
-	rules:{
-	  login: {
-        required: true,
-		
-      },
-      password: {
-        required: true,
-       
-      },
-	
-	},
-	submitHandler: function(form) {
-            request = $.ajax({
-                type: "POST",
-                cache: false,
-                url: "connexion.php",
-                data: $(form).serialize(),
-                timeout: 3000
-            });
-            // Called on success.
-            request.done(function(msg) {
-                alert(msg);
-            });
-            // Called on failure.
-            request.fail(function (jqXHR, textStatus, errorThrown){
-                alert('failed');
-                // log the error to the console
-                console.error(
-                    "The following error occurred: " + textStatus, errorThrown
-                );
-            });
-            return false;
-        }
-	
-	
-
+})
 
 })
 	})
-	</script>
-
+</script>
 </body>
 </html>
