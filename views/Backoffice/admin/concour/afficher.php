@@ -1,5 +1,5 @@
 <?php 
-include "../../../../entities/class_ecole.php";
+include "../../../../entities/class_concour.php";
 ?>
 <!DOCTYPE html>
 <html>
@@ -8,13 +8,9 @@ include "../../../../entities/class_ecole.php";
 		<meta name="description" content="Blank page example">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta charset="utf-8">
 			<link href="../../../assets/Backoffice/vendors/global/vendors.bundle.css" rel="stylesheet" type="text/css" />
 		<link href="../../../assets/Backoffice/css/demo1/style.bundle.css" rel="stylesheet" type="text/css" />
-		<link href="../../../assets/Backoffice/css/demo1/skins/header/base/light.css" rel="stylesheet" type="text/css" />
-		<link href="../../../assets/Backoffice/css/demo1/skins/header/menu/light.css" rel="stylesheet" type="text/css" />
-		<link href="../../../assets/Backoffice/css/demo1/skins/brand/navy.css" rel="stylesheet" type="text/css" />
-		<link href="../../../assets/Backoffice/css/demo1/skins/aside/navy.css" rel="stylesheet" type="text/css" />
+
 		<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js">
 		</script>
 		<script>
@@ -26,14 +22,15 @@ include "../../../../entities/class_ecole.php";
 		});
 		</script>
 </head>
-<body style="overflow-x:hidden;">
+<body>
+					<!-- end:: Subheader -->
 					<!-- begin:: Content -->
 					<div class="kt-content  kt-grid__item kt-grid__item--fluid" id="kt_content" style="padding:0px;">
 					<div class="kt-subheader   kt-grid__item bg-white mb-4" style="padding:10px;padding-left:40px;" id="kt_subheader">
     <div class="kt-container  kt-container--fluid ">
         <div class="kt-subheader__main">
                             <h3 class="kt-subheader__title">
-                                            Ecoles                               
+                                            Matieres                               
                 </h3>
                        
 
@@ -66,7 +63,7 @@ include "../../../../entities/class_ecole.php";
 <div class="kt-grid kt-grid--desktop kt-grid--ver kt-grid--ver-desktop kt-app">
     <!--Begin:: App Aside-->
     <div class="kt-grid__item kt-app__toggle kt-app__aside kt-app__aside--sm kt-app__aside--fit mr-5 ml-4" id="kt_users_aside" style="opacity: 1;">
-        <div class="kt-portlet">
+        <div class="kt-portlet col-12">
             <div class="kt-portlet__body">
                 <div class="kt-widget kt-widget--general-1">
                     <div class="kt-widget__wrapper">
@@ -93,19 +90,17 @@ include "../../../../entities/class_ecole.php";
     <!--Begin:: App Content-->
     <div class="kt-grid__item kt-grid__item--fluid kt-app__content ml-4">
         <div class="row col-11">
-
-<?php
-
-ecole::afficher();
-
+<?php 
+concours::afficher();
 ?>
-
+            </div>
         </div>
 
     </div>
     <!--End:: App Content-->
 </div>
 <!--End::App-->	</div>
+
 		</div>
 					<!-- end:: Content -->
 
@@ -145,23 +140,12 @@ ecole::afficher();
 	</script>
 	<script src="../../../assets/Backoffice/js/demo1/scripts.bundle.js" type="text/javascript">
 	</script>
-	<script src="../../../assets/Backoffice/js/demo1/pages/custom/users/list-columns.js" type="text/javascript"></script>
 	<script>
 		        			$(window).on("load",function(){
 		$(".preload").fadeOut("fast");
 		})
 
         $(function(){
-        	$(".supprimer_ecole").click(function(){
-        		var v=$(this);
-        		var id=$(this).attr("id");
-        		$(this).parent().fadeOut().queue(function(){
-        			v.remove()
-        			$.post("../../../../entities/school.php",{operation:"supprimer",id:id})
-        			$(this).dequeue();
-        		})
-        	})
-
         	var tableau=['iuy'];
         	$("specialite").each(function(){
         		var element=$(this).text();
@@ -171,12 +155,7 @@ ecole::afficher();
         		}
         	})
 
-var ic=0;
-$(".element").each(function(){
-	ic++;
-	$(".rps").text(ic);
-})
-        	$("#generalSearch").keyup(function(){
+         	$("#generalSearch").keyup(function(){
         		var val=$(this).val();
         		val=val.toLowerCase();
         		var i=0;
@@ -193,23 +172,17 @@ $(".element").each(function(){
         		})
         	})
 
-        	/*$(".e").click(function(){
-        		var o=$(this).text();
-        		o=o..toLowerCase();
-        		if($(this).css("background-color")=="rgba(0, 0, 0, 0)"){
-        			$(this).css({"background-color":"#5d78ff","color":"white","border-radius":"5px"})
-        			$(this).find("a").css({"color":"white"})
-        			$("#generalSearch").val("")
-        			$(".element").each(function(){
-        				var t=$(this).attr("spe");
-        				t=t.toLowerCase();
-        				if(t!=o){}
-        			})
-        		}else{
-        			$(this).css({"background-color":"rgba(0, 0, 0, 0)","color":"#646c9a"})
-        			$(this).find("a").css({"color":"#646c9a"})
-        		}
-        	})*/
+ $(".supprimer").click(function(){
+    id=$(this).attr("id");
+    element=$(this)
+    $.post( "../../../../entities/concour.php",{operation:"supprimer",id:id},function(data){
+    if(data!="ok"){
+    toastr.error(data);
+    }else{
+        element.parent().hide();
+    }
+ } );    
+})
         })
 	</script>
 </body>

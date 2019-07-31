@@ -102,11 +102,46 @@ public static function verifier($id,$type,$valeur){
 		$tableaui=[];
 		$o=0;
 		  	$requette=config::$bdd->query("select * from concours");
+		  	$i=0;
                 		while($data=$requette->fetch()){
                 			$o=1;
+                			$titre=trim($data["titre"]);
+                		echo '<div class="col-xl-3 col-lg-3 col-sm-5 element" spe="" nom="'.$data["titre"].'">
+									<span style="position:absolute;background:rgba(0,0,0,0.6);color:white;top:5%;cursor:pointer;left:83%;border-radius:10px;width:20px;height:20px;" class="kt-avatar__cancel text-center supprimer" data-toggle="kt-tooltip" title="" data-original-title="supprmer" id="'.$data["id"].'">
+										<i class="la la-trash"></i>
+									</span>
+									<!--begin::Portlet-->
+									<div class="kt-portlet  ">
+										<div class="kt-portlet__body">
+											<div class="kt-widget kt-widget--general-4">
+											<div class="kt-user-card-v2__pic">									<div class="kt-badge kt-badge--xl ';
+											if($i%2==0){
+												echo "kt-badge--warning";
+											}else{
+												echo "kt-badge--success";
+											}
+											echo '">'.$titre[0].'</div>								</div>
+											<br>
+												<a href="#" class="kt-widget__title">
+													'.$data["titre"].'
+												</a>
+												<specialite style="display:none;">'.$data["titre"].'</specialite>
+												<br><br>
+												<div class="kt-widget__desc">
+													'.$data["description"].'
+												</div>
+											</div>
+											<div class="kt-widget__links mt-3">
+												<div class="kt-widget__link">
+													<i class="la la-calendar-o kt-font-skype" style="font-size:20px;"></i>&nbsp;&nbsp;<a href="#">date : &nbsp;&nbsp;&nbsp; '.$data["date_concour"].'</a>
+												</div>
+											</div>
+											<div class="kt-widget__links mt-3">
+												<div class="kt-widget__link">
+													<i class="la la-calendar-check-o kt-font-skype" style="font-size:20px;"></i>&nbsp;&nbsp;<a href="#">heure : &nbsp;&nbsp;&nbsp; ';
+
                 			$req=explode(",",$data["heure"]);
-					echo '<tr><td class="text-center">'.$data["id"].'</td><td  class="text-center"><a href="consulter_quizz.php?id='.$data["id"].'">'.$data["titre"].'</a></td><td  class="text-center">'.$data["date_concour"].'</td><td  class="text-center">';
-					if(intval($req[0])<10){
+                		if(intval($req[0])<10){
 						if(isset($req[0][0])){
 							if($req[0][0]!='0'){
 							echo "0";
@@ -115,7 +150,7 @@ public static function verifier($id,$type,$valeur){
 							echo "0";
 						}
 					}
-					echo $req[0].':';
+					echo $req[0].' H : ';
 					if(intval($req[1])<10){
 						if(isset($req[1][0])){
 							if($req[1][0]!='0'){
@@ -125,12 +160,36 @@ public static function verifier($id,$type,$valeur){
 							echo "0";
 						}
 					}
-					echo $req[1].'</td><td  class="text-center row"><span class="col-xl-8">'.$data["description"].'</span></td><td  class="text-center"> <button type="button" id="'.$data["id"].'" class="btn btn-sm btn-primary valider" style="display:none;">valider</button> <button type="button" title="Edit details"  id="'.$data["id"].'"  class="btn btn-sm btn-clean btn-icon btn-icon-md modifier"><i class="la la-edit"></i></button>&nbsp;&nbsp;&nbsp;<button type="button" id="'.$data["id"].'" title="Delete" class="btn btn-sm btn-clean btn-icon btn-icon-md supprimer"><i class="la la-trash"></i></button></td></tr>';
-                		}
-                		if($o==0){
-                			echo "<tr><td colspan='7' class='text-center'>vide</td></tr>";
-                		}
+echo $req[1];
 
+													echo '</a>
+												</div>
+											</div>
+											<br><br>
+											<div class="kt-widget__actions">
+												<div class="kt-widget__left">
+													<a style="margin-left:-2%;" href="quizz.php?id='.$data["id"].'" class="btn btn-default btn-sm btn-bold btn-upper"><i class="la la-plus"></i>&nbsp;add quizz</a>
+													<a style="margin-left:1%;" href="ajouter.php?id='.$data["id"].'" class="btn btn-brand btn-sm btn-bold btn-upper"><i class="la la-edit"></i>&nbsp;modifier</a>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>';
+								$i++;
+
+	}
+	if($o==0){
+		echo "vide";
+	}
+}
+
+	public static function afficher_liste(){
+		$tableau=[];
+		$tableaui=[];
+		  	$requette=config::$bdd->query("select * from concours");
+                		while($data=$requette->fetch()){
+					echo '<a class="dropdown-item text-center click" style="color:black;" target="frame1" href="concour/quizz.php?id='.$data['id'].'">'.$data['titre'].'</a>';
+                		}
 	}
 
 	public static function retourne_valeur($v,$id,$val){

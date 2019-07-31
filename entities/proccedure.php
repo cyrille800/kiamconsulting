@@ -18,6 +18,14 @@ if(verification_post(["titre","description","fichier","id_active"])==1 && !isset
 	$exemple=new proccedure($titre,$description,$fichier,$id_active);
 	if($exemple->ajouter()==true){
 		$nono="ok";
+		$id=proccedure::retourne_valeur("titre",$titre,"id");
+				if(!empty($_FILES["avatar"]) && trim($_FILES['avatar']['tmp_name'])!=""){
+		$folder="../views/assets/Backoffice/media/etapes/";
+		$temp_name=$_FILES['avatar']['tmp_name'];
+	$location=$folder.$id.".png";
+	move_uploaded_file($temp_name,$location);
+
+	}
 	}else{
 		$nono="il ya un probleme dans l'enregistrement'";
 	}
@@ -34,6 +42,12 @@ if(verification_post(["titre","description","fichier","id_active"])==1 && !isset
 			proccedure::modifier($id,"description",$description);
 			proccedure::modifier($id,"fichier",$fichier);
 			proccedure::modifier($id,"titre",$titre);
+				if(!empty($_FILES["avatar"]) && trim($_FILES['avatar']['tmp_name'])!=""){
+		$folder="../views/assets/Backoffice/media/etapes/";
+		$temp_name=$_FILES['avatar']['tmp_name'];
+	$location=$folder.$id.".png";
+	move_uploaded_file($temp_name,$location);
+	}
 			$nono="ok";
 		}	
 		}

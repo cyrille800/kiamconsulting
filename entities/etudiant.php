@@ -52,10 +52,21 @@ if(verification_post(["nom","prenom","id_client","pays","ville","niveau_scolaire
 if(etudiant::supprimer($id)==1){
 				$reponse="ok";
 			}else{
-				$reponse="opération echoué";
+$reponse="remplir toutes les cases";
 			}
 		}else{
-		$reponse="remplir toutes les cases";	
+			if($operation=="modifier"){
+					if(isset($id_ecole)){
+					etudiant::modifier($id_client,"ecole_choisie",$id_ecole);	
+					$reponse="ok";
+					}
+					if(isset($specialite)){
+					etudiant::modifier($id_client,"specialite",$specialite);	
+					$reponse="ok";
+					}
+				}else{
+					$reponse="opération echoué";
+				}	
 		}
 	}else{
 		$reponse="remplir toutes les cases";

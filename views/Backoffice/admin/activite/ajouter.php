@@ -1,5 +1,17 @@
 <?php 
-include "../../../../entities/class_specialite.php";
+include "../../../../entities/class_activiter.php";
+$titre="";
+$description="";
+$etat="";
+$id="";
+$op=false;
+if(isset($_GET["id"])){
+$op=true;
+$id=$_GET["id"];
+$titre=activiter::retourne_valeur("id",$_GET["id"],"titre");
+$description=activiter::retourne_valeur("id",$_GET["id"],"description");
+$etat=activiter::retourne_valeur("id",$_GET["id"],"etat");
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -22,7 +34,7 @@ include "../../../../entities/class_specialite.php";
 		});
 		</script>
 </head>
-<body>
+<body operation="<?php echo (isset($_GET["id"]))?"modifier":"ajouter";?>" id="<?php echo (isset($_GET["id"]))?$_GET["id"]:"";?>">
 
 					<!-- begin:: Subheader -->
 					<div class="kt-subheader   kt-grid__item" id="kt_subheader">
@@ -69,54 +81,71 @@ include "../../../../entities/class_specialite.php";
 					<!-- end:: Subheader -->
 					<!-- begin:: Content -->
 					<div class="kt-content  kt-grid__item kt-grid__item--fluid" id="kt_content">
-					<div class="preload" style="position:fixed;width:100%;height:100%;background:white;left:0;top:0;z-index:100;padding-top:10%;">
+								<div class="preload" style="position:fixed;width:100%;height:100%;background:white;left:0;top:0;z-index:100;padding-top:10%;">
 				<center><div class="lds-ring"><div></div><div></div><div></div><div></div></div></center>
 			</div>
 			<center>
-			<div class="kt-portlet col-xl-4">
+			<div class="kt-portlet col-xl-5">
 				<div class="kt-portlet__head">
 					<div class="kt-portlet__head-label">
-						<h3 class="kt-portlet__head-title">Ajouter une spécialité</h3>
+						<h3 class="kt-portlet__head-title">Ajouter une activitée</h3>
 					</div>
 				</div>
 				<!--begin::Form-->
 				<form class="kt-form kt-form--label-right" action="" method="post" enctype="multipart/form-data" id='formulaire' autocomplete="off">
-					<input type="text" name="operation" value="ajouter" style="display:none;">
 					<div class="kt-portlet__body">
 						<div class="form-group form-group-last">
 							<div class="alert alert-secondary" role="alert">
 								<div class="alert-icon"><i class="la la-warning kt-font-brand"></i></div>
 								<div class="alert-text">
-									Vous ne devez pas ajouter une spécialité plus d'une fois
+									Utiliser des informations representatives qui permettront aux étudiants de ce reférencer .
 								</div>
 							</div>
 						</div>
 						<div class="form-group row">
-									<button type="submit" class="btn btn-success  col-2 col-form-label">Ajouter</button>
+							<label for="example-text-input" class="col-2 col-form-label">Titre</label>
 							<div class="col-10">
-								<input class="form-control" type="text" name="titre" placeholder="saisir la spécialité">
+								<input type="text" class="form-control" name="titre" placeholder="titre" value="<?php echo ($op)?$titre:"";?>">
 							</div>
 						</div>
-                    <div class="kt-section__content">
-                        <table class="table bg-white">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th class="text-center">Id</th>
-                                    <th class="text-center">titre</th>
-                                    <th class="text-center">opération</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            	<?php 
-								specialite::afficher();
-                            	?>   
-                            </tbody>
-                        </table>
-                    </div>
+						<div class="form-group row">
+							<label for="example-text-input" class="col-2 col-form-label">Description</label>
+							<div class="col-10">
+								<input type="text" class="form-control" name="descriptionss" placeholder="description" value="<?php echo ($op)?$description:'';?>">
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="example-text-input" class="col-2 col-form-label">Etat actif</label>
+							<div class="col-10">
+						<label class="kt-radio kt-radio--solid kt-radio--brand mr-5">
+								<input type="radio" name="etat" <?php if($op){if($etat==1){echo "checked='checked'";}}?> value="1"> Etudiant
+								<span></span>
+							</label>
+						<label class="kt-radio kt-radio--solid kt-radio--danger ml-5">
+								<input type="radio" name="etat" value="0" <?php if($op){if($etat==0){echo "checked='checked'";}}?>> Patient
+								<span></span>
+							</label>
+							</div>
+						</div>
+
+
+					</div>
+					<div class="kt-portlet__foot">
+						<div class="kt-form__actions">
+							<div class="row">
+								<div class="col-2">
+								</div>
+								<div class="col-10">
+									<button type="submit" class="btn btn-success">Ajouter</button>
+								</div>
+							</div>
+						</div>
 					</div>
 				</form>
 			</div>
-			</center></div>
+			</center>
+
+		</div>
 					<!-- end:: Content -->
 
         <script>
@@ -155,66 +184,40 @@ include "../../../../entities/class_specialite.php";
 	</script>
 	<script src="../../../assets/Backoffice/js/demo1/scripts.bundle.js" type="text/javascript">
 	</script>
-	<script src="../../../assets/Backoffice/js/demo4/pages/components/extended/toastr.js" type="text/javascript"></script>
+    <script src="../../../assets/Backoffice/js/demo1/pages/components/forms/widgets/bootstrap-touchspin.js" type="text/javascript"></script>
+    <script src="../../../assets/Backoffice/js/demo1/pages/components/forms/widgets/bootstrap-datepicker.js" type="text/javascript"></script>
 	<script>
-			$(window).on("load",function(){
+		        			$(window).on("load",function(){
 		$(".preload").fadeOut("fast");
 		})
 
-		$(function(){
-
-			toastr.options = {
-  "closeButton": false,
-  "debug": false,
-  "newestOnTop": false,
-  "progressBar": true,
-  "positionClass": "toast-top-right",
-  "preventDuplicates": false,
-  "onclick": null,
-  "showDuration": "300",
-  "hideDuration": "1000",
-  "timeOut": "5000",
-  "extendedTimeOut": "1000",
-  "showEasing": "swing",
-  "hideEasing": "linear",
-  "showMethod": "fadeIn",
-  "hideMethod": "fadeOut"
-};
+        $(function(){
 			 $("#formulaire").submit(function(e){
 e.preventDefault();
-if($.trim($("[name='titre']").val())==""){
-toastr.error("remplir toutes les cases");
-}else{
-$.ajax({
-    type : 'POST',
-    url : '../../../../entities/specialite.php',
-   data:  new FormData(this),
-   contentType: false,
-         cache: false,
-   processData:false,
-    success: function(data){
-if(data=="ce titre existe deja <br>il ya un probleme dans l'enregistrement verifier les caases"){
-   toastr.error(data);
-}else{
-   toastr.success("operation terminée.");
-   $("table tbody").append("<tr><td class='text-center'>"+data+"</td><td class='text-center'>"+$("[name='titre']").val()+"</td><td class='text-center'><button type='button'  id='"+data+"'  class='btn btn-sm btn-clean btn-icon btn-icon-md modifier' ><i class='la la-edit'></i></button>&nbsp;&nbsp;&nbsp;<button type='button' id='"+data+"' title='Delete' class='btn btn-sm btn-clean btn-icon btn-icon-md supprimer'><i class='la la-trash'></i></button></td></tr>")
-}      
+  var titre=$("[name='titre']").val();
+  var description=$("[name='descriptionss']").val();
+  var decision=$("[name='etat']:checked").attr("value");
+if($("[operation]").attr("operation")=="ajouter"){
+$.post( "../../../../entities/activiter.php",{titre:titre,description:description,etat:decision},function(data){
+    if(data!="ok"){
+      toastr.error(data)
+    }else{
+      toastr.success("operation terminée")
     }
-})
+  })
+}else{
+  $.post( "../../../../entities/activiter.php",{operation:"modifier",id:$("[operation]").attr("id"),titre:titre,description:description,etat:decision},function(data){
+    if(data!="ok"){
+      toastr.error(data)
+    }else{
+      toastr.success("operation terminée")
+    }
+  }) 
 }
-})
 
-			 $(".supprimer").click(function(){
-			 	valeur=$(this);
-	$.post("../../../../entities/specialite.php",{operation:"supprimer",id:$(this).attr("id")},function(data){
-		if(data!="ok"){
-toastr.error(data);
-		}else{
-			valeur.parent().parent().hide();
-		}
-	})
-			 })
-		})
+
+})
+        })
 	</script>
 </body>
 </html>

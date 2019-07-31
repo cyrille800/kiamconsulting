@@ -33,9 +33,10 @@ if(verification_post(["titre","description","date","heure"])==1 && !isset($_POST
 			concours::modifier($id,"titre",$titre);
 			concours::modifier($id,"description",$description);
 			concours::modifier($id,"date_concour",$date);
-			$variable=explode(":",$heure);
+			$variable=explode(",",$heure);
 			$g=$variable[0].",".$variable[1];
 			concours::modifier($id,"heure",$g);
+			$reponse="ok";
 		}	
 		}
 	}else{

@@ -1,6 +1,5 @@
 <?php 
-include "../../../../entities/class_galerie.php";
-include "../../../../entities/class_details_plus.php";
+include "../../../../entities/class_quizz.php";
 ?>
 <!DOCTYPE html>
 <html>
@@ -83,21 +82,9 @@ padding-right: 1.1rem;
 								</span>
 								<a href="" class="kt-subheader__breadcrumbs-link">
 								Blank Page                    </a>
-								<a href="#" class="btn btn-primary ml-4"   data-toggle="modal" data-target="#ajouter_image"><i class="la la-plus"></i>&nbsp;&nbsp;Ajouter des images</a>
+								<a href="#" class="btn btn-primary ml-4"   data-toggle="modal" data-target="#ajouter_image"><i class="la la-plus"></i>&nbsp;&nbsp;Ajouter un quizz</a>
 							</div>
 							
-						</div>
-						<div class="kt-subheader__toolbar" style="margin-right:20%;">
-							<div class="kt-subheader__wrapper">
-								<div class="dropdown dropdown-inline" data-toggle="kt-tooltip" title="Quick actions" data-placement="top">
-									<a href="#" class="btn btn btn-label btn-label-brand btn-bold" data-toggle="modal" data-target="#ajouter_description">
-										<i class="la la-plus">
-										</i>
-										Ajouter des informations
-									</a>
-								</div>
-								
-							</div>
 						</div>
 					</div>
 
@@ -111,50 +98,17 @@ padding-right: 1.1rem;
 
 <!-- Grid row -->
 <div class="row">
-<div class="gallery col-7 bg-white  pt-4 pb-4" id="gallery">
+<div class="col-8 bg-white  pt-4 pb-4 mx-auto">
+<div class="accordion" id="accordionExample">
 <?php 
-galerie::afficher($_GET["id"]);
-?>
+quizz::afficher($_GET["id"]);
 
-</div>
-
-<div class="col-4 bg-white  pt-4 pb-4">
-<div class="accordion" id="accordionExample1">
-<?php 
-details_plus::afficher($_GET["id"]);
 ?>
 				</div>
 </div>
 </div>
 		</div>
-					<!-- end:: Content -->
 						<div class="modal fade" id="ajouter_image" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-							<div class="modal-dialog" role="document">
-								<div class="modal-content">
-									<form method="post" action="" enctype="multipart/form-data" id="formulaire">
-<div class="modal-header">
-										<h5 class="modal-title" id="exampleModalLabel">Selectionner l'image</h5>
-										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-											<span aria-hidden="true">&times;</span>
-										</button>
-									</div>
-									<div class="modal-body">
-										<div class="btn-group col-12">
-							<input type="text" name="operation" value="ajouter" style="display:none;">
-							<input type="text" name="id_ecole" value="<?php echo $_GET["id"];?>" style="display:none;">
-							<input type="file" name="image">
-						</div>
-									</div>
-									<div class="modal-footer">
-										<input type="button"  class="btn btn-outline-brand" data-dismiss="modal" value="close">
-										<button type="submit" class="btn btn-brand">Valider</button>
-									</div>
-									</form>
-								</div>
-							</div>
-						</div>
-
-						<div class="modal fade" id="ajouter_description" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 							<div class="modal-dialog" role="document">
 								<div class="modal-content">
 									<form method="post" action="" enctype="multipart/form-data" id="formulaire1">
@@ -166,20 +120,58 @@ details_plus::afficher($_GET["id"]);
 									</div>
 									<div class="modal-body">
 										<div class="btn-group col-12">
-							<input type="text" name="id_ecole" value="<?php echo $_GET["id"];?>" style="display:none;">
+							<input type="text" name="id_concour" value="<?php echo $_GET["id"];?>" style="display:none;">
+							<input type="text" name="autre_reponse" value="" style="display:none;">
 							<div class="form-group form-group-last col-12 mt-4">
 							<div class="form-group row" style="margin-top:-5%;">
-							<label for="example-text-input" class="col-2 col-form-label">Titre</label>
+							<label for="example-text-input" class="col-2 col-form-label">question</label>
 							<div class="col-10">
-								<input class="form-control" type="text" name="titre" value="">
+								<input type="text" class="form-control col-10" style="display:inline;" name="question" placeholder="saisir la question" >&nbsp;&nbsp;<label class="kt-avatar__upload" data-toggle="kt-tooltip" title="" data-original-title="choisir une image">
+									<i class="la la-file-picture-o btn-bold" style="font-size:25px;cursor:pointer;" ></i>
+									<input type="file" name="question" accept=".png, .jpg, .jpeg" style="display:none;">
+								</label>
 							</div>
 						</div>
 							<div class="form-group row" style="margin-top:-5%;">
-							<label for="example-text-input" class="col-2 col-form-label">description</label>
+							<label for="example-text-input" class="col-2 col-form-label">Reponse</label>
 							<div class="col-10">
-								<input class="form-control" type="text" name="description" value="">
+								<input type="text" class="form-control col-10" style="display:inline;" name="reponse" placeholder="saisir la reponse" >&nbsp;&nbsp;<label class="kt-avatar__upload" data-toggle="kt-tooltip" title="" data-original-title="choisir une image">
+									<i class="la la-file-picture-o btn-bold" style="font-size:25px;cursor:pointer;" ></i>
+									<input type="file" name="reponse" accept=".png, .jpg, .jpeg" style="display:none;">
+								</label>
 							</div>
 						</div>
+							<div class="form-group row" style="margin-top:-5%;">
+							<label for="example-text-input" class="col-2 col-form-label">Reponse fausse 1</label>
+							<div class="col-10">
+								<input type="text" class="form-control col-10" style="display:inline;" name="faux1" placeholder="saisir une reponse fausse" >
+								&nbsp;&nbsp;<label class="kt-avatar__upload" data-toggle="kt-tooltip" title="" data-original-title="choisir une image">
+									<i class="la la-file-picture-o btn-bold" style="font-size:25px;cursor:pointer;" ></i>
+									<input type="file" name="faux1" accept=".png, .jpg, .jpeg" style="display:none;">
+								</label>
+							</div>
+						</div>
+							<div class="form-group row" style="margin-top:-5%;">
+							<label for="example-text-input" class="col-2 col-form-label">Reponse fausse 2</label>
+							<div class="col-10">
+								<input type="text" class="form-control col-10" style="display:inline;" name="faux2" placeholder="saisir une reponse fausse" >
+								&nbsp;&nbsp;<label class="kt-avatar__upload" data-toggle="kt-tooltip" title="" data-original-title="choisir une image">
+									<i class="la la-file-picture-o btn-bold" style="font-size:25px;cursor:pointer;" ></i>
+									<input type="file" name="faux2" accept=".png, .jpg, .jpeg" style="display:none;">
+								</label>
+							</div>
+						</div>
+							<div class="form-group row" style="margin-top:-5%;">
+							<label for="example-text-input" class="col-2 col-form-label">Reponse fausse 3</label>
+							<div class="col-10">
+								<input type="text" class="form-control col-10" style="display:inline;" name="faux3" placeholder="saisir une reponse fausse" >
+								&nbsp;&nbsp;<label class="kt-avatar__upload" data-toggle="kt-tooltip" title="" data-original-title="choisir une image">
+									<i class="la la-file-picture-o btn-bold" style="font-size:25px;cursor:pointer;" ></i>
+									<input type="file" name="faux3" accept=".png, .jpg, .jpeg" style="display:none;">
+								</label>
+							</div>
+						</div>
+
 						</div>
 						</div>
 									</div>
@@ -191,6 +183,11 @@ details_plus::afficher($_GET["id"]);
 								</div>
 							</div>
 						</div>
+
+
+                        <div class="modal fade" id="simage" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <img src="" class="cible modal-dialog" alt=""  style="position:absolute;left:10%;top:0;">
+                        </div>
 
         <script>
         var KTAppOptions = {
@@ -235,43 +232,18 @@ details_plus::afficher($_GET["id"]);
 
 		$(function(){
 var selectedClass = "";
-$(".filter").click(function(){
-selectedClass = $(this).attr("data-rel");
-$("#gallery").fadeTo(100, 0.1);
-$("#gallery div").not("."+selectedClass).fadeOut().removeClass('animation');
-setTimeout(function() {
-$("."+selectedClass).fadeIn().addClass('animation');
-$("#gallery").fadeTo(300, 1);
-}, 300);
-});
-
-			 $("#formulaire").submit(function(e){
-e.preventDefault();
-
-$.ajax({
-    type : 'POST',
-    url : '../../../../entities/galerie.php',
-   data:  new FormData(this),
-   contentType: false,
-         cache: false,
-   processData:false,
-    success: function(data){  
-if(data!="ok"){
-toastr.error(data);   
-    }else{
- toastr.success("opération terminer");    
- document.location.href="detail.php?id="+$("body").attr("id");	
-    }
-}
-})
-})
 
 			 $("#formulaire1").submit(function(e){
 e.preventDefault();
-
+var autre_reponse="";
+autre_reponse+=$("[name='faux1']").val()+";";
+autre_reponse+=$("[name='faux2']").val()+";";
+autre_reponse+=$("[name='faux3']").val();
+if($.trim($("[name='faux1']").val())!="" && $.trim($("[name='faux2']").val())!="" && $.trim($("[name='faux3']").val())!="" && $.trim($("[name='question']").val())!="" && $.trim($("[name='reponse']").val())!=""){
+$("[name='autre_reponse']").val(autre_reponse)
 $.ajax({
     type : 'POST',
-    url : '../../../../entities/plus_detail.php',
+    url : '../../../../entities/quizz.php',
    data:  new FormData(this),
    contentType: false,
          cache: false,
@@ -281,32 +253,31 @@ if(data!="ok"){
 toastr.error(data);   
     }else{
  toastr.success("opération terminer");    
- document.location.href="detail.php?id="+$("body").attr("id");	
+ document.location.href="quizz.php?id="+$("body").attr("id");	
     }
 }
 })
+}else{
+ toastr.error("remplir tous les champs");  
+}
 })
 
-$(".supprimer_photo").click(function(){
-	$.post("../../../../entities/galerie.php",{operation:"supprimer",id:$(this).attr("id")},function(data){
-		if(data!="ok"){
-			toastr.error(data);
-		}else{
- document.location.href="detail.php?id="+$("body").attr("id");		
-		}
-	})
+$(".supprimer").click(function(){
+    id=$(this).attr("id");
+      element=$(this)
+    $.post( "../../../../entities/quizz.php",{operation:"supprimer",id:id},function(data){
+    if(data!="ok"){
+    toastr.error(data);
+    }else{
+        element.parent().parent().hide();
+    }
+ } );  
 })
 
-$(".supprimer_description").click(function(){
-	$.post("../../../../entities/plus_detail.php",{operation:"supprimer",id:$(this).attr("id")},function(data){
-		if(data!="ok"){
-			toastr.error(data);
-		}else{
- document.location.href="detail.php?id="+$("body").attr("id");		
-		}
-	})
+$(".btn.btn-info.btn-icon.btn-circle").click(function(){
+	var v=$(this).attr("url");
+	$(".cible").attr("src",v);
 })
-
 
 
 		})

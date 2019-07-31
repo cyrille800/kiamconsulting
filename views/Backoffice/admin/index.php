@@ -1,5 +1,6 @@
 <?php 
 include "../../../entities/class_ecole.php";
+include "../../../entities/class_concour.php";
 ?>
 <!DOCTYPE html>
 <html lang="en" >
@@ -66,8 +67,8 @@ include "bout_code/navbar_vertical.php";
 <?php 
 include "bout_code/navbar_horizontal.php";
 ?>
-				<div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor">
-					<iframe src="page_vierge.php" style="height:auto;border:none;background-color: #f2f3fa;" class="col-md-12" name="frame1">
+				<div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor" style="padding:0px;">
+					<iframe src="page_vierge.php" style="height:auto;border:none;background-color: #f2f3fa;padding:0px;" class="col-md-12" name="frame1">
 						
 					</iframe>
 				</div>
@@ -111,6 +112,36 @@ include "bout_code/liste_mode.php";
 							<div class="dropdown-menu col-12" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 38px, 0px);">
 								<?php 
 								ecole::afficher_liste();
+								?>
+							</div>
+						</div>
+									</div>
+									<div class="modal-footer">
+										<input type="button"  class="btn btn-outline-brand" data-dismiss="modal" value="close">
+										<button type="submit" class="btn btn-brand">Valider</button>
+									</div>
+									</form>
+								</div>
+							</div>
+						</div>
+
+						<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content">
+									<form method="post" action="">
+<div class="modal-header">
+										<h5 class="modal-title" id="exampleModalLabel">Selectionner la matiere</h5>
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+									<div class="modal-body">
+										<div class="btn-group col-12">
+							<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Choisir la matiere
+							</button>
+							<div class="dropdown-menu col-12" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 38px, 0px);">
+								<?php 
+								concours::afficher_liste();
 								?>
 							</div>
 						</div>

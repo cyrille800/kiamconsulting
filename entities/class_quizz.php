@@ -93,25 +93,103 @@ public static function verifier($id,$type,$valeur){
 
 	}
 
-	public static function afficher(){
+	public static function afficher($id){
 		$tableau=[];
 		$tableaui=[];
 		$o=0;
-		  	$requette=config::$bdd->query("select * from qizz");
-                		    echo "<tr><td colspan='7' class='text-center'><button type='button' id='o' class='btn btn-sm btn-primary' data-toggle='modal' data-target='#exampleModal'><span class='la la-plus-square'></span></button></td></tr>";
+		  	$requette=config::$bdd->query("select * from qizz where id_concour=".$id);
+                		$i=0;
                 		while($data=$requette->fetch()){
                 			$o=1;
-                			$req=explode(",",$data["autre_reponse"]);
-					echo '<tr><td class="text-center">'.$data["id"].'</td><td  class="text-center">'.$data["id_concour"].'</td><td  class="text-center">'.$data["question"].'</td><td  class="text-center">'.$data["reponse"].'</td><td  class="text-center row"><span class="col-xl-8">';
-$i=explode(";",$data["autre_reponse"]);
-foreach ($i as $key => $value) {
-	echo "<div>".$value."</div>";
-}
-					echo '</span></td><td  class="text-center"> <button type="button" id="'.$data["id"].'" class="btn btn-sm btn-primary valider" style="display:none;">valider</button> <button type="button" title="Edit details"  id="'.$data["id"].'"  class="btn btn-sm btn-clean btn-icon btn-icon-md modifier"  data-toggle="modal" data-target="#exampleModal"><i class="la la-edit"></i></button>&nbsp;&nbsp;&nbsp;<button type="button" id="'.$data["id"].'" title="Delete" class="btn btn-sm btn-clean btn-icon btn-icon-md supprimer"><i class="la la-trash"></i></button></td></tr>';
+                			$req=explode(";",$data["autre_reponse"]);
+					echo '					<div class="card">
+						<div class="card-header" id="'.$data["id"].'headingOneo'.$data["id"].'">
+							<div class="card-title collapsed" data-toggle="collapse" data-target="#collapseOne'.$data["id"].'" aria-expanded="false" aria-controls="collapseOne'.$data["id"].'"> <i class="la la-simplybuilt" style="font-size:25px;" class="btn-bold ml-5"></i>
+								'.$data["question"].'
+							<span style="background:rgba(0,0,0,0.6);color:white;cursor:pointer;border-radius:10px;width:20px;height:20px;" class="kt-avatar__cancel text-center supprimer ml-5" data-toggle="kt-tooltip" title="" data-original-title="supprmer" id="'.$data["id"].'">
+										<i class="la la-trash"></i>
+									</span>							
+							</div>
+						</div>
+						<div id="collapseOne'.$data["id"].'" class="collapse" aria-labelledby="'.$data["id"].'headingOneo'.$data["id"].'" data-parent="#accordionExample" style="">
+							<div class="card-body">
+							<button type="button"  data-target="#simage" class="btn btn-info btn-icon btn-circle" data-skin="dark" data-toggle="modal" title="" data-original-title="Afficher l\'image" url="../../../assets/Backoffice/media/concour/'.$data["id"].'question.png"><i class="fa fa-tags"></i></button><br><br>
+								';
+
+echo '<div class="kt-portlet__body">
+				<div class="accordion" id="accordionExample1">
+					<div class="card">
+						<div class="card-header" id="reponse_correct'.$i.'">
+							<div class="card-title bg-primary text-white" data-toggle="collapse" data-target="#reponse_correct1'.$i.'" aria-expanded="true" aria-controls="reponse_correct1'.$i.'"><i class="la la-list-alt" style="font-size:25px;" class="btn-bold ml-5"></i>
+								reponse correct
+							</div>
+						</div>
+						<div id="reponse_correct1'.$i.'" class="collapse" aria-labelledby="reponse_correct'.$i.'" data-parent="#accordionExample1" style="">
+							<div class="card-body">
+							<div class="lead">Reponse : '.$req[0].'</div> <br><br>
+							<button type="button" data-toggle="modal" data-target="#simage" class="btn btn-info btn-icon btn-circle" data-skin="dark" title="" data-original-title="Afficher l\'image" url="../../../assets/Backoffice/media/concour/'.$data["id"].'reponse.png"><i class="fa fa-tags"></i></button><br><br>
+							</div>
+						</div>
+					</div>
+
+					<div class="card">
+						<div class="card-header" id="reponse_fausse'.$i.'">
+							<div class="card-title" data-toggle="collapse" data-target="#reponse_fausse1'.$i.'" aria-expanded="true" aria-controls="reponse_fausse1'.$i.'"><i class="la la-list-alt" style="font-size:25px;" class="btn-bold ml-5"></i>
+								reponse fausse 1
+							</div>
+						</div>
+						<div id="reponse_fausse1'.$i.'" class="collapse" aria-labelledby="reponse_fausse'.$i.'" data-parent="#accordionExample1" style="">
+							<div class="card-body">
+							<div class="lead">Reponse fausse 1: '.$req[0].'</div> <br><br>
+								<button type="button" data-toggle="modal" data-target="#simage" class="btn btn-info btn-icon btn-circle" data-skin="dark" title="" data-original-title="Afficher l\'image" url="../../../assets/Backoffice/media/concour/'.$data["id"].'faux1.png"><i class="fa fa-tags"></i></button><br><br>
+							</div>
+						</div>
+					</div>
+
+					<div class="card">
+						<div class="card-header" id="reponse_fausses'.$i.'">
+							<div class="card-title" data-toggle="collapse" data-target="#reponse_fausse2'.$i.'" aria-expanded="true" aria-controls="reponse_fausse2'.$i.'"><i class="la la-list-alt" style="font-size:25px;" class="btn-bold ml-5"></i>
+								reponse fausse 2
+							</div>
+						</div>
+						<div id="reponse_fausse2'.$i.'" class="collapse" aria-labelledby="reponse_fausses'.$i.'" data-parent="#accordionExample1" style="">
+							<div class="card-body">
+							<div class="lead">Reponse fausse 2: '.$req[0].'</div> <br><br>
+								<button type="button" data-toggle="modal" data-target="#simage" class="btn btn-info btn-icon btn-circle" data-skin="dark" title="" data-original-title="Afficher l\'image" url="../../../assets/Backoffice/media/concour/'.$data["id"].'faux2.png"><i class="fa fa-tags"></i></button><br><br>
+							</div>
+						</div>
+					</div>
+
+					<div class="card">
+						<div class="card-header" id="reponse_faussess'.$i.'">
+							<div class="card-title" data-toggle="collapse" data-target="#reponse_fausse3'.$i.'" aria-expanded="true" aria-controls="reponse_fausse3'.$i.'"><i class="la la-list-alt" style="font-size:25px;" class="btn-bold ml-5"></i>
+								reponse fausse 3
+							</div>
+						</div>
+						<div id="reponse_fausse3'.$i.'" class="collapse" aria-labelledby="reponse_faussess'.$i.'" data-parent="#accordionExample1" style="">
+							<div class="card-body">
+							<div class="lead">Reponse fausse 3: '.$req[0].'</div> <br><br>
+								<button type="button" data-toggle="modal" data-target="#simage" class="btn btn-info btn-icon btn-circle" data-skin="dark" title="" data-original-title="Afficher l\'image" url="../../../assets/Backoffice/media/concour/'.$data["id"].'faux3.png"><i class="fa fa-tags"></i></button><br><br>
+							</div>
+						</div>
+					</div>
+
+
+				</div>
+			</div>';
+
+
+
+
+								echo '
+							</div>
+						</div>
+					</div>';
+					$i++;
                 		}
 
                 		                		if($o==0){
-                			echo "<tr><td colspan='7' class='text-center'>vide</td></tr>";
+                			echo "<div class='col-12 text-center'>vide</div>";
                 		}
 
 	}
