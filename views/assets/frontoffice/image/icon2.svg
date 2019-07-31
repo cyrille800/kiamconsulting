@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="97.457" height="97.457" viewBox="0 0 97.457 97.457">
+  <g id="Second" transform="translate(-253.015 -319)">
+    <g id="Ellipse_13" data-name="Ellipse 13" transform="translate(253.015 319)" fill="#fff" stroke="#5cb0c5" stroke-width="3">
+      <circle cx="48.728" cy="48.728" r="48.728" stroke="none"/>
+      <circle cx="48.728" cy="48.728" r="47.228" fill="none"/>
+    </g>
+    <path id="ic_forum_24px" d="M22.127,6.237H20.008v9.534H6.237V17.89A1.062,1.062,0,0,0,7.3,18.949H18.949l4.237,4.237V7.3A1.062,1.062,0,0,0,22.127,6.237ZM17.89,12.593V3.059A1.062,1.062,0,0,0,16.83,2H3.059A1.062,1.062,0,0,0,2,3.059V17.89l4.237-4.237H16.83A1.062,1.062,0,0,0,17.89,12.593Z" transform="translate(289.15 358.313)" fill="#333"/>
+  </g>
+</svg>

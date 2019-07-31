@@ -262,6 +262,9 @@ iframe {
   display: block;
 }
 
+.has-error{
+  color:red;
+}
 
 
 /*------------------------------------------------------------------
@@ -273,6 +276,7 @@ iframe {
   background-color: #e6e6e6;
   border: 1px solid transparent;
   border-radius: 3px;
+  position: relative;
 }
 
 
@@ -511,12 +515,26 @@ RADIO BUTTONS AND CHECKBOXES
  }
 
 .custom-control.custom-radio.custom-control-inline:nth-child(2){
-margin-left:25%;
+margin-left:5%;
 }
 .custom-control.custom-radio.custom-control-inline:nth-child(3){
-margin-right:25%;
+margin-right:5%;
 }
 
 /*//////////////////////////////////////////////////////////////////
 [ Responsive ]*/
  
+.alert.alert-danger{
+  position: absolute;
+  color:red;
+  border: 0.8px solid red;
+  background-color: white;
+  transform: scale(0.68);
+  width:60%;
+ padding: 0 1.5px;
+  top:42.5px;
+  left:193px;
+}
+.alert.alert-validate{
+  color:red;
+}

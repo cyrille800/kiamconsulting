@@ -37,9 +37,11 @@ session_start();
 			<a href="index.php">
 				<img src="../assets/Backoffice/media/logos/logo-5.png" alt="" >
 			</a>
-			<div style="float:right;margin-right:17%;border-bottom:2px solid #242939;padding:1%;" >
-				<a href="inscription.php" class="txt1" style="font-size:23px;">S'inscrire</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<a href="index.php" class="txt1" style="font-size:23px;">connexion</a>
+			<div style="float:right;margin-right:17%;padding:1%;" >
+			<ul class="snip1189">
+				<li><a href="inscription.php" >S'inscrire</a></li>
+				<li><a href="index.php" >connexion</a></li>
+			</ul>
 							</div>
 		</aside>
 <center style="margin-top:7%;">

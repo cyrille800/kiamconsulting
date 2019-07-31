@@ -37,7 +37,7 @@
 			  <ul class="snip1189">
 				<li><a href="inscription.php" >S'inscrire</a></li>
 				<li><a href="index.php" >connexion</a></li>
-				</ul>
+			</ul>
 							</div>
 		</aside>
 <center >
@@ -47,34 +47,37 @@
 					<span class="login100-form-title p-b-51">
 						Inscription
 					</span>
-					<div class="custom-control custom-radio custom-control-inline ">
-  <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input">
-  <label class="custom-control-label" for="customRadioInline1">Etudiant</label>
-</div>
-<div class="custom-control custom-radio custom-control-inline ">
-  <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input">
-  <label class="custom-control-label" for="customRadioInline2">Patient</label>
-</div>
+						<div>
+						<div class="custom-control custom-radio custom-control-inline ">
+	  <input type="radio" id="customRadioInline1" name="Client" class="custom-control-input">
+	  <label class="custom-control-label" for="customRadioInline1">Etudiant</label>
+	</div>
+	<div class="custom-control custom-radio custom-control-inline ">
+	  <input type="radio" id="customRadioInline2" name="Client" class="custom-control-input">
+	  <label class="custom-control-label" for="customRadioInline2">Patient</label>
+	</div>
+						</div>
+	
 
 					
-					<div class="wrap-input100 validate-input m-b-16" data-validate = "Username is required">
+					<div class="wrap-input100 validate-input m-b-16" >
 						<input class="input100" type="text" name="username" placeholder=" nom d'utilisateur">
 						<span class="focus-input100"></span>
 					</div>
 					
 					
-					<div class="wrap-input100 validate-input m-b-16" data-validate = "Password is required">
-						<input class="input100" type="text" name="mail" placeholder=" adresse mail">
+					<div class="wrap-input100 validate-input m-b-16" >
+						<input class="input100"  name="mail" placeholder=" Adresse mail">
 						<span class="focus-input100"></span>
 					</div>
 
-					<div class="wrap-input100 validate-input m-b-16" data-validate = "Password is required">
-						<input class="input100" type="password" name="password" placeholder=" password">
+					<div class="wrap-input100 validate-input m-b-16" >
+						<input class="input100" type="password" id="password" name="password" placeholder=" Mot de passe">
 						<span class="focus-input100"></span>
 					</div>
 
-					<div class="wrap-input100 validate-input m-b-16" data-validate = "Password is required">
-						<input class="input100" type="password" name="cpassword" placeholder="Confirmer  password">
+					<div class="wrap-input100 validate-input m-b-16" >
+						<input class="input100" type="password" name="cpassword" placeholder="Confirmer mot de passe">
 						<span class="focus-input100"></span>
 					</div>
 
@@ -166,21 +169,50 @@ $("#inscription").click(function(){
 }) 
 })
 // FORM VALIDATION
-
+$.validator.setDefaults({
+    errorClass: 'alert alert-validate',
+    highlight: function(element) {
+      $(element).removeClass('help-block');
+    },
+    errorPlacement: function (error, element) {
+      if (element.prop('type') === 'text' ||  element.prop('type') === 'mail' || element.prop('type') === 'password') {
+element.after(error);
+}
+else if( element.prop('type') === 'radio'){
+	// element.closest('[name="username"]').before(error);
+	element.parent().parent().after(error);
+	
+	
+}
+    }
+  });
 
 $.validator.addMethod('strongPassword', function(value, element) {
     return this.optional(element) 
       || value.length >= 6
       && /\d/.test(value)
       && /[a-z]/i.test(value);
-  }, 'Your password must be at least 6 characters long and contain at least one number and one char\'.')
+  }, '6 caractères au moins avec a moins 1 chiffre ');
+
+  $.validator.addMethod("specialChars", function( value, element ) {
+        var regex = new RegExp("^[a-zA-Z0-9éèà]+$");
+        var key = value;
+
+        if (!regex.test(key)) {
+           return false;
+        }
+        return true;
+    }, "Pas de caractères spéciaux");
 
 $(".login100-form.validate-form").validate({
+	onkeyup:(element)=> {
+           $(element).valid(); 
+    },
+	
 	rules:{
-		email: {
+	  mail: {
         required: true,
         email: true,
-        remote: "http://localhost:3000/inputValidator"
       },
       password: {
         required: true,
@@ -193,18 +225,33 @@ $(".login100-form.validate-form").validate({
       username: {
         required: true,
         nowhitespace: true,
-        lettersonly: true
+		specialChars:true,
       },
+	  Client:{
+		  required:true,
+	  },
+	
 	},
 	messages: {
-      email: {
-        required: '<br>Please enter an email address.',
-        email: '<br>Please enter a <em>valid</em> email address.',
-        remote: $.validator.format("{0} is already associated with an account.")
-      }
+      mail: {
+        required: 'ce champ est requis.',
+        email: 'entrez une adresse mail valide',
+      },
+	  username: {
+        required: 'ce champ est requis',
+      },
+	  cpassword: {
+        equalTo: 'entrer le même mot de passe'
+      },	
+	  Client:{
+		  required:"vous devez choisir ",
+	  },
     }
-})
 	
+
+
+})
+
 })
 
 	</script>

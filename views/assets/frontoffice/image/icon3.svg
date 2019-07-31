@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="97.672" height="97.672" viewBox="0 0 97.672 97.672">
+  <g id="Last" transform="translate(-375.342 -333.328)">
+    <g id="Ellipse_14" data-name="Ellipse 14" transform="translate(375.342 333.328)" fill="#fff" stroke="#83c2d2" stroke-width="3" opacity="0.652">
+      <circle cx="48.836" cy="48.836" r="48.836" stroke="none"/>
+      <circle cx="48.836" cy="48.836" r="47.336" fill="none"/>
+    </g>
+    <path id="ic_chat_24px" d="M24.2,2H4.467A2.464,2.464,0,0,0,2.012,4.467L2,26.671l4.934-4.934H24.2a2.474,2.474,0,0,0,2.467-2.467V4.467A2.474,2.474,0,0,0,24.2,2ZM6.934,10.635h14.8V13.1H6.934ZM16.8,16.8H6.934V14.335H16.8Zm4.934-7.4H6.934V6.934h14.8Z" transform="translate(409.843 369.37)" fill="#333"/>
+  </g>
+</svg>
