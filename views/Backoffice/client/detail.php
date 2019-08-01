@@ -206,18 +206,370 @@ activiter::afficher_client(1);
 ?>
 </div>
 <div class="element" role="proccedure" style="display:none;">
-    <?php 
 
-activiter::afficher_client(1);
 
-?>
+
+
+
+
+
+
+
+<div class="kt-portlet">
+    <div class="kt-portlet__body kt-portlet__body--fit col-8 mx-auto" style="border:1px solid #eee;">
+        <div class="kt-grid kt-grid--desktop-xl kt-grid--ver-desktop-xl  kt-wizard-v1" id="kt_wizard_v1" data-ktwizard-state="first">
+            <div class="kt-grid__item kt-wizard-v1__aside">
+                
+                <!--begin: Form Wizard Nav -->
+                <div class="kt-wizard-v1__nav">
+                    <div class="kt-wizard-v1__nav-items">
+                        <!--doc: Replace A tag with SPAN tag to disable the step link click -->
+                        <a class="kt-wizard-v1__nav-item bg-primary text-white" href="#">
+                            <span>1</span>
+                        </a>
+                        <a class="kt-wizard-v1__nav-item" href="#">
+                            <span>2</span>
+                        </a>
+                        <a class="kt-wizard-v1__nav-item" href="#">
+                            <span>3</span>
+                        </a>
+                    </div>
+                    <div class="kt-wizard-v1__nav-details">
+                        <div class="kt-wizard-v1__nav-item-wrapper" data-ktwizard-type="step-info" data-ktwizard-state="current">
+                            <div class="kt-wizard-v1__nav-item-title">
+                                Setup Your Account
+                            </div>
+                            <div class="kt-wizard-v1__nav-item-desc">
+                                To start off, please enter your username, email address and password.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--end: Form Wizard Nav -->
+
+            </div>
+            <div class="kt-grid__item kt-grid__item--fluid kt-wizard-v1__wrapper">
+                <!--begin: Form Wizard Form-->
+                <form class="kt-form" id="kt_form" novalidate="novalidate">
+                    
+                    <!--begin: Form Wizard Step 1-->
+                    <div class="kt-wizard-v1__content" data-ktwizard-type="step-content" data-ktwizard-state="current">
+                        <div class="kt-heading kt-heading--md text-center">Setup Your Account</div>
+                        <div class="kt-separator kt-separator--height-xs"></div>
+                        <div class="kt-form__section kt-form__section--first text-center">
+                            <div class="row  text-center">
+                                informatio
+                            </div>
+                        </div>
+                    </div>
+                    <!--end: Form Wizard Step 1-->
+
+                    <!--begin: Form Actions -->                 
+                    <div class="kt-form__actions">
+                        <div class="col-md-8"></div> 
+                        <div class="btn btn-brand btn-md btn-tall btn-wide btn-bold btn-upper">
+                            Next Step
+                        </div>
+                    </div>      
+                    <!--end: Form Actions -->
+                </form>         
+                <!--end: Form Wizard Form-->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
 </div>
 <div class="element" role="upload" style="display:none;">
-    <?php 
+<div class="col-md-5 mx-auto">
+                <!--begin::Portlet-->
+<div class="kt-portlet kt-portlet--height-fluid">
+    <div class="kt-portlet__head">
+        <div class="kt-portlet__head-label">
+            <h3 class="kt-portlet__head-title">Latest Uploads</h3>
+        </div>
+        <div class="kt-portlet__head-toolbar">
+            <div class="kt-portlet__head-actions">
+                <a href="#" class="btn btn-default btn-upper btn-sm btn-bold">All FILES</a>
+            </div>
+        </div>
+    </div>
+    <div class="kt-portlet__body kt-portlet__body--fit kt-portlet__body--fluid">
+        <div class="kt-widget-7">
+            <div class="kt-widget-7__items"  style="height:400px;overflow-y:scroll;">
+                <div class="kt-widget-7__item">
+                    <div class="kt-widget-7__item-pic">
+                        <img src="../../assets/Backoffice/media/files/doc.svg" alt="">
+                    </div>
+                    <div class="kt-widget-7__item-info">
+                        <a href="#" class="kt-widget-7__item-title">
+                            Keeg Design Reqs
+                        </a>
+                        <div class="kt-widget-7__item-desc">
+                            95 MB
+                        </div>
+                    </div>
+                    <div class="kt-widget-7__item-toolbar">
+                        <div class="dropdown dropdown-inline">
+                            <button type="button" class="btn btn-clean btn-sm btn-icon btn-icon-md" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="flaticon-more-1"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(32px, 33px, 0px);">
+                                <ul class="kt-nav">
+                                    <li class="kt-nav__section kt-nav__section--first">
+                                        <span class="kt-nav__section-text">EXPORT TOOLS</span>
+                                    </li>
+                                    <li class="kt-nav__item">
+                                        <a href="#" class="kt-nav__link">
+                                            <i class="kt-nav__link-icon la la-eye"></i>
+                                            <span class="kt-nav__link-text">View</span>
+                                        </a>
+                                    </li>
+                                    <li class="kt-nav__item">
+                                        <a href="#" class="kt-nav__link">
+                                            <i class="kt-nav__link-icon la la-comment-o"></i>
+                                            <span class="kt-nav__link-text">Coments</span>
+                                        </a>
+                                    </li>
+                                    <li class="kt-nav__item">
+                                        <a href="#" class="kt-nav__link">
+                                            <i class="kt-nav__link-icon la la-copy"></i>
+                                            <span class="kt-nav__link-text">Copy</span>
+                                        </a>
+                                    </li>
+                                    <li class="kt-nav__item">
+                                        <a href="#" class="kt-nav__link">
+                                            <i class="kt-nav__link-icon la la-file-excel-o"></i>
+                                            <span class="kt-nav__link-text">Excel</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="kt-widget-7__item">
+                    <div class="kt-widget-7__item-pic">
+                        <img src="../../assets/Backoffice/media/files/pdf.svg" alt="">
+                    </div>
+                    <div class="kt-widget-7__item-info">
+                        <a href="#" class="kt-widget-7__item-title">
+                            S.E.R Agreement
+                        </a>
+                        <div class="kt-widget-7__item-desc">
+                            805 MB
+                        </div>
+                    </div>
+                    <div class="kt-widget-7__item-toolbar">
+                        <div class="dropdown dropdown-inline">
+                            <button type="button" class="btn btn-clean btn-sm btn-icon btn-icon-md" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="flaticon-more-1"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(32px, 33px, 0px);">
+                                <ul class="kt-nav">
+                                    <li class="kt-nav__section kt-nav__section--first">
+                                        <span class="kt-nav__section-text">EXPORT TOOLS</span>
+                                    </li>
+                                    <li class="kt-nav__item">
+                                        <a href="#" class="kt-nav__link">
+                                        <i class="kt-nav__link-icon la la-eye"></i>
+                                        <span class="kt-nav__link-text">View</span>
+                                        </a>
+                                    </li>
+                                    <li class="kt-nav__item">
+                                        <a href="#" class="kt-nav__link">
+                                        <i class="kt-nav__link-icon la la-comment-o"></i>
+                                        <span class="kt-nav__link-text">Coments</span>
+                                        </a>
+                                    </li>
+                                    <li class="kt-nav__item">
+                                        <a href="#" class="kt-nav__link">
+                                        <i class="kt-nav__link-icon la la-copy"></i>
+                                        <span class="kt-nav__link-text">Copy</span>
+                                        </a>
+                                    </li>
+                                    <li class="kt-nav__item">
+                                        <a href="#" class="kt-nav__link">
+                                        <i class="kt-nav__link-icon la la-file-excel-o"></i>
+                                        <span class="kt-nav__link-text">Excel</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="kt-widget-7__item">
+                    <div class="kt-widget-7__item-pic">
+                        <img src="../../assets/Backoffice/media/files/jpg.svg" alt="">
+                    </div>
+                    <div class="kt-widget-7__item-info">
+                        <a href="#" class="kt-widget-7__item-title">
+                            FlyMore Screenshot
+                        </a>
+                        <div class="kt-widget-7__item-desc">
+                            4 MB
+                        </div>
+                    </div>
+                    <div class="kt-widget-7__item-toolbar">
+                        <div class="dropdown dropdown-inline">
+                            <button type="button" class="btn btn-clean btn-sm btn-icon btn-icon-md" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="flaticon-more-1"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(32px, 33px, 0px);">
+                                <ul class="kt-nav">
+                                    <li class="kt-nav__section kt-nav__section--first">
+                                        <span class="kt-nav__section-text">EXPORT TOOLS</span>
+                                    </li>
+                                    <li class="kt-nav__item">
+                                        <a href="#" class="kt-nav__link">
+                                        <i class="kt-nav__link-icon la la-eye"></i>
+                                        <span class="kt-nav__link-text">View</span>
+                                        </a>
+                                    </li>
+                                    <li class="kt-nav__item">
+                                        <a href="#" class="kt-nav__link">
+                                        <i class="kt-nav__link-icon la la-comment-o"></i>
+                                        <span class="kt-nav__link-text">Coments</span>
+                                        </a>
+                                    </li>
+                                    <li class="kt-nav__item">
+                                        <a href="#" class="kt-nav__link">
+                                        <i class="kt-nav__link-icon la la-copy"></i>
+                                        <span class="kt-nav__link-text">Copy</span>
+                                        </a>
+                                    </li>
+                                    <li class="kt-nav__item">
+                                        <a href="#" class="kt-nav__link">
+                                        <i class="kt-nav__link-icon la la-file-excel-o"></i>
+                                        <span class="kt-nav__link-text">Excel</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="kt-widget-7__item">
+                    <div class="kt-widget-7__item-pic">
+                        <img src="../../assets/Backoffice/media/files/zip.svg" alt="">
+                    </div>
+                    <div class="kt-widget-7__item-info">
+                        <a href="#" class="kt-widget-7__item-title">
+                            ST.11 Dacuments
+                        </a>
+                        <div class="kt-widget-7__item-desc">
+                            Unknown
+                        </div>
+                    </div>
+                    <div class="kt-widget-7__item-toolbar">
+                        <div class="dropdown dropdown-inline">
+                            <button type="button" class="btn btn-clean btn-sm btn-icon btn-icon-md" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="flaticon-more-1"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(32px, 33px, 0px);">
+                                <ul class="kt-nav">
+                                    <li class="kt-nav__section kt-nav__section--first">
+                                        <span class="kt-nav__section-text">EXPORT TOOLS</span>
+                                    </li>
+                                    <li class="kt-nav__item">
+                                        <a href="#" class="kt-nav__link">
+                                        <i class="kt-nav__link-icon la la-eye"></i>
+                                        <span class="kt-nav__link-text">View</span>
+                                        </a>
+                                    </li>
+                                    <li class="kt-nav__item">
+                                        <a href="#" class="kt-nav__link">
+                                        <i class="kt-nav__link-icon la la-comment-o"></i>
+                                        <span class="kt-nav__link-text">Coments</span>
+                                        </a>
+                                    </li>
+                                    <li class="kt-nav__item">
+                                        <a href="#" class="kt-nav__link">
+                                        <i class="kt-nav__link-icon la la-copy"></i>
+                                        <span class="kt-nav__link-text">Copy</span>
+                                        </a>
+                                    </li>
+                                    <li class="kt-nav__item">
+                                        <a href="#" class="kt-nav__link">
+                                        <i class="kt-nav__link-icon la la-file-excel-o"></i>
+                                        <span class="kt-nav__link-text">Excel</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="kt-widget-7__item">
+                    <div class="kt-widget-7__item-pic">
+                        <img src="../../assets/Backoffice/media/files/xml.svg" alt="">
+                    </div>
+                    <div class="kt-widget-7__item-info">
+                        <a href="#" class="kt-widget-7__item-title">
+                            XML AOL Data Fetchin
+                        </a>
+                        <div class="kt-widget-7__item-desc">
+                            4 MB
+                        </div>
+                    </div>
+                    <div class="kt-widget-7__item-toolbar">
+                        <div class="dropdown dropdown-inline">
+                            <button type="button" class="btn btn-clean btn-sm btn-icon btn-icon-md" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="flaticon-more-1"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(32px, 33px, 0px);">
+                                <ul class="kt-nav">
+                                    <li class="kt-nav__section kt-nav__section--first">
+                                        <span class="kt-nav__section-text">EXPORT TOOLS</span>
+                                    </li>
+                                    <li class="kt-nav__item">
+                                        <a href="#" class="kt-nav__link">
+                                        <i class="kt-nav__link-icon la la-eye"></i>
+                                        <span class="kt-nav__link-text">View</span>
+                                        </a>
+                                    </li>
+                                    <li class="kt-nav__item">
+                                        <a href="#" class="kt-nav__link">
+                                        <i class="kt-nav__link-icon la la-comment-o"></i>
+                                        <span class="kt-nav__link-text">Coments</span>
+                                        </a>
+                                    </li>
+                                    <li class="kt-nav__item">
+                                        <a href="#" class="kt-nav__link">
+                                        <i class="kt-nav__link-icon la la-copy"></i>
+                                        <span class="kt-nav__link-text">Copy</span>
+                                        </a>
+                                    </li>
+                                    <li class="kt-nav__item">
+                                        <a href="#" class="kt-nav__link">
+                                        <i class="kt-nav__link-icon la la-file-excel-o"></i>
+                                        <span class="kt-nav__link-text">Excel</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="kt-widget-7__foot">
+                <img src="../../assets/Backoffice/media/misc/clouds.png" alt="">
+                <div class="kt-widget-7__upload">
+                    <a href="#"><i class="fa fa-cloud-upload-alt mb-5 pt-2"></i></a> 
+                    <span>Drag files here</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--end::Portlet-->
 
-activiter::afficher_client(1);
 
-?>
+            </div>
 </div>
 <div class="element" role="plus" style="display:none;">
     <?php 
@@ -274,6 +626,7 @@ activiter::afficher_client(1);
         <script src="../../assets/Backoffice/js/demo4/scripts.bundle.js" type="text/javascript">
         </script>
         <script src="../../assets/Backoffice/js/demo4/pages/components/extended/toastr.js" type="text/javascript"></script>
+        <script src="../../assets/Backoffice/js/demo4/pages/custom/wizards/wizard-v1.js" type="text/javascript"></script>
         <script>
         $(window).on("load",function(){
         $(".preload").fadeOut("fast");
