@@ -75,8 +75,16 @@ if(verification_post(["username","email","password","type"])==1 && !isset($_POST
 					$reponse="ok";
 				}
 			}
-		}			
 		}
+		else{
+			if($operation=="registration"){
+	
+				$client=new client($regusername,$email,md5($regpassword),$type);
+				$reponse=$client->ajouter();
+			}			
+			}			
+		}
+	
 		}
 	}else{
 		$reponse="remplir toutes les case";
@@ -85,4 +93,5 @@ if(verification_post(["username","email","password","type"])==1 && !isset($_POST
 }
 
 echo $reponse;
+print_r($_POST);
 ?>
