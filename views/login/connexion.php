@@ -3,27 +3,28 @@ include "../../entities/config.php";
 
 config::connexion();
 
+print_r($_POST);
 
-if(!empty($_POST["login"]) && !empty($_POST["password"]) )
+if(!empty($_POST["email"]) && !empty($_POST["regusername"]) )
 {
     extract($_POST);
-      	$sql="SELECT COUNT(*) as 'nombre' FROM utilisateur where login=:login and password=:password";
+      	$sql="SELECT COUNT(*) as 'nombre' FROM client where username=:username and email=:email";
 		try
 		{
 	     $req=config::$bdd->prepare($sql);
-        $req->bindValue(':login',$login);
-        $req->bindValue(':password',$password);
+        $req->bindValue(':username',$regusername);
+        $req->bindValue(':email',$email);
         if($req->execute()){
             $rows=$req->fetchAll();
             if($rows[0]["nombre"]!='0'){
               
-                echo $login;
+                echo "true";
             }
             else{
-                echo "negatif";
+                echo "false";
             }
         }else{
-            echo "negatif";
+            echo "false";
         }
 		
 }
@@ -34,6 +35,6 @@ if(!empty($_POST["login"]) && !empty($_POST["password"]) )
 
 
 }
-else echo"negatif";
+else echo"false";
 
 ?>

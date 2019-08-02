@@ -51,16 +51,15 @@ function ajouter(){
 		$req->bindValue(':password',md5($this->get_password()));
 		$req->bindValue(':type',$this->get_type());
 	  	if($req->execute()){
-	  		return 1;
+			  return "true";
 	  	}
 	}else{
-		echo "ce email est deja utilisé <br>";		
+		return "false";		
 	}
 	}else{
-		echo "ce username existe deja <br>";
+		return "false";
 	}
 
-		  	return 0;
 	  	
 }
 
