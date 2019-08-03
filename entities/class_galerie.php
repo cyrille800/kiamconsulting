@@ -92,35 +92,6 @@ public static function verifier($id,$type,$valeur){
 
 	}
 
-
-	public static function afficher_client($id){
-		$tableau=[];
-		$tableaui=[];
-		  	$requette=config::$bdd->query("select * from galerie where id_ecole=".$id);
-		  	$i=0;
-                		while($data=$requette->fetch()){
-					if($i%2==0){
-						echo '  <div class="mb-3 pics animation all 2">
-    <img class="img-fluid" src="../../assets/Backoffice/media/galerie/'.$data["id"].$data["id_ecole"].'.png" alt="Card image cap">
-    									
-  </div>';
-					}else{
-						echo '  <div class="mb-3 pics animation all 1">
-    <img class="img-fluid" src="../../assets/Backoffice/media/galerie/'.$data["id"].$data["id_ecole"].'.png" alt="Card image cap">
-    									
-  </div>';
-					}
-					$i++;
-                		}
-
-         if($i==0){
-  echo '<div class="col-12 bg-white text-black text-center">
-    Aucune image
-  </div>';
-         }
-
-	}
-
 	public static function retourne_valeur($v,$id,$val){
 	$requette=config::$bdd->query("select * from galerie where ".$v."='".$id."' order by id desc limit 1");
     while($data=$requette->fetch()){

@@ -166,8 +166,8 @@ require_once "../../../entities/class_details_plus.php";
                                 </div>
                             </div>
                             <div class="kt-portlet__foot kt-portlet__foot--fit">
-                                <div class="kt-widget__nav ">
-                                    <ul class="nav nav-tabs nav-tabs-space-xl nav-tabs-line nav-tabs-clear nav-tabs-bold nav-tabs-line-3x nav-tabs-line-brand kt-portlet__space-x" role="tablist">
+                                 <div class="kt-widget__nav ">
+                                 <ul class="nav nav-tabs nav-tabs-space-xl nav-tabs-line nav-tabs-clear nav-tabs-bold nav-tabs-line-3x nav-tabs-line-brand kt-portlet__space-x" role="tablist">
                                         <li class="nav-item iop">
                                             <a class="nav-link  bf <?php echo (isset($_COOKIE["id_activiter"]))?"":"active"; ?> " href="activiter.php" target="frame2">
                                                 <i class="la la-tachometer" style="font-size:25px;"></i> Activités
@@ -190,7 +190,7 @@ require_once "../../../entities/class_details_plus.php";
                                         </li>
                                     </ul>
                                 </div>
-                                <iframe src="proccedure.php" style="height:750px;border:none;background-color:white;padding:0px;margin:0px;" class="col-md-12" name="frame2">
+                                <iframe src="<?php echo (isset($_COOKIE["id_activiter"]))?"proccedure.php":"activiter.php"; ?>" style="height:750px;border:none;background-color:white;padding:0px;margin:0px;" class="col-md-12" name="frame2">
                                 
                                 </iframe>
                             </div>

@@ -107,8 +107,8 @@ require_once "../../../entities/class_details_plus.php";
                     })
                     })
 
-                                                            $(".annuler").click(function(){
-                                                                var d=$(this);
+                    $(".annuler").click(function(){
+                          var d=$(this);
                     $.post("../../../entities/activiter_client.php",{operation:"supprimer",id_client:$("body").attr("id"),id_activiter:$(this).attr("id")},function(data){
                     if(data!="ok"){
                     toastr.error(data);

@@ -9,6 +9,7 @@ class ecole{
 	private $ville;
 	private $site;
 	private $nombre_place;
+	private $specialite;
 
 function get_titre(){
 	return $this->titre;
@@ -21,6 +22,9 @@ function get_site(){
 }
 function get_nombre_place(){
 	return $this->nombre_place;
+}
+function get_specialite(){
+	return $this->specialite;
 }
 
 function set_titre($valeur){
@@ -35,23 +39,28 @@ function set_site($valeur){
 function set_nombre_place($valeur){
 	$this->nombre_place = $valeur;
 }
+function set_specialite($valeur){
+	$this->specialite = $valeur;
+}
 
-public function __construct($a,$b,$c,$d){
+public function __construct($a,$b,$c,$d,$e){
 	$this->set_titre($a);
 	$this->set_ville($b);
 	$this->set_site($c);
 	$this->set_nombre_place($d);
+	$this->set_specialite($e);
 }
 
 function ajouter(){
 	if(self::verifiers("titre",$this->get_titre())==true){
 	if(self::verifiers("site",$this->get_ville())==true){
 
-		$req=config::$bdd->prepare("insert into school(titre,ville,site,nombre_place) VALUE(:titre,:ville,:site,:nombre_place)");
+		$req=config::$bdd->prepare("insert into school(titre,ville,site,nombre_place,specialite) VALUE(:titre,:ville,:site,:nombre_place,:specialite)");
 		$req->bindValue(':titre',$this->get_titre());
 		$req->bindValue(':ville',$this->get_ville());
 		$req->bindValue(':site',$this->get_site());
 		$req->bindValue(':nombre_place',$this->get_nombre_place());
+		$req->bindValue(':specialite',$this->get_specialite());
 	  	if($req->execute()){
 	  		return 1;
 	  	}
@@ -98,7 +107,6 @@ public static function verifier($id,$type,$valeur){
 
 	}
 
-<<<<<<< HEAD
 	public static function afficher_liste(){
 		$tableau=[];
 		$tableaui=[];
@@ -108,14 +116,11 @@ public static function verifier($id,$type,$valeur){
                 		}
 	}
 
-=======
->>>>>>> parent of 3558c41... e
 	public static function afficher(){
 		$tableau=[];
 		$tableaui=[];
 		  	$requette=config::$bdd->query("select * from school");
                 		while($data=$requette->fetch()){
-<<<<<<< HEAD
 					echo '<div class="col-xl-3 col-lg-3 col-sm-5 element" spe="'.$data["specialite"].'" nom="'.$data["titre"].'">
 
             	<span style="position:absolute;background:rgba(0,0,0,0.6);color:white;top:5%;cursor:pointer;left:83%;border-radius:10px;width:20px;height:20px;" class="kt-avatar__cancel text-center supprimer_ecole" data-toggle="kt-tooltip" title="" data-original-title="supprmer" id="'.$data["id"].'">
@@ -169,9 +174,6 @@ public static function verifier($id,$type,$valeur){
                     </div>
                 </div>
             </div>';
-=======
-					echo '<tr><td class="text-center">'.$data["id"].'</td><td  class="text-center">'.$data["titre"].'</td><td  class="text-center">'.$data["ville"].'</td><td  class="text-center">'.$data["site"].'</td><td  class="text-center">'.$data["nombre_place"].'</td><td  class="text-center"> <button type="button" id="'.$data["id"].'" class="btn btn-sm btn-primary valider" style="display:none;">valider</button> <button type="button" title="Edit details"  id="'.$data["id"].'"  class="btn btn-sm btn-clean btn-icon btn-icon-md modifier"><i class="la la-edit"></i></button>&nbsp;&nbsp;&nbsp;<button type="button" id="'.$data["id"].'" title="Delete" class="btn btn-sm btn-clean btn-icon btn-icon-md supprimer"><i class="la la-trash"></i></button></td></tr>';
->>>>>>> parent of 3558c41... e
                 		}
 
 	}

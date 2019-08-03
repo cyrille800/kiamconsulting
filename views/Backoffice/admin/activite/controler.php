@@ -134,6 +134,18 @@ activiter::controler($_GET["id"]);
          	$(".lefts").click(function(){
         		$(".principale").animate({scrollLeft: "-="+($(".un").width())}, 200);
         	})
+
+        	$(".droite").click(function(){
+        		var el=$(this).parent().parent().parent().parent();
+        		el.fadeOut("fast").queue(function(){
+        			$(el).remove()
+        			$(this).dequeue();
+        		})
+        		el.clone().appendTo(el.parent().parent().parent().next().find(".col-11.mx-auto:eq(1)") );
+        		setTimeout(function(){
+        			$(".doite").click(function(){})
+        		},100)
+        	})
         })
 	</script>
 </body>

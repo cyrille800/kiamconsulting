@@ -82,9 +82,9 @@ public static function verifiers($type,$valeur){
 public static function verifier($id,$type,$valeur){
 		$i=0;
 		if($type=="password"){
-		$requette=config::$bdd->query("select * from client where ".$type."='".md5($valeur)."' and id!=".$id);
+		$requette=config::$bdd->query("select * from client where ".$type."='".md5($valeur)."' and id=".$id);
 		}else{
-		$requette=config::$bdd->query("select * from client where ".$type."='".$valeur."' and id!=".$id);
+		$requette=config::$bdd->query("select * from client where ".$type."='".$valeur."' and id=".$id);
 		}
 
                 		while($data=$requette->fetch()){
@@ -137,12 +137,15 @@ public static function verifier($id,$type,$valeur){
 	}
 
 	public static function retourne_valeur($v,$id,$val){
-	$requette=config::$bdd->query("select * from client where ".$v."='".$id."'");
+	$requette=config::$bdd->prepare("select * from client where ".$v."=:".$v);
+	$requette->bindValue(":".$v,$id);
+	$requette->execute();
     while($data=$requette->fetch()){
   		return $data[$val];
 	}
 
 	}
+
 
 	public static function supprimer($id){
 		$req=config::$bdd->prepare("delete from client where id=:id");

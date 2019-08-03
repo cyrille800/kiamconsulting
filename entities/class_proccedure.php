@@ -1,7 +1,6 @@
 <?php 
 require_once "function.php";
 require_once "config.php"; 
-require_once "class_activiter_client.php";
 	config::connexion();
 
 class proccedure{
@@ -151,121 +150,6 @@ if(intval($data["fichier"])==2){
                 		}
 
 	}
-
-
-
-	public static function afficher_client($id){
-		$tableau=[];
-		$tableaui=[];
-		$o=0;
-		$i=1;
-		  	$requette=config::$bdd->query("select * from proccedure where id_active=".intval($id));
-		  	echo '<div class="kt-grid__item kt-wizard-v1__aside">
-                <!--begin: Form Wizard Nav -->
-                <div class="kt-wizard-v1__nav">
-                    <div class="kt-wizard-v1__nav-items">
-                        <!--doc: Replace A tag with SPAN tag to disable the step link click -->';
-$is="";
-$is=activiter_client::retourne_valeur("id_activiter",$id,"etape_actuel");
-                		while($data=$requette->fetch()){
-                			$o=1;
-					echo '<span class="kt-wizard-v1__nav-item ';
-					if(intval($data["id"])==intval($is)){
-						echo 'bg-primary text-white';
-					}
-					echo '" ';
-					if(intval($data["id"])<intval($is)){
-						echo ' style="color:white;background-color:#a9b4ea;" ';
-					}
-					echo '>
-                            <span>'.$i.'</span>
-                        </span>
-                    ';
-        $i++;
-                		}
-                		echo '</div>
-                    <div class="kt-wizard-v1__nav-details">
-                        <div class="kt-wizard-v1__nav-item-wrapper" data-ktwizard-type="step-info" data-ktwizard-state="current">
-                            ';
-                            $requettes=config::$bdd->query("select * from proccedure where id_active=".intval($id));
-                             while($data=$requettes->fetch()){
-                			if(intval($data["id"])==intval($is)){
-                				echo '<div class="kt-wizard-v1__nav-item-title">
-                				'.$data["titre"].'
-                            </div>
-                            <div class="kt-wizard-v1__nav-item-desc">
-                                '.$data["description"].'
-                            </div></div>
-                    </div>
-                </div>
-                <!--end: Form Wizard Nav -->
-
-            </div>            <div class="kt-grid__item kt-grid__item--fluid kt-wizard-v1__wrapper">
-                <!--begin: Form Wizard Form-->
-                <form class="kt-form" id="kt_form" novalidate="novalidate">
-                    
-                    <!--begin: Form Wizard Step 1-->
-                    image de demonstration <button type="button" data-target="#simage" class="btn btn-info btn-icon btn-circle ml-5" data-skin="dark" data-toggle="modal" title="" data-original-title="Afficher limage" url="../../assets/Backoffice/media/etapes/'.$data['id'].'.png"><i class="fa fa-tags"></i></button><br><br>
-
-
-                    <div class="kt-wizard-v1__content" data-ktwizard-type="step-content" data-ktwizard-state="current">
-                        <div class="kt-heading kt-heading--md text-center">
-                        ';
-                                if($data["fichier"]==2){
-                                	echo 'Veuiller selectionner le fichier';
-                                }else{
-                                	if($data["fichier"]==0){
-                                	echo 'Veuiller patienter, revener plutard';
-                                }
-                                }
-                        echo'</div>
-                        <div class="kt-separator kt-separator--height-xs"></div>
-                        <div class="kt-form__section kt-form__section--first text-center">
-                            <div class="row  text-center">
-                                ';
-                                if($data["fichier"]==2){
-                                	echo '<input type="file" name="fichier" class="form-control">';
-                                }else{
-                                	if($data["fichier"]==0){
-                                	echo '<div class="spinner-grow mx-auto" style="width: 3rem; height: 3rem;" role="status">
-                            <span class="sr-only">Loading...</span>
-                        </div>';
-                                }}
-                                echo'
-                            </div>
-                        </div>
-                    </div>
-                    <!--end: Form Wizard Step 1-->
-';
-if($data["fichier"]!=0){
-	echo '<!--begin: Form Actions -->                 
-                    <div class="kt-form__actions">
-                        <div class="col-md-8"></div>';
-                        $p=config::$bdd->query("select * from activiter_client where id_client=".$_SESSION["id"]." && id_activiter=".$_COOKIE["id_activiter"]." limit 1");
-                        $datas=$p->fetch();
-                        $etape_actuel=$datas["etape_actuel"];
-                        $p=config::$bdd->query("select id from proccedure where id_active=".$_COOKIE["id_activiter"]." && id!=".$etape_actuel." limit 1");
-                        $fg=$p->fetch();
-                        $k=$fg[0];
-                        echo '<div class="btn btn-brand btn-md btn-tall btn-wide btn-bold btn-upper" etape_suivante="'.$k.'">
-                            Next Step
-                        </div></div>';
-}
-                   echo '      
-                    <!--end: Form Actions -->
-                </form>         
-                <!--end: Form Wizard Form-->
-            </div>';
-                			}
-
-                		}
-
-                		                		if($i==1){
-                			echo "<div class='kt-portlet'><div style='padding:2%;' class='text-center'>vide</div></div>";
-                		}
-
-	}
-
 
 	public static function retourne_valeur($v,$id,$val){
 	$requette=config::$bdd->prepare("select * from proccedure where ".$v."=:".$v." order by id asc limit 1");

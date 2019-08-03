@@ -3,6 +3,7 @@ require_once "function.php";
 require_once "config.php";
 require_once "class_proccedure.php";
 require_once "class_activiter_client.php";
+
 	config::connexion();
 
 class activiter{
@@ -87,13 +88,13 @@ public static function verifier($id,$type,$valeur){
 	}
 
 
-	public static function afficher_client($id,$v){
+	public static function afficher_client($id){
 		$requette=config::$bdd->query("select * from activite where etat=".$id);
 		while($data=$requette->fetch()){
 			$nombre=proccedure::nombre("id_active",$data["id"]);
 			$veri=activiter_client::nombre("id_activiter",$data["id"]);
 			$fini=0;
-			echo '<div class="kt-portlet kt-portlet--height-fluid kt-widget-13 col-7 mx-auto" style="border:1px solid #eee;height:225px;">
+			echo '<div class="kt-portlet kt-portlet--height-fluid kt-widget-13 col-7 mx-auto" style="border:1px solid #eee;height:220px;">
     <div class="kt-portlet__body">
         <div id="kt-widget-slider-13-2" class="kt-slider carousel slide pointer-event" data-ride="carousel" data-interval="4000">
             <div class="kt-slider__head">
@@ -101,15 +102,7 @@ public static function verifier($id,$type,$valeur){
                 <div class="kt-slider__nav">';
                if($veri!=0){
                	echo '<button type="button" class="btn btn-danger btn-sm annuler" id="'.$data["id"].'" style="border-radius:0px;border-top-left-radius:3px;border-bottom-left-radius:3px;">annuler</button>
-                <button type="button" class="btn btn-info btn-sm poursuivre" id="'.$data["id"].'" style="border-radius:0px;border-top-right-radius:3px;border-bottom-right-radius:3px;">';
-if(intval($v)==intval($data["id"])){
-	echo "en cours  <div class='spinner-grow spinner-grow-sm' role='status'>
-                            <span class='sr-only'>Loading...</span>
-                        </div>";
-}else{
-	echo 'Poursuivre&nbsp;&nbsp;<i class="la la-arrow-right"></i>';
-}
-                echo'</button>';
+                <button type="button" class="btn btn-info btn-sm poursuivre" style="border-radius:0px;border-top-right-radius:3px;border-bottom-right-radius:3px;">Poursuivre&nbsp;&nbsp;<i class="la la-arrow-right"></i></button>';
                }
                echo' </div>
             </div>
@@ -298,7 +291,7 @@ echo'
 								<div class="px-2 py-2">
 								<div class="row">
 								<div class="col-md-2">
-									<div class="btn-sm rounded-circle btn-primary" style="cursor:pointer;">
+									<div class="bg-dark w-75 text-white rounded-circle text-center pt-2 gauche" style="cursor:pointer;height:30px;">
 										<i class="fa fa-angle-left">
 										</i>
 									</div>
@@ -313,7 +306,7 @@ echo'
 									</div>
 								</div>
 								<div class="col-md-2">
-									<div class="btn btn-sm rounded-circle btn-primary" style="cursor:pointer;">
+									<div class="bg-dark w-75 text-white rounded-circle text-center pt-2 droite" style="cursor:pointer;height:30px;">
 										<i class="fa fa-angle-right">
 										</i>
 									</div>
