@@ -298,7 +298,7 @@ echo'
 								<div class="px-2 py-2">
 								<div class="row">
 								<div class="col-md-2">
-									<div class="btn btn-sm btn btn-primary style="cursor:pointer;">
+									<div class="btn-sm rounded-circle btn-primary" style="cursor:pointer;">
 										<i class="fa fa-angle-left">
 										</i>
 									</div>
@@ -313,7 +313,7 @@ echo'
 									</div>
 								</div>
 								<div class="col-md-2">
-									<div class="btn btn-sm btn btn-primary" style="cursor:pointer;">
+									<div class="btn btn-sm rounded-circle btn-primary" style="cursor:pointer;">
 										<i class="fa fa-angle-right">
 										</i>
 									</div>
