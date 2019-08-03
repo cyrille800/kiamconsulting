@@ -1,5 +1,5 @@
 <?php 
-session_start();
+
 include_once "class_client.php";
 	function verification_post($tableau){
 
@@ -13,15 +13,6 @@ include_once "class_client.php";
 		return 1;
 	}
 extract($_POST);
-$reponse="";
-if(isset($_FILES["avatar"])){
-		$folder="../views/assets/Backoffice/media/users/";
-		$temp_name=$_FILES['avatar']['tmp_name'];
-	$location=$folder.$_SESSION["id"].".png";
-	move_uploaded_file($temp_name,$location);
-	echo "ok";
-
-	}else{
 if(verification_post(["username","email","password","type"])==1 && !isset($_POST["operation"])){
 	$exemple=new client($username,$email,$password,$type);
 	if($exemple->ajouter()==true){
@@ -39,9 +30,9 @@ if(verification_post(["username","email","password","type"])==1 && !isset($_POST
 			}
 		}else{
 		if($operation=="modifier"){
-			if(isset($_POST["username"])){
 			client::modifier($id,"username",$username);
 			client::modifier($id,"email",$email);
+<<<<<<< HEAD
 			$reponse="ok";
 			}else{
 				if($npassword!=$cpassword || trim(empty($_POST["npassword"]))){
@@ -85,11 +76,14 @@ if(verification_post(["username","email","password","type"])==1 && !isset($_POST
 			}			
 		}
 	
+=======
+			client::modifier($id,"password_client",$password);
+		}	
+>>>>>>> parent of 5c73fec... o
 		}
 	}else{
 		$reponse="remplir toutes les case";
 	}
-}
 }
 
 echo $reponse;
