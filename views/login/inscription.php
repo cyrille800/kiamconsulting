@@ -212,7 +212,8 @@ $(".login100-form.validate-form").validate({
 	rules:{
 	  mail: {
         required: true,
-        email: true,
+		email: true,
+		remote:"connexion2.php",
       },
       password: {
         required: true,
@@ -235,7 +236,8 @@ $(".login100-form.validate-form").validate({
 	messages: {
       mail: {
         required: 'ce champ est requis.',
-        email: 'entrez une adresse mail valide',
+		email: 'entrez une adresse mail valide',
+		remote:"mail déjà utilisé",
       },
 	  username: {
         required: 'ce champ est requis',
@@ -246,8 +248,7 @@ $(".login100-form.validate-form").validate({
 	  Client:{
 		  required:"vous devez choisir ",
 	  },
-    }
-	
+	},
 
 
 })
