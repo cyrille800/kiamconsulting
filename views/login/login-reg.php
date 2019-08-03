@@ -114,11 +114,11 @@
                                 <form id="register-form" class="uv-reg-form">
                                     <div class="form-group">
                                         <div class="custom-control custom-radio custom-control-inline ">
-                                            <input type="radio" id="customRadioInline1" name="Client" class="custom-control-input">
+                                            <input type="radio" id="customRadioInline1" name="type" class="custom-control-input" value="Etudiant">
                                             <label class="custom-control-label" for="customRadioInline1">Etudiant</label>
                                         </div>
                                         <div class="custom-control custom-radio custom-control-inline pull right">
-                                            <input type="radio" id="customRadioInline2" name="Client" class="custom-control-input">
+                                            <input type="radio" id="customRadioInline2" name="type" class="custom-control-input" value="Patient">
                                             <label class="custom-control-label" for="customRadioInline2">Patient</label>
                                         </div>
                                     </div>
@@ -126,7 +126,7 @@
                                         <input type="text" name="regusername" id="regusername" tabindex="1" class="form-control" placeholder="Username" value="">
                                     </div>
                                     <div class="form-group">
-                                        <input type="email" name="email" id="email" tabindex="1" class="form-control" placeholder="Email Address" value="">
+                                        <input type="text" name="email" id="email" tabindex="1" class="form-control" placeholder="Email Address" value="">
                                     </div>
                                     <div class="form-group">
                                         <input type="password" name="regpassword" id="regpassword" tabindex="2" class="form-control" placeholder="Password">
@@ -157,50 +157,25 @@
         |========================
         -->
     <!-- jquery -->
-    <script src="../Frontend/assets/plugins/js/jquery-1.11.3.min.js"></script>
-    <!-- Bootstrap -->
-    <!-- mean menu nav-->
-    <script src="../Frontend/assets/plugins/js/meanmenu.js"></script>
-    <!-- ajaxchimp -->
-    <script src="../Frontend/assets/plugins/js/jquery.ajaxchimp.min.js"></script>
-    <!-- wow -->
-    <script src="../Frontend/assets/plugins/js/wow.min.js"></script>
-    <!-- Owl carousel-->
-    <script src="../Frontend/assets/plugins/js/owl.carousel.js"></script>
-    <!--dropdownhover-->
-    <!--jquery-ui.min-->
-    <script src="../Frontend/assets/plugins/js/bars.js"></script>
-    <!--validator -->
-    <script src="../Frontend/assets/plugins/js/validator.min.js"></script>
-    <!--smooth scroll-->
-    <script src="../Frontend/assets/plugins/js/smooth-scroll.js"></script>
-    <!-- Fancybox js-->
-    <script src="../Frontend/assets/plugins/js/jquery.fancybox.min.js"></script>
-    <!-- fitvids -->
-    <script src="../Frontend/assets/plugins/js/jquery.fitvids.js"></script>
-    <!-- SELECTIZE-->
-    <script src="../Frontend/assets/plugins/js/standalone/selectize.js"></script>
-    <!-- isotope js-->
-    <script src="../Frontend/assets/plugins/js/isotope.pkgd.js"></script>
-    <script src="../Frontend/assets/plugins/js/packery-mode.pkgd.js"></script>
-    <script src="../Frontend/assets/plugins/js/jquery.inview.min.js"></script>
-    <script src="../Frontend/assets/plugins/js/progressbar.min.js"></script>
-<<<<<<< HEAD
+    <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="vendor/animsition/js/animsition.min.js"></script>
+    <!--===============================================================================================-->
     <script src="vendor/bootstrap/js/popper.js"></script>
-	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
-=======
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/additional-methods.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
->>>>>>> ed0d923cef7b741ad61dc6a94746a2546fe96caa
-    <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="vendor/select2/select2.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="vendor/daterangepicker/moment.min.js"></script>
+    <script src="vendor/daterangepicker/daterangepicker.js"></script>
+    <!--===============================================================================================-->
+    <script src="vendor/countdowntime/countdowntime.js"></script>
+    <!--===============================================================================================-->
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/additional-methods.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/additional-methods.js"></script>
     <!-- init -->
-    <script src="../Frontend/assets/js/init.js"></script>
+    <!-- <script src="../Frontend/assets/js/init.js"></script> -->
     <script>
         $(function() {
             $("[role='presentation']").each(function() {
@@ -281,6 +256,8 @@
                 }
                 return true;
             }, "Pas de caractères spéciaux");
+            var isOneFieldEmpty = false;
+            var submit = false;
 
             $("#register-form").validate({
                 onkeyup: (element) => {
@@ -291,7 +268,16 @@
                     email: {
                         required: true,
                         email: true,
-                        remote: "connexion2.php",
+                        remote: {
+                            url: "../../entities/remoteClientEmail.php",
+                            type: "post",
+                            data: {
+                                email: function() {
+                                    return $("#email").val();
+                                }
+                            }
+                        },
+                      
                     },
                     regpassword: {
                         required: true,
@@ -305,8 +291,17 @@
                         required: true,
                         nowhitespace: true,
                         specialChars: true,
+                        remote: {
+                            url: "../../entities/remoteClientUsername.php",
+                            type: "post",
+                            data: {
+                                regusername: function() {
+                                    return $("#regusername").val();
+                                }
+                            }
+                        },
                     },
-                    Client: {
+                    type: {
                         required: true,
                     },
 
@@ -316,65 +311,47 @@
                         required: 'ce champ est requis.',
                         email: 'entrez une adresse mail valide',
                         remote: "mail déjà utilisé",
+
                     },
                     regusername: {
                         required: 'ce champ est requis',
+                        remote: "username déjà utilisé",
                     },
                     confirmPassword: {
                         equalTo: 'entrer le même mot de passe'
                     },
-                    Client: {
+                    type: {
                         required: "vous devez choisir ",
                     },
                 },
-<<<<<<< HEAD
- 
+                submitHandler: function(form) {
+                  
+                    alert("submitted");
 
-                submitHandler: function() {
-                   $.ajax({
-                            url:"connexion.php",
-                            type:"post",
-                            data:$("#register-form").serialize(),
-                            success: function(){    
-                              alert('reussi');
-                              window.location("connexion.php");
-                      }
-                    });
-          }
+                    $.ajax({
+                            type: "POST",
+                            url: "../../entities/client.php",
+                            data: $(".login100-form.validate-form.flex-sb.flex-w").serialize()+ "&operation='enregistrer'",
+                            
+                            success: function(data) {
+                                alert(data);
+                                    // window.location.href="../../entities/client.php";
+                            }
+                        });
+
+                    return false;
+                }
 
             })
 
+     
 
 
 
 
-=======
-                // ajax
-                submitHandler:function(form) {
-                    
-                       $(form).submit(function(e){
-                        e.preventDefault();
-                       }) 
-                    }
-                
 
-            })          
 
-                       $("#register-form").submit(function(e){
-                        e.preventDefault();
-                        alert("'oi")
-                        $.ajax({
-                          type: 'post',
-                          url: "connexion2.php",
-                          data:  $("#register-form").serialize(),
-                              success:function(data) {
-                        
-                                alert(data)
-                      
-                        }
-                        })
-                       }) 
->>>>>>> ed0d923cef7b741ad61dc6a94746a2546fe96caa
+
         })
     </script>
 

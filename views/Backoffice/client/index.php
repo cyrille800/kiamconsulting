@@ -42,6 +42,25 @@ if(client::verifiers("id",$_SESSION["id"]) == false){
         <!--begin::Layout Skins(used by all pages) -->
         <!--end::Layout Skins -->
         <link rel="shortcut icon" href="../../assets/Backoffice/media/logos/favicon.ico" />
+        <style type="text/css">
+*::-webkit-scrollbar {
+    width: 5px;
+    border-radius:5px;
+}
+ 
+*::-webkit-scrollbar-track {
+   background-color:white;
+}
+ 
+*::-webkit-scrollbar-thumb {
+  background-color: #474f63;
+  outline: 1px solid slategrey;
+    border-radius:5px;
+}
+iframe{
+    overflow:hidden;
+}
+        </style>
     </head>
     <!-- end::Head -->
     <!-- begin::Body -->
@@ -120,6 +139,9 @@ include "bout_code/navbar_vertical_droit.php";
             </i>
         </div>
         <!-- end:: Scrolltop -->
+
+
+        <!-- begin::Global Config(global config for global JS sciprts) -->
         <script>
         var KTAppOptions = {
         "colors": {
@@ -158,7 +180,6 @@ include "bout_code/navbar_vertical_droit.php";
         </script>
         <script src="../../assets/Backoffice/js/demo4/scripts.bundle.js" type="text/javascript">
         </script>
-
         <!--end::Global Theme Bundle -->
         
         <!--begin::Page Vendors(used by this page) -->

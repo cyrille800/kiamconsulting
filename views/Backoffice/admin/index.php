@@ -1,8 +1,12 @@
+<<<<<<< HEAD
 <?php 
 include "../../../entities/class_ecole.php";
 include "../../../entities/class_concour.php";
 include "../../../entities/class_activiter.php";
 ?>
+=======
+
+>>>>>>> parent of 3558c41... e
 <!DOCTYPE html>
 <html lang="en" >
 	<head>
@@ -95,6 +99,7 @@ include "bout_code/action_rapide.php";
 <?php 
 include "bout_code/liste_mode.php";
 ?>
+<<<<<<< HEAD
 
 						<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 							<div class="modal-dialog" role="document">
@@ -188,6 +193,8 @@ include "bout_code/liste_mode.php";
 						</div>
 
 
+=======
+>>>>>>> parent of 3558c41... e
 	<script src="../../assets/Backoffice/js/jquery.js" type="text/javascript">
 	</script>
 	
@@ -237,13 +244,7 @@ include "bout_code/liste_mode.php";
 	<!--end::Page Vendors -->
 	<script src="../../assets/Backoffice/js/demo1/pages/dashboard.js" type="text/javascript">
 	</script>
-	<script>
-		$(function(){
-$(".click").click(function(){
-	$('[data-dismiss="modal"]').trigger("click");
-})
-		})
-	</script>
+	
 </body>
 <!-- end::Body -->
 </html>
