@@ -51,13 +51,13 @@
 
 					
 					<div class="wrap-input100 validate-input m-b-16" data-validate = "Username is required">
-						<input class="input100" type="text" name="username" placeholder="Username">
+						<input class="input100" type="text" name="regusername" placeholder="Username">
 						<span class="focus-input100"></span>
 					</div>
 					
 					
 					<div class="wrap-input100 validate-input m-b-16" data-validate = "Password is required">
-						<input class="input100" type="password" name="pass" placeholder="Password">
+						<input class="input100" type="password" name="regpassword" placeholder="Password">
 						<span class="focus-input100"></span>
 					</div>
 					
@@ -105,7 +105,100 @@
 <!--===============================================================================================-->
 	<script src="vendor/countdowntime/countdowntime.js"></script>
 <!--===============================================================================================-->
-	<script src="js/main.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/additional-methods.js"></script>
+
+	<script src="js/main.js"> </script>
+	<script>
+	
+	$(function(){
+
+            $.validator.setDefaults({
+                errorClass: 'invalid-feedback',
+                highlight: function(element) {
+                    $(element).addClass('is-invalid');
+                },
+                unhighlight: function(element) {
+                    $(element).removeClass('is-invalid');
+                },
+                errorPlacement: function(error, element) {
+                    if (element.prop('type') === 'text' || element.prop('type') === 'mail' || element.prop('type') === 'password') {
+                        element.after(error);
+                    } else if (element.prop('type') === 'radio') {
+                        // element.closest('[name="username"]').before(error);
+                        element.parent().parent().after(error);
+
+
+                    }
+                }
+            });
+
+            $.validator.addMethod('strongPassword', function(value, element) {
+                return this.optional(element) ||
+                    value.length >= 6 &&
+                    /\d/.test(value) &&
+                    /[a-z]/i.test(value);
+            }, '6 caractères au moins avec a moins 1 chiffre ');
+
+            $.validator.addMethod("specialChars", function(value, element) {
+                var regex = new RegExp("^[a-zA-Z0-9éèà]+$");
+                var key = value;
+
+                if (!regex.test(key)) {
+                    return false;
+                }
+                return true;
+            }, "Pas de caractères spéciaux");
+            var isOneFieldEmpty = false;
+            var submit=false;
+
+            $(".login100-form.validate-form.flex-sb.flex-w").validate({
+                onkeyup: (element) => {
+                    $(element).valid();
+                },
+
+                rules: {
+                  
+                    regpassword: {
+                        required: true,
+                        strongPassword: true
+                    },
+                  
+                    regusername: {
+                        required: true,
+                        nowhitespace: true,
+                        specialChars: true,
+                    },
+                   
+
+                },
+                messages: {
+                  
+                    regusername: {
+                        required: 'ce champ est requis',
+                    },
+                 
+                },
+                submitHandler: function(form) {
+					alert("submitted");
+					$.ajax({
+                            type: "POST",
+                            url: "connexion.php",
+                            data: $(".login100-form.validate-form.flex-sb.flex-w").serialize(),
+                            success: function(data) {
+                                alert(data);
+                                //    window.location.href="connexion.php";
+                            }
+                        });
+                   
+                    return false;
+                },
+
+		})
+	})
+	</script>
+	
 
 </body>
 </html>

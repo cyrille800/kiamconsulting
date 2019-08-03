@@ -4,7 +4,7 @@
 				</button>
 				<div class="kt-aside  kt-aside--fixed  kt-grid__item kt-grid kt-grid--desktop kt-grid--hor-desktop" id="kt_aside">
 					<!-- begin::Aside Brand -->
-					<div class="kt-aside__brand kt-grid__item " id="kt_aside_brand" style="background-color: #20232d;">
+					<div class="kt-aside__brand kt-grid__item " id="kt_aside_brand">
 						<div class="kt-aside__brand-logo">
 							<a href="/keen/preview/demo1/index.html">
 								<img alt="Logo" src="../../assets/Backoffice/media/logos/logo-6.png"/>
@@ -65,6 +65,7 @@
 									<h4 class="kt-menu__section-text">
 									Components</h4>
 								</li>
+<<<<<<< HEAD
 
 							<li class="kt-menu__item  kt-menu__item--submenu" aria-haspopup="true"  data-ktmenu-submenu-toggle="hover">
 								<a  href="javascript:;" class="kt-menu__link kt-menu__toggle">
@@ -239,6 +240,8 @@
 								</div>
 							</li>
 
+=======
+>>>>>>> parent of 3558c41... e
 							<li class="kt-menu__item  kt-menu__item--submenu" aria-haspopup="true"  data-ktmenu-submenu-toggle="hover">
 								<a  href="javascript:;" class="kt-menu__link kt-menu__toggle">
 									<i class="kt-menu__link-icon la la-cube" style="font-size:25px;">
