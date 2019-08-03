@@ -87,13 +87,13 @@ public static function verifier($id,$type,$valeur){
 	}
 
 
-	public static function afficher_client($id){
+	public static function afficher_client($id,$v){
 		$requette=config::$bdd->query("select * from activite where etat=".$id);
 		while($data=$requette->fetch()){
 			$nombre=proccedure::nombre("id_active",$data["id"]);
 			$veri=activiter_client::nombre("id_activiter",$data["id"]);
 			$fini=0;
-			echo '<div class="kt-portlet kt-portlet--height-fluid kt-widget-13 col-7 mx-auto" style="border:1px solid #eee;">
+			echo '<div class="kt-portlet kt-portlet--height-fluid kt-widget-13 col-7 mx-auto" style="border:1px solid #eee;height:225px;">
     <div class="kt-portlet__body">
         <div id="kt-widget-slider-13-2" class="kt-slider carousel slide pointer-event" data-ride="carousel" data-interval="4000">
             <div class="kt-slider__head">
@@ -101,7 +101,15 @@ public static function verifier($id,$type,$valeur){
                 <div class="kt-slider__nav">';
                if($veri!=0){
                	echo '<button type="button" class="btn btn-danger btn-sm annuler" id="'.$data["id"].'" style="border-radius:0px;border-top-left-radius:3px;border-bottom-left-radius:3px;">annuler</button>
-                <button type="button" class="btn btn-info btn-sm" style="border-radius:0px;border-top-right-radius:3px;border-bottom-right-radius:3px;">Poursuivre&nbsp;&nbsp;<i class="la la-arrow-right"></i></button>';
+                <button type="button" class="btn btn-info btn-sm poursuivre" id="'.$data["id"].'" style="border-radius:0px;border-top-right-radius:3px;border-bottom-right-radius:3px;">';
+if(intval($v)==intval($data["id"])){
+	echo "en cours  <div class='spinner-grow spinner-grow-sm' role='status'>
+                            <span class='sr-only'>Loading...</span>
+                        </div>";
+}else{
+	echo 'Poursuivre&nbsp;&nbsp;<i class="la la-arrow-right"></i>';
+}
+                echo'</button>';
                }
                echo' </div>
             </div>
@@ -237,6 +245,87 @@ echo '
   		return $data[$val];
 	}
 
+	}
+
+	public static function afficher_liste(){
+		$tableau=[];
+		$tableaui=[];
+		  	$requette=config::$bdd->query("select * from activite");
+                		while($data=$requette->fetch()){
+					echo '<a class="dropdown-item text-center click" style="color:black;" target="frame1" href="activite/controler.php?id='.$data['id'].'">'.$data['titre'].'</a>';
+                		}
+	}
+
+	public static function controler($i_activiter){
+		$tableau=[];
+		$tableaui=[];
+		  	$requette=config::$bdd->query("select * from proccedure where id_active=".$i_activiter);
+                		while($data=$requette->fetch()){
+                			$fichier=$data["fichier"];
+					echo '<div class="col-md-3 col-xs-12 col-sm-12 bg-white mr-2 px-2 py-2 un" style="height:650px;border-radius:4px;">
+<div class="row">
+<div class="col-11 mx-auto btn-bold px-3 py-3 mb-3 text-center" style="background-color:';
+if($fichier==0){
+	echo '#0f2c7c;;color:white';
+}else{
+	echo '#b7c9f9;color:#3060d6';
+}
+echo ';border-radius:3px;">
+'.$data["titre"].'
+<i class="fa fa-arrow-alt-circle-down" style="float:right;font-size:18px;"></i><br>';
+if($fichier==0){
+	echo 'Role : Administrateur&nbsp;&nbsp;<i class="fa fa-question-circle" style="font-size:18px;cursor:pointer;"  data-toggle="kt-tooltip" data-skin="dark" title="" data-original-title="'.$data["description"].'"></i>';
+}else{
+	echo 'Role : Client&nbsp;&nbsp;<i class="fa fa-question-circle" style="font-size:18px;cursor:pointer;"  data-toggle="kt-tooltip" data-skin="dark" title="" data-original-title="'.$data["description"].'"></i>';
+}
+echo'
+</div>
+<div class="col-11 mx-auto" style="height:550px;overflow-y:scroll;">
+<div class="card mb-4">
+								<div class="kt-bg-metal w-100 py-2"><div class="kt-widget-7__item mx-auto text-center">
+                                                            <div class="kt-widget-7__item-pic" style="display:inline-block;">
+                                                                <img src="../../../assets/Backoffice/media/files/pdf.svg" alt="" width="35px">
+                                                            </div>
+                                                            <div class="kt-widget-7__item-info" style="display:inline-block;">
+                                                                <a href="#" class="kt-widget-7__item-title">
+                                                                    S.E.R Agreement
+                                                                </a>
+                                                                <div class="kt-widget-7__item-desc">
+                                                                    805 MB
+                                                                </div>
+                                                            </div>
+                                                        </div></div>
+								<div class="px-2 py-2">
+								<div class="row">
+								<div class="col-md-2">
+									<div class="btn btn-sm btn btn-primary style="cursor:pointer;">
+										<i class="fa fa-angle-left">
+										</i>
+									</div>
+								</div>
+								<div class="col-md-6">
+<h5 class="card-title"><img src="../../../assets/Backoffice/media/users/1.png" width="45px" class="rounded-circle">&nbsp;&nbsp;Card title</h5>
+								</div>
+								<div class="col-md-2">
+									<div class="btn btn-sm btn btn-warning mr-1" style="cursor:pointer;">
+										<i class="fas fa-envelope">
+										</i>
+									</div>
+								</div>
+								<div class="col-md-2">
+									<div class="btn btn-sm btn btn-primary" style="cursor:pointer;">
+										<i class="fa fa-angle-right">
+										</i>
+									</div>
+								</div>
+								</div>
+
+								</div>
+							</div>
+</div>
+</div>
+</div>';
+                		}
 	}
 
 	public static function nombre($v,$id){

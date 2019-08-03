@@ -185,8 +185,17 @@
     <script src="../Frontend/assets/plugins/js/packery-mode.pkgd.js"></script>
     <script src="../Frontend/assets/plugins/js/jquery.inview.min.js"></script>
     <script src="../Frontend/assets/plugins/js/progressbar.min.js"></script>
+<<<<<<< HEAD
     <script src="vendor/bootstrap/js/popper.js"></script>
 	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+=======
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/additional-methods.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+>>>>>>> ed0d923cef7b741ad61dc6a94746a2546fe96caa
     <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/additional-methods.js"></script>
@@ -318,6 +327,7 @@
                         required: "vous devez choisir ",
                     },
                 },
+<<<<<<< HEAD
  
 
                 submitHandler: function() {
@@ -338,6 +348,33 @@
 
 
 
+=======
+                // ajax
+                submitHandler:function(form) {
+                    
+                       $(form).submit(function(e){
+                        e.preventDefault();
+                       }) 
+                    }
+                
+
+            })          
+
+                       $("#register-form").submit(function(e){
+                        e.preventDefault();
+                        alert("'oi")
+                        $.ajax({
+                          type: 'post',
+                          url: "connexion2.php",
+                          data:  $("#register-form").serialize(),
+                              success:function(data) {
+                        
+                                alert(data)
+                      
+                        }
+                        })
+                       }) 
+>>>>>>> ed0d923cef7b741ad61dc6a94746a2546fe96caa
         })
     </script>
 

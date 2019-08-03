@@ -118,6 +118,37 @@ public static function verifier($id,$type,$valeur){
                 		}
 	}
 
+	public static function afficher_client($id){
+		$tableau=[];
+		$tableaui=[];
+		$o=0;
+		  	$requette=config::$bdd->query("select * from detail_plus where id_ecole=".$id);
+                		$i=0;
+                		while($data=$requette->fetch()){
+					echo '					<div class="card">
+						<div class="card-header" id="id1'.$i.'">
+							<div class="card-title collapsed" data-toggle="collapse" data-target="#id'.$i.'" aria-expanded="false" aria-controls="id'.$i.'">
+								<i class="la la-globe" style="font-size:25px;"></i>
+								'.$data["titre"].'
+							</div>
+						</div>
+						<div id="id'.$i.'" class="collapse" aria-labelledby="id1'.$i.'" data-parent="#accordionExample1" style="">
+							<div class="card-body">
+								'.$data["description"].'
+							</div>
+						</div>
+					</div>';
+
+					$i++;
+                		}
+
+                		if($i==0){
+                			  echo '<div class="col-12 bg-white text-black text-center">
+    Aucune description
+  </div>';
+                		}
+	}
+
 	public static function retourne_valeur($v,$id,$val){
 	$requette=config::$bdd->query("select * from detail_plus where ".$v."='".$id."'");
     while($data=$requette->fetch()){
