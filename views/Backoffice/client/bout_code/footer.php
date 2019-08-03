@@ -2,15 +2,15 @@
                         <div class="kt-container">
                             <div class="kt-footer__bottom">
                                 <div class="kt-footer__copyright">
-                                    2018&nbsp;&copy;&nbsp;<a href="#" target="_blank" class="kt-link">
-                                    Kiam consulting</a>
+                                    2018&nbsp;&copy;&nbsp;<a href="http://keenthemes.com/keen" target="_blank" class="kt-link">
+                                    Keenthemes Inc</a>
                                 </div>
                                 <div class="kt-footer__menu">
-                                    <a href="#" target="_blank" class="kt-link">
+                                    <a href="http://keenthemes.com/keen" target="_blank" class="kt-link">
                                     About</a>
-                                    <a href="#" target="_blank" class="kt-link">
+                                    <a href="http://keenthemes.com/keen" target="_blank" class="kt-link">
                                     Team</a>
-                                    <a href="#" target="_blank" class="kt-link">
+                                    <a href="http://keenthemes.com/keen" target="_blank" class="kt-link">
                                     Contact</a>
                                 </div>
                             </div>

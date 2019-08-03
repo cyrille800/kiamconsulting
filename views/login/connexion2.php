@@ -1,7 +1,8 @@
 <?php 
-if(isset($_POST["regusername"])){
-	echo "ok";
-}else{
-	echo "pas ok";
+var_dump($_POST);
+if(!empty($_POST)){
+    extract($_POST);
+    if(isset($email)) echo "false";
+    else echo "false";
 }
 ?>

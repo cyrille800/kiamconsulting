@@ -111,7 +111,7 @@
                                 </form>
                             </div>
                             <div role="tabpanel" class="tab-pane" id="profile">
-                                <form id="register-form" class="uv-reg-form" >
+                                <form id="register-form" class="uv-reg-form">
                                     <div class="form-group">
                                         <div class="custom-control custom-radio custom-control-inline ">
                                             <input type="radio" id="customRadioInline1" name="Client" class="custom-control-input">
@@ -185,14 +185,20 @@
     <script src="../Frontend/assets/plugins/js/packery-mode.pkgd.js"></script>
     <script src="../Frontend/assets/plugins/js/jquery.inview.min.js"></script>
     <script src="../Frontend/assets/plugins/js/progressbar.min.js"></script>
+<<<<<<< HEAD
+    <script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+=======
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/additional-methods.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+>>>>>>> ed0d923cef7b741ad61dc6a94746a2546fe96caa
     <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/additional-methods.js"></script>
     <!-- init -->
     <script src="../Frontend/assets/js/init.js"></script>
     <script>
@@ -239,21 +245,19 @@
                 })
             })
 
-
-            // FORM VALIDATION plugin
-            // paramtres par défaut du plugin pour le style et le positionnement des messages d'erreur
             $.validator.setDefaults({
                 errorClass: 'invalid-feedback',
                 highlight: function(element) {
-                    $(element).addClass(' is-invalid');
+                    $(element).addClass('is-invalid');
                 },
                 unhighlight: function(element) {
-                    $(element).removeClass(' is-invalid');
+                    $(element).removeClass('is-invalid');
                 },
                 errorPlacement: function(error, element) {
-                    if (element.prop('type') === 'text' || element.prop('type') === 'email' || element.prop('type') === 'password') {
+                    if (element.prop('type') === 'text' || element.prop('type') === 'mail' || element.prop('type') === 'password') {
                         element.after(error);
                     } else if (element.prop('type') === 'radio') {
+                        // element.closest('[name="username"]').before(error);
                         element.parent().parent().after(error);
 
 
@@ -261,15 +265,12 @@
                 }
             });
 
-            // méthode pour la validation du mot de passe
             $.validator.addMethod('strongPassword', function(value, element) {
                 return this.optional(element) ||
                     value.length >= 6 &&
                     /\d/.test(value) &&
                     /[a-z]/i.test(value);
             }, '6 caractères au moins avec a moins 1 chiffre ');
-            
-            //méthode pour la validation du username
 
             $.validator.addMethod("specialChars", function(value, element) {
                 var regex = new RegExp("^[a-zA-Z0-9éèà]+$");
@@ -280,25 +281,21 @@
                 }
                 return true;
             }, "Pas de caractères spéciaux");
- // plugin
+
             $("#register-form").validate({
-                
-               
                 onkeyup: (element) => {
                     $(element).valid();
                 },
 
-                // règles
                 rules: {
-                    // différentes validations
                     email: {
                         required: true,
                         email: true,
+                        remote: "connexion2.php",
                     },
                     regpassword: {
                         required: true,
-                        strongPassword: true,
-
+                        strongPassword: true
                     },
                     confirmPassword: {
                         required: true,
@@ -314,11 +311,11 @@
                     },
 
                 },
-                // messages d'erreur
                 messages: {
                     email: {
                         required: 'ce champ est requis.',
                         email: 'entrez une adresse mail valide',
+                        remote: "mail déjà utilisé",
                     },
                     regusername: {
                         required: 'ce champ est requis',
@@ -330,6 +327,28 @@
                         required: "vous devez choisir ",
                     },
                 },
+<<<<<<< HEAD
+ 
+
+                submitHandler: function() {
+                   $.ajax({
+                            url:"connexion.php",
+                            type:"post",
+                            data:$("#register-form").serialize(),
+                            success: function(){    
+                              alert('reussi');
+                              window.location("connexion.php");
+                      }
+                    });
+          }
+
+            })
+
+
+
+
+
+=======
                 // ajax
                 submitHandler:function(form) {
                     
@@ -355,6 +374,7 @@
                         }
                         })
                        }) 
+>>>>>>> ed0d923cef7b741ad61dc6a94746a2546fe96caa
         })
     </script>
 
