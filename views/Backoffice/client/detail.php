@@ -103,10 +103,17 @@ require_once "../../../entities/class_details_plus.php";
                         <div class="col-md-2 mr-5 col-xs-12">
                             <div class="row pt-3">
                                 <span class="kt-widget__caption col-10">Progress</span>
-                                <span class="kt-widget__value col-1 pb-1">78</span>
+                                <?php 
+                                if(isset($_COOKIE["id_activiter"])){
+                                $nombre=activiter::nombre_pourcentage($_SESSION["id"],$_COOKIE["id_activiter"]);
+                                }else{
+                                $nombre=0;
+                                }
+                                ?>
+                                <span class="kt-widget__value col-1 pb-1"><?php echo $nombre;?>%</span>
                                 <div class="progress col-12" style="height:5px;border-radius:5px;">
                                     <!-- Doc: A bootstrap progress bar can be used to show a user how far along it's in a process, see https://getbootstrap.com/docs/4.1/components/progress/ -->
-                                    <div class="progress-bar bg-brand" role="progressbar" style="width: 40%;border-radius:5px;" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+                                    <div class="progress-bar bg-brand" role="progressbar" style="width: <?php echo $nombre;?>%;border-radius:5px;" aria-valuenow="<?php echo $nombre;?>" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
                             </div>
                         </div>
@@ -166,8 +173,8 @@ require_once "../../../entities/class_details_plus.php";
                                 </div>
                             </div>
                             <div class="kt-portlet__foot kt-portlet__foot--fit">
-                                 <div class="kt-widget__nav ">
-                                 <ul class="nav nav-tabs nav-tabs-space-xl nav-tabs-line nav-tabs-clear nav-tabs-bold nav-tabs-line-3x nav-tabs-line-brand kt-portlet__space-x" role="tablist">
+                                <div class="kt-widget__nav ">
+                                    <ul class="nav nav-tabs nav-tabs-space-xl nav-tabs-line nav-tabs-clear nav-tabs-bold nav-tabs-line-3x nav-tabs-line-brand kt-portlet__space-x" role="tablist">
                                         <li class="nav-item iop">
                                             <a class="nav-link  bf <?php echo (isset($_COOKIE["id_activiter"]))?"":"active"; ?> " href="activiter.php" target="frame2">
                                                 <i class="la la-tachometer" style="font-size:25px;"></i> Activités
@@ -282,7 +289,6 @@ require_once "../../../entities/class_details_plus.php";
                     $.post("../../../entities/etudiant.php",{operation:"modifier",id_client:id_etudiant,specialite:valeur})
                     }
                     })
-
 $(".bf").click(function(){
     $(".bf").removeClass("active");
     $(this).addClass("active")

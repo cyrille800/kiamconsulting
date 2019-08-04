@@ -136,16 +136,79 @@ activiter::controler($_GET["id"]);
         	})
 
         	$(".droite").click(function(){
+
         		var el=$(this).parent().parent().parent().parent();
-        		el.fadeOut("fast").queue(function(){
-        			$(el).remove()
-        			$(this).dequeue();
+        		var etape_suivante=parseInt(el.parent().parent().parent().next().attr("id_proccedure"));
+        		if(!isNaN(etape_suivante)){
+        			        			        		var er=0;
+        		$("[id_proccedure]").each(function(){
+        			er++;
         		})
-        		el.clone().appendTo(el.parent().parent().parent().next().find(".col-11.mx-auto:eq(1)") );
-        		setTimeout(function(){
-        			$(".doite").click(function(){})
-        		},100)
+        			        		var nombre_etape=parseInt($(this).attr("nombre_etape"))+1;
+        			        		if(nombre_etape==er-1){
+        			        		var els=$(this).parent().parent().find(".droite");
+        			els.find("i").removeClass("fa-angle-right");
+        			els.find("i").addClass("fa-check");
+        			els.addClass("terminer")
+        			els.removeClass("bg-dark")
+        			els.removeClass("text-white")
+        			els.removeClass("droite")
+        			        		}
+        			        		$(this).parents(".row").find("[nombre_etape]").attr("nombre_etape",nombre_etape)
+        		var id_client=parseInt($(this).attr("id_client"));
+        		var activiter=parseInt($(this).attr("id_activiter"));
+        		var id=parseInt($(this).attr("id_activiter_client"));
+        		$.post("../../../../entities/activiter_client.php",{operation:"modifier",id:id,id_client:id_client,id_activiter:activiter,nombre_etape_fait:nombre_etape,etape_actuel:etape_suivante})
+        		
+        		el.clone(true).appendTo(el.parent().parent().parent().next().find(".col-11.mx-auto:eq(1)") );
+        		el.remove();
+        		
+        		}
+
         	})
+
+        	$(".gauche").click(function(){
+        		var el=$(this).parent().parent().parent().parent();
+        		var etape_suivante=parseInt(el.parent().parent().parent().prev().attr("id_proccedure"));
+        		if(!isNaN(etape_suivante)){
+        			        		if($(this).parent().parent().find(".terminer").attr("class")!=undefined){
+        			var els=$(this).parent().parent().find(".terminer");
+        			els.find("i").removeClass("fa-check");
+        			els.find("i").addClass("fa-angle-right");
+        			els.addClass("droite")
+        			els.addClass("bg-dark")
+        			els.addClass("text-white")
+        			els.removeClass("terminer")
+        	$(".droite").click(function(){
+        		var el=$(this).parent().parent().parent().parent();
+        		var etape_suivante=parseInt(el.parent().parent().parent().next().attr("id_proccedure"));
+        		if(!isNaN(etape_suivante)){
+
+        			        		var nombre_etape=parseInt($(this).attr("nombre_etape"))+1;
+        			        		$(this).parents(".row").find("[nombre_etape]").attr("nombre_etape",nombre_etape)
+        		var id_client=parseInt($(this).attr("id_client"));
+        		var activiter=parseInt($(this).attr("id_activiter"));
+        		var id=parseInt($(this).attr("id_activiter_client"));
+        		$.post("../../../../entities/activiter_client.php",{operation:"modifier",id:id,id_client:id_client,id_activiter:activiter,nombre_etape_fait:nombre_etape,etape_actuel:etape_suivante})
+        		
+        		el.clone(true).appendTo(el.parent().parent().parent().next().find(".col-11.mx-auto:eq(1)") );
+        		el.remove();
+        		
+        		}
+
+        	})
+        		}
+				var nombre_etape=parseInt($(this).attr("nombre_etape"))-1;
+				$(this).parents(".row").find("[nombre_etape]").attr("nombre_etape",nombre_etape)
+        		var id_client=parseInt($(this).attr("id_client"));
+        		var activiter=parseInt($(this).attr("id_activiter"));
+        		var id=parseInt($(this).attr("id_activiter_client"));
+        		$.post("../../../../entities/activiter_client.php",{operation:"modifier",id:id,id_client:id_client,id_activiter:activiter,nombre_etape_fait:nombre_etape,etape_actuel:etape_suivante})
+        		el.clone(true).appendTo(el.parent().parent().parent().prev().find(".col-11.mx-auto:eq(1)") );
+        		el.remove();
+        		}
+        	})
+
         })
 	</script>
 </body>

@@ -44,9 +44,9 @@ require_once "../../../entities/class_details_plus.php";
                                 <div class="element" style="height:500px;overflow-y:scroll;">
                                     <?php
                                     if(isset($_COOKIE["id_activiter"])){
-                                    activiter::afficher_client(1,$_COOKIE["id_activiter"]);
+                                    activiter::afficher_client($_SESSION["id"],$_COOKIE["id_activiter"]);
                                     }else{
-                                    activiter::afficher_client(1,"");
+                                    activiter::afficher_client($_SESSION["id"],"");
                                     }
                                     ?>
                                 </div>
@@ -106,9 +106,8 @@ require_once "../../../entities/class_details_plus.php";
                     }
                     })
                     })
-
-                    $(".annuler").click(function(){
-                          var d=$(this);
+                                                            $(".annuler").click(function(){
+                                                                var d=$(this);
                     $.post("../../../entities/activiter_client.php",{operation:"supprimer",id_client:$("body").attr("id"),id_activiter:$(this).attr("id")},function(data){
                     if(data!="ok"){
                     toastr.error(data);
@@ -116,16 +115,14 @@ require_once "../../../entities/class_details_plus.php";
                         if(parseInt(Cookies.get("id_activiter"))==parseInt(d.attr("id"))){
                             Cookies.remove('id_activiter',{ path: '' });
                         }
-                        document.location.href="proccedure.php";
+                        document.location.href="activiter.php";
                     }
                     })
                     })
-
                     $(".poursuivre").click(function(){
                      Cookies.set('id_activiter',$(this).attr("id"), { expires: 360, path: '' });
-                     document.location.href="activiter.php";
+                     document.location.href="proccedure.php";
                     })
-
                 })
         </script>
 </body>

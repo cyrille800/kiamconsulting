@@ -3,6 +3,7 @@ require_once "function.php";
 require_once "config.php";
 require_once "class_proccedure.php";
 require_once "class_activiter_client.php";
+require_once "class_client.php";
 
 	config::connexion();
 
@@ -87,14 +88,25 @@ public static function verifier($id,$type,$valeur){
 
 	}
 
+public static function nombre_pourcentage($id,$v){
+			$nombre=proccedure::nombre("id_active",$v);
+			$rt=config::$bdd->query("select * from activiter_client where id_client=".$id." && id_activiter=".$v);
+			$vx=$rt->fetch();
+			$po=$vx["nombre_etape_fait"];
+			$op=intval($nombre);
+			$fini=0;
+			if($op>0){
+				$fini=ceil(intval(($po+1)*100)/$op);
+			}
+			return $fini;
+}
 
-	public static function afficher_client($id){
+	public static function afficher_client($id,$v){
 		$requette=config::$bdd->query("select * from activite where etat=".$id);
 		while($data=$requette->fetch()){
-			$nombre=proccedure::nombre("id_active",$data["id"]);
+			$fini=self::nombre_pourcentage($id,$v);
 			$veri=activiter_client::nombre("id_activiter",$data["id"]);
-			$fini=0;
-			echo '<div class="kt-portlet kt-portlet--height-fluid kt-widget-13 col-7 mx-auto" style="border:1px solid #eee;height:220px;">
+			echo '<div class="kt-portlet kt-portlet--height-fluid kt-widget-13 col-7 mx-auto" style="border:1px solid #eee;height:225px;">
     <div class="kt-portlet__body">
         <div id="kt-widget-slider-13-2" class="kt-slider carousel slide pointer-event" data-ride="carousel" data-interval="4000">
             <div class="kt-slider__head">
@@ -102,7 +114,15 @@ public static function verifier($id,$type,$valeur){
                 <div class="kt-slider__nav">';
                if($veri!=0){
                	echo '<button type="button" class="btn btn-danger btn-sm annuler" id="'.$data["id"].'" style="border-radius:0px;border-top-left-radius:3px;border-bottom-left-radius:3px;">annuler</button>
-                <button type="button" class="btn btn-info btn-sm poursuivre" style="border-radius:0px;border-top-right-radius:3px;border-bottom-right-radius:3px;">Poursuivre&nbsp;&nbsp;<i class="la la-arrow-right"></i></button>';
+                <button type="button" class="btn btn-info btn-sm poursuivre" id="'.$data["id"].'" style="border-radius:0px;border-top-right-radius:3px;border-bottom-right-radius:3px;">';
+if(intval($v)==intval($data["id"])){
+	echo "en cours  <div class='spinner-grow spinner-grow-sm' role='status'>
+                            <span class='sr-only'>Loading...</span>
+                        </div>";
+}else{
+	echo 'Poursuivre&nbsp;&nbsp;<i class="la la-arrow-right"></i>';
+}
+                echo'</button>';
                }
                echo' </div>
             </div>
@@ -117,7 +137,6 @@ public static function verifier($id,$type,$valeur){
                         </div>
                         <div class="kt-widget-13__foot">
 ';
-
 if($veri==0){
 	$p=proccedure::retourne_valeur("id_active",$data["id"],"id");
 	if($p==""){
@@ -137,7 +156,6 @@ echo '<button type="button" class="btn btn-primary mx-auto ii" value="commencer"
                                 </div>
                             </div>';
 }
-
 echo '
                         </div>
                     </div>
@@ -147,7 +165,6 @@ echo '
     </div>
 </div>';
 		}
-
 	}
 	public static function afficher($id){
 		if($id==""){
@@ -255,7 +272,7 @@ echo '
 		  	$requette=config::$bdd->query("select * from proccedure where id_active=".$i_activiter);
                 		while($data=$requette->fetch()){
                 			$fichier=$data["fichier"];
-					echo '<div class="col-md-3 col-xs-12 col-sm-12 bg-white mr-2 px-2 py-2 un" style="height:650px;border-radius:4px;">
+					echo '<div class="col-md-3 col-xs-12 col-sm-12 bg-white mr-2 px-2 py-2 un" style="height:650px;border-radius:4px;" id_proccedure="'.$data["id"].'">
 <div class="row">
 <div class="col-11 mx-auto btn-bold px-3 py-3 mb-3 text-center" style="background-color:';
 if($fichier==0){
@@ -273,8 +290,12 @@ if($fichier==0){
 }
 echo'
 </div>
-<div class="col-11 mx-auto" style="height:550px;overflow-y:scroll;">
-<div class="card mb-4">
+<div class="col-11 mx-auto" style="height:550px;overflow-y:scroll;">';
+
+$mo=config::$bdd->query("select * from activiter_client where id_activiter=".$i_activiter." && etape_actuel=".$data["id"]);
+
+while($do=$mo->fetch()){
+	echo '<div class="card mb-4">
 								<div class="kt-bg-metal w-100 py-2"><div class="kt-widget-7__item mx-auto text-center">
                                                             <div class="kt-widget-7__item-pic" style="display:inline-block;">
                                                                 <img src="../../../assets/Backoffice/media/files/pdf.svg" alt="" width="35px">
@@ -290,14 +311,24 @@ echo'
                                                         </div></div>
 								<div class="px-2 py-2">
 								<div class="row">
-								<div class="col-md-2">
-									<div class="bg-dark w-75 text-white rounded-circle text-center pt-2 gauche" style="cursor:pointer;height:30px;">
+								<div class="col-md-2">';
+$nombre=proccedure::nombre("id_active",$do["id_activiter"]);
+if(intval($do["nombre_etape_fait"]+1)==1){
+echo '<div class="w-75 rounded-circle text-center pt-2 annuler" id_client="'.$do['id_client'].'" id_activiter_client="'.$do["id"].'" id_activiter="'.$i_activiter.'" nombre_etape="'.$do["nombre_etape_fait"].'" style="cursor:pointer;height:30px;">
+										<i class="fa fa-times">
+										</i>
+									</div>';
+}else{
+	echo '<div class="bg-dark w-75 text-white rounded-circle text-center pt-2 gauche"  id_client="'.$do['id_client'].'" id_activiter_client="'.$do["id"].'" id_activiter="'.$i_activiter.'" nombre_etape="'.$do["nombre_etape_fait"].'" style="cursor:pointer;height:30px;">
 										<i class="fa fa-angle-left">
 										</i>
-									</div>
-								</div>
+									</div>';
+}
+								echo '</div>
 								<div class="col-md-6">
-<h5 class="card-title"><img src="../../../assets/Backoffice/media/users/1.png" width="45px" class="rounded-circle">&nbsp;&nbsp;Card title</h5>
+<h5 class="card-title"><img src="../../../assets/Backoffice/media/users/'.$do['id_client'].'.png" width="45px" class="rounded-circle">&nbsp;&nbsp;';
+echo client::retourne_valeur("id",$do['id_client'],"username");
+echo '</h5>
 								</div>
 								<div class="col-md-2">
 									<div class="btn btn-sm btn btn-warning mr-1" style="cursor:pointer;">
@@ -305,16 +336,25 @@ echo'
 										</i>
 									</div>
 								</div>
-								<div class="col-md-2">
-									<div class="bg-dark w-75 text-white rounded-circle text-center pt-2 droite" style="cursor:pointer;height:30px;">
+								<div class="col-md-2">';
+if(intval($do["nombre_etape_fait"]+1)==$nombre){
+	echo '<div class="w-75 rounded-circle text-center pt-2 terminer" id_client="'.$do['id_client'].'" id_activiter_client="'.$do["id"].'" id_activiter="'.$i_activiter.'" nombre_etape="'.$do["nombre_etape_fait"].'" style="cursor:pointer;height:30px;">
+										<i class="fa fa-check">
+										</i>
+									</div>';
+}else{
+	echo '<div class="bg-dark w-75 text-white rounded-circle text-center pt-2 droite" id_client="'.$do['id_client'].'" id_activiter_client="'.$do["id"].'" id_activiter="'.$i_activiter.'" nombre_etape="'.$do["nombre_etape_fait"].'" style="cursor:pointer;height:30px;">
 										<i class="fa fa-angle-right">
 										</i>
-									</div>
-								</div>
+									</div>';
+}
+								echo '</div>
 								</div>
 
 								</div>
-							</div>
+							</div>';
+}
+echo '
 </div>
 </div>
 </div>';

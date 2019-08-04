@@ -1,6 +1,5 @@
 <?php 
 session_start();
-
 include "../../../entities/class_etudiant.php";
 $nom=etudiant::retourne_valeur("id_client",$_SESSION["id"],"nom");
 $prenom=etudiant::retourne_valeur("id_client",$_SESSION["id"],"prenom");
@@ -209,9 +208,7 @@ $etablissement=etudiant::retourne_valeur("id_client",$_SESSION["id"],"etablissem
         $(window).on("load",function(){
            $(".preload").fadeOut("fast");
         })
-
         $(function(){
-
 toastr.options = {
   "closeButton": false,
   "debug": false,
@@ -229,11 +226,8 @@ toastr.options = {
   "showMethod": "fadeIn",
   "hideMethod": "fadeOut"
 };
-
-
  $("#formulaire").submit(function(e){
 e.preventDefault();
-
 $.ajax({
     type : 'POST',
     url : '../../../entities/etudiant.php',
@@ -249,7 +243,6 @@ if(data!="ok"){
 }      
     }
 })
-
 })
         })
 </script>
