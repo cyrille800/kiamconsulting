@@ -43,24 +43,17 @@ public function __construct($a,$b,$c,$d){
 }
 
 function ajouter(){
-	if(self::verifiers("username",$this->get_username())==true){
-	if(self::verifiers("email",$this->get_password())==true){
 		$req=config::$bdd->prepare("insert into client(username,email,password,type) VALUE(:username,:email,:password,:type)");
 		$req->bindValue(':username',$this->get_username());
 		$req->bindValue(':email',$this->get_email());
-		$req->bindValue(':password',md5($this->get_password()));
+		$req->bindValue(':password',$this->get_password());
 		$req->bindValue(':type',$this->get_type());
 	  	if($req->execute()){
-			  return "true";
+			  return true;
 	  	}
-	}else{
-		return "false";		
+	else{
+		return false;		
 	}
-	}else{
-		return "false";
-	}
-
-	  	
 }
 
 public static function verifiers($type,$valeur){

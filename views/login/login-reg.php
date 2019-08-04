@@ -83,13 +83,18 @@
                                 <form id="login-form" class="uv-login-form">
 
                                     <div class="form-group">
+                                        <input class="input100" type="text" name="operation" value="connexion" style="display:none;">
+
                                         <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
                                     </div>
                                     <div class="form-group">
                                         <input type="password" name="password" id="login-password" tabindex="2" class="form-control" placeholder="Password">
                                     </div>
+                                    <div class="erreur" style="background-color:rgba(255,0,0,0.1);color:red;padding:2%;width:100%;border-radius:7px;display:none;">
+                                        message
+                                    </div>
                                     <div class="form-group text-center">
-                                        <input type="checkbox" tabindex="3" class="" name="remember" id="remember">
+                                        <input type="checkbox" tabindex="3" class="" name="remember-me" id="remember">
                                         <label for="remember"> Remember Me</label>
                                     </div>
                                     <div class="form-group">
@@ -103,7 +108,7 @@
                                         <div class="row">
                                             <div class="col-lg-12">
                                                 <div class="text-center">
-                                                    <a href="#" tabindex="5" class="forgot-password">Forgot Password?</a>
+                                                    <a href="forget.php" tabindex="5" class="forgot-password">Forgot Password?</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -114,22 +119,22 @@
                                 <form id="register-form" class="uv-reg-form">
                                     <div class="form-group">
                                         <div class="custom-control custom-radio custom-control-inline ">
-                                            <input type="radio" id="customRadioInline1" name="type" class="custom-control-input" value="Etudiant">
+                                            <input type="radio" id="customRadioInline1" name="type" class="custom-control-input" value="0">
                                             <label class="custom-control-label" for="customRadioInline1">Etudiant</label>
                                         </div>
                                         <div class="custom-control custom-radio custom-control-inline pull right">
-                                            <input type="radio" id="customRadioInline2" name="type" class="custom-control-input" value="Patient">
+                                            <input type="radio" id="customRadioInline2" name="type" class="custom-control-input" value="1">
                                             <label class="custom-control-label" for="customRadioInline2">Patient</label>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" name="regusername" id="regusername" tabindex="1" class="form-control" placeholder="Username" value="">
+                                        <input type="text" name="username" id="regusername" tabindex="1" class="form-control" placeholder="Username" value="">
                                     </div>
                                     <div class="form-group">
                                         <input type="text" name="email" id="email" tabindex="1" class="form-control" placeholder="Email Address" value="">
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" name="regpassword" id="regpassword" tabindex="2" class="form-control" placeholder="Password">
+                                        <input type="password" name="password" id="regpassword" tabindex="2" class="form-control" placeholder="Password">
                                     </div>
                                     <div class="form-group">
                                         <input type="password" name="confirmPassword" id="confirmPassword" tabindex="2" class="form-control" placeholder="Confirm Password">
@@ -174,6 +179,9 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/additional-methods.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+
     <!-- init -->
     <!-- <script src="../Frontend/assets/js/init.js"></script> -->
     <script>
@@ -218,6 +226,58 @@
                         className: "btn btn-primary"
                     }
                 })
+            })
+
+
+            if (Cookies.get("username") != undefined) {
+                $("[name='username']").val(Cookies.get("username"))
+                $("[name='password']").val(Cookies.get("password"))
+                $("[name='remember-me']").attr("checked", "checked")
+            }
+            $("#login-form").submit(function(e) {
+                e.preventDefault();
+
+                $.ajax({
+                    type: 'POST',
+                    url: '../../entities/client.php',
+                    data: new FormData(this),
+                    contentType: false,
+                    cache: false,
+                    processData: false,
+                    success: function(data) {
+                        alert(data);
+                        if (data != "ok") {
+                            $(".erreur").text(data)
+                            $(".erreur").fadeIn("fast");
+                            setTimeout(function() {
+                                $(".erreur").fadeOut("fast");
+                            }, 2000)
+                        } else {
+                            $(".erreur").hide();
+                            if ($("[name='remember-me']").prop("checked") == true) {
+                                Cookies.set('username', $("[name='username']").val(), {
+                                    expires: 360,
+                                    path: ''
+                                });
+                                Cookies.set('password', $("[name='password']").val(), {
+                                    expires: 360,
+                                    path: ''
+                                });
+                            } else {
+                                Cookies.remove('username', {
+                                    path: ''
+                                });
+                                Cookies.remove('password', {
+                                    path: ''
+                                });
+                            }
+
+
+                            document.location.href = "../Backoffice/client/index.php";
+                        }
+                    }
+                })
+
             })
 
             $.validator.setDefaults({
@@ -277,9 +337,9 @@
                                 }
                             }
                         },
-                      
+
                     },
-                    regpassword: {
+                    password: {
                         required: true,
                         strongPassword: true
                     },
@@ -287,7 +347,7 @@
                         required: true,
                         equalTo: '#regpassword'
                     },
-                    regusername: {
+                    username: {
                         required: true,
                         nowhitespace: true,
                         specialChars: true,
@@ -295,7 +355,7 @@
                             url: "../../entities/remoteClientUsername.php",
                             type: "post",
                             data: {
-                                regusername: function() {
+                                username: function() {
                                     return $("#regusername").val();
                                 }
                             }
@@ -313,7 +373,7 @@
                         remote: "mail déjà utilisé",
 
                     },
-                    regusername: {
+                    username: {
                         required: 'ce champ est requis',
                         remote: "username déjà utilisé",
                     },
@@ -325,26 +385,24 @@
                     },
                 },
                 submitHandler: function(form) {
-                  
-                    alert("submitted");
 
                     $.ajax({
-                            type: "POST",
-                            url: "../../entities/client.php",
-                            data: $(".login100-form.validate-form.flex-sb.flex-w").serialize()+ "&operation='enregistrer'",
-                            
-                            success: function(data) {
-                                alert(data);
-                                    // window.location.href="../../entities/client.php";
-                            }
-                        });
+                        type: "POST",
+                        url: "../../entities/client.php",
+                        data: $("#register-form").serialize() + "&operation=enregistrer",
+
+                        success: function(data) {
+                            alert(data);
+                            // window.location.href="../../entities/client.php";
+                        }
+                    });
 
                     return false;
                 }
 
             })
 
-     
+
 
 
 
