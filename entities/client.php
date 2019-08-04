@@ -91,5 +91,5 @@ if (isset($_FILES["avatar"])) {
 	}
 }
 echo $reponse;
-echo $operation;
+// echo $operation;
 // var_dump($_POST);
