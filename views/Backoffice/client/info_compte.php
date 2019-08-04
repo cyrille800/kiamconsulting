@@ -1,6 +1,5 @@
 <?php 
 session_start();
-
 include "../../../entities/class_client.php";
 $username=client::retourne_valeur("id",$_SESSION["id"],"username");
 $email=client::retourne_valeur("id",$_SESSION["id"],"email");
@@ -8,7 +7,7 @@ $email=client::retourne_valeur("id",$_SESSION["id"],"email");
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+  <title></title>
         <meta name="description" content="Latest updates and statistic charts">
         
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -115,14 +114,12 @@ $email=client::retourne_valeur("id",$_SESSION["id"],"email");
         </script>
         <script src="../../assets/Backoffice/js/demo4/pages/components/forms/controls/avatar.js" type="text/javascript"></script>
         <script src="../../assets/Backoffice/js/demo4/pages/components/forms/widgets/bootstrap-select.js" type="text/javascript"></script>
-		<script src="../../assets/Backoffice/js/demo4/pages/components/extended/toastr.js" type="text/javascript"></script>
+    <script src="../../assets/Backoffice/js/demo4/pages/components/extended/toastr.js" type="text/javascript"></script>
 <script>
         $(window).on("load",function(){
            $(".preload").fadeOut("fast");
         })
-
         $(function(){
-
 toastr.options = {
   "closeButton": false,
   "debug": false,
@@ -140,12 +137,8 @@ toastr.options = {
   "showMethod": "fadeIn",
   "hideMethod": "fadeOut"
 };
-
-
-
  $("#formulaire").submit(function(e){
 e.preventDefault();
-
 $.ajax({
     type : 'POST',
     url : '../../../entities/client.php',
@@ -161,7 +154,6 @@ if(data!="ok"){
 }      
     }
 })
-
 })
         })
 </script>

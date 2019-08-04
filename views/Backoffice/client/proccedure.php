@@ -110,7 +110,6 @@ require_once "../../../entities/class_details_plus.php";
                 $(window).on("load",function(){
            $(".preload").fadeOut("fast");
         })
-
                 $(function(){
                      $(".btn.btn-info.btn-icon.btn-circle").click(function(){
     var v=$(this).attr("url");

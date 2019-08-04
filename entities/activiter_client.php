@@ -34,6 +34,7 @@ if(verification_post(["id_client","id_activiter","nombre_etape_fait","etape_actu
 			activiter_client::modifier($id,"id_activiter",$id_activiter);
 			activiter_client::modifier($id,"nombre_etape_fait",$nombre_etape_fait);
 			activiter_client::modifier($id,"id_client",$id_client);
+			activiter_client::modifier($id,"etape_actuel",$etape_actuel);
 			$nono="ok";
 		}	
 		}

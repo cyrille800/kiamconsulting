@@ -16,10 +16,8 @@
         }
         });
         </script>
-
         <link href="../../assets/Backoffice/vendors/global/vendors.bundle.css" rel="stylesheet" type="text/css" />
         <link href="../../assets/Backoffice/css/demo4/style.bundle.css" rel="stylesheet" type="text/css" />
-
 </head>
 <body style="padding:0px;margin:0px;">
                     
@@ -51,8 +49,6 @@
 <center><div class="lds-ring"><div></div><div></div><div></div><div></div></div></center>
 </div>
                                     <!--begin::Dashboard 5-->
-
-
                     <center>
                         page vierge
                     </center>

@@ -1,4 +1,4 @@
-                        <div class="kt-header__top"  style="background-color:#242939;">
+     <div class="kt-header__top"  style="background-color:#242939;">
                             
                             <div class="kt-container">
                                 <!-- begin:: Brand -->

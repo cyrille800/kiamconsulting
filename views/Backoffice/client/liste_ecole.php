@@ -239,7 +239,6 @@ ecole::afficher_client();
         $(window).on("load",function(){
         $(".preload").fadeOut("fast");
         })
-
         $(function(){
             toastr.options = {
   "closeButton": false,
@@ -258,8 +257,6 @@ ecole::afficher_client();
   "showMethod": "fadeIn",
   "hideMethod": "fadeOut"
 };
-
-
             $(".ajouter").click(function(){
                 var id_ecole=$(this).attr("id");
                 var id_etudiant=$("body").attr("id");

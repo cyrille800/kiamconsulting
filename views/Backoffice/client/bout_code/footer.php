@@ -1,4 +1,4 @@
-                    <div class="kt-footer kt-grid__item" id="kt_footer"  style="background-color:#242939;">
+ <div class="kt-footer kt-grid__item" id="kt_footer"  style="background-color:#242939;">
                         <div class="kt-container">
                             <div class="kt-footer__bottom">
                                 <div class="kt-footer__copyright">

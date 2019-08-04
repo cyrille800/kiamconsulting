@@ -1,4 +1,4 @@
-        <div id="kt_quick_panel" class="kt-offcanvas-panel">
+  <div id="kt_quick_panel" class="kt-offcanvas-panel">
             <div class="kt-offcanvas-panel__nav">
                 <ul class="nav nav-pills" role="tablist">
                     <li class="nav-item active">

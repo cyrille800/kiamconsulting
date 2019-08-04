@@ -2,132 +2,114 @@
 require_once "function.php";
 require_once "config.php"; 
 require_once "class_activiter_client.php";
-	config::connexion();
-
+    config::connexion();
 class ecole{
-	private $titre;
-	private $ville;
-	private $site;
-	private $nombre_place;
-	private $specialite;
-
+    private $titre;
+    private $ville;
+    private $site;
+    private $nombre_place;
+    private $specialite;
 function get_titre(){
-	return $this->titre;
+    return $this->titre;
 }
 function get_ville(){
-	return $this->ville;
+    return $this->ville;
 }
 function get_site(){
-	return $this->site;
+    return $this->site;
 }
 function get_nombre_place(){
-	return $this->nombre_place;
+    return $this->nombre_place;
 }
 function get_specialite(){
-	return $this->specialite;
+    return $this->specialite;
 }
-
 function set_titre($valeur){
-	$this->titre = $valeur;
+    $this->titre = $valeur;
 }
 function set_ville($valeur){
-	$this->ville = $valeur;
+    $this->ville = $valeur;
 }
 function set_site($valeur){
-	$this->site = $valeur;
+    $this->site = $valeur;
 }
 function set_nombre_place($valeur){
-	$this->nombre_place = $valeur;
+    $this->nombre_place = $valeur;
 }
 function set_specialite($valeur){
-	$this->specialite = $valeur;
+    $this->specialite = $valeur;
 }
-
 public function __construct($a,$b,$c,$d,$e){
-	$this->set_titre($a);
-	$this->set_ville($b);
-	$this->set_site($c);
-	$this->set_nombre_place($d);
-	$this->set_specialite($e);
+    $this->set_titre($a);
+    $this->set_ville($b);
+    $this->set_site($c);
+    $this->set_nombre_place($d);
+    $this->set_specialite($e);
 }
-
 function ajouter(){
-	if(self::verifiers("titre",$this->get_titre())==true){
-	if(self::verifiers("site",$this->get_ville())==true){
-
-		$req=config::$bdd->prepare("insert into school(titre,ville,site,nombre_place,specialite) VALUE(:titre,:ville,:site,:nombre_place,:specialite)");
-		$req->bindValue(':titre',$this->get_titre());
-		$req->bindValue(':ville',$this->get_ville());
-		$req->bindValue(':site',$this->get_site());
-		$req->bindValue(':nombre_place',$this->get_nombre_place());
-		$req->bindValue(':specialite',$this->get_specialite());
-	  	if($req->execute()){
-	  		return 1;
-	  	}
-	}else{
-		echo "ce site existe deja <br>";		
-	}
-	}else{
-		echo "ce titre existe deja <br>";
-	}
-
-		  	return 0;
-	  	
+    if(self::verifiers("titre",$this->get_titre())==true){
+    if(self::verifiers("site",$this->get_ville())==true){
+        $req=config::$bdd->prepare("insert into school(titre,ville,site,nombre_place,specialite) VALUE(:titre,:ville,:site,:nombre_place,:specialite)");
+        $req->bindValue(':titre',$this->get_titre());
+        $req->bindValue(':ville',$this->get_ville());
+        $req->bindValue(':site',$this->get_site());
+        $req->bindValue(':nombre_place',$this->get_nombre_place());
+        $req->bindValue(':specialite',$this->get_specialite());
+        if($req->execute()){
+            return 1;
+        }
+    }else{
+        echo "ce site existe deja <br>";        
+    }
+    }else{
+        echo "ce titre existe deja <br>";
+    }
+            return 0;
+        
 }
-
 public static function verifiers($type,$valeur){
-		$i=0;
-		  	$requette=config::$bdd->query("select * from school where ".$type."='".$valeur."'");
-                		while($data=$requette->fetch()){
-		$i=1;                		
-	}
-
-	if($i>=1){
-		return false;
-	}
-	else{
-		return true;
-	}
-
-	}
-
+        $i=0;
+            $requette=config::$bdd->query("select * from school where ".$type."='".$valeur."'");
+                        while($data=$requette->fetch()){
+        $i=1;                       
+    }
+    if($i>=1){
+        return false;
+    }
+    else{
+        return true;
+    }
+    }
 public static function verifier($id,$type,$valeur){
-		$i=0;
-		  	$requette=config::$bdd->query("select * from school where ".$type."='".$valeur."' and id!=".$id);
-                		while($data=$requette->fetch()){
-		$i=1;                		
-	}
-
-	if($i>=1){
-		return false;
-	}
-	else{
-		return true;
-	}
-
-	}
-
-	public static function afficher_liste(){
-		$tableau=[];
-		$tableaui=[];
-		  	$requette=config::$bdd->query("select * from school");
-                		while($data=$requette->fetch()){
-					echo '<a class="dropdown-item text-center click" style="color:black;" target="frame1" href="ecole/detail.php?id='.$data['id'].'">'.$data['titre'].'</a>';
-                		}
-	}
-
-	public static function afficher(){
-		$tableau=[];
-		$tableaui=[];
-		  	$requette=config::$bdd->query("select * from school");
-                		while($data=$requette->fetch()){
-					echo '<div class="col-xl-3 col-lg-3 col-sm-5 element" spe="'.$data["specialite"].'" nom="'.$data["titre"].'">
-
-            	<span style="position:absolute;background:rgba(0,0,0,0.6);color:white;top:5%;cursor:pointer;left:83%;border-radius:10px;width:20px;height:20px;" class="kt-avatar__cancel text-center supprimer_ecole" data-toggle="kt-tooltip" title="" data-original-title="supprmer" id="'.$data["id"].'">
-										<i class="la la-trash"></i>
-									</span>
-
-
+        $i=0;
+            $requette=config::$bdd->query("select * from school where ".$type."='".$valeur."' and id!=".$id);
+                        while($data=$requette->fetch()){
+        $i=1;                       
+    }
+    if($i>=1){
+        return false;
+    }
+    else{
+        return true;
+    }
+    }
+    public static function afficher_liste(){
+        $tableau=[];
+        $tableaui=[];
+            $requette=config::$bdd->query("select * from school");
+                        while($data=$requette->fetch()){
+                    echo '<a class="dropdown-item text-center click" style="color:black;" target="frame1" href="ecole/detail.php?id='.$data['id'].'">'.$data['titre'].'</a>';
+                        }
+    }
+    public static function afficher(){
+        $tableau=[];
+        $tableaui=[];
+            $requette=config::$bdd->query("select * from school");
+                        while($data=$requette->fetch()){
+                    echo '<div class="col-xl-3 col-lg-3 col-sm-5 element" spe="'.$data["specialite"].'" nom="'.$data["titre"].'">
+                <span style="position:absolute;background:rgba(0,0,0,0.6);color:white;top:5%;cursor:pointer;left:83%;border-radius:10px;width:20px;height:20px;" class="kt-avatar__cancel text-center supprimer_ecole" data-toggle="kt-tooltip" title="" data-original-title="supprmer" id="'.$data["id"].'">
+                                        <i class="la la-trash"></i>
+                                    </span>
                 <!--begin::Portlet-->
                 <div class="kt-portlet  ">
                     <div class="kt-portlet__body">
@@ -142,9 +124,8 @@ public static function verifier($id,$type,$valeur){
                                 '.$data["titre"].'
                             </a>
                             <br><br>
-
                             <div class="kt-widget__desc">
-                            	Liste des specialitées : <br><br>
+                                Liste des specialitées : <br><br>
                                 <ul style="list-style-type:none;">';
                                 $trd=explode(";",$data["specialite"]);
                                 foreach ($trd as $key => $value) {
@@ -153,10 +134,9 @@ public static function verifier($id,$type,$valeur){
                                 }
                                 }
                                 echo'
-                                	
+                                    
                                 </ul>
                             </div>
-
                             <div class="kt-widget__links mt-3">
                                 <div class="kt-widget__link">
                                     <i class="socicon-linkedin kt-font-skype"></i>&nbsp;&nbsp;<a href="#">'.$data["site"].'</a>
@@ -168,24 +148,20 @@ public static function verifier($id,$type,$valeur){
                                     <a style="margin-left:-2%;" href="detail.php?id='.$data["id"].'" class="btn btn-default btn-sm btn-bold btn-upper"><i class="la la-comment-o"></i>&nbsp;plus de details</a>
                                     <a style="margin-left:-3%;" href="ajouter.php?id='.$data["id"].'" class="btn btn-brand btn-sm btn-bold btn-upper"><i class="la la-edit"></i>&nbsp;modifier</a>
                                 </div>
-
                             </div>
                         </div>
                     </div>
                 </div>
             </div>';
-                		}
-
-	}
-
-
-	public static function afficher_client(){
-		$tableau=[];
-		$tableaui=[];
-		  	$requette=config::$bdd->query("select * from school");
-		  	$i=0;
-                		while($data=$requette->fetch()){
-					echo '<tr data-row="'.$i.'" class="kt-datatable__row kt-datatable__row--even" style="left: 0px;">
+                        }
+    }
+    public static function afficher_client(){
+        $tableau=[];
+        $tableaui=[];
+            $requette=config::$bdd->query("select * from school");
+            $i=0;
+                        while($data=$requette->fetch()){
+                    echo '<tr data-row="'.$i.'" class="kt-datatable__row kt-datatable__row--even" style="left: 0px;">
                                         <td data-field="first_name" class="kt-datatable__cell">
                                             <span style="width: 200px;">
                                                 <div class="kt-user-card-v2">
@@ -227,14 +203,14 @@ public static function verifier($id,$type,$valeur){
 $tab=explode(";",$data["specialite"]);
 $k=0;
 foreach ($tab as $key => $value) {
-	if($value!=""){
-		if($k%2==0){
-		echo '<span class="btn btn-bold btn-sm btn-font-sm mb-2 btn-label-success">'.$value.'</span>';
-	}else{
-		echo '<span class="btn btn-bold btn-sm btn-font-sm mb-2 btn-label-danger">'.$value.'</span>';
-	}
-	$k++;
-	}
+    if($value!=""){
+        if($k%2==0){
+        echo '<span class="btn btn-bold btn-sm btn-font-sm mb-2 btn-label-success">'.$value.'</span>';
+    }else{
+        echo '<span class="btn btn-bold btn-sm btn-font-sm mb-2 btn-label-danger">'.$value.'</span>';
+    }
+    $k++;
+    }
 }
                                                 
                                             echo '</span>
@@ -273,41 +249,34 @@ foreach ($tab as $key => $value) {
                                         </td>
                                     </tr>';
                                     $i++;
-                		}
-
-	}
-
-	public static function retourne_valeur($v,$id,$val){
-	$requette=config::$bdd->query("select * from school where ".$v."='".$id."'");
+                        }
+    }
+    public static function retourne_valeur($v,$id,$val){
+    $requette=config::$bdd->query("select * from school where ".$v."='".$id."'");
     while($data=$requette->fetch()){
-  		return $data[$val];
-	}
-
-	}
-
-	public static function supprimer($id){
-		$req=config::$bdd->prepare("delete from school where id=:id");
-	  	if($req->execute([
-		':id'=>intval($id)]
-	  	)){
-	  		return 1;
-	  	}else{
-	  		return 0;
-	  	}
-	}
-
-		public static function modifier($id,$e,$i){
-		$req=config::$bdd->prepare("update school set ".$e."=:".$e." where id=:id");
-		$req->bindValue(':id',$id);
-		$req->bindValue(':'.$e,$i);	
-		
-
-	  	if($req->execute()){
-	  		return true;
-	  	}else{
-	  		return false;
-	  	}
-	}
-
+        return $data[$val];
+    }
+    }
+    public static function supprimer($id){
+        $req=config::$bdd->prepare("delete from school where id=:id");
+        if($req->execute([
+        ':id'=>intval($id)]
+        )){
+            return 1;
+        }else{
+            return 0;
+        }
+    }
+        public static function modifier($id,$e,$i){
+        $req=config::$bdd->prepare("update school set ".$e."=:".$e." where id=:id");
+        $req->bindValue(':id',$id);
+        $req->bindValue(':'.$e,$i); 
+        
+        if($req->execute()){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }
 ?>

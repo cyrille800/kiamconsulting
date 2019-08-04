@@ -16,15 +16,12 @@
         }
         });
         </script>
-
         <link href="../../assets/Backoffice/vendors/global/vendors.bundle.css" rel="stylesheet" type="text/css" />
         <link href="../../assets/Backoffice/css/demo4/style.bundle.css" rel="stylesheet" type="text/css" />
         <link href="../../assets/Backoffice/css/animate.css" rel="stylesheet">
         <link href="../../assets/Backoffice/css/style.css" rel="stylesheet">
-
 </head>
 <body style="padding:0px;margin:0px;background-color:white;border-top:10px solid #efeff5;">
-
                                 
                                 <!-- begin:: Content -->
                                 <div class="kt-content kt-grid__item kt-grid__item--fluid" style="background-color:white;">
@@ -32,8 +29,6 @@
 <div class="preload" style="position:fixed;width:100%;height:100%;background:white;left:0;top:0;z-index:100;padding-top:10%;">
 <center><div class="lds-ring"><div></div><div></div><div></div><div></div></div></center>
 </div>
-
-
 <h1 class="tlt kt-widget-12__title" data-out-effect="fadeOut" data-in-effect="fadeInRight" style="color:#2e3192;margin-left:15%;margin-top:4%;">Bienvenu parmis nous .</h1>
                     <center>
      <img src="../../assets/Backoffice/image/bienvenu.svg" alt="rien a affcihe" width="66%" style="margin-top:2%;"> 
@@ -87,8 +82,6 @@
     $(window).on("load",function(){
            $(".preload").fadeOut("fast");
         })
-
-
     $(function(){
         $('.tlt').textillate({
             loop : true

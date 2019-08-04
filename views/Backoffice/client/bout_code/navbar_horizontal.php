@@ -1,4 +1,4 @@
-                            <div class="kt-container">
+     <div class="kt-container">
                                 <!-- begin: Header Menu -->
                                 <button class="kt-header-menu-wrapper-close" id="kt_header_menu_mobile_close_btn">
                                 <i class="la la-close">
@@ -31,7 +31,6 @@
                                                     </ul>
                                                 </div>
                                             </li>
-
                                             <li class="kt-menu__item kt-menu__item--submenu kt-menu__item--rel"  data-ktmenu-submenu-toggle="click" aria-haspopup="true">
                                                 <a  href="javascript:;" class="kt-menu__link kt-menu__toggle">
                                                     <span class="kt-menu__link-text">
@@ -67,8 +66,6 @@
                                                     </ul>
                                                 </div>
                                             </li>
-
-
                                             <li class="kt-menu__item kt-menu__item--submenu kt-menu__item--rel">
                                                 <a  href="detail.php" target="frame1" class="kt-menu__link ">
                                                     <span class="kt-menu__link-text">
@@ -79,7 +76,6 @@
                                                     </i>
                                                 </a>
                                             </li>
-
                                         </ul>
                                     </div>
                                 </div>
