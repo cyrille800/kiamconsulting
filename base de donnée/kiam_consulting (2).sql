@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Aug 01, 2019 at 05:48 AM
+-- Generation Time: Aug 04, 2019 at 04:31 PM
 -- Server version: 5.6.12-log
 -- PHP Version: 5.4.12
 
@@ -57,14 +57,14 @@ CREATE TABLE IF NOT EXISTS `activiter_client` (
   `nombre_etape_fait` int(11) DEFAULT NULL,
   `etape_actuel` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=36 ;
 
 --
 -- Dumping data for table `activiter_client`
 --
 
 INSERT INTO `activiter_client` (`id`, `id_client`, `id_activiter`, `nombre_etape_fait`, `etape_actuel`) VALUES
-(16, 1, 7, 0, 21);
+(35, 1, 7, 0, 21);
 
 -- --------------------------------------------------------
 
@@ -194,7 +194,7 @@ CREATE TABLE IF NOT EXISTS `etudiant` (
 --
 
 INSERT INTO `etudiant` (`id`, `nom`, `prenom`, `sexe`, `id_client`, `pays`, `ville`, `niveau_scolaire`, `etablissement`, `ecole_choisie`, `specialite`) VALUES
-(1, 'ok', '', 'homme', 1, 'Mustard', 'Mustard', 'Mustard', 'vogt', 6, 'informatique');
+(1, 'ok', 'oi', 'femme', 1, 'Mustard', 'Mustard', 'Mustard', 'vogt', 6, 'informatique');
 
 -- --------------------------------------------------------
 
@@ -263,7 +263,7 @@ CREATE TABLE IF NOT EXISTS `proccedure` (
   `fichier` int(11) DEFAULT NULL,
   `id_active` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=23 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=27 ;
 
 --
 -- Dumping data for table `proccedure`
@@ -271,7 +271,11 @@ CREATE TABLE IF NOT EXISTS `proccedure` (
 
 INSERT INTO `proccedure` (`id`, `titre`, `description`, `fichier`, `id_active`) VALUES
 (21, 'rio', 'dsd', 2, 7),
-(22, 'Bonjour maman', 'comment vous allez ', 2, 7);
+(22, 'Bonjour maman', 'comment vous allez ', 0, 7),
+(23, 'ty', 'ty', 0, 7),
+(24, 'ad', 'gdf', 1, 7),
+(25, 'rios', 'f', 2, 7),
+(26, 'roudourouo', 'fd', 0, 7);
 
 -- --------------------------------------------------------
 
