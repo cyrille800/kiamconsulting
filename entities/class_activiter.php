@@ -104,7 +104,12 @@ public static function nombre_pourcentage($id,$v){
 	public static function afficher_client($id,$v){
 		$requette=config::$bdd->query("select * from activite where etat=".$id);
 		while($data=$requette->fetch()){
-			$fini=self::nombre_pourcentage($id,$v);
+			if($v==""){
+				$fini=0;
+			}else{
+				$fini=self::nombre_pourcentage($id,$v);
+			}
+			
 			$veri=activiter_client::nombre("id_activiter",$data["id"]);
 			echo '<div class="kt-portlet kt-portlet--height-fluid kt-widget-13 col-7 mx-auto" style="border:1px solid #eee;height:225px;">
     <div class="kt-portlet__body">

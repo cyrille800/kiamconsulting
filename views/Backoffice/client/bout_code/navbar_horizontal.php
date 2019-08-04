@@ -76,6 +76,16 @@
                                                     </i>
                                                 </a>
                                             </li>
+                                            <li class="kt-menu__item kt-menu__item--submenu kt-menu__item--rel">
+                                                <a  href="quizz.php" target="frame1" class="kt-menu__link ">
+                                                    <span class="kt-menu__link-text">
+                                                    Quizz-concours</span>
+                                                    <i class="kt-menu__hor-arrow la la-angle-down">
+                                                    </i>
+                                                    <i class="kt-menu__ver-arrow la la-angle-right">
+                                                    </i>
+                                                </a>
+                                            </li>
                                         </ul>
                                     </div>
                                 </div>
