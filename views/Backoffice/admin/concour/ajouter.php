@@ -230,7 +230,7 @@ if(($.trim($("[name='label']").val())=="" || $.trim($("[name='descriptionss']").
 if(($.trim($("[name='label']").val())=="" || $.trim($("[name='descriptionss']").val())=="") || ($.trim($("[name='date']").val())=="" || $.trim($("[name='heures']").val())=="")){
     toastr.error("remplir toutes les cases");
 }else{
-	var heure=$("[name='heures']").val()+","+$("[name='minutes']").val();
+	var heure=$("[name='heures']").val()+":"+$("[name='minutes']").val();
 $.post( "../../../../entities/concour.php",{operation:"modifier",id:$("body").attr("id"),titre:$("[name='label']").val(),date:$("[name='date']").val(),heure:heure,description:$("[name='descriptionss']").val()},function(data){
 	if(data!="ok"){
 		toastr.error(data);

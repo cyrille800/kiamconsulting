@@ -15,11 +15,7 @@
                         </div>
                         <form id="contactForm" class="single-form quate-form" data-toggle="validator">
                             <div id="msgSubmit" class="h3 text-center hidden"></div>
-                            <div class="col-md-4">
-                                <input name="name" class="contact-name form-control" id="name" type="text" placeholder="First Name" required>
-                                <input name="name" class="contact-email form-control" id="L_name" type="text" placeholder="Last Name" required>
-                                <input name="email" class="contact-subject form-control" id="email" type="email" placeholder="Your Email" required>
-                            </div>
+                            
                             <div class="col-sm-12 col-md-8">
                                 <textarea class="contact-message form-control" id="message" placeholder="Your Message" required></textarea>
                                 <button type="submit" class="btn btn-fill">send message <i class="icon icons8-advance" id="form-submit"></i></button>
