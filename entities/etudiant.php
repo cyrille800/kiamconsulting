@@ -64,7 +64,13 @@ $reponse="remplir toutes les cases";
 					etudiant::modifier($id_client,"specialite",$specialite);	
 					$reponse="ok";
 					}
-				}else{
+				}
+				else if($operation=="quizz"){
+					etudiant::modifier($idEtudiant,"resultat",$resultat);
+					$reponse="ok résultat enregistré";
+				}
+				
+				else{
 					$reponse="opération echoué";
 				}	
 		}

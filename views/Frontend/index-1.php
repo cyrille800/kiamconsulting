@@ -14,6 +14,9 @@
                         <div class="uv-subhead-content col-xs-12">
                             <h2>About Us</h2>
                             <span>Curricular Responsive Bootstrap Education Template</span>
+                            <div class="slide-buttons " style="margin-top:50px;">
+                        <a href="#" class="slide-btn btn btn-base">Se connecter</a>
+                    </div>
                         </div>
                     </div>
                 </div>

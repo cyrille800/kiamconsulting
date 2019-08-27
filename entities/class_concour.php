@@ -1,5 +1,6 @@
 <?php 
 require_once "function.php";
+require_once "contractedFunctions.php";
 require_once "config.php"; 
 	config::connexion();
 
@@ -223,6 +224,68 @@ echo $req[1];
 	  		return false;
 	  	}
 	}
-
+	public static function concoursLePlusProche(){
+		$ids=array();
+		$timeDifference=array();
+		$index=0;
+		$date="";
+		$req=config::$bdd->query("select id,date_concour,heure from concours");
+	while ($data=$req->fetch()) {
+			$date.=$data["date_concour"]." ".$data["heure"];
+			if(differenceDate($date)>0)
+			{
+				$ids[$index]=$data["id"];
+				$timeDifference[$index]=differenceDate($date);
+				$index++;
+			}
+			$date="";
+		}
+		 if (count($ids)) {
+			 foreach ($timeDifference as $key => $value) {
+				 if ($value==min($timeDifference)) {
+					 $index=$key;
+					 break;
+				 }
+			 }
+			 return $ids[$index];
+		 }
+		 else return -1;
 }
-?>
+public static function afficherProchainConcours($id){
+	$req=config::$bdd->query("select * from concours where id=".$id);
+	$data=$req->fetch();
+	echo "<h4> Sujet:".$data["titre"]." <h4><br><h4 >Description: ".$data["description"]."</h4><br> <h4>Date: ".$data["date_concour"]."</h4><br> <h4>Heure :";
+	$req=explode(":",$data["heure"]);
+	if(intval($req[0])<10){
+	if(isset($req[0][0])){
+		if($req[0][0]!='0'){
+		echo "0";
+		}
+	}else{
+		echo "0";
+	}
+}
+echo $req[0].' H : ';
+if(intval($req[1])<10){
+	if(isset($req[1][0])){
+		if($req[1][0]!='0'){
+		echo "0";
+		}
+	}else{
+		echo "0";
+	}
+}
+echo $req[1];
+	echo "</h4><br>";
+	return 
+	array(
+		"id" =>$id,
+		"date"=> $data["date_concour"]." ".$data["heure"],
+		"duree"=>$data["duree"]
+	);
+	
+}
+	
+}
+
+echo concours::concoursLePlusProche();

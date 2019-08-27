@@ -1,4 +1,9 @@
-     <div class="kt-container">
+
+    <?php 
+    require_once "../../../entities/class_quizz.php";
+    require_once "../../../entities/class_concour.php";
+    ?>
+<div class="kt-container">
                                 <!-- begin: Header Menu -->
                                 <button class="kt-header-menu-wrapper-close" id="kt_header_menu_mobile_close_btn">
                                 <i class="la la-close">
@@ -77,9 +82,32 @@
                                                 </a>
                                             </li>
                                             <li class="kt-menu__item kt-menu__item--submenu kt-menu__item--rel">
-                                                <a  href="quizz.php" target="frame1" class="kt-menu__link ">
+                                                <?php
+                                                $lien="";
+                                                $temp=concours::concoursLePlusProche();
+                                                if(isset($_SESSION["id"]) && $temp>0)
+                                                $lien=intval(quizz::verifierPasserQuizz($_SESSION["id"],$temp))?"quizzDejaFait":"quizz.php";
+                                                else 
+                                                $lien="quizz.php";
+                                                 ?>
+
+                                                <a  href="<?= $lien ?>" target="frame1" class="kt-menu__link " id="quizz">
                                                     <span class="kt-menu__link-text">
                                                     Quizz-concours</span>
+                                                    <i class="kt-menu__hor-arrow la la-angle-down">
+                                                    </i>
+                                                    <i class="kt-menu__ver-arrow la la-angle-right">
+                                                    </i>
+                                                </a>
+                                            </li>
+                                            <li class="kt-menu__item kt-menu__item--submenu kt-menu__item--rel">
+                                                <a  href="../../../views/Frontend/blog-single.php" class="kt-menu__link ">
+                                                <?php 
+                                                $blog=isset($_GET["commentaire"])?$_GET["commentaire"]:"";
+                                                ?>
+                                                <a  href="<?= '../../../views/Frontend/blog-single.php?commentaire='.$blog?>" class="kt-menu__link ">
+                                                <span class="kt-menu__link-text">
+                                                    Blog</span>
                                                     <i class="kt-menu__hor-arrow la la-angle-down">
                                                     </i>
                                                     <i class="kt-menu__ver-arrow la la-angle-right">
@@ -91,3 +119,6 @@
                                 </div>
                                 <!-- end: Header Menu -->
                             </div>
+                            <script>
+                            </script>
+                            
