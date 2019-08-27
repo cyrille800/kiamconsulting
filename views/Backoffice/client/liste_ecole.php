@@ -25,20 +25,32 @@ require_once "../../../entities/class_activiter_client.php";
         <link href="../../assets/Backoffice/css/demo4/style.bundle.css" rel="stylesheet" type="text/css" />
     </head>
     <body style="padding:0px;margin:0px;" id="<?php echo $_SESSION["id"];?>">
-        
-        
-        <!-- begin:: Content -->
-        <div class="kt-content kt-grid__item kt-grid__item--fluid">
-            <div class="kt-subheader   kt-grid__item" id="kt_subheader">
-    <div class="kt-container ">
+<div class="kt-subheader   kt-grid__item bg-white mb-4" id="kt_subheader" style="padding:10px;padding-left:40px;">
+    <div class="kt-subheader   kt-grid__item" id="kt_subheader">
+    <div class="kt-container  kt-container--fluid ">
         <div class="kt-subheader__main">
-                            <h3 class="kt-subheader__title">Listes des écoles</h3>
+                            <h3 class="kt-subheader__title">Ecoles</h3>
+            
+                            <span class="kt-subheader__separator kt-hidden"></span>
+                <div class="kt-subheader__breadcrumbs">
+                    <a href="#" class="kt-subheader__breadcrumbs-home"><i class="la la-tachometer"></i></a>
+                                            <span class="kt-subheader__breadcrumbs-separator"></span>
+                        <a href="" class="kt-subheader__breadcrumbs-link">
+                            Liste des écoles                        </a>
+                                            <span class="kt-subheader__breadcrumbs-separator"></span>
+                </div>
                     
         </div>
-        <div class="kt-subheader__toolbar">
-            <div class="kt-subheader__wrapper">
-
-<form class="kt-subheader__search" id="kt_subheader_search_form">
+    </div>
+</div>
+                        <div class="kt-subheader__main bg-white">
+                            <h3 class="kt-subheader__title">
+                            Recherche</h3>
+                            <div class="kt-subheader__toolbar" id="kt_subheader_search">
+                <span class="kt-subheader__desc" id="kt_subheader_total">
+                                            <span class="rps">0</span> Totals                                   </span>
+                
+                                    <form class="kt-subheader__search" id="kt_subheader_search_form">
                         <div class="input-group">
                             <input type="text" class="form-control" placeholder="Search..." id="generalSearch">
                             <div class="input-group-append">
@@ -48,12 +60,14 @@ require_once "../../../entities/class_activiter_client.php";
                             </div>
                         </div>
                     </form>
-            </div>
-        </div>
-    </div>
-</div>
-
-            <div class="preload" style="position:fixed;width:100%;height:100%;background:white;left:0;top:0;z-index:100;padding-top:10%;">
+                            </div>
+                            </div>
+                            
+                        </div>        
+        
+        <!-- begin:: Content -->
+        <div class="kt-content kt-grid__item kt-grid__item--fluid">
+ <div class="preload" style="position:fixed;width:100%;height:100%;background:white;left:0;top:0;z-index:100;padding-top:10%;">
                 <center>
                 <div class="lds-ring">
                     <div>
@@ -264,7 +278,10 @@ ecole::afficher_client();
                     if(data!="ok"){
                         toastr.error(data);
                     }else{
-                        toastr.success("l'operation s'est terminé avec succès,<br> veuiller consulter la rubrique plus de détails");
+                        toastr.success("l'operation s'est terminé avec succès,<br> veuiller patienter un instant");
+                        setTimeout(function(){
+                            document.location.href="detail.php";
+                        },1500)
                     }
                 })
             })

@@ -166,6 +166,7 @@
                                 </div>
                             </div>
                             <div class="col-sm-1 " style="">
+                            <a href="../login/login-reg.php" class="slide-btn btn btn-base " id="connexion">Se Connecter</a>
                             </div>
                         </div>
                     </div>

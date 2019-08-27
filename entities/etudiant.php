@@ -25,7 +25,7 @@ if(verification_post(["nom","prenom","id_client","pays","ville","niveau_scolaire
 	if($exemple->ajouter()==true){
 		$reponse="ok";
 	}else{
-		$reponse="il ya un probleme dans l'enregistrement'";
+		$reponse="il ya un probleme dans l'enregistrements";
 	}
 		}else{
 	if(isset($_POST["operation"])){
@@ -64,13 +64,7 @@ $reponse="remplir toutes les cases";
 					etudiant::modifier($id_client,"specialite",$specialite);	
 					$reponse="ok";
 					}
-				}
-				else if($operation=="quizz"){
-					etudiant::modifier($idEtudiant,"resultat",$resultat);
-					$reponse="ok résultat enregistré";
-				}
-				
-				else{
+				}else{
 					$reponse="opération echoué";
 				}	
 		}

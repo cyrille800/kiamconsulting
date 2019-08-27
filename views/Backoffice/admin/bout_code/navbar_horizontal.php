@@ -8,49 +8,18 @@
 					<!-- end:: Header Menu -->
 					<!-- begin:: Header Topbar -->
 					<div class="kt-header__topbar mx-auto">
-						<!--begin: Search -->
-						<div class="kt-header__topbar-item kt-header__topbar-item--search dropdown">
-							<div class="kt-header__topbar-wrapper" data-toggle="dropdown" data-offset="10px,0px">
-								<span class="kt-header__topbar-icon" >
-									<i class="la la-search" style="font-size:25px;">
-									</i>
-								</span>
-							</div>
-							<div class="dropdown-menu dropdown-menu-fit dropdown-menu-right dropdown-menu-top-unround dropdown-menu-anim dropdown-menu-lg">
-								<div class="kt-quick-search kt-quick-search--dropdown kt-quick-search--result-compact" id="kt_quick_search_dropdown">
-									<form method="get" class="kt-quick-search__form">
-										<div class="input-group">
-											<div class="input-group-prepend">
-												<span class="input-group-text">
-													<i class="la la-search" style="font-size:25px;">
-													</i>
-												</span>
-											</div>
-											<input type="text" class="form-control kt-quick-search__input" placeholder="Search...">
-											<div class="input-group-append">
-												<span class="input-group-text">
-													<i class="la la-close kt-quick-search__close">
-													</i>
-												</span>
-											</div>
-										</div>
-									</form>
-									<div class="kt-quick-search__wrapper kt-scroll" data-scroll="true" data-height="325" data-mobile-height="200">
-										
-									</div>
-								</div>
-							</div>
-						</div>
-						<!--end: Search -->
 						<!--begin: Notifications -->
 						
 						<div class="kt-header__topbar-item dropdown">
-							<div class="kt-header__topbar-wrapper" data-toggle="dropdown" data-offset="30px, 0px" aria-expanded="true">
+							<div class="kt-header__topbar-wrapper ss" data-toggle="dropdown" data-offset="30px, 0px" aria-expanded="true">
 								<span class="kt-header__topbar-icon">
 									<i class="la la-bell-o" style="font-size:25px;">
 									</i>
-									<span class="kt-badge kt-badge--dot kt-badge--notify kt-badge--sm kt-badge--brand">
-									</span>
+                        <div class="spinner-grow text-primary spinner-grow-sm signaler" role="status" style=";<?php 
+echo (notification::nombre(0)!=0)?"":"display:none;";
+                        ?>">
+                            <span class="sr-only">Loading...</span>
+                        </div>
 								</span>
 							</div>
 							<div class="dropdown-menu dropdown-menu-fit dropdown-menu-right dropdown-menu-anim dropdown-menu-top-unround dropdown-menu-lg">
@@ -59,179 +28,18 @@
 										<h3 class="kt-head__title">
 										User Notifications</h3>
 										<div class="kt-head__sub">
-											<span class="kt-head__desc">
-											23 new notifications</span>
+											<span class="kt-head__desc" style="border-radius:0px;">
+											<span class="total">6</span> new notifications</span>
+											<div class="btn btn-primary text-center text-white del" style="cursor:pointer;border-radius:0px;">Tout marquer comme lu</div>
 										</div>
 									</div>
 									<div class="kt-notification kt-margin-t-30 kt-margin-b-20 kt-scroll" data-scroll="true" data-height="270" data-mobile-height="220">
-										<a href="#" class="kt-notification__item">
-											<div class="kt-notification__item-icon">
-												<i class="la la-line-chart kt-font-success" style="font-size:25px;">
-												</i>
-											</div>
-											<div class="kt-notification__item-details">
-												<div class="kt-notification__item-title">
-													New order has been received
-												</div>
-												<div class="kt-notification__item-time">
-													2 hrs ago
-												</div>
-											</div>
-										</a>
-										<a href="#" class="kt-notification__item">
-											<div class="kt-notification__item-icon">
-												<i class="la la-box-1 kt-font-brand" style="font-size:25px;">
-												</i>
-											</div>
-											<div class="kt-notification__item-details">
-												<div class="kt-notification__item-title">
-													New customer is registered
-												</div>
-												<div class="kt-notification__item-time">
-													3 hrs ago
-												</div>
-											</div>
-										</a>
-										<a href="#" class="kt-notification__item">
-											<div class="kt-notification__item-icon">
-												<i class="la la-chart2 kt-font-danger" style="font-size:25px;">
-												</i>
-											</div>
-											<div class="kt-notification__item-details">
-												<div class="kt-notification__item-title">
-													Application has been approved
-												</div>
-												<div class="kt-notification__item-time">
-													3 hrs ago
-												</div>
-											</div>
-										</a>
-										<a href="#" class="kt-notification__item">
-											<div class="kt-notification__item-icon">
-												<i class="la la-image-file kt-font-warning" style="font-size:25px;">
-												</i>
-											</div>
-											<div class="kt-notification__item-details">
-												<div class="kt-notification__item-title">
-													New file has been uploaded
-												</div>
-												<div class="kt-notification__item-time">
-													5 hrs ago
-												</div>
-											</div>
-										</a>
-										<a href="#" class="kt-notification__item">
-											<div class="kt-notification__item-icon">
-												<i class="la la-bar-chart kt-font-info" style="font-size:25px;">
-												</i>
-											</div>
-											<div class="kt-notification__item-details">
-												<div class="kt-notification__item-title">
-													New user feedback received
-												</div>
-												<div class="kt-notification__item-time">
-													8 hrs ago
-												</div>
-											</div>
-										</a>
-										<a href="#" class="kt-notification__item">
-											<div class="kt-notification__item-icon">
-												<i class="la la-pie-chart-2 kt-font-success" style="font-size:25px;">
-												</i>
-											</div>
-											<div class="kt-notification__item-details">
-												<div class="kt-notification__item-title">
-													System reboot has been successfully completed
-												</div>
-												<div class="kt-notification__item-time">
-													12 hrs ago
-												</div>
-											</div>
-										</a>
-										<a href="#" class="kt-notification__item">
-											<div class="kt-notification__item-icon">
-												<i class="la la-favourite kt-font-focus" style="font-size:25px;">
-												</i>
-											</div>
-											<div class="kt-notification__item-details">
-												<div class="kt-notification__item-title">
-													New order has been placed
-												</div>
-												<div class="kt-notification__item-time">
-													15 hrs ago
-												</div>
-											</div>
-										</a>
-										<a href="#" class="kt-notification__item kt-notification__item--read">
-											<div class="kt-notification__item-icon">
-												<i class="la la-safe kt-font-primary" style="font-size:25px;">
-												</i>
-											</div>
-											<div class="kt-notification__item-details">
-												<div class="kt-notification__item-title">
-													Company meeting canceled
-												</div>
-												<div class="kt-notification__item-time">
-													19 hrs ago
-												</div>
-											</div>
-										</a>
-										<a href="#" class="kt-notification__item">
-											<div class="kt-notification__item-icon">
-												<i class="la la-psd kt-font-success" style="font-size:25px;">
-												</i>
-											</div>
-											<div class="kt-notification__item-details">
-												<div class="kt-notification__item-title">
-													New report has been received
-												</div>
-												<div class="kt-notification__item-time">
-													23 hrs ago
-												</div>
-											</div>
-										</a>
-										<a href="#" class="kt-notification__item">
-											<div class="kt-notification__item-icon">
-												<i class="flaticon-download-1 kt-font-danger">
-												</i>
-											</div>
-											<div class="kt-notification__item-details">
-												<div class="kt-notification__item-title">
-													Finance report has been generated
-												</div>
-												<div class="kt-notification__item-time">
-													25 hrs ago
-												</div>
-											</div>
-										</a>
-										<a href="#" class="kt-notification__item">
-											<div class="kt-notification__item-icon">
-												<i class="flaticon-security kt-font-warning">
-												</i>
-											</div>
-											<div class="kt-notification__item-details">
-												<div class="kt-notification__item-title">
-													New customer comment recieved
-												</div>
-												<div class="kt-notification__item-time">
-													2 days ago
-												</div>
-											</div>
-										</a>
-										<a href="#" class="kt-notification__item">
-											<div class="kt-notification__item-icon">
-												<i class="la la-pie-chart kt-font-focus" style="font-size:25px;">
-												</i>
-											</div>
-											<div class="kt-notification__item-details">
-												<div class="kt-notification__item-title">
-													New customer is registered
-												</div>
-												<div class="kt-notification__item-time">
-													3 days ago
-												</div>
-											</div>
-										</a>
+
+									<div class="remplir">
+										<?php 
+									notification::afficher(0);
+									?>
+									</div>
 									</div>
 								</form>
 							</div>

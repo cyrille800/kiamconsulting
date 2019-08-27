@@ -234,14 +234,7 @@ foreach ($tab as $key => $value) {
                                                                 </span>
                                                             </li>';                       
                     }
-                                                            echo '<li class="kt-nav__item">
-                                                                <a class="kt-nav__link" target="_blank" href="detail.php?id='.$data["id"].'">
-                                                                    <i class="kt-nav__link-icon la la-eye">
-                                                                    </i>
-                                                                    <span class="kt-nav__link-text">
-                                                                    Plus de détails</span>
-                                                                </a>
-                                                            </li>
+                                                            echo '
                                                         </ul>
                                                     </div>
                                                 </div>

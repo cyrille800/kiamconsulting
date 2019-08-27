@@ -44,12 +44,13 @@ public function __construct($a,$b,$c,$d){
 
 function ajouter(){
 	if(self::verifiers("id_client",$this->get_id_client(),$this->get_etape_actuel())==true){
-		$req=config::$bdd->prepare("insert into activiter_client(id_client,id_activiter,nombre_etape_fait,etape_actuel) VALUE(:id_client,:id_activiter,:nombre_etape_fait,:etape_actuel)");
+		$req=config::$bdd->prepare("insert into activiter_client(id_client,id_activiter,nombre_etape_fait,etape_actuel,etat) VALUE(:id_client,:id_activiter,:nombre_etape_fait,:etape_actuel,:etat)");
 		$req->bindValue(':id_client',$this->get_id_client());
 
 		$req->bindValue(':id_activiter',$this->get_id_activiter());
 		$req->bindValue(':nombre_etape_fait',$this->get_nombre_etape_fait());
 		$req->bindValue(':etape_actuel',$this->get_etape_actuel());
+		$req->bindValue(':etat',0);
 	  	if($req->execute()){
 	  		return 1;
 	  	}
@@ -77,9 +78,10 @@ public static function verifiers($type,$valeur,$id){
 
 	}
 
-	public static function nombre($v,$id){
-	$requette=config::$bdd->prepare("select count(*) from activiter_client where ".$v."=:".$v);
+	public static function nombre($id_client,$v,$id){
+	$requette=config::$bdd->prepare("select count(*) from activiter_client where ".$v."=:".$v." && id_client=:id_client");
 	$requette->bindValue(":".$v,$id);
+	$requette->bindValue(":id_client",$id_client);
 	$requette->execute();
     $data=$requette->fetch();
 	return $data[0];

@@ -30,7 +30,6 @@
     <link rel="stylesheet" href="../Frontend/assets/font/flaticon.css">
     <!-- Bootstrap-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <!-- <link rel="stylesheet" href="../Frontend/assets/plugins/css/bootstrap.min.css"> -->
 
     <!-- Animation -->
     <link rel="stylesheet" href="../Frontend/assets/plugins/css/animate.css">
@@ -54,11 +53,12 @@
         <![endif]-->
 
 </head>
+
 <body class="login-reg-page">
     <div class="uv-login-reg-form">
         <div class="container">
             <div class="row">
-                <div class="col-md-8 col-xs-12 uv-login-reg-from-inner">
+                <div class="col-sm-6 col-xs-12 uv-login-reg-from-inner">
                     <div class="login-logo">
                         <a href="index.html">
                             <img src="../Frontend/assets/images/univ-logo-lg.png" alt="" class="img-responsive">
@@ -68,8 +68,8 @@
                         <!-- Nav tabs -->
                         <div class="login-reg-nav">
                             <ul class="nav nav-tabs" role="tablist" id="myTabs">
-                                <li role="presentation" ><a  href="#home" aria-controls="home" role="tab" data-toggle="tab">Se connecter</a></li>
-                                <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">S'enregistrer</a></li>
+                                <li role="presentation" class=""><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Login</a></li>
+                                <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Register</a></li>
                             </ul>
                             <hr>
                         </div>
@@ -83,24 +83,19 @@
                                 <form id="login-form" class="uv-login-form">
 
                                     <div class="form-group">
-                                        <input class="input100" type="text" name="operation" value="connexion" style="display:none;">
-
                                         <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
                                     </div>
                                     <div class="form-group">
                                         <input type="password" name="password" id="login-password" tabindex="2" class="form-control" placeholder="Password">
                                     </div>
-                                    <div class="erreur" style="background-color:rgba(255,0,0,0.1);color:red;padding:2%;width:100%;border-radius:7px;display:none;">
-                                        message
-                                    </div>
                                     <div class="form-group text-center">
-                                        <input type="checkbox" tabindex="3" class="" name="remember-me" id="remember">
-                                        <label for="remember"> Se souvenir de moi</label>
+                                        <input type="checkbox" tabindex="3" class="" name="remember" id="remember">
+                                        <label for="remember"> Remember Me</label>
                                     </div>
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-sm-12">
-                                                <button type="submit" class="form-control btn btn-fill">Connexion</button>
+                                                <button type="submit" class="form-control btn btn-fill">Login Account</button>
                                             </div>
                                         </div>
                                     </div>
@@ -108,7 +103,7 @@
                                         <div class="row">
                                             <div class="col-lg-12">
                                                 <div class="text-center">
-                                                    <a href="forget.php" tabindex="5" class="forgot-password">mot de passe oublié?</a>
+                                                    <a href="#" tabindex="5" class="forgot-password">Forgot Password?</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -117,24 +112,24 @@
                             </div>
                             <div role="tabpanel" class="tab-pane" id="profile">
                                 <form id="register-form" class="uv-reg-form">
-                                    <div class="form-group ">
-                                        <div class="custom-control custom-radio custom-control-inline pull-left mb-2">
-                                            <input type="radio" id="customRadioInline1" name="type" class="custom-control-input" value="0">
+                                    <div class="form-group">
+                                        <div class="custom-control custom-radio custom-control-inline ">
+                                            <input type="radio" id="customRadioInline1" name="type" class="custom-control-input" value="Etudiant">
                                             <label class="custom-control-label" for="customRadioInline1">Etudiant</label>
                                         </div>
                                         <div class="custom-control custom-radio custom-control-inline pull right">
-                                            <input type="radio" id="customRadioInline2" name="type" class="custom-control-input" value="1">
+                                            <input type="radio" id="customRadioInline2" name="type" class="custom-control-input" value="Patient">
                                             <label class="custom-control-label" for="customRadioInline2">Patient</label>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" name="username" id="regusername" tabindex="1" class="form-control" placeholder="Username" value="">
+                                        <input type="text" name="regusername" id="regusername" tabindex="1" class="form-control" placeholder="Username" value="">
                                     </div>
                                     <div class="form-group">
                                         <input type="text" name="email" id="email" tabindex="1" class="form-control" placeholder="Email Address" value="">
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" name="password" id="regpassword" tabindex="2" class="form-control" placeholder="Password">
+                                        <input type="password" name="regpassword" id="regpassword" tabindex="2" class="form-control" placeholder="Password">
                                     </div>
                                     <div class="form-group">
                                         <input type="password" name="confirmPassword" id="confirmPassword" tabindex="2" class="form-control" placeholder="Confirm Password">
@@ -142,7 +137,7 @@
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-sm-12">
-                                                <button type="submit" class="form-control btn btn-fill ">Créer un compte</button>
+                                                <button type="submit" class="form-control btn btn-fill ">Register an Account</button>
                                             </div>
                                         </div>
                                     </div>
@@ -162,36 +157,6 @@
         |========================
         -->
     <!-- jquery -->
-    <script src="../Frontend/assets/plugins/js/jquery-1.11.3.min.js"></script>
-        <!-- Bootstrap -->
-        <script src="../Frontend/assets/plugins/js/bootstrap.min.js"></script>
-        <!-- mean menu nav-->
-        <script src="../Frontend/assets/plugins/js/meanmenu.js"></script>
-        <!-- ajaxchimp -->
-        <script src="../Frontend/assets/plugins/js/jquery.ajaxchimp.min.js"></script>
-        <!-- wow -->
-        <script src="../Frontend/assets/plugins/js/wow.min.js"></script>
-        <!-- Owl carousel-->
-        <script src="../Frontend/assets/plugins/js/owl.carousel.js"></script>
-        <!--dropdownhover-->
-        <script src="../Frontend/assets/plugins/js/bootstrap-dropdownhover.min.js"></script>
-        <!--jquery-ui.min-->
-        <script src="../Frontend/assets/plugins/js/bars.js"></script>
-        <!--validator -->
-        <script src="../Frontend/assets/plugins/js/validator.min.js"></script>
-        <!--smooth scroll-->
-        <script src="../Frontend/assets/plugins/js/smooth-scroll.js"></script>
-        <!-- Fancybox js-->
-        <script src="../Frontend/assets/plugins/js/jquery.fancybox.min.js"></script>
-        <!-- fitvids -->
-        <script src="../Frontend/assets/plugins/js/jquery.fitvids.js"></script>
-        <!-- SELECTIZE-->
-        <script src="../Frontend/assets/plugins/js/standalone/selectize.js"></script>
-        <!-- isotope js-->
-        <script src="../Frontend/assets/plugins/js/isotope.pkgd.js"></script>
-        <script src="../Frontend/assets/plugins/js/packery-mode.pkgd.js"></script>
-        <script src="../Frontend/assets/plugins/js/jquery.inview.min.js"></script>
-        <script src="../Frontend/assets/plugins/js/progressbar.min.js"></script>
     <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
     <!--===============================================================================================-->
     <script src="vendor/animsition/js/animsition.min.js"></script>
@@ -209,14 +174,24 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/additional-methods.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
-    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
-    
-
     <!-- init -->
-    <script src="../Frontend/assets/js/init.js"></script>
+    <!-- <script src="../Frontend/assets/js/init.js"></script> -->
     <script>
         $(function() {
+            $("[role='presentation']").each(function() {
+                $(this).click(function() {
+
+                    if ($(this).index() === 0) {
+                        $(this).addClass("active");
+
+                        $("[role='presentation']").eq(1).removeClass("active");
+                    } else if ($(this).index() === 1) {
+                        $(this).addClass("active");
+                        $("[role='presentation']").eq(0).removeClass("active");
+
+                    }
+                });
+            })
             $("#customRadioInline1").click(function() {
                 swal.fire({
                     title: 'Etudiant!',
@@ -245,58 +220,6 @@
                 })
             })
 
-
-            if (Cookies.get("username") != undefined) {
-                $("[name='username']").val(Cookies.get("username"))
-                $("[name='password']").val(Cookies.get("password"))
-                $("[name='remember-me']").attr("checked", "checked")
-            }
-            $("#login-form").submit(function(e) {
-                e.preventDefault();
-
-                $.ajax({
-                    type: 'POST',
-                    url: '../../entities/client.php',
-                    data: new FormData(this),
-                    contentType: false,
-                    cache: false,
-                    processData: false,
-                    success: function(data) {
-                        // alert(data);
-                        if (data != "ok") {
-                            $(".erreur").text(data)
-                            $(".erreur").fadeIn("fast");
-                            setTimeout(function() {
-                                $(".erreur").fadeOut("fast");
-                            }, 2000)
-                        } else {
-                            $(".erreur").hide();
-                            if ($("[name='remember-me']").prop("checked") == true) {
-                                Cookies.set('username', $("[name='username']").val(), {
-                                    expires: 360,
-                                    path: ''
-                                });
-                                Cookies.set('password', $("[name='password']").val(), {
-                                    expires: 360,
-                                    path: ''
-                                });
-                            } else {
-                                Cookies.remove('username', {
-                                    path: ''
-                                });
-                                Cookies.remove('password', {
-                                    path: ''
-                                });
-                            }
-
-
-                            document.location.href = "../Backoffice/client/index.php?commentaire="+"<?= isset($_GET["commentaire"])?$_GET["commentaire"]:""?>";
-                        }
-                    }
-                })
-
-            })
-
             $.validator.setDefaults({
                 errorClass: 'invalid-feedback',
                 highlight: function(element) {
@@ -322,7 +245,7 @@
                     value.length >= 6 &&
                     /\d/.test(value) &&
                     /[a-z]/i.test(value);
-            }, '6 caractères au moins avec au moins 1 chiffre');
+            }, '6 caractères au moins avec a moins 1 chiffre ');
 
             $.validator.addMethod("specialChars", function(value, element) {
                 var regex = new RegExp("^[a-zA-Z0-9éèà]+$");
@@ -354,9 +277,9 @@
                                 }
                             }
                         },
-
+                      
                     },
-                    password: {
+                    regpassword: {
                         required: true,
                         strongPassword: true
                     },
@@ -364,7 +287,7 @@
                         required: true,
                         equalTo: '#regpassword'
                     },
-                    username: {
+                    regusername: {
                         required: true,
                         nowhitespace: true,
                         specialChars: true,
@@ -372,7 +295,7 @@
                             url: "../../entities/remoteClientUsername.php",
                             type: "post",
                             data: {
-                                username: function() {
+                                regusername: function() {
                                     return $("#regusername").val();
                                 }
                             }
@@ -390,7 +313,7 @@
                         remote: "mail déjà utilisé",
 
                     },
-                    username: {
+                    regusername: {
                         required: 'ce champ est requis',
                         remote: "username déjà utilisé",
                     },
@@ -402,22 +325,28 @@
                     },
                 },
                 submitHandler: function(form) {
+                  
+                    alert("submitted");
 
                     $.ajax({
-                        type: "POST",
-                        url: "../../entities/client.php",
-                        data: $("#register-form").serialize() + "&operation=enregistrer",
-
-                        success: function(data) {
-                            // alert(data);
-                            // window.location.href="../../entities/client.php";
-                        }
-                    });
+                            type: "POST",
+                            url: "../../entities/client.php",
+                            data: $(".login100-form.validate-form.flex-sb.flex-w").serialize()+ "&operation='enregistrer'",
+                            
+                            success: function(data) {
+                                alert(data);
+                                    // window.location.href="../../entities/client.php";
+                            }
+                        });
 
                     return false;
                 }
 
             })
+
+     
+
+
 
 
 

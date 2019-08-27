@@ -1,7 +1,8 @@
 <?php 
-include "../../../entities/class_ecole.php";
-include "../../../entities/class_concour.php";
-include "../../../entities/class_activiter.php";
+require "../../../entities/class_ecole.php";
+require "../../../entities/class_concour.php";
+require "../../../entities/class_activiter.php";
+require "../../../entities/class_notification.php";
 ?>
 <!DOCTYPE html>
 <html lang="en" >
@@ -190,7 +191,6 @@ include "bout_code/liste_mode.php";
 
 	<script src="../../assets/Backoffice/js/jquery.js" type="text/javascript">
 	</script>
-	
 	<script>
 	var KTAppOptions = {
 	"colors": {
@@ -237,11 +237,143 @@ include "bout_code/liste_mode.php";
 	<!--end::Page Vendors -->
 	<script src="../../assets/Backoffice/js/demo1/pages/dashboard.js" type="text/javascript">
 	</script>
+	<script src="http://localhost:1337/socket.io/socket.io.js" type="text/javascript"></script>
 	<script>
 		$(function(){
+
+			            var socket = io.connect("http://localhost:1337");
+
+            socket.on("notification_message_admin",function(message){
+    toastr.info("Vous avez un nouveau message");
+    $(".iok").text(parseInt($(".iok").text())+1);
+})
+
+socket.on("recevoir_notification",function(data){
+	if(data.type=="info"){
+		toastr.info(data.message);
+	}
+	if(data.type=="warning"){
+		toastr.warning(data.message);
+	}
+	if(data.type=="primary"){
+		toastr.primary(data.message);
+	}
+	if(data.type=="error"){
+		toastr.error(data.message);
+	}
+})
+
+socket.on("resd",function(nombre){
+    $(".iok").text(parseInt($(".iok").text())-nombre.nombre_message);
+})
+
+
+
+$.get("../../../entities/message.php",{operation:"tout_afficher"},function(data){
+    if(data!=0){
+        if(parseInt($(".iok").text())!=data){
+         $(".iok").text(data);   
+        }
+    }else{
+            $(".iok").text("0");
+    }
+})
+
+			        $(".del").click(function(){
+            $(".remplir").fadeOut("fast").queue(function(){
+                $(".hy").remove();
+                $(this).dequeue();
+            })
+             $.post("../../../entities/notification.php",{operation:"lues",id_client:0})
+             $(".signaler").hide();
+        })
+
 $(".click").click(function(){
 	$('[data-dismiss="modal"]').trigger("click");
 })
+
+var i=0;
+$(".hy").each(function(){
+	i++;
+	$(".total").text(i)
+})
+
+        $(".hy").click(function(){
+              $("#kt_offcanvas_toolbar_quick_actions").addClass(" kt-offcanvas-panel--on");
+              $("#kt_offcanvas_toolbar_quick_actions").css("opacity","1");
+              $("#kt_offcanvas_toolbar_quick_actions").after('<div class="kt-offcanvas-panel-overlay bv"></div>')
+              $(".bv").click(function(){
+               $("#kt_offcanvas_toolbar_quick_actions").removeClass("kt-offcanvas-panel--on"); 
+               $("#kt_offcanvas_toolbar_quick_actions").css("opacity","0");
+               $(this).remove();
+              })
+
+              $.post("../../../entities/notification.php",{operation:"lue",id_client:0,id_notif:$(this).attr("id")})
+              $(this).remove()  
+            var i=0;
+            $(".remplir").children().each(function(){
+i++;
+            })
+
+            if(i==0){
+                $(".signaler").hide();
+            }          
+        })
+
+                $(".ss").click(function(){
+            var i=0;
+            $(".remplir").children().each(function(){
+i++;
+            })
+            if(i==0){
+              $("#kt_offcanvas_toolbar_quick_actions").addClass(" kt-offcanvas-panel--on");
+              $("#kt_offcanvas_toolbar_quick_actions").css("opacity","1");
+              $("#kt_offcanvas_toolbar_quick_actions").after('<div class="kt-offcanvas-panel-overlay bv"></div>')
+              $(".bv").click(function(){
+               $("#kt_offcanvas_toolbar_quick_actions").removeClass("kt-offcanvas-panel--on"); 
+               $("#kt_offcanvas_toolbar_quick_actions").css("opacity","0");
+               $(this).remove();
+              })
+             setTimeout(function(){
+                $(".dropdown-menu.dropdown-menu-fit.dropdown-menu-right.dropdown-menu-anim.dropdown-menu-top-unround.dropdown-menu-lg").removeClass("show")
+             },60)
+
+            }
+        })
+
+
+socket.on("recevoir_notification",function(data){
+                    $(".signaler").show()
+                    $.post("../../../entities/notification.php",{operation:"dernier_time",id_client:0},function(datase){
+                        $(".kt-timeline").prepend(datase);
+                    })
+                    $.post("../../../entities/notification.php",{operation:"dernier",id_client:0},function(datas){
+                        $(".remplir").show();
+                        $(".remplir").prepend(datas);
+        $(".hy").click(function(){
+              $("#kt_offcanvas_toolbar_quick_actions").addClass(" kt-offcanvas-panel--on");
+              $("#kt_offcanvas_toolbar_quick_actions").css("opacity","1");
+              $("#kt_offcanvas_toolbar_quick_actions").after('<div class="kt-offcanvas-panel-overlay bv"></div>')
+              $(".bv").click(function(){
+               $("#kt_offcanvas_toolbar_quick_actions").removeClass("kt-offcanvas-panel--on"); 
+               $("#kt_offcanvas_toolbar_quick_actions").css("opacity","0");
+               $(this).remove();
+              })
+
+              $.post("../../../entities/notification.php",{operation:"lue",id_client:0,id_notif:$(this).attr("id")})
+              $(this).remove()  
+            var i=0;
+            $(".remplir").children().each(function(){
+i++;
+            })
+
+            if(i==0){
+                $(".signaler").hide();
+            }          
+        })
+                    })
+})
+
 		})
 	</script>
 </body>

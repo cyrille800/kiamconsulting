@@ -85,7 +85,7 @@ function ajouter(){
 
 	if(self::verifiers("id_client",$this->get_id_client())==true){
 
-		$req=config::$bdd->prepare("insert into etudiant(nom,prenom,sexe,id_client,pays,ville,niveau_scolaire,etablissement) VALUE(:nom,:prenom,:sexe,:id_client,:pays,:ville,:niveau_scolaire,:etablissement)");
+		$req=config::$bdd->prepare("insert into etudiant(nom,prenom,sexe,id_client,pays,ville,niveau_scolaire,etablissement,ecole_choisie,specialite,resultat) VALUE(:nom,:prenom,:sexe,:id_client,:pays,:ville,:niveau_scolaire,:etablissement,0,'',0)");
 		$req->bindValue(':nom',$this->get_nom());
 		$req->bindValue(':prenom',$this->get_prenom());
 		$req->bindValue(':sexe',$this->get_sexe());
@@ -93,8 +93,7 @@ function ajouter(){
 		$req->bindValue(':pays',$this->get_pays());
 		$req->bindValue(':ville',$this->get_ville());
 		$req->bindValue(':niveau_scolaire',$this->get_niveau_scolaire());
-		$req->bindValue(':etablissement',$this->get_etablissement());
-		
+		$req->bindValue(':etablissement',$this->get_etablissement());		
 	  	if($req->execute()){
 	  		return 1;
 	  	}

@@ -28,19 +28,11 @@ require_once "../../../entities/class_details_plus.php";
         <link href="../../assets/Backoffice/vendors/global/vendors.bundle.css" rel="stylesheet" type="text/css" />
         <link href="../../assets/Backoffice/css/demo4/style.bundle.css" rel="stylesheet" type="text/css" />
     </head>
-    <body style="padding:0px;margin:0px;">
+    <body style="padding:0px;margin:0px;" id=<?php echo $_SESSION["id"];?>>
         
         
         <!-- begin:: Content -->
         <div class="kt-content kt-grid__item kt-grid__item--fluid">
-            <div class="kt-subheader   kt-grid__item" id="kt_subheader">
-                <div class="kt-container ">
-                    <div class="kt-subheader__main">
-                        <h3 class="kt-subheader__title">Mon choix</h3>
-                        
-                    </div>
-                </div>
-            </div>
             <div class="preload" style="position:fixed;width:100%;height:100%;background:white;left:0;top:0;z-index:100;padding-top:10%;">
                 <center>
                 <div class="lds-ring">
@@ -74,12 +66,17 @@ require_once "../../../entities/class_details_plus.php";
                 $specialite=ecole::retourne_valeur("id",$valeur,"specialite");
                 $specialite=explode(";",$specialite);
                 $row=activiter_client::retourne_valeur("id_client",$_SESSION["id"],"id");
-                if($row!=0){
-                echo '<div class="alert alert-info fade show specialite" role="alert">
-                    <div class="alert-icon"><i class="la la-question-circle"></i></div>
-                    <div class="alert-text">Vous ne pouvez plus modifier les informations concernant l\'ecole choisi,<br>Vous devez annuler toutes les activitées en cours pour pouvoir faire des modifications .</div>
+                
+                echo '<div class="alert alert-info fade show specialite bgh" style="display:';
+if($row!=0){
+echo "block";
+}else{
+echo "none";
+}
+                echo ';">
+                    <span class="alert-text">Vous ne pouvez plus modifier les informations concernant l\'ecole choisi,<br>Vous devez annuler toutes les activitées en cours pour pouvoir faire des modifications .</span>
                 </div>';
-                }
+                
                 if($t=="0" || $t==""){
                 echo '<div class="alert alert-danger fade show specialite" role="alert">
                     <div class="alert-icon"><i class="la la-question-circle"></i></div>
@@ -88,7 +85,10 @@ require_once "../../../entities/class_details_plus.php";
                 }
                 ?>
                 <div class="kt-portlet kt-widget kt-widget--fit kt-widget--general-3">
-                    <div class="row px-4 py-4">
+                    <?php 
+if($_SESSION["type"]==0){
+    ?>
+<div class="row px-4 py-4">
                         <div class="col-md-1 col-xs-12">
                             <img src="../../assets/Backoffice/media/ecoles/<?php echo $valeur;?>.png" alt="image" class="rounded-circle" width="85px">
                         </div>
@@ -104,13 +104,13 @@ require_once "../../../entities/class_details_plus.php";
                             <div class="row pt-3">
                                 <span class="kt-widget__caption col-10">Progress</span>
                                 <?php 
-                                if(isset($_COOKIE["id_activiter"])){
-                                $nombre=activiter::nombre_pourcentage($_SESSION["id"],$_COOKIE["id_activiter"]);
+                                if(isset($_COOKIE["id_activiter".$_SESSION["id"]])){
+                                $nombre=activiter::nombre_pourcentage($_SESSION["id"],$_COOKIE["id_activiter".$_SESSION["id"]]);
                                 }else{
                                 $nombre=0;
                                 }
                                 ?>
-                                <span class="kt-widget__value col-1 pb-1"><?php echo $nombre;?>%</span>
+                                <span class="kt-widget__value col-1 pb-1"><span class="ki"><?php echo $nombre;?></span>%</span>
                                 <div class="progress col-12" style="height:5px;border-radius:5px;">
                                     <!-- Doc: A bootstrap progress bar can be used to show a user how far along it's in a process, see https://getbootstrap.com/docs/4.1/components/progress/ -->
                                     <div class="progress-bar bg-brand" role="progressbar" style="width: <?php echo $nombre;?>%;border-radius:5px;" aria-valuenow="<?php echo $nombre;?>" aria-valuemin="0" aria-valuemax="100"></div>
@@ -146,7 +146,7 @@ require_once "../../../entities/class_details_plus.php";
                                     }
                                     }
                                     $cnombre=activiter::nombre("etat",1);
-                                    $cd=activiter_client::nombre("id_client",$_SESSION["id"]);
+                                    $cd=activiter_client::nombre($_SESSION["id"],"id_client",$_SESSION["id"]);
                                     ?>
                                 </div>
                                 <div class="pl-4 ml-5 col-md-3 col-xs-12 row">
@@ -162,7 +162,7 @@ require_once "../../../entities/class_details_plus.php";
                                     </div>
                                     <div class="col-md-4 px-2 py-2 ml-2" style="background-color:#f7f8fa;">
                                         <div class="row">
-                                            <div class="col-md-12 text-center text-primary lead pb-2 pt-4">
+                                            <div class="col-md-12 text-center text-primary lead pb-2 pt-4 nombre_actif">
                                                 <b><?php echo $cd;?></b>
                                             </div>
                                             <div class="col-md-12 text-center">
@@ -172,32 +172,34 @@ require_once "../../../entities/class_details_plus.php";
                                     </div>
                                 </div>
                             </div>
+    <?php
+}
+                    ?>
                             <div class="kt-portlet__foot kt-portlet__foot--fit">
-                                <div class="kt-widget__nav ">
-                                    <ul class="nav nav-tabs nav-tabs-space-xl nav-tabs-line nav-tabs-clear nav-tabs-bold nav-tabs-line-3x nav-tabs-line-brand kt-portlet__space-x" role="tablist">
+                                <div class="kt-widget__nav bg-white">
+                                    <ul class="nav nav-tabs nav-tabs-space-xl nav-tabs-line nav-tabs-clear nav-tabs-bold nav-tabs-line-3x nav-tabs-line-brand kt-portlet__space-x" style="background-color:#edeff4;" role="tablist">
                                         <li class="nav-item iop">
-                                            <a class="nav-link  bf <?php echo (isset($_COOKIE["id_activiter"]))?"":"active"; ?> " href="activiter.php" target="frame2">
+                                            <a class="nav-link  bf <?php echo (isset($_COOKIE["id_activiter".$_SESSION["id"]]))?"":"active"; ?> " href="activiter.php" target="frame2">
                                                 <i class="la la-tachometer" style="font-size:25px;"></i> Activités
                                             </a>
                                         </li>
                                         <li class="nav-item iop">
-                                            <a class="nav-link  bf <?php echo (isset($_COOKIE["id_activiter"]))?"active":""; ?> " href="proccedure.php" target="frame2">
+                                            <a class="nav-link  bf <?php echo (isset($_COOKIE["id_activiter".$_SESSION["id"]]))?"active":""; ?> " href="proccedure.php" target="frame2">
                                                 <i class="la la-paste"></i> Proccédure
                                             </a>
                                         </li>
-                                        <li class="nav-item iop">
-                                            <a class="nav-link bf" href="upload.php" target="frame2">
-                                                <i class="la la-picture-o"></i> Uploads
-                                            </a>
-                                        </li>
-                                        <li class="nav-item iop">
+<?php 
+if($_SESSION["type"]==0){
+echo '                                        <li class="nav-item iop">
                                             <a class="nav-link bf" href="plus.php" target="frame2">
-                                                <i class="la la-plus-square"></i> plus d'informations sur l'école
+                                                <i class="la la-plus-square"></i> plus d\'informations sur l\'école
                                             </a>
-                                        </li>
+                                        </li>';
+}
+?>
                                     </ul>
                                 </div>
-                                <iframe src="<?php echo (isset($_COOKIE["id_activiter"]))?"proccedure.php":"activiter.php"; ?>" style="height:750px;border:none;background-color:white;padding:0px;margin:0px;" class="col-md-12" name="frame2">
+                                <iframe src="<?php echo (isset($_COOKIE["id_activiter".$_SESSION["id"]]))?"proccedure.php":"activiter.php"; ?>" style="height:800px;border:none;background-color:white;padding:0px;" class="col-md-12" name="frame2">
                                 
                                 </iframe>
                             </div>
@@ -251,6 +253,7 @@ require_once "../../../entities/class_details_plus.php";
                     $(".preload").fadeOut("fast");
                     })
                     $(function(){
+                        var ideo=$("body").attr("id");
                     toastr.options = {
                     "closeButton": false,
                     "debug": false,
@@ -293,6 +296,57 @@ $(".bf").click(function(){
     $(".bf").removeClass("active");
     $(this).addClass("active")
 })
+
+setInterval(function(){
+    if(Cookies.get("nbr_actif"+ideo)!=undefined){
+        if(parseInt(Cookies.get("nbr_actif"+ideo))==0){
+            $(".bgh").hide();
+                        $("label").each(function(){
+                if($(this).hasClass("kt-radio--disabled")==true){
+                    $(this).removeClass("kt-radio--disabled")
+                    $(this).find("[type='radio']").removeAttr("disabled")
+                }
+            })
+        }else{
+           $(".bgh").show();
+            $("label").each(function(){
+                if($(this).hasClass("kt-radio--disabled")==false){
+                    $(this).addClass("kt-radio--disabled")
+                    $(this).find("[type='radio']").attr("disabled","disabled")
+                }
+            })
+        }
+       if(parseInt($(".nombre_actif b").text())!=Cookies.get("nbr_actif"+ideo)){
+        $(".nombre_actif b").text(Cookies.get("nbr_actif"+ideo))
+       }
+    }else{
+$(this).find("[type='radio']").removeAttr("disabled");
+       $(this).removeClass("kt-radio--disabled")
+    }
+if(Cookies.get("pourcentage"+ideo)!=undefined){
+    $(".bgh").show(); 
+if(parseInt($(".ki").text())!=parseInt(Cookies.get("pourcentage"+ideo))){
+    $(".ki").text(Cookies.get("pourcentage"+ideo))
+    $('[role="progressbar"]').css("width",Cookies.get("pourcentage"+ideo)+"%")
+    $("[aria-valuenow]").attr("aria-valuenow",Cookies.get("pourcentage"+ideo))
+}
+
+
+    }else{
+     $(".ki").text(0)
+    $('[role="progressbar"]').css("width",0+"%")
+    $("[aria-valuenow]").attr("aria-valuenow",0)       
+    }
+
+    if(Cookies.get("active"+ideo)!=undefined){
+        if(Cookies.get("active"+ideo)==1){
+            $(".bf").removeClass("active");
+            $(".bf:eq(1)").addClass("active");
+            Cookies.set('active'+ideo,0, { expires: 360, path: '' });
+        }
+    }
+},200)
+
                     })
                     </script>
                 </body>

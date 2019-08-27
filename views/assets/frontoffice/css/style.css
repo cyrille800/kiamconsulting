@@ -9,7 +9,7 @@ body {
   text-align: left;
   position: relative;
   background-color: #FAFAFA;
-} 
+} */
 .nav li a {
   text-decoration: none !important;
   display: inline-block;
@@ -90,7 +90,7 @@ a:focus {
  *  Video Section Background Defult Style
  * --------------------------------------
  */
-.section-video {
+/* .section-video {
   position: fixed;
   top: 0;
   bottom: 0;
@@ -116,13 +116,13 @@ a:focus {
   position: fixed;
   top: 0;
   left: 0;
-}
+} */
 /**
  * ------------------------------------
  *  Every Section Headline Defult Class
  * ------------------------------------
  */
-.section-heading {
+/* .section-heading {
   display: block;
   margin: 0;
 }
@@ -288,13 +288,13 @@ a:focus {
 }
 .mini-separator {
   padding: 20px 0;
-}
+} */
 /**
  * ---------------------
  *   Defult Button Style
  * ---------------------
  */
-.btn {
+/* .btn {
   -webkit-transition: all 0.4s ease-out;
   -moz-transition: all 0.4s ease-out;
   -o-transition: all 0.4s ease-out;
@@ -417,13 +417,13 @@ a:focus {
 }
 .btn-text-link a {
   margin-left: 10px;
-}
+} */
 /** 
  * -----------------
  * Social Icon Style
  * -----------------
  */
-.social-icon {
+/* .social-icon {
   display: inline-block;
 }
 .social-icon li {
@@ -442,7 +442,7 @@ a:focus {
 }
 .social-icon li:last-child a {
   margin-right: 0px;
-}
+} */
 /**
  * -----------------------------------
  * Subscription and contact  "MESSAGE"
@@ -675,7 +675,7 @@ a:focus {
      *  Defult CSS 
      * ----------------
      */
-  html *,
+  /* html *,
   body,
   p {
     text-align: center;
@@ -689,19 +689,19 @@ a:focus {
     font-size: 38px;
     line-height: 55px;
     font-weight: 300;
-  }
+  } */
   /**
      * ------------------------------------
      *  Every Section Headline Defult Class
      * ------------------------------------
      */
-  .section-header {
+  /* .section-header {
     margin-bottom: 80px;
   }
   .section-header .sub-heading {
     font-size: 24px;
     line-height: 30px;
-  }
+  } */
   /**
      * ---------------------
      *   Defult Button Style
@@ -749,7 +749,7 @@ a:focus {
 | GENERAL CSS
 |===================
 */
- h1 {
+/* h1 {
   font-family: 'Varela Round', sans-serif;
   font-size: 50px;
   line-height: 60px;
@@ -812,8 +812,8 @@ p {
   text-align: center;
   letter-spacing: 1px;
   text-transform: capitalize;
-}  
- .btn:hover,
+}  */
+/* .btn:hover,
 .btn:focus,
 .btn:active {
   -webkit-transition: all 0.4s ease-out;
@@ -6666,14 +6666,14 @@ ul.uv_scl_icon li:hover a {
 .carousel-inner{
   background-image: white;
 }
-.item img:after{
+/* .item img:after{
   border: 2px solid red; 
   background-image: linear-gradient(to top right, #183C77,#9C3695);
   background-color: red;
   display:block;
   position: relative;
   content:"";
-}
+} */
 .gradient{
   background-image:linear-gradient(to  right, rgba(24, 60, 119, 0.72), rgba(156, 54, 149, 0.73));
 }
@@ -6832,17 +6832,6 @@ margin-bottom: 70px;
    font-family: Arial;
   margin-top: 20px;
  }
- 
- /* a.lienCommentaire:link{
-   color:blue;
- }
- a.lienCommentaire:hover{
-   text-decoration: underline;
-
- }
- a.lienCommentaire:active{
-   color:red;
- } */
  
  
  

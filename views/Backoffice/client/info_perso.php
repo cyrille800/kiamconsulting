@@ -1,6 +1,15 @@
 <?php 
 session_start();
+$nom="";
+$prenom="";
+$sexe="";
+$pays="";
+$ville="";
+$niveau_scolaire="";
+$etablissement="";
 include "../../../entities/class_etudiant.php";
+include "../../../entities/class_patient.php";
+if($_SESSION["type"]==0){
 $nom=etudiant::retourne_valeur("id_client",$_SESSION["id"],"nom");
 $prenom=etudiant::retourne_valeur("id_client",$_SESSION["id"],"prenom");
 $sexe=etudiant::retourne_valeur("id_client",$_SESSION["id"],"sexe");
@@ -8,6 +17,13 @@ $pays=etudiant::retourne_valeur("id_client",$_SESSION["id"],"pays");
 $ville=etudiant::retourne_valeur("id_client",$_SESSION["id"],"ville");
 $niveau_scolaire=etudiant::retourne_valeur("id_client",$_SESSION["id"],"niveau_scolaire");
 $etablissement=etudiant::retourne_valeur("id_client",$_SESSION["id"],"etablissement");
+}else{
+$nom=patient::retourne_valeur("id_client",$_SESSION["id"],"nom");
+$prenom=patient::retourne_valeur("id_client",$_SESSION["id"],"prenom");
+$sexe=patient::retourne_valeur("id_client",$_SESSION["id"],"sexe");
+$pays=patient::retourne_valeur("id_client",$_SESSION["id"],"pays");
+$ville=patient::retourne_valeur("id_client",$_SESSION["id"],"ville");	
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -123,13 +139,16 @@ $etablissement=etudiant::retourne_valeur("id_client",$_SESSION["id"],"etablissem
 					</select></div>
 						</div>
 					</div>
+<?php 
+if($_SESSION["type"]==0){
+	?>
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">dernier établissement fréquenté :</label>
 						<div class="col-10">
 									<input type="text" class="form-control" value="<?php echo $etablissement;?>" name="etablissement" placeholder="saisir le dernier mot de passe">
 						</div>
 					</div>
-<h4 class="kt-section__title">2. curiculum:</h4></br>
+					<h4 class="kt-section__title">2. curiculum:</h4></br>
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Niveau scolaire :</label>
 						<div class="col-10">
@@ -149,6 +168,9 @@ $etablissement=etudiant::retourne_valeur("id_client",$_SESSION["id"],"etablissem
 						</div>
 					</div>
 
+	<?php
+}
+?>
 				</div>
 				<div class="kt-portlet__foot">
 					<div class="kt-form__actions">
@@ -230,7 +252,13 @@ toastr.options = {
 e.preventDefault();
 $.ajax({
     type : 'POST',
-    url : '../../../entities/etudiant.php',
+    <?php 
+    if($_SESSION["type"]==0){
+    	echo "url : '../../../entities/etudiant.php',";
+    }else{
+    	echo "url : '../../../entities/patient.php',";
+    }
+    ?>
    data:  new FormData(this),
    contentType: false,
          cache: false,

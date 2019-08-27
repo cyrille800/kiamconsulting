@@ -30,7 +30,7 @@ require_once "../../../entities/class_details_plus.php";
         <link href="../../assets/Backoffice/css/demo4/style.bundle.css" rel="stylesheet" type="text/css" />
 
 </head>
-<body style="padding:0px;margin:0px;">
+<body style="padding:0px;margin:0px;background:white;" id="<?php echo $_SESSION["id"];?>">
                     
                                 <!-- begin:: Content -->
                                 <div class="kt-content kt-grid__item kt-grid__item--fluid" style="background-color:white;">
@@ -40,14 +40,14 @@ require_once "../../../entities/class_details_plus.php";
                     <center>
                                 <div class="element">
                                     <?php
-                                    if(isset($_COOKIE["id_activiter"])){
-                                    if(!empty($_COOKIE["id_activiter"])){
+                                    if(isset($_COOKIE["id_activiter".$_SESSION["id"]])){
+                                    if(!empty($_COOKIE["id_activiter".$_SESSION["id"]])){
                                     ?>
-                                    <div class="kt-portlet">
-                                        <div class="kt-portlet__body kt-portlet__body--fit col-8 mx-auto" style="border:1px solid #eee;">
+                                    <div class="kt-portlet"  style="box-shadow:none;">
+                                        <div class="kt-portlet__body kt-portlet__body--fit col-8 mx-auto shadow-sm" style="border:1px solid #eee;">
                                             <div class="kt-grid kt-grid--desktop-xl kt-grid--ver-desktop-xl  kt-wizard-v1" id="kt_wizard_v1" data-ktwizard-state="first">
                                                 <?php
-                                                proccedure::afficher_client($_COOKIE["id_activiter"]);
+                                                proccedure::afficher_client($_COOKIE["id_activiter".$_SESSION["id"]],$_SESSION["id"]);
                                                 ?>
                                             </div>
                                         </div>
@@ -106,15 +106,54 @@ require_once "../../../entities/class_details_plus.php";
         </script>
         <script src="../../assets/Backoffice/js/demo4/scripts.bundle.js" type="text/javascript">
         </script>
+        <script src="http://localhost:1337/socket.io/socket.io.js" type="text/javascript"></script>
         <script>
                 $(window).on("load",function(){
            $(".preload").fadeOut("fast");
         })
                 $(function(){
+                    var socket = io.connect("http://localhost:1337");
+var ideo=$("body").attr("id");
+                                                                    <?php
+                                                
+                                                $n=activiter::nombre_pourcentage($_SESSION["id"],$_COOKIE["id_activiter".$_SESSION["id"]]);
+echo "Cookies.set('pourcentage'+ideo,".$n.", { expires: 360, path: '' });";
+                                                ?>
                      $(".btn.btn-info.btn-icon.btn-circle").click(function(){
     var v=$(this).attr("url");
     $(".cible").attr("src",v);
 })
+
+                     $("#formulaire").submit(function(e){
+                        e.preventDefault();
+$.ajax({
+    type : 'POST',
+    url : '../../../entities/envoyer_fichier.php',
+   data:  new FormData(this),
+   contentType: false,
+         cache: false,
+   processData:false,
+    success: function(data){
+        var dat=JSON.parse(data);
+                if(dat.reponose=="ok"){
+        socket.emit("envoyer_notification",{type:"warning",message:dat.message})
+        var id_activiter=$("[name='id_activiter']").val();
+        socket.emit("next_step",{id_client:ideo,id_activiter:id_activiter})
+
+        document.location.href="proccedure.php";  
+        }else{
+            toastr.error(dat.reponose);
+        }  
+    }
+})
+                     })
+
+                     socket.on("evolution_etape",function(data){
+                        var id_activiter=parseInt($("[name='id_activiter']").val());
+                        if(parseInt(data.id_client)==parseInt(ideo) && parseInt(data.id_activiter)==id_activiter){
+                            document.location.href="proccedure.php";
+                        }
+                     })
                 })
         </script>
 </body>

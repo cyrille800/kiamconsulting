@@ -98,7 +98,6 @@ $mime_types = array(
 	"text/sgml" => "sgml",
 	"application/x-sh" => "sh",
 	"application/x-shar" => "shar",
-	"mp4" => "video/mp4",
 	"application/vnd.symbian.install" => "sis",
 	"application/x-stuffit" => "sit",
 	"application/x-koan" => "skt",

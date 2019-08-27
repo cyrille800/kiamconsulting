@@ -1,7 +1,6 @@
 <?php 
 
 include_once "class_concour.php";
-include_once "class_quizz.php";
 	function verification_post($tableau){
 
 		for($i=0;$i<sizeof($tableau);$i++){
@@ -38,9 +37,6 @@ if(verification_post(["titre","description","date","heure"])==1 && !isset($_POST
 			$g=$variable[0].",".$variable[1];
 			concours::modifier($id,"heure",$g);
 			$reponse="ok";
-		}
-		else if($operation=="afficherImage"){
-			$reponse=json_encode(quizz::afficherImageQuizz($idConcour));
 		}	
 		}
 	}else{

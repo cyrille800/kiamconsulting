@@ -37,8 +37,8 @@ public function __construct($a,$b,$c){
 }
 
 function ajouter(){
-	if(self::verifiers("id",trim($this->get_id_expediteur()))==false){
-	if(self::verifiers("id",trim($this->get_id_receveur()))==false){
+
+	if(self::verifiers("id",trim($this->get_id_receveur()))==false || $this->get_id_receveur()==0){
 
 		$req=config::$bdd->prepare("insert into message(id_expediteur,id_receveur,message) VALUE(:id_expediteur,:id_receveur,:message)");
 		$req->bindValue(':id_expediteur',$this->get_id_expediteur());
@@ -50,9 +50,6 @@ function ajouter(){
 	}else{
 		echo "impossible mauvaise requette";		
 	}
-	}else{
-		echo "impossible mauvaise requettess";
-	}
 
 		  	return 0;
 	  	
@@ -60,7 +57,7 @@ function ajouter(){
 
 public static function verifiers($type,$valeur){
 		$i=0;
-		  	$requette=config::$bdd->query("select * from admin_root where ".$type."=".$valeur);
+		  	$requette=config::$bdd->query("select * from client where ".$type."=".$valeur);
                 		while($data=$requette->fetch()){
 		$i=1;                		
 	}
@@ -77,25 +74,47 @@ public static function verifiers($type,$valeur){
 	public static function afficher($res){
 		$tableau=[];
 		$tableaui=[];
-		  	$requette=config::$bdd->query("select * from message where (id_expediteur=".$_SESSION["id"]." && id_receveur=".$res.") or (id_expediteur=".$res." && id_receveur=".$_SESSION["id"].")");
+		  	$requette=config::$bdd->query("select * from message where (id_expediteur=0 && id_receveur=".$res.") or (id_expediteur=".$res." && id_receveur=0)");
                 		while($data=$requette->fetch()){
-					if(intval($data["id_expediteur"])==intval($_SESSION["id"])){
+										if(intval($data["id_expediteur"])==0){
 						echo '<div class="kt-chat__message kt-chat__message--right"><div class="kt-chat__user">';
-						echo '<span class="kt-userpic kt-userpic--circle kt-userpic--sm"><img src="./assets/media/users/'.$_SESSION["id"].'.png" alt="image"></span></div><div class="kt-chat__text kt-bg-light-brand">'.$data["message"].'</div></div>';
+						echo '<span class="kt-userpic kt-userpic--circle kt-userpic--sm">Vous</span></div><div class="kt-chat__text"  style="background-color:#1d1dff;color:white;">'.$data["message"].'</div></div>';
                 		}else{
                 			echo '<div class="kt-chat__message">
                                 <div class="kt-chat__user">
                                     <span class="kt-userpic kt-userpic--circle kt-userpic--sm"> 
-                                        <img src="./assets/media/users/'.$data["id_expediteur"].'.png" alt="image">   
+                                        <img src="../../assets/Backoffice/media/users/'.$data["id_expediteur"].'.png" alt="image">   
                                     </span>
                                 </div>
-                                <div class="kt-chat__text kt-bg-light-success">'.$data["message"].'
+                                <div class="kt-chat__text" style="background-color:#2d2d2d;color:white;">'.$data["message"].'
                                 </div>
                             </div>';
                 		}
 					}
+					}
 
-	}
+	public static function afficher_client($res){
+		$tableau=[];
+		$tableaui=[];
+		  	$requette=config::$bdd->query("select * from message where (id_expediteur=0 && id_receveur=".$res.") or (id_expediteur=".$res." && id_receveur=0)");
+                		while($data=$requette->fetch()){
+										if(intval($data["id_expediteur"])==intval($res)){
+						echo '<div class="kt-chat__message kt-chat__message--right"><div class="kt-chat__user">';
+						echo '<span class="kt-userpic kt-userpic--circle kt-userpic--sm">Vous</span></div><div class="kt-chat__text" style="background-color:#1d1dff;color:white;">'.$data["message"].'</div></div>';
+                		}else{
+                			echo '<div class="kt-chat__message">
+                                <div class="kt-chat__user">
+                                    <span class="kt-userpic kt-userpic--circle kt-userpic--sm"> 
+                                        <img src="../../assets/Backoffice/media/users/'.$data["id_expediteur"].'.png" alt="image">   
+                                    </span>
+                                </div>
+                                <div class="kt-chat__text"  style="background-color:#2d2d2d;color:white;">'.$data["message"].'
+                                </div>
+                            </div>';
+                		}
+					}
+					}
+
 
 
 	public static function retour_nombre($us,$res){
@@ -110,6 +129,26 @@ public static function verifiers($type,$valeur){
 						}
 
 						return $i;
+
+	}
+
+
+	public static function tout_afficher(){
+		$tableau=[];
+		$tableaui=[];
+		$i=0;
+		  	$requette=config::$bdd->query("select count(*) from message where id_receveur=0 && etat=0");
+             $gt=$requette->fetch();
+						return $gt[0];
+
+	}
+	public static function tout_afficher_moi($id){
+		$tableau=[];
+		$tableaui=[];
+		$i=0;
+		  	$requette=config::$bdd->query("select count(*) from message where id_receveur=".$id." && etat=0");
+             $gt=$requette->fetch();
+						return $gt[0];
 
 	}
 
@@ -132,7 +171,7 @@ public static function verifiers($type,$valeur){
                 			echo '<div class="kt-chat__message">
                                 <div class="kt-chat__user">
                                     <span class="kt-userpic kt-userpic--circle kt-userpic--sm"> 
-                                        <img src="./assets/media/users/'.$res.'.png" alt="image">   
+                                        <img src="../../assets/Backoffice/media/users/'.$res.'.png" alt="image">   
                                     </span>
                                 </div>
                                 <div class="kt-chat__text kt-bg-light-success">'.$data["message"].'
