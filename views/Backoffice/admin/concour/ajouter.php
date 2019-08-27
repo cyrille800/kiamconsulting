@@ -5,6 +5,7 @@ $date="";
 $heure="";
 $heures="";
 $minutes="";
+$duree="";
 $description="";
 $id="";
 $op=false;
@@ -15,7 +16,8 @@ $titre=concours::retourne_valeur("id",$_GET["id"],"titre");
 $date=concours::retourne_valeur("id",$_GET["id"],"date_concour");
 $heure=concours::retourne_valeur("id",$_GET["id"],"heure");
 $description=concours::retourne_valeur("id",$_GET["id"],"description");
-$decouper=explode(",",$heure);
+$duree=concours::retourne_valeur("id",$_GET["id"],"duree");
+$decouper=explode(":",$heure);
 $heures=$decouper[0];
 $minutes=$decouper[1];
 }
@@ -142,6 +144,12 @@ $minutes=$decouper[1];
 							</div>
 						</div>
 						<div class="form-group row">
+							<label for="example-text-input" class="col-2 col-form-label">Durée du concou</label>
+							<div class="col-10">
+								<input type="text" class="form-control" name="duress" placeholder="description" value="<?php echo ($op)?$duree:"";?>">
+							</div>
+						</div>
+						<div class="form-group row">
 							<label for="example-text-input" class="col-2 col-form-label">Description</label>
 							<div class="col-10">
 								<input type="text" class="form-control" name="descriptionss" placeholder="description" value="<?php echo ($op)?$description:"";?>">
@@ -214,11 +222,11 @@ $minutes=$decouper[1];
 e.preventDefault();
 
 if($("body").attr("operation")=="ajouter"){
-if(($.trim($("[name='label']").val())=="" || $.trim($("[name='descriptionss']").val())=="") || ($.trim($("[name='date']").val())=="" || $.trim($("[name='heures']").val())=="")){
+if($.trim($("[name='duress']").val())=="" || (($.trim($("[name='label']").val())=="" || $.trim($("[name='descriptionss']").val())=="") || ($.trim($("[name='date']").val())=="" || $.trim($("[name='heures']").val())==""))){
     toastr.error("remplir toutes les cases");
 }else{
-    var heure=$("[name='heures']").val()+","+$("[name='minutes']").val();
-    $.post( "../../../../entities/concour.php",{titre:$("[name='label']").val(),description:$("[name='descriptionss']").val(),date:$("[name='date']").val(),heure:heure},function(data){
+    var heure=$("[name='heures']").val()+":"+$("[name='minutes']").val();
+    $.post( "../../../../entities/concour.php",{duree:$("[name='duress']").val(),titre:$("[name='label']").val(),description:$("[name='descriptionss']").val(),date:$("[name='date']").val(),heure:heure},function(data){
     if(data!="ok"){
     toastr.error(data);
     }else{
@@ -227,11 +235,11 @@ if(($.trim($("[name='label']").val())=="" || $.trim($("[name='descriptionss']").
  } )
 }
 }else{
-if(($.trim($("[name='label']").val())=="" || $.trim($("[name='descriptionss']").val())=="") || ($.trim($("[name='date']").val())=="" || $.trim($("[name='heures']").val())=="")){
+if($.trim($("[name='duress']").val())=="" || (($.trim($("[name='label']").val())=="" || $.trim($("[name='descriptionss']").val())=="") || ($.trim($("[name='date']").val())=="" || $.trim($("[name='heures']").val())==""))){
     toastr.error("remplir toutes les cases");
 }else{
 	var heure=$("[name='heures']").val()+":"+$("[name='minutes']").val();
-$.post( "../../../../entities/concour.php",{operation:"modifier",id:$("body").attr("id"),titre:$("[name='label']").val(),date:$("[name='date']").val(),heure:heure,description:$("[name='descriptionss']").val()},function(data){
+$.post( "../../../../entities/concour.php",{duree:$("[name='duress']").val(),operation:"modifier",id:$("body").attr("id"),titre:$("[name='label']").val(),date:$("[name='date']").val(),heure:heure,description:$("[name='descriptionss']").val()},function(data){
 	if(data!="ok"){
 		toastr.error(data);
 	}else{

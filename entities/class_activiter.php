@@ -98,58 +98,48 @@ public static function nombre_pourcentage($id,$v){
 			if($op>0){
 				$fini=ceil(intval(($po+1)*100)/$op);
 			}
+			if($po==0){
+				$fini=0;
+			}
 			return $fini;
 }
 
-	public static function afficher_client($id,$v){
-		$requette=config::$bdd->query("select * from activite where etat=".$id);
+	public static function afficher_client($id_client,$id,$v){
+			$type=client::retourne_valeur("id",$id_client,"type");
+	$type=($type==0)?"1":"0";
+	$type=intval($type);
+		$si=config::$bdd->query("select count(*) from activite where etat=$type");
+		$nom=$si->fetch();
+		$nombre_final=$nom[0];
+		$requette=config::$bdd->query("select * from activite where etat=$type");
+		$i=0;
 		while($data=$requette->fetch()){
-			if($v==""){
-				$fini=0;
-			}else{
-				$fini=self::nombre_pourcentage($id,$v);
+			$fini=0;
+			$cv="non";
+			if($v!=""){
+				$fini=self::nombre_pourcentage($id_client,$data["id"]);
+				$cv="oui";
 			}
-			
-			$veri=activiter_client::nombre("id_activiter",$data["id"]);
-			echo '<div class="kt-portlet kt-portlet--height-fluid kt-widget-13 col-7 mx-auto" style="border:1px solid #eee;height:225px;">
-    <div class="kt-portlet__body">
-        <div id="kt-widget-slider-13-2" class="kt-slider carousel slide pointer-event" data-ride="carousel" data-interval="4000">
-            <div class="kt-slider__head">
-                <div class="kt-slider__label">Activité</div>
-                <div class="kt-slider__nav">';
-               if($veri!=0){
-               	echo '<button type="button" class="btn btn-danger btn-sm annuler" id="'.$data["id"].'" style="border-radius:0px;border-top-left-radius:3px;border-bottom-left-radius:3px;">annuler</button>
-                <button type="button" class="btn btn-info btn-sm poursuivre" id="'.$data["id"].'" style="border-radius:0px;border-top-right-radius:3px;border-bottom-right-radius:3px;">';
-if(intval($v)==intval($data["id"])){
-	echo "en cours  <div class='spinner-grow spinner-grow-sm' role='status'>
-                            <span class='sr-only'>Loading...</span>
-                        </div>";
-}else{
-	echo 'Poursuivre&nbsp;&nbsp;<i class="la la-arrow-right"></i>';
-}
-                echo'</button>';
-               }
-               echo' </div>
-            </div>
-            <div class="carousel-inner">
-                <div class="carousel-item kt-slider__body active">
+			$veri=activiter_client::nombre($id_client,"id_activiter",$data["id"]);
+
+
+			echo '                <div class="carousel-item kt-slider__body '.(($i==0)?"active":"").'">
                     <div class="kt-widget-13">
                         <div class="kt-widget-13__body">
-                            <span class="kt-widget-13__title">'.$data["titre"].'</span>
+                            <a class="kt-widget-13__title" href="#">'.$data['titre'].'</a>
                             <div class="kt-widget-13__desc">
-                                '.$data["description"].'
+                                '.$data['description'].'
                             </div>
                         </div>
-                        <div class="kt-widget-13__foot">
-';
+                        <div class="kt-widget-13__foot">';
 if($veri==0){
 	$p=proccedure::retourne_valeur("id_active",$data["id"],"id");
 	if($p==""){
 		$p=0;
 	}
-echo '<button type="button" class="btn btn-primary mx-auto ii" value="commencer" etape_actuel="'.$p.'" nombre_etape_fait="0" etape_actuel="" id="'.$data["id"].'">commencer&nbsp;&nbsp;<i class="la la-arrow-right"></i></button>';
+echo '<button type="button" class="btn btn-primary mx-auto ii" value="commencer" etape_actuel="'.$p.'" nombre_etape_fait="0" etape_actuel="" id="'.$data["id"].'" name="'.$data["titre"].'">commencer&nbsp;&nbsp;<i class="la la-arrow-right"></i></button>';
 }else{
-	echo '                            <div class="kt-widget-13__progress">
+echo '                            <div class="kt-widget-13__progress">
                                 <div class="kt-widget-13__progress-info">
                                     <div class="kt-widget-13__progress-status">
                                         Progress
@@ -160,15 +150,82 @@ echo '<button type="button" class="btn btn-primary mx-auto ii" value="commencer"
                                     <div class="progress-bar kt-bg-brand" role="progressbar" style="width: '.$fini.'%" aria-valuenow="'.$fini.'" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
                             </div>';
+
 }
-echo '
-                        </div>
+                        echo '</div>';
+if($veri!=0){
+               	echo '<div class="row mt-3 col-12"><button type="button" class="btn btn-danger btn-sm annuler" name="'.$data["titre"].'" id="'.$data["id"].'" style="border-radius:0px;border-top-left-radius:3px;border-bottom-left-radius:3px;">annuler</button>
+                <button type="button" class="btn btn-info btn-sm poursuivre" id="'.$data["id"].'" style="border-radius:0px;border-top-right-radius:3px;border-bottom-right-radius:3px;">';
+if(intval($v)==intval($data["id"])){
+	echo "en cours  <div class='spinner-grow spinner-grow-sm' role='status'>
+                            <span class='sr-only'>Loading...</span>
+                        </div>";
+}else{
+	echo 'Poursuivre&nbsp;&nbsp;<i class="la la-arrow-right"></i>';
+}
+                echo'</button></div>';
+}
+                        echo'
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>';
+                    ';
+for($j=0;$j<$nombre_final;$j++){
+	if($j==$i){
+		echo '<div class="mr-2 bg-primary" style="width:10px;height:10px;display:inline-block;border-radius:5px;"> </div>';
+	}
+	else{
+		echo '<div class="mr-2" style="width:10px;height:10px;display:inline-block;border-radius:5px;background-color:#919191;"> </div>';
+	}
+}
+                    echo'
+                </div>';
+                if($i==0){
+                	echo '<table class="table" style="margin-top:25%;">
+                            <thead class="thead-dark">
+                                <tr>
+                                <th class="text-center"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Numéro</font></font></th>
+                                    <th class="text-center"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Titre activité</font></font></th>
+                                    <th class="text-center"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Progression</font></font></th>
+                                    <th class="text-center"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Etat</font></font></th>
+                                </tr>
+                            </thead>
+                            <tbody>';
+
+                    }
+                            	echo '<tr>
+                            <td scope="row" class="text-center"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">'.($i+1).'</font></font></td>
+                                    <td scope="row" class="text-center"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">'.$data["titre"].'</font></font></td>
+                                    <td class="text-center"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;" class="pourt">';
+if($veri!=0){
+	echo '<div class="kt-widget-13__progress">
+                                <div class="kt-widget-13__progress-info">
+                                    <div class="kt-widget-13__progress-value">'.$fini.'%</div>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar kt-bg-brand" role="progressbar" style="width: '.$fini.'%" aria-valuenow="'.$fini.'" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>';
+}else{
+	echo 'inactif';
+}
+                                    echo '</font></font></td>
+                                    <td scope="row" class="text-center"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">';
+if($veri!=0){
+if(intval($v)==intval($data["id"])){
+	echo "<span class='text-success'>en cours</span>";
+}else{
+	echo '<span class="text-warning">pause</span>';
+}
+}else{
+	echo "<span class='text-danger'>inactif</span>";
+}
+                                    echo '</font></font></td>
+                                </tr>';
+                              
+                                if($i==$nombre_final){echo ' </tbody>
+                        </table>';
+                }
+                
+$i++;
 		}
 	}
 	public static function afficher($id){
@@ -182,19 +239,21 @@ echo '
 		  	$requette=config::$bdd->query("select * from activite");
                 		while($data=$requette->fetch()){
                 			$o=1;
-					echo '<li style="border-radius:4px;" class="kt-nav__item ';
-if(intval($data["id"])==$id){
-	echo " kt-nav__item--active ";
+					echo '<li id="'.$data["id"].'" style="border-radius:4px;" class="kt-nav__item';
+					echo '"  titre="'.$data["titre"].'" description="'.$data["description"].'" etat="';
+if(intval($data["etat"])==1){
+	echo 'Etudiant';
+}else{
+	echo 'Patient';
 }
 					echo '"';
 			echo '>
-                                <a href="afficher.php?id='.$data["id"].'" class="kt-nav__link"> <i class="la la-link mr-5" style="font-size:25px;color:#415482;"></i>';
-if(intval($data["id"])==$id){
-	echo ' <table><tr><td><span class="kt-nav__link-text">'.$data["titre"].'</span></td><td><i class="la la-copy ml-5 lii" data-toggle="modal" data-target="#exampleModal2" style="font-size:25px;color:white;background-color:#415482;padding:3px;border-radius:4px;" data-skin="brand" title="" data-original-title="Brand skin"></i></td></tr></table> ';
-}else{
-	echo '<span class="kt-nav__link-text">'.$data["titre"].'</span>';
-}
-                                echo '</a>';
+                                <a href="etape.php?id='.$data["id"].'" id="'.$data["id"].'" class="kt-nav__link" target="frame3"> <i class="la la-link mr-5" style="font-size:25px;color:#415482;"></i>';
+
+	echo '<table><tr><td><span class="kt-nav__link-text">'.$data["titre"].'</span></td><td class="depose_ici"></td></table>';
+                             echo '</a>';
+echo '
+                            </li>';
 if(intval($data["id"])==$id){
 	$titre=$data["titre"];
 	echo '                         <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -210,11 +269,11 @@ if(intval($data["id"])==$id){
                                             <div class="kt-widget kt-widget--general-4">
                                             <div class="kt-user-card-v2__pic">                                  <div class="kt-badge kt-badge--xl kt-badge--warning">'.$titre[0].'</div>                                </div>
                                             <br>
-                                                <a href="#" class="kt-widget__title">
+                                                <a href="#" class="kt-widget__title titress">
                                                      '.$titre.'
                                                 </a>
                                                 <br><br>
-                                                <div class="kt-widget__desc">
+                                                <div class="kt-widget__desc descriptionss">
                                                     '.$data["description"].'
                                                 </div>
                                             </div>
@@ -222,9 +281,9 @@ if(intval($data["id"])==$id){
                                             <label class="kt-radio kt-radio--solid kt-radio--brand">
                                 <input type="radio" name="radio7" checked="checked"> ';
 if(intval($data["etat"])==1){
-	echo 'Etudiant';
+	echo '<div class="etatss ml-3">Etudiant</div>';
 }else{
-	echo 'Patient';
+	echo '<div class="etatss ml-3">Patient</div>';
 }
                                 echo '
                                 <span></span>
@@ -232,7 +291,7 @@ if(intval($data["etat"])==1){
                                             <br><br>
                                             <div class="kt-widget__actions">
                                                 <div class="kt-widget__left">
-                                                    <a style="margin-left:1%;" href="ajouter.php?id='.$data["id"].'" class="btn btn-brand btn-sm btn-bold btn-upper"><i class="la la-edit"></i>&nbsp;modifier</a>
+                                                    <a style="margin-left:1%;" href="ajouter.php?id='.$data["id"].'" class="btn btn-brand btn-sm btn-bold btn-upper ght"><i class="la la-edit"></i>&nbsp;modifier</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -242,8 +301,6 @@ if(intval($data["etat"])==1){
                             </div>
                         </div> ';
 }
-echo '
-                            </li>';
                 		}
 
                 		                		if($o==0){
@@ -300,18 +357,14 @@ echo'
 $mo=config::$bdd->query("select * from activiter_client where id_activiter=".$i_activiter." && etape_actuel=".$data["id"]);
 
 while($do=$mo->fetch()){
-	echo '<div class="card mb-4">
-								<div class="kt-bg-metal w-100 py-2"><div class="kt-widget-7__item mx-auto text-center">
+	echo '<div class="card mb-4" style="border:1px solid #d8d8d8;">
+								<div class="w-100 py-2" style="background:#d2e0ff;"><div class="kt-widget-7__item mx-auto text-center">
                                                             <div class="kt-widget-7__item-pic" style="display:inline-block;">
-                                                                <img src="../../../assets/Backoffice/media/files/pdf.svg" alt="" width="35px">
-                                                            </div>
-                                                            <div class="kt-widget-7__item-info" style="display:inline-block;">
-                                                                <a href="#" class="kt-widget-7__item-title">
-                                                                    S.E.R Agreement
-                                                                </a>
-                                                                <div class="kt-widget-7__item-desc">
-                                                                    805 MB
-                                                                </div>
+
+                                                            <div class="btn-group btn-group-sm" role="group" aria-label="Small group">
+							<button type="button" class="btn btn-primary  btn-upper pluss"  data-toggle="modal" data-target="#exampleModal5" id_client="'.$do["id_client"].'"><i class="la la-file-text-o"></i></button>
+							<button type="button" class="btn btn-info paiement"   data-toggle="modal" data-target="#exampleModal6" id_client="'.$do["id_client"].'"><i class="la la-cc-paypal"></i></button>
+						</div>
                                                             </div>
                                                         </div></div>
 								<div class="px-2 py-2">
@@ -336,7 +389,7 @@ echo client::retourne_valeur("id",$do['id_client'],"username");
 echo '</h5>
 								</div>
 								<div class="col-md-2">
-									<div class="btn btn-sm btn btn-warning mr-1" style="cursor:pointer;">
+									<div class="btn btn-sm btn btn-primary mr-1 jio" style="cursor:pointer;" id="'.$do['id_client'].'"   data-toggle="modal" data-target="#exampleModal3">
 										<i class="fas fa-envelope">
 										</i>
 									</div>

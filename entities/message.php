@@ -1,6 +1,7 @@
 <?php 
-include_once "function.php";
-include_once "class_message.php";
+require_once "function.php";
+require_once "class_message.php";
+require_once "class_notification.php";
 	function verification_post($tableau){
 
 		for($i=0;$i<sizeof($tableau);$i++){
@@ -18,6 +19,8 @@ if(verification_post(["id_expediteur","id_receveur","message"])==1){
 	$exemple=new message($id_expediteur,$id_receveur,$message);
 	if($exemple->ajouter()==true){
 		echo "ok";
+			$exemple=new notification($id_receveur,"info","Nouveau message",$message,0);
+			$exemple->ajouter();
 	}else{
 		echo "il ya un probleme dans l'enregistrement'";
 	}
@@ -37,6 +40,12 @@ if(verification_post(["id_expediteur","id_receveur","message"])==1){
                                     	}else{
                                     		echo $difference;
                                     	}
+			}
+						if($_GET["operation"]=="tout_afficher"){
+           echo message::tout_afficher();
+			}
+						if($_GET["operation"]=="tout_afficher_moi"){
+           echo message::tout_afficher_moi($id);
 			}	
 			}
 		}

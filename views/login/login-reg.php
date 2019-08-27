@@ -16,9 +16,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     <!-- FAV AND ICONS   -->
-    <link rel="icon" href="../Frontend/assets/images/favicon.png" sizes="32x32" />
-    <link rel="icon" href="../Frontend/assets/images/apple-icon-192.png" sizes="192x192" />
-    <link rel="apple-touch-icon-precomposed" href="../Frontend/assets/images/apple-icon-180.png" />
+    <!-- <link rel="icon" href="../Frontend/assets/images/favicon.png" sizes="32x32" /> -->
+    <!-- <link rel="icon" href="../Frontend/assets/images/apple-icon-192.png" sizes="192x192" /> -->
+    <!-- <link rel="apple-touch-icon-precomposed" href="../Frontend/assets/images/apple-icon-180.png" /> -->
 
     <!-- GOOGLE FONTS -->
     <link href="//fonts.googleapis.com/css?family=Montserrat:300,400,500,700%7cVarela+Round" rel="stylesheet">
@@ -47,6 +47,10 @@
     <!-- COUSTOM CSS link  -->
     <link rel="stylesheet" href="../Frontend/assets/less/style.css">
     <link rel="stylesheet" href="../Frontend/assets/less/responsive.css">
+    <link rel="shortcut icon" href="../assets/Backoffice/media/logos/favicon.ico" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css">
+
+
 
     <!--[if lt IE 9]>
             <script src="js/plagin-js/html5shiv.js"></script>
@@ -59,10 +63,12 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8 col-xs-12 uv-login-reg-from-inner">
-                    <div class="login-logo">
-                        <a href="index.html">
-                            <img src="../Frontend/assets/images/univ-logo-lg.png" alt="" class="img-responsive">
+                    <div class="login-logo ">
+                        <center>
+                        <a href="../index.php" >
+                            <img src="../Frontend/assets/images/logo3.png" alt="" class="img-responsive " style="transform:scale(0.7,0.7)">
                         </a>
+</center>
                     </div>
                     <div class="uv-login-reg shadow-1">
                         <!-- Nav tabs -->
@@ -81,17 +87,14 @@
                         <div class="tab-content">
                             <div role="tabpanel" class="tab-pane active" id="home">
                                 <form id="login-form" class="uv-login-form">
-
+                                <div class="form-group">
+                                        <input type="hidden" name="operation"   class="form-control"  value="connexion">
+                                    </div>
                                     <div class="form-group">
-                                        <input class="input100" type="text" name="operation" value="connexion" style="display:none;">
-
                                         <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
                                     </div>
                                     <div class="form-group">
                                         <input type="password" name="password" id="login-password" tabindex="2" class="form-control" placeholder="Password">
-                                    </div>
-                                    <div class="erreur" style="background-color:rgba(255,0,0,0.1);color:red;padding:2%;width:100%;border-radius:7px;display:none;">
-                                        message
                                     </div>
                                     <div class="form-group text-center">
                                         <input type="checkbox" tabindex="3" class="" name="remember-me" id="remember">
@@ -123,21 +126,24 @@
                                             <label class="custom-control-label" for="customRadioInline1">Etudiant</label>
                                         </div>
                                         <div class="custom-control custom-radio custom-control-inline pull right">
-                                            <input type="radio" id="customRadioInline2" name="type" class="custom-control-input" value="1">
+                                            <input type="radio" id="customRadioInline2" name="type" class="custom-control-input" value="Patient">
                                             <label class="custom-control-label" for="customRadioInline2">Patient</label>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" name="username" id="regusername" tabindex="1" class="form-control" placeholder="Username" value="">
+                                        <input type="text" name="regusername" id="regusername" tabindex="1" class="form-control" placeholder="Username" value="">
                                     </div>
                                     <div class="form-group">
                                         <input type="text" name="email" id="email" tabindex="1" class="form-control" placeholder="Email Address" value="">
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" name="password" id="regpassword" tabindex="2" class="form-control" placeholder="Password">
+                                        <input type="password" name="regpassword" id="regpassword" tabindex="2" class="form-control" placeholder="Password">
                                     </div>
                                     <div class="form-group">
                                         <input type="password" name="confirmPassword" id="confirmPassword" tabindex="2" class="form-control" placeholder="Confirm Password">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" name="phoneNumber" id="phoneNumber" tabindex="2" class="form-control" placeholder="Entrer votre tel">
                                     </div>
                                     <div class="form-group">
                                         <div class="row">
@@ -211,6 +217,8 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/additional-methods.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
     
 
     <!-- init -->
@@ -262,7 +270,6 @@
                     cache: false,
                     processData: false,
                     success: function(data) {
-                        // alert(data);
                         if (data != "ok") {
                             $(".erreur").text(data)
                             $(".erreur").fadeIn("fast");
@@ -354,9 +361,9 @@
                                 }
                             }
                         },
-
+                      
                     },
-                    password: {
+                    regpassword: {
                         required: true,
                         strongPassword: true
                     },
@@ -364,7 +371,7 @@
                         required: true,
                         equalTo: '#regpassword'
                     },
-                    username: {
+                    regusername: {
                         required: true,
                         nowhitespace: true,
                         specialChars: true,
@@ -372,7 +379,7 @@
                             url: "../../entities/remoteClientUsername.php",
                             type: "post",
                             data: {
-                                username: function() {
+                                regusername: function() {
                                     return $("#regusername").val();
                                 }
                             }
@@ -381,6 +388,9 @@
                     type: {
                         required: true,
                     },
+                    phoneNumber:{
+                        required:true,
+                    }
 
                 },
                 messages: {
@@ -390,7 +400,7 @@
                         remote: "mail déjà utilisé",
 
                     },
-                    username: {
+                    regusername: {
                         required: 'ce champ est requis',
                         remote: "username déjà utilisé",
                     },
@@ -400,17 +410,25 @@
                     type: {
                         required: "vous devez choisir ",
                     },
+                    phoneNumber:{
+                        required:"vous devez remplir"
+                    }
                 },
                 submitHandler: function(form) {
-
                     $.ajax({
                         type: "POST",
                         url: "../../entities/client.php",
-                        data: $("#register-form").serialize() + "&operation=enregistrer",
+                        data: $("#register-form").serialize() + "&operation=registration",
 
                         success: function(data) {
-                            // alert(data);
-                            // window.location.href="../../entities/client.php";
+                            toastr.info("Enregistrement terminé veuillez vous connecter");
+                            $("[name='email']").val("");
+                            $("[name='regusername']").val("");
+                            $("[name='confirmPassword']").val("");
+                            $("[name='type']").val("");
+                            $("[name='email']").val("");
+                            $("[name='phoneNumber']").val("");
+
                         }
                     });
 
@@ -419,7 +437,7 @@
 
             })
 
-
+     
 
 
 

@@ -3,7 +3,7 @@ session_start();
 if(isset($_SESSION["id"])){
 	$_SESSION=[];
 	session_destroy();
-	header("location:index.php");
+	header("location:login-reg.php");
 }else{
 header("location:../pages_error/404.html");
 }

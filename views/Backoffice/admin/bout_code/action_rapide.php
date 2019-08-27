@@ -10,54 +10,17 @@
 		</div>
 		<div class="kt-offcanvas-panel__body">
 			<div class="kt-grid-nav-v2">
-				<a href="#" class="kt-grid-nav-v2__item">
-					<div class="kt-grid-nav-v2__item-icon">
-						<i class="la la-box">
-						</i>
-					</div>
-					<div class="kt-grid-nav-v2__item-title">
-					Orders</div>
-				</a>
-				<a href="#" class="kt-grid-nav-v2__item">
-					<div class="kt-grid-nav-v2__item-icon">
-						<i class="flaticon-download-1">
-						</i>
-					</div>
-					<div class="kt-grid-nav-v2__item-title">
-					Uploades</div>
-				</a>
-				<a href="#" class="kt-grid-nav-v2__item">
-					<div class="kt-grid-nav-v2__item-icon">
-						<i class="la la-supermarket">
-						</i>
-					</div>
-					<div class="kt-grid-nav-v2__item-title">
-					Products</div>
-				</a>
-				<a href="#" class="kt-grid-nav-v2__item">
-					<div class="kt-grid-nav-v2__item-icon">
-						<i class="la la-avatar">
-						</i>
-					</div>
-					<div class="kt-grid-nav-v2__item-title">
-					Customers</div>
-				</a>
-				<a href="#" class="kt-grid-nav-v2__item">
-					<div class="kt-grid-nav-v2__item-icon">
-						<i class="la la-list">
-						</i>
-					</div>
-					<div class="kt-grid-nav-v2__item-title">
-					Blog Posts</div>
-				</a>
-				<a href="#" class="kt-grid-nav-v2__item">
-					<div class="kt-grid-nav-v2__item-icon">
-						<i class="la la-settings">
-						</i>
-					</div>
-					<div class="kt-grid-nav-v2__item-title">
-					Settings</div>
-				</a>
+<div class="tab-pane fade show kt-offcanvas-panel__content kt-scroll active" id="kt_quick_panel_tab_notifications" role="tabpanel" style="height:750px; overflow-y:scroll;">
+                        <!--Begin::Timeline -->
+                        <div class="kt-timeline" id='<?php echo notification::nombre_total(0);?>'>
+                           <?php 
+                            notification::afficher_simple(0);
+                            ?>
+                        </div>
+                        
+                        <!--End::Timeline -->
+                        
+                    </div>
 			</div>
 		</div>
 	</div>

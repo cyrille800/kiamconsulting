@@ -1,6 +1,9 @@
 <?php 
 
 include_once "class_activiter_client.php";
+include_once "class_proccedure.php";
+include_once "class_activiter.php";
+include_once "class_notification.php";
 	function verification_post($tableau){
 
 		for($i=0;$i<sizeof($tableau);$i++){
@@ -36,6 +39,18 @@ if(verification_post(["id_client","id_activiter","nombre_etape_fait","etape_actu
 			activiter_client::modifier($id,"id_client",$id_client);
 			activiter_client::modifier($id,"etape_actuel",$etape_actuel);
 			$nono="ok";
+			$fichier=proccedure::retourne_valeur("id",$etape_actuel,"fichier");
+			$activiter=activiter::retourne_valeur("id",$id_activiter,"titre");
+					if(intval($fichier)==1 || intval($fichier)==2){
+			$exemple=new notification($id_client,"info","Progression","Vous pouvez continuer votre progression sur l'activité ".$activiter,0);
+			$exemple->ajouter();
+		}else{
+			$exemple=new notification($id_client,"info","Progression","votre dossier sur l'activiter ".$activiter." a avancé",0);
+			$exemple->ajouter();			
+		}
+		}
+		if($operation=="nombre_fait"){
+			echo activiter_client::nombre($id_client,"id_client",$id_client);
 		}	
 		}
 	}else{

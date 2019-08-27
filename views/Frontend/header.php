@@ -15,9 +15,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
         <!-- FAV AND ICONS   -->
-        <link rel="icon" href="assets/images/favicon.png" sizes="32x32" />
-        <link rel="icon" href="assets/images/apple-icon-192.png" sizes="192x192" />
-        <link rel="apple-touch-icon-precomposed" href="assets/images/apple-icon-180.png" />
+        <!-- <link rel="icon" href="assets/images/favicon.png" sizes="32x32" /> -->
+        <!-- <link rel="icon" href="assets/images/apple-icon-192.png" sizes="192x192" /> -->
+        <!-- <link rel="apple-touch-icon-precomposed" href="assets/images/apple-icon-180.png" /> -->
 
         <!-- GOOGLE FONTS -->
         <link href="//fonts.googleapis.com/css?family=Montserrat:300,400,500,700%7cVarela+Round" rel="stylesheet">
@@ -47,7 +47,9 @@
         <link rel="stylesheet" href="assets/less/style.css">
         <link rel="stylesheet" href="assets/less/responsive.css">
         <!-- <link rel="stylesheet" type="text/css" href="assets/plugins/css/demo.css" /> -->
-	<link rel="stylesheet" type="text/css" href="assets/plugins/css/elastic_grid.min.css" />
+    <link rel="stylesheet" type="text/css" href="assets/plugins/css/elastic_grid.min.css" />
+    <link rel="shortcut icon" href="../assets/Backoffice/media/logos/favicon.ico" />
+
 
         <!--[if lt IE 9]>
             <script src="js/plagin-js/html5shiv.js"></script>

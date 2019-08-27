@@ -25,7 +25,7 @@ if(verification_post(["nom","prenom","id_client","pays","ville","niveau_scolaire
 	if($exemple->ajouter()==true){
 		$reponse="ok";
 	}else{
-		$reponse="il ya un probleme dans l'enregistrement'";
+		$reponse="il ya un probleme dans l'enregistrements";
 	}
 		}else{
 	if(isset($_POST["operation"])){

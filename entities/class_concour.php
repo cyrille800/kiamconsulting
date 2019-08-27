@@ -9,6 +9,7 @@ class concours{
 	private $description;
 	private $date_concours;
 	private $heure;
+	private $duree;
 
 function get_titre(){
 	return $this->titre;
@@ -21,6 +22,9 @@ function get_date_concours(){
 }
 function get_heure(){
 	return $this->heure;
+}
+function get_duree(){
+	return $this->duree;
 }
 
 function set_titre($valeur){
@@ -35,23 +39,27 @@ function set_date_concours($valeur){
 function set_heure($valeur){
 	$this->heure = $valeur;
 }
-
-public function __construct($a,$b,$c,$d){
+function set_duree($valeur){
+	$this->duree = $valeur;
+}
+public function __construct($a,$b,$c,$d,$e){
 	$this->set_titre($a);
 	$this->set_description($b);
 	$this->set_date_concours($c);
 	$this->set_heure($d);
+	$this->set_duree($e);
 }
 
 function ajouter(){
 	if(self::verifiers("titre",$this->get_titre())==true){
 	if(self::verifiers("date_concour",$this->get_date_concours())==true){
-		$req=config::$bdd->prepare("insert into concours(titre,description,date_concour,heure) VALUE(:titre,:description,:date_concour,:heure)");
+		$req=config::$bdd->prepare("insert into concours(titre,description,date_concour,heure,duree) VALUE(:titre,:description,:date_concour,:heure,:duree)");
 		$req->bindValue(':titre',$this->get_titre());
 
 		$req->bindValue(':description',$this->get_description());
 		$req->bindValue(':date_concour',$this->get_date_concours());
 		$req->bindValue(':heure',$this->get_heure());
+		$req->bindValue(':duree',$this->get_duree());
 	  	if($req->execute()){
 	  		return 1;
 	  	}
@@ -129,6 +137,9 @@ public static function verifier($id,$type,$valeur){
 												<specialite style="display:none;">'.$data["titre"].'</specialite>
 												<br><br>
 												<div class="kt-widget__desc">
+												durée du concour :	'.$data["duree"].' minutes
+												</div><br><br>
+												<div class="kt-widget__desc">
 													'.$data["description"].'
 												</div>
 											</div>
@@ -141,7 +152,7 @@ public static function verifier($id,$type,$valeur){
 												<div class="kt-widget__link">
 													<i class="la la-calendar-check-o kt-font-skype" style="font-size:20px;"></i>&nbsp;&nbsp;<a href="#">heure : &nbsp;&nbsp;&nbsp; ';
 
-                			$req=explode(",",$data["heure"]);
+                			$req=explode(":",$data["heure"]);
                 		if(intval($req[0])<10){
 						if(isset($req[0][0])){
 							if($req[0][0]!='0'){
@@ -287,5 +298,3 @@ echo $req[1];
 }
 	
 }
-
-echo concours::concoursLePlusProche();

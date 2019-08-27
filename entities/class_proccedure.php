@@ -132,7 +132,8 @@ if(intval($data["fichier"])==2){
                 			echo "<div class='kt-portlet'><div style='padding:2%;' class='text-center'>selectionner une activiter</div></div>";
                 		}
 	}
-	public static function afficher_client($id){
+
+public static function afficher_client($id,$ide){
 		$tableau=[];
 		$tableaui=[];
 		$o=0;
@@ -144,16 +145,21 @@ if(intval($data["fichier"])==2){
                     <div class="kt-wizard-v1__nav-items">
                         <!--doc: Replace A tag with SPAN tag to disable the step link click -->';
 $is="";
-$is=activiter_client::retourne_valeur("id_activiter",$id,"etape_actuel");
+$oh=config::$bdd->query("select etape_actuel from activiter_client where id_activiter=".$id." && id_client=".$ide);
+$iss=$oh->fetch();
+$is=$iss[0];
+$oi=0;
                 		while($data=$requette->fetch()){
                 			$o=1;
 					echo '<span class="kt-wizard-v1__nav-item ';
 					if(intval($data["id"])==intval($is)){
 						echo 'bg-primary text-white';
+						$oi=1;
 					}
 					echo '" ';
 					if(intval($data["id"])<intval($is)){
 						echo ' style="color:white;background-color:#a9b4ea;" ';
+						$oi=1;
 					}
 					echo '>
                             <span>'.$i.'</span>
@@ -179,7 +185,7 @@ $is=activiter_client::retourne_valeur("id_activiter",$id,"etape_actuel");
                 <!--end: Form Wizard Nav -->
             </div>            <div class="kt-grid__item kt-grid__item--fluid kt-wizard-v1__wrapper">
                 <!--begin: Form Wizard Form-->
-                <form class="kt-form" id="kt_form" novalidate="novalidate">
+                <form class="kt-form"  method="post" id="formulaire" enctype="multipart/form-data">
                     
                     <!--begin: Form Wizard Step 1-->
                     image de demonstration <button type="button" data-target="#simage" class="btn btn-info btn-icon btn-circle ml-5" data-skin="dark" data-toggle="modal" title="" data-original-title="Afficher limage" url="../../assets/Backoffice/media/etapes/'.$data['id'].'.png"><i class="fa fa-tags"></i></button><br><br>
@@ -197,9 +203,12 @@ $is=activiter_client::retourne_valeur("id_activiter",$id,"etape_actuel");
                         <div class="kt-separator kt-separator--height-xs"></div>
                         <div class="kt-form__section kt-form__section--first text-center">
                             <div class="row  text-center">
+                            <input type="text" name="id_proccedure" value="'.$data['id'].'" style="display:none;">
+                            <input type="text" name="id_activiter" value="'.$id.'" style="display:none;">
+                            <input type="text" name="id_client" value="'.$ide.'" style="display:none;">
                                 ';
                                 if($data["fichier"]==2){
-                                	echo '<input type="file" name="fichier" class="form-control">';
+                                	echo '<input type="file" id_proccedure="'.$data['id'].'" id_activiter="'.$id.'" id_client="'.$ide.'" name="fichier" class="form-control">';
                                 }else{
                                 	if($data["fichier"]==0){
                                 	echo '<div class="spinner-grow mx-auto" style="width: 3rem; height: 3rem;" role="status">
@@ -216,15 +225,18 @@ if($data["fichier"]!=0){
 	echo '<!--begin: Form Actions -->                 
                     <div class="kt-form__actions">
                         <div class="col-md-8"></div>';
-                        $p=config::$bdd->query("select * from activiter_client where id_client=".$_SESSION["id"]." && id_activiter=".$_COOKIE["id_activiter"]." limit 1");
+                        $p=config::$bdd->query("select * from activiter_client where id_client=".$ide." && id_activiter=".$id." limit 1");
                         $datas=$p->fetch();
                         $etape_actuel=$datas["etape_actuel"];
-                        $p=config::$bdd->query("select id from proccedure where id_active=".$_COOKIE["id_activiter"]." && id!=".$etape_actuel." limit 1");
+                        $p=config::$bdd->query("select id from proccedure where id_active=".$id." && id!=".$etape_actuel." && id > ".$etape_actuel." limit 1");
                         $fg=$p->fetch();
                         $k=$fg[0];
-                        echo '<div class="btn btn-brand btn-md btn-tall btn-wide btn-bold btn-upper" etape_suivante="'.$k.'">
-                            Next Step
-                        </div></div>';
+                        echo '<div >
+                        <input type="text" name="etape_suivante" value="'.$k.'" style="display:none;">
+                           <button type="submit" name="valider" class="btn btn-brand btn-md btn-tall btn-wide btn-bold btn-upper envoyer" etape_suivante="'.$k.'">Next Step</button> 
+                        </div>
+	
+                        </div>';
 }
                    echo '      
                     <!--end: Form Actions -->
@@ -232,6 +244,12 @@ if($data["fichier"]!=0){
                 <!--end: Form Wizard Form-->
             </div>';
                 			}
+                		}
+                		                		                		if($oi==0){
+                			echo '<div class="alert alert-info fade show col-8 mx-auto" role="alert">
+                                        <div class="alert-icon"><i class="la la-question-circle"></i></div>
+                                        <div class="alert-text">Vous devez selectionner une activiter pour continuer,<br> Pour ce faire consulter la liste des activiter et selectionner l\'activité correspondante puis poursuivre.</div>
+                                    </div>';
                 		}
                 		                		if($i==1){
                 			echo "<div class='kt-portlet'><div style='padding:2%;' class='text-center'>vide</div></div>";

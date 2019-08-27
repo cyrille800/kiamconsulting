@@ -1,0 +1,6 @@
+1-corriger quizz
+2-gérer les quizz côté backend
+3-onglet afficher les résultats du concour=>tous les participants avec leurs  scores 
+4-deux boutons(section classique et section personnalisée)
+ section classique=préciser le nombre de personnes qui veut et pour chaque personne sélectionnée mettre les résultats à 1
+  section personnalisée=choisir selon les critéres(score des matières) 

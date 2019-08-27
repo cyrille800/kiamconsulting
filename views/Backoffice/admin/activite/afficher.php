@@ -1,6 +1,5 @@
 <?php 
 include_once "../../../../entities/class_activiter.php";
-include_once "../../../../entities/class_proccedure.php";
 ?>
 <!DOCTYPE html>
 <html>
@@ -101,15 +100,10 @@ $id=(isset($_GET["id"]))?$_GET["id"]:"";
                     <h3 class="kt-portlet__head-title">Liste des étapes de lactiviée</h3>
                 </div>
             </div>
-            <div class="kt-portlet__body">
-                <!--begin::Accordion-->
-                <div class="accordion accordion-outline" id="accordionExample">
-        <?php 
-        $id=(isset($_GET["id"]))?$_GET["id"]:"";
-        proccedure::afficher($id);
-        ?>
-        </div>
-                <!--end::Accordion-->
+            <div class="kt-portlet__body" style="height:600px;">
+                    <iframe src="attendre.php" style="height:500px;border:none;background-color:white;padding:0px;" class="col-md-12" name="frame3">
+                        
+                    </iframe>
             </div>
         </div>
         <!--end::Portlet-->
@@ -143,7 +137,7 @@ $id=(isset($_GET["id"]))?$_GET["id"]:"";
                         </div>
                         <div style="display:none;"><div  class="action"></div></div>
                         <div class="form-group row">
-                            <input type="text" name="id_active" value="<?php echo (isset($_GET["id"]))?$_GET["id"]:"";?>" style="display:none;">
+                            <input type="text" name="id_active" value="" style="display:none;">
                             <label for="example-text-input" class="col-2 col-form-label">Titre</label>
                             <div class="col-10">
                                 <input type="text" class="form-control" name="titre" placeholder="titre" value="">
@@ -280,8 +274,6 @@ $("#formulaire").submit(function(e){
   var description=$("[name='description']").val();
   var fichier=$("[name='fichier']:checked").attr("value");
 if($.trim(titre)!="" && $.trim(description)!="" && $.trim(fichier)!=""){
-
-if($("[operation]").attr("operation")=="ajouter"){
 $.ajax({
     type : 'POST',
     url : '../../../../entities/proccedure.php',
@@ -294,43 +286,42 @@ if(data!="ok"){
 toastr.error(data);   
     }else{
         $(".io").trigger("click");
-        document.location.href="afficher.php?id="+$("body").attr("id");     
+        $("[name='frame3']").attr("src","etape.php?id="+$("body").attr("id")) 
     }
 }
 })
-}else{
-$.ajax({
-    type : 'POST',
-    url : '../../../../entities/proccedure.php',
-   data:  new FormData(this),
-   contentType: false,
-         cache: false,
-   processData:false,
-    success: function(data){  
-if(data!="ok"){
-toastr.error(data);   
-    }else{
-        $(".io").trigger("click");
-        document.location.href="afficher.php?id="+$("body").attr("id");     
-    }
-}
-})
-}
 }else{
     toastr.error("remplir tous les champs");
 }
 
 })
+
+$(".kt-nav__item").click(function(){
+    var d=$(this);
+setTimeout(function(){
+    $(".ght").attr("href","ajouter.php?id="+d.attr("id"));
+    $(".kt-nav__item--active").removeClass("kt-nav__item--active")
+    d.addClass("kt-nav__item--active");
+    $("body").attr("id",d.find("a").attr("id"))
+$('[name="id_active"]').attr("value",d.find("a").attr("id"))
+    d.find(".depose_ici").html('<i class="la la-copy ml-5 lii" data-toggle="modal" data-target="#exampleModal2" style="font-size:25px;color:white;background-color:#415482;padding:3px;border-radius:4px;" data-skin="brand" title="" data-original-title="Brand skin"></i>');
+    $(".depose_ici").not(d.find(".depose_ici")).html("");
+    $(".etatss").text(d.attr("etat"))
+    $(".descriptionss").text(d.attr("description"))
+    $(".titress").text(d.attr("titre"))
+},100)
+})
  $(".supprimer").click(function(e){
     e.preventDefault();
-    id=$(this).attr("id");
+    id=$("body").attr("id");
     element=$(this)
-    $.post( "../../../../entities/proccedure.php",{operation:"supprimer",id:id},function(data){
+    $.post( "../../../../entities/activiter.php",{operation:"supprimer",id:id},function(data){
     if(data!="ok"){
     toastr.error(data);
     }else{
         toastr.success("operation terminer");
-        element.parent().parent().parent().parent().parent().hide();
+        $(".kt-nav__item[id='"+id+"']").remove();
+        document.location.href="afficher.php";
     }
  } );    
 })

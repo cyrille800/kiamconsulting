@@ -14,8 +14,8 @@ include_once "class_quizz.php";
 		return 1;
 	}
 extract($_POST);
-if(verification_post(["titre","description","date","heure"])==1 && !isset($_POST["operation"])){
-	$exemple=new concours($titre,$description,$date,$heure);
+if(verification_post(["titre","description","date","heure","duree"])==1 && !isset($_POST["operation"])){
+	$exemple=new concours($titre,$description,$date,$heure,$duree);
 	if($exemple->ajouter()==true){
 		$reponse="ok";
 	}else{
@@ -32,10 +32,11 @@ if(verification_post(["titre","description","date","heure"])==1 && !isset($_POST
 		}else{
 		if($operation=="modifier"){
 			concours::modifier($id,"titre",$titre);
+			concours::modifier($id,"duree",$duree);
 			concours::modifier($id,"description",$description);
 			concours::modifier($id,"date_concour",$date);
-			$variable=explode(",",$heure);
-			$g=$variable[0].",".$variable[1];
+			$variable=explode(":",$heure);
+			$g=$variable[0].":".$variable[1];
 			concours::modifier($id,"heure",$g);
 			$reponse="ok";
 		}
