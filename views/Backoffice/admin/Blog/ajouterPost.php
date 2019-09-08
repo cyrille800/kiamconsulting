@@ -1,4 +1,8 @@
 <?php
+session_start();
+if(!isset($_SESSION["id_admin"])){
+    header("location: ../../../pages_error/404.html");
+}
   include "../../../../entities/class_concour.php";
   config::connexion();
   ?>
@@ -37,50 +41,29 @@
   </script>
 </head>
 
-<body operation="<?php echo (isset($_GET["id"])) ? "modifier" : "ajouter"; ?>" id="<?php echo (isset($_GET["id"])) ? $_GET["id"] : ""; ?>">
-
-  <!-- begin:: Subheader -->
-  <div class="kt-subheader   kt-grid__item" id="kt_subheader">
+<body operation="<?php echo (isset($_GET["id"])) ? "modifier" : "ajouter"; ?>" id="<?php echo (isset($_GET["id"])) ? $_GET["id"] : ""; ?>" style="background-color:rgba(0,0,0,0.06);">
+<div class="kt-subheader   kt-grid__item bg-white" style="padding:20px;padding-left:40px;" id="kt_subheader">
     <div class="kt-subheader__main">
-      <h3 class="kt-subheader__title">
-        Blank Page</h3>
-      <span class="kt-subheader__separator kt-hidden">
-      </span>
-      <div class="kt-subheader__breadcrumbs">
-        <a href="#" class="kt-subheader__breadcrumbs-home">
-          <i class="la la-shelter" style="font-size:25px;">
-          </i>
-        </a>
-        <span class="kt-subheader__breadcrumbs-separator">
-        </span>
-        <a href="" class="kt-subheader__breadcrumbs-link">
-          Features </a>
-        <span class="kt-subheader__breadcrumbs-separator">
-        </span>
-        <a href="" class="kt-subheader__breadcrumbs-link">
-          Misc </a>
-        <span class="kt-subheader__breadcrumbs-separator">
-        </span>
-        <a href="" class="kt-subheader__breadcrumbs-link">
-          Blank Page </a>
-        <!-- <span class="kt-subheader__breadcrumbs-link kt-subheader__breadcrumbs-link--active">
-								Active link</span>
-								-->
-      </div>
-
-    </div>
-    <div class="kt-subheader__toolbar">
-      <div class="kt-subheader__wrapper">
-        <div class="dropdown dropdown-inline" data-toggle="kt-tooltip" title="Quick actions" data-placement="top">
-          <a href="#" class="btn btn-icon btn btn-label btn-label-brand btn-bold" data-toggle="dropdown" data-offset="0px,0px" aria-haspopup="true" aria-expanded="false">
-            <i class="la la-plus">
-            </i>
-          </a>
-        </div>
-
-      </div>
-    </div>
-  </div>
+              <h3 class="kt-subheader__title">
+              Post</h3>
+              <span class="kt-subheader__separator kt-hidden">
+              </span>
+              <div class="kt-subheader__breadcrumbs">
+                <a href="#" class="kt-subheader__breadcrumbs-home">
+                  <i class="la la-shelter" style="font-size:25px;">
+                  </i>
+                </a>
+                <span class="kt-subheader__breadcrumbs-separator">
+                </span>
+                <a href="" class="kt-subheader__breadcrumbs-link">
+                Ajouter un post                  </a>
+                <!-- <span class="kt-subheader__breadcrumbs-link kt-subheader__breadcrumbs-link--active">
+                Active link</span>
+                -->
+              </div>
+              
+            </div>
+</div>
   <!-- end:: Subheader -->
   <!-- begin:: Content -->
   <div class="container-fluid page-body-wrapper">

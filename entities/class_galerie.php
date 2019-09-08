@@ -24,30 +24,42 @@ function ajouter(){
 }
 public static function verifiers($type,$valeur){
 		$i=0;
-		  	$requette=config::$bdd->query("select * from galerie where ".$type."='".$valeur."'");
-                		while($data=$requette->fetch()){
+		  	$requette=config::$bdd->prepare("select * from galerie where ".$type."=:".$type);
+		  	$requette->bindValue(":".$type,$valeur);
+		  	$requette->execute();
+    while($data=$requette->fetch()){
 		$i=1;                		
 	}
+
 	if($i>=1){
 		return false;
 	}
 	else{
 		return true;
 	}
+
 	}
+
+
 public static function verifier($id,$type,$valeur){
 		$i=0;
-		  	$requette=config::$bdd->query("select * from galerie where ".$type."='".$valeur."' and id!=".$id);
+		  	$requette=config::$bdd->prepare("select * from galerie where ".$type."=:".$type." and id!=:id");
+		  			  	$requette->bindValue(":".$type,$valeur);
+		  			  	$requette->bindValue(":id",$id);
+		  	$requette->execute();
                 		while($data=$requette->fetch()){
 		$i=1;                		
 	}
+
 	if($i>=1){
 		return false;
 	}
 	else{
 		return true;
 	}
+
 	}
+
 	public static function afficher($id){
 		$tableau=[];
 		$tableaui=[];

@@ -106,7 +106,9 @@ function ajouter(){
 
 public static function verifiers($type,$valeur){
 		$i=0;
-		  	$requette=config::$bdd->query("select * from etudiant where ".$type."='".$valeur."'");
+		  	$requette=config::$bdd->prepare("select * from etudiant where ".$type."=:".$type);
+		  	$requette->bindValue(":".$type,$valeur);
+		  	$requette->execute();
     while($data=$requette->fetch()){
 		$i=1;                		
 	}
@@ -122,7 +124,10 @@ public static function verifiers($type,$valeur){
 
 public static function verifier($id,$type,$valeur){
 		$i=0;
-		  	$requette=config::$bdd->query("select * from etudiant where ".$type."='".$valeur."' and id!=".$id);
+		  	$requette=config::$bdd->prepare("select * from etudiant where ".$type."=:".$type." and id!=:id");
+		  			  	$requette->bindValue(":".$type,$valeur);
+		  			  	$requette->bindValue(":id",$id);
+		  	$requette->execute();
                 		while($data=$requette->fetch()){
 		$i=1;                		
 	}

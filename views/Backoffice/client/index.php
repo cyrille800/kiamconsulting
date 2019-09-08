@@ -1,10 +1,34 @@
 <?php
 session_start();
 include "../../../entities/class_client.php";
+include "../../../entities/class_patient.php";
 include "../../../entities/class_notification.php";
 if (isset($_SESSION["id"]) && isset($_SESSION["type"])) {
     $_SESSION["login"] = client::retourne_valeur("id", $_SESSION["id"], "username");
     if (client::verifiers("id", $_SESSION["id"]) == false) {
+        $nom="";
+$prenom="";
+$sexe="";
+$pays="";
+$ville="";
+if($_SESSION["type"]==0){
+    $resultat=etudiant::retourne_valeur("id_client",$_SESSION["id"],"resultat");
+        $nom=etudiant::retourne_valeur("id_client",$_SESSION["id"],"nom");
+        $prenom=etudiant::retourne_valeur("id_client",$_SESSION["id"],"prenom");
+        $sexe=etudiant::retourne_valeur("id_client",$_SESSION["id"],"sexe");
+        $pays=etudiant::retourne_valeur("id_client",$_SESSION["id"],"pays");
+        $ville=etudiant::retourne_valeur("id_client",$_SESSION["id"],"ville");
+    }else{
+        $resultat=patient::retourne_valeur("id_client",$_SESSION["id"],"resultat");
+         $nom=patient::retourne_valeur("id_client",$_SESSION["id"],"nom");
+        $prenom=patient::retourne_valeur("id_client",$_SESSION["id"],"prenom");
+        $sexe=patient::retourne_valeur("id_client",$_SESSION["id"],"sexe");
+        $pays=patient::retourne_valeur("id_client",$_SESSION["id"],"pays");
+        $ville=patient::retourne_valeur("id_client",$_SESSION["id"],"ville");       
+    }
+        if(((trim($nom=="") || trim($prenom=="")) || (trim($sexe=="") || trim($pays==""))) || trim($ville=="")){
+            header("location:info_perso.php?avr=oiu");
+        }
         ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -46,34 +70,21 @@ if (isset($_SESSION["id"]) && isset($_SESSION["type"])) {
     <!--begin::Layout Skins(used by all pages) -->
     <!--end::Layout Skins -->
     <link rel="shortcut icon" href="../../assets/Backoffice/media/logos/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" ></script>
+<script>
+    $(function(){
+        var test = $("#foo").innerHeight();
+        $("body").css("height","+="+test)
+    })
+</script>
 </head>
 <!-- end::Head -->
 <!-- begin::Body -->
 
-<body class="kt-page--fixed kt-quick-panel--right kt-demo-panel--right kt-offcanvas-panel--right kt-header--fixed kt-header--minimize-menu kt-subheader--enabled kt-subheader--transparent kt-page--loading" id="<?php echo $_SESSION["id"]; ?>" login="<?php echo $_SESSION["login"]; ?>">
-
-    <div class="preload" style="position:fixed;width:100%;height:100%;background:white;left:0;top:0;z-index:100;padding-top:10%;">
-        <center>
-            <div class="lds-ring">
-                <div>
-                </div>
-                <div>
-                </div>
-                <div>
-                </div>
-                <div>
-                </div>
-            </div>
-        </center>
-    </div>
-
-    <!-- begin::Page loader -->
-
-    <!-- end::Page Loader -->
-
-    <!-- begin:: Page -->
+<body class="kt-page--fixed kt-quick-panel--right kt-demo-panel--right kt-offcanvas-panel--right kt-header--fixed kt-header--minimize-menu kt-subheader--enabled kt-subheader--transparent kt-page--loading" id="<?php echo $_SESSION["id"]; ?>" login="<?php echo $_SESSION["login"]; ?>" resultat="<?=$resultat?>">
     <!-- begin:: Header Mobile -->
-    <div id="kt_header_mobile" class="kt-header-mobile " style="padding:3.5%;background-color:#242939;">
+    <div id="kt_header_mobile" class="kt-header-mobile " style="padding:2px;background-color:#242939;">
         <div class="kt-header-mobile__logo">
             <a href="/keen/preview/demo4/index.html">
                 <img alt="Logo" src="../../assets/Backoffice/media/logos/logo-5.png" />
@@ -92,6 +103,21 @@ if (isset($_SESSION["id"]) && isset($_SESSION["type"])) {
         </div>
     </div>
     <!-- end:: Header Mobile -->
+    <div class="preload" style="position:fixed;width:100%;height:100%;background:white;left:0;top:0;z-index:100;padding-top:10%;">
+        <center>
+            <div class="lds-ring">
+                <div>
+                </div>
+                <div>
+                </div>
+                <div>
+                </div>
+                <div>
+                </div>
+            </div>
+        </center>
+    </div>
+
     <div class="kt-grid kt-grid--hor kt-grid--root">
         <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--ver kt-page">
             <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor kt-wrapper " id="kt_wrapper">
@@ -105,23 +131,36 @@ if (isset($_SESSION["id"]) && isset($_SESSION["type"])) {
                                 include "bout_code/navbar_horizontal.php";
                                 ?>
                     </div>
-                    <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--ver kt-grid--stretch" style="height:128vh;background-color:#f9f9fc">
-                        <div class="kt-container kt-body  kt-grid kt-grid--ver" id="kt_body">
-                            <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor">
-                                <iframe src="dashboard.php" style="height:100%;border:none;background-color: #f2f3fa;padding:0px;margin:0px;" class="col-md-12" name="frame1">
 
-                                </iframe>
-                            </div>
-                        </div>
-                    </div>
 
-                    <?php
-                            include "bout_code/footer.php";
-                            ?>
                     <!-- end:: Footer -->
                 </div>
             </div>
         </div>
+
+                    <?php
+                            include "bout_code/footer.php";
+                            ?>
+                                <?php 
+                                $lien="";
+                                $resultat=etudiant::retourne_valeur("id_client",$_SESSION["id"],"resultat");
+                                if($resultat==1){
+                                    $lien="dashboard.php";
+                                }else{
+                                    if($resultat==-1){
+                                        $lien="echec.php";
+                                    }else{
+                                        $lien="bienvenu.php";
+                                    }
+                                }
+
+                                if($_SESSION["type"]==1){
+                                        $lien="bienvenu_patient.php";
+                                }
+                                ?>
+                                <iframe src="<?php echo $lien;?>" style="height:100%;background-color: #f2f3fa;padding:0px;margin:0px;" class="col-md-12" name="frame1" frameborder="0" scrolling="no" id="foo">
+
+                                </iframe>
 
         <!-- end:: Page -->
         <!-- begin:: Topbar Offcanvas Panels -->
@@ -140,7 +179,187 @@ if (isset($_SESSION["id"]) && isset($_SESSION["type"])) {
             </i>
         </div>
         <!-- end:: Scrolltop -->
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+
+<button type="button" class="btn btn-primary mlk" style="display:none;" data-toggle="modal" data-target="#exampleModal">
+  Launch demo modal
+</button>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document" style="background-color:transparent;border:0px;">
+    <div class="modal-content" style="border-radius:3px;width:170%;margin-left:-80%;background-color:transparent;border:0px;">
+      <div class="modal-header" style="background-color:transparent;border:0px;">
+      </div>
+      <div class="modal-body" style="background-color:transparent;border:0px;">
+<div class="kt-container  kt-grid__item kt-grid__item--fluid">
+        <div class="row">
+    <div class="col-xl-3">
+        <!--begin::Portlet-->
+        <div class="kt-portlet">
+            <div class="kt-portlet__body kt-portlet__body--fit-x" style="border-radius:1px;">
+                        <ul class="kt-nav kt-nav--bold kt-nav--md-space kt-nav--lg-font kt-nav--v3">
+                            <li class="kt-nav__item" data-toggle="dashboard">
+                                <a href="#" class="kt-nav__link active doc">
+                                    <span class="kt-nav__link-text"><i class="fa fa-tachometer" aria-hidden="true"></i>
+&nbsp;&nbsp; Dashboard</span>
+                                </a>
+                            </li>
+
+                        <?php 
+                        if($resultat==1){
+                            if($resultat==1){
+                                ?>
+                            <li class="kt-nav__item doc" data-toggle="activiter">
+                                <a href="#" class="kt-nav__link ">
+                                    <span class="kt-nav__link-text"><i class="fa fa-archive"></i>&nbsp;&nbsp; Activité</span>
+                                </a>
+                            </li>
+                                <?php
+                            }
+?>
+                            <li class="kt-nav__item doc" data-toggle="paiement">
+                                <a href="#" class="kt-nav__link ">
+                                    <span class="kt-nav__link-text"><i class="fa fa-paypal" aria-hidden="true"></i>&nbsp;&nbsp;Paiement</span>
+                                </a>
+                            </li>
+                            <li class="kt-nav__item doc" data-toggle="fichier">
+                                <a href="#" class="kt-nav__link ">
+                                    <span class="kt-nav__link-text"><i class="fa fa-file" aria-hidden="true"></i>&nbsp;&nbsp;Liste de fichiers</span>
+                                </a>
+                            </li>
+<?php
+                        }
+                        if($_SESSION["type"]==0 && $resultat==0){
+?>
+                            <li class="kt-nav__item doc" data-toggle="ecole">
+                                <a href="#" class="kt-nav__link ">
+                                    <span class="kt-nav__link-text"><i class="fas fa-school"></i>&nbsp;&nbsp;Ecoles de formations</span>
+                                </a>
+                            </li>
+                            <li class="kt-nav__item doc" data-toggle="quizz">
+                                <a href="#" class="kt-nav__link ">
+                                    <span class="kt-nav__link-text"><i class="fa fa-code-fork" style="font-size:20px;"></i>&nbsp;&nbsp;Quizz</span>
+                                </a>
+                            </li>
+<?php
+                        }
+                        ?>
+                            <li class="kt-nav__item doc" data-toggle="communication">
+                                <a href="#" class="kt-nav__link ">
+                                    <span class="kt-nav__link-text"><i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;&nbsp;Communication</span>
+                                </a>
+                            </li>
+                            <li class="kt-nav__item doc" data-toggle="profil">
+                                <a href="#" class="kt-nav__link ">
+                                    <span class="kt-nav__link-text"><i class="fas fa-user"></i>&nbsp;&nbsp; Mon profil</span>
+                                </a>
+                            </li>
+                            <li class="kt-nav__item doc" data-toggle="notification">
+                                <a href="#" class="kt-nav__link ">
+                                    <span class="kt-nav__link-text"><i class="fa fa-bell" aria-hidden="true"></i>&nbsp;&nbsp;Notifications</span>
+                                </a>
+                            </li>
+                        </ul>
+            </div>
+        </div>
+        <!--end::Portlet-->
+    </div>
+    <div class="col-xl-9">
+        <!--begin::Portlet-->
+        <div class="kt-portlet">
+            <div class="kt-portlet__body">
+
+                <div class="kt-separator kt-separator--space-sm"></div>
+
+                <!--begin::Section-->
+                <center>
+                    <button type="button" class="btn btn-danger btn-sm col-3 dont" style="display:none;">Ne plus afficher cette fenêtre</button>
+                    <button type="button" class="btn btn-primary btn-sm col-3 dontpas" style="display:none;">Afficher cette page au demarage</button>
+                    <button type="button" class="btn btn-secondary btn-sm col-3"  data-dismiss="modal">Fermer</button>
+                </center>
+                <div class="kt-section" id="dashboard" style="display: none;">
+                    <div class="kt-heading kt-heading--md kt-heading--medium">Le tableau de bord</div>
+                        <center><img src="../../assets/backoffice/images/4.png" alt="" width="50%"><br><br>
+    <div class="card-title">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. At tempore consequuntur eos a libero est nihil sapiente, vel ex possimus ipsa non suscipit voluptas. Velit cumque ab consectetur, minus labore!
+                                    </div>
+                        </center>
+                </div>
+                <div class="kt-section" id="ecole" style="display: none;">
+                    <div class="kt-heading kt-heading--md kt-heading--medium">Ecoles de formations</div>
+                        <center><img src="../../assets/backoffice/images/4.png" alt="" width="50%"><br><br>
+    <div class="card-title">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. At tempore consequuntur eos a libero est nihil sapiente, vel ex possimus ipsa non suscipit voluptas. Velit cumque ab consectetur, minus labore!
+                                    </div>
+                        </center>
+                </div>
+                <div class="kt-section" id="activiter" style="display: none;">
+                    <div class="kt-heading kt-heading--md kt-heading--medium">Activiter</div>
+                        <center><img src="../../assets/backoffice/images/4.png" alt="" width="50%"><br><br>
+    <div class="card-title">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. At tempore consequuntur eos a libero est nihil sapiente, vel ex possimus ipsa non suscipit voluptas. Velit cumque ab consectetur, minus labore!
+                                    </div>
+                        </center>
+                </div>
+                <div class="kt-section" id="quizz" style="display: none;">
+                    <div class="kt-heading kt-heading--md kt-heading--medium">Quizz</div>
+                        <center><img src="../../assets/backoffice/images/4.png" alt="" width="50%"><br><br>
+    <div class="card-title">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. At tempore consequuntur eos a libero est nihil sapiente, vel ex possimus ipsa non suscipit voluptas. Velit cumque ab consectetur, minus labore!
+                                    </div>
+                        </center>
+                </div>
+                <div class="kt-section" id="communication" style="display: none;">
+                    <div class="kt-heading kt-heading--md kt-heading--medium">Quizz</div>
+                        <center><img src="../../assets/backoffice/images/4.png" alt="" width="50%"><br><br>
+    <div class="card-title">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. At tempore consequuntur eos a libero est nihil sapiente, vel ex possimus ipsa non suscipit voluptas. Velit cumque ab consectetur, minus labore!
+                                    </div>
+                        </center>
+                </div>
+                <div class="kt-section" id="paiement" style="display: none;">
+                    <div class="kt-heading kt-heading--md kt-heading--medium">Paiement</div>
+                        <center><img src="../../assets/backoffice/images/4.png" alt="" width="50%"><br><br>
+    <div class="card-title">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. At tempore consequuntur eos a libero est nihil sapiente, vel ex possimus ipsa non suscipit voluptas. Velit cumque ab consectetur, minus labore!
+                                    </div>
+                        </center>
+                </div>
+                <div class="kt-section" id="profil" style="display: none;">
+                    <div class="kt-heading kt-heading--md kt-heading--medium"> Mon profil</div>
+                        <center><img src="../../assets/backoffice/images/4.png" alt="" width="50%"><br><br>
+    <div class="card-title">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. At tempore consequuntur eos a libero est nihil sapiente, vel ex possimus ipsa non suscipit voluptas. Velit cumque ab consectetur, minus labore!
+                                    </div>
+                        </center>
+                </div>
+                <div class="kt-section" id="fichier" style="display: none;">
+                    <div class="kt-heading kt-heading--md kt-heading--medium">Listes des fichiers</div>
+                        <center><img src="../../assets/backoffice/images/4.png" alt="" width="50%"><br><br>
+    <div class="card-title">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. At tempore consequuntur eos a libero est nihil sapiente, vel ex possimus ipsa non suscipit voluptas. Velit cumque ab consectetur, minus labore!
+                                    </div>
+                        </center>
+                </div>
+                <div class="kt-section" id="notification" style="display: none;">
+                    <div class="kt-heading kt-heading--md kt-heading--medium">Notifications</div>
+                        <center><img src="../../assets/backoffice/images/4.png" alt="" width="50%"><br><br>
+    <div class="card-title">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. At tempore consequuntur eos a libero est nihil sapiente, vel ex possimus ipsa non suscipit voluptas. Velit cumque ab consectetur, minus labore!
+                                    </div>
+                        </center>
+                </div>
+                <!--end::Section-->
+            </div>
+        </div>
+        <!--end::Portlet-->
+    </div>
+</div>  </div>
+      </div>
+    </div>
+  </div>
+</div>
+       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
         <script>
@@ -210,15 +429,77 @@ if (isset($_SESSION["id"]) && isset($_SESSION["type"])) {
         <!--begin::Page Scripts(used by this page) -->
         <script src="../../assets/Backoffice/js/demo4/pages/dashboard.js" type="text/javascript">
         </script>
+       
         <!--end::Page Scripts -->
         <script src="http://localhost:1337/socket.io/socket.io.js" type="text/javascript"></script>
 
         <script>
             $(window).on("load", function() {
                 $(".preload").fadeOut("slow");
+                setTimeout(function(){
+                var nom="afficher"+$("body").attr("id")+$("body").attr("resultat");
+                if(Cookies.get(nom)==undefined || Cookies.get(nom)==0){
+                 $(".mlk").trigger("click") 
+                }
+},500)
             })
             $(function() {
 
+                var ideo = $("body").attr("id");
+                var socket = io.connect("http://localhost:1337");
+
+$(".envoyer_demande").click(function(){
+    var el=$(this);
+    $.post("../../../entities/demande.php", {
+                                    operation: "demande",
+                                    id: $("body").attr("id")
+                                },function(data){
+                                    if(data=="ok"){
+                                        socket.emit("envoyer_notification",{type:"info",message:"vous avez recu une demande de service"})
+    el.removeClass("btn-info");
+    el.addClass("btn-success");
+    el.html('<i class="fa fa-stop-circle" aria-hidden="true"></i> Demande envoyer </span>');
+    $("[name='frame1']").attr("src","bienvenu_patient.php");
+                                    }
+                                })
+})
+
+$(".page-item").click(function(){
+    $(".page-item").removeClass("active");
+    $(this).addClass("active")
+})
+                $('[target="notification"]').click(function(){
+                    var chaine=$("iframe[name='notification']").attr("src");
+                    if(chaine.indexOf("notification.php")==-1){
+                        $("iframe[name='notification']").attr("src","notification.php?nombre=1");
+                    }
+                })
+                var nom="afficher"+$("body").attr("id")+$("body").attr("resultat");
+                if(Cookies.get(nom)==undefined || Cookies.get(nom)==0){
+                 $(".dont").show();   
+                }
+                if(Cookies.get(nom)==1){
+                 $(".dontpas").show();   
+                }
+                $(".dont").click(function(){
+                    var nom="afficher"+$("body").attr("id")+$("body").attr("resultat");
+                    Cookies.set(nom,1, { expires: 360, path: '' });
+                    $(this).hide();
+                    $(".dontpas").show();
+                })
+                $(".dontpas").click(function(){
+                    var nom="afficher"+$("body").attr("id")+$("body").attr("resultat");
+                    Cookies.set(nom,0, { expires: 360, path: '' });
+                    $(this).hide();
+                    $(".dont").show();
+                })
+                $(".kt-section:eq(0)").show();
+                $(".kt-nav__item").click(function(){
+                    $(".kt-nav__item a").removeClass("active");
+                    $(this).find("a").addClass("active")
+                    $(".kt-section").hide();
+                    $(".kt-section#"+$(this).attr("data-toggle")).fadeIn("fast")
+                })
                 $("#quizz").click(function(e) {
                     console.log($(this).attr("href"));
                     if ($(this).attr("href") == "quizzDejaFait") {
@@ -228,8 +509,6 @@ if (isset($_SESSION["id"]) && isset($_SESSION["type"])) {
 
 
                 });
-                var ideo = $("body").attr("id");
-                var socket = io.connect("http://localhost:1337");
                 socket.on("notification_message", function(message) {
                     if (message.id_client == ideo) {
                         toastr.info("nouveau message : " + message.message);
@@ -286,6 +565,8 @@ if (isset($_SESSION["id"]) && isset($_SESSION["type"])) {
                 })
 
                 $(".hy").click(function() {
+                    gty="";
+                    $(".page-link:eq(0)").trigger("click");
                     $("#kt_quick_panel").addClass(" kt-offcanvas-panel--on");
                     $("#kt_quick_panel").css("opacity", "1");
                     $("#kt_quick_panel").after('<div class="kt-offcanvas-panel-overlay bv"></div>')
@@ -325,7 +606,23 @@ if (isset($_SESSION["id"]) && isset($_SESSION["type"])) {
                     }
                 })
 
+var gty="";
+var numero="";
+$(".dropdown-item").click(function(){
+    gty=$(this).text();
+    setTimeout(function(){
+$("[name='notification']").attr("src","notification.php?type="+gty+"&&nombre="+numero)
+    },300)
+})
+$(".page-link").click(function(){
+    var f=$(this)
+        setTimeout(function(){
+$("[name='notification']").attr("src","notification.php?type="+gty+"&&nombre="+parseInt(f.text()))
+    },300)
+    numero=$(this).text();
+})
                 socket.on("recevoir_notification", function(data) {
+
                     if (parseInt(data.id_client) == parseInt($("body").attr("id"))) {
                         var id = parseInt($(".kt-timeline").attr("id"));
                         $.post("../../../entities/notification.php", {
@@ -349,6 +646,8 @@ if (isset($_SESSION["id"]) && isset($_SESSION["type"])) {
                                     $(".remplir").show();
                                     $(".remplir").prepend(datas);
                                     $(".hy").click(function() {
+                                        gty="";
+                                        $(".page-link:eq(0)").trigger("click");
                                         $("#kt_quick_panel").addClass(" kt-offcanvas-panel--on");
                                         $("#kt_quick_panel").css("opacity", "1");
                                         $("#kt_quick_panel").after('<div class="kt-offcanvas-panel-overlay bv"></div>')
@@ -405,6 +704,8 @@ if (isset($_SESSION["id"]) && isset($_SESSION["type"])) {
                                     $(".remplir").show();
                                     $(".remplir").prepend(datas);
                                     $(".hy").click(function() {
+                                        gty="";
+                                        $(".page-link:eq(0)").trigger("click");
                                         $("#kt_quick_panel").addClass(" kt-offcanvas-panel--on");
                                         $("#kt_quick_panel").css("opacity", "1");
                                         $("#kt_quick_panel").after('<div class="kt-offcanvas-panel-overlay bv"></div>')
@@ -458,6 +759,7 @@ if (isset($_SESSION["id"]) && isset($_SESSION["type"])) {
                 })
             })
         </script>
+}
 </body>
 <!-- end::Body -->
 

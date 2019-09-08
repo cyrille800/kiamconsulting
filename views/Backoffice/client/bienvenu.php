@@ -1,3 +1,9 @@
+<?php 
+session_start();
+if(!isset($_SESSION["id"])){
+    header("location:../../pages_error/404.html");
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,17 +27,22 @@
         <link href="../../assets/Backoffice/css/animate.css" rel="stylesheet">
         <link href="../../assets/Backoffice/css/style.css" rel="stylesheet">
 </head>
-<body style="padding:0px;margin:0px;background-color:white;border-top:10px solid #efeff5;">
+<body style="padding:0px;margin:0px;background-color:#153386;">
                                 
                                 <!-- begin:: Content -->
-                                <div class="kt-content kt-grid__item kt-grid__item--fluid" style="background-color:white;">
+                                <div class="kt-content kt-grid__item kt-grid__item--fluid" style="background-color:#153386;">
                                     <!--begin::Dashboard 5-->
 <div class="preload" style="position:fixed;width:100%;height:100%;background:white;left:0;top:0;z-index:100;padding-top:10%;">
 <center><div class="lds-ring"><div></div><div></div><div></div><div></div></div></center>
 </div>
-<h1 class="tlt kt-widget-12__title" data-out-effect="fadeOut" data-in-effect="fadeInRight" style="color:#2e3192;margin-left:15%;margin-top:4%;">Bienvenu parmis nous .</h1>
+ <h1 class="tlt kt-widget-12__title" data-out-effect="fadeOut" data-in-effect="fadeInRight" style="margin-left:15%;margin-top:4%;position:absolute;">Bienvenu parmis nous ...</h1>
+
+ <div style="position:absolute;left:70%;top:20%;">
+     <h1 style="color:white;">KIAM</h1> 
+     <h1 style="color:#ffc107;">CONSULTING</h1> 
+ </div>
                     <center>
-     <img src="../../assets/Backoffice/image/bienvenu.svg" alt="rien a affcihe" width="66%" style="margin-top:2%;"> 
+     <img src="https://media.giphy.com/media/xiOgHgY2ceKhm46cAj/giphy.gif" alt="rien a affcihe" width="50%" style="margin-top:2%;"> 
                         </center>
                                     
                                     <!--end::Dashboard 5-->

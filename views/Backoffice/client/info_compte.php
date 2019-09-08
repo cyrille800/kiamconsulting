@@ -1,5 +1,8 @@
 <?php 
 session_start();
+if(!isset($_SESSION["id"])){
+    header("location:../../pages_error/404.html");
+}
 include "../../../entities/class_client.php";
 $username=client::retourne_valeur("id",$_SESSION["id"],"username");
 $email=client::retourne_valeur("id",$_SESSION["id"],"email");
@@ -27,8 +30,8 @@ $email=client::retourne_valeur("id",$_SESSION["id"],"email");
         <link href="../../assets/Backoffice/vendors/global/vendors.bundle.css" rel="stylesheet" type="text/css" />
         <link href="../../assets/Backoffice/css/demo4/style.bundle.css" rel="stylesheet" type="text/css" />
 </head>
-<body id="<?php echo $_SESSION["id"];?>">
-<div class="preload" style="position:fixed;width:100%;height:100%;background:white;left:0;top:0;z-index:100;padding-top:10%;">
+<body id="<?php echo $_SESSION["id"];?>" style="background-color:transparent;">
+<div class="preload" style="position:fixed;width:100%;height:100%;left:0;top:0;z-index:100;padding-top:10%;">
 <center><div class="lds-ring"><div></div><div></div><div></div><div></div></div></center>
 </div>
 

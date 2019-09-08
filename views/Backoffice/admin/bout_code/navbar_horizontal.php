@@ -103,8 +103,8 @@ echo (notification::nombre(0)!=0)?"":"display:none;";
 									<span class="kt-header__topbar-welcome kt-hidden-mobile">
 									Hi,</span>
 									<span class="kt-header__topbar-username kt-hidden-mobile">
-									Sean</span>
-									<img alt="Pic" src="../../assets/Backoffice/media/users/300_25.jpg" />
+									<?=$username?></span>
+									<img alt="Pic" src="../../assets/Backoffice/media/users/0.png" />
 									<!--use below badge element instead the user avatar to display username's first letter(remove kt-hidden class to display it) -->
 									<span class="kt-badge kt-badge--username kt-badge--lg kt-badge--brand kt-hidden kt-badge--bold">
 									S</span>
@@ -114,60 +114,30 @@ echo (notification::nombre(0)!=0)?"":"display:none;";
 								<div class="kt-user-card kt-margin-b-40 kt-margin-b-30-tablet-and-mobile" style="background-image: url(../../assets/Backoffice/media/misc/head_bg_sm.jpg)">
 									<div class="kt-user-card__wrapper">
 										<div class="kt-user-card__pic">
-											<img alt="Pic" src="../../assets/Backoffice/media/users/300_21.jpg" />
+											<img alt="Pic" src="../../assets/Backoffice/media/users/0.png" />
 										</div>
 										<div class="kt-user-card__details">
 											<div class="kt-user-card__name">
-											Alex Stone</div>
+											Administrateur</div>
 											<div class="kt-user-card__position">
-											CTO, Loop Inc.</div>
+											<?=$email?></div>
 										</div>
 									</div>
 								</div>
 								<ul class="kt-nav kt-margin-b-10">
 									<li class="kt-nav__item">
-										<a href="/keen/preview/demo1/custom/user/profile-v1.html" class="kt-nav__link">
+										<a href="#"  data-toggle="modal" data-target="#exampleModalLon" class="kt-nav__link">
 											<span class="kt-nav__link-icon">
-												<i class="la la-calendar-3" style="font-size:25px;">
+												<i class="la la-user" style="font-size:25px;">
 												</i>
 											</span>
 											<span class="kt-nav__link-text">
-											My Profile</span>
-										</a>
-									</li>
-									<li class="kt-nav__item">
-										<a href="/keen/preview/demo1/custom/user/profile-v1.html" class="kt-nav__link">
-											<span class="kt-nav__link-icon">
-												<i class="la la-browser-2" style="font-size:25px;">
-												</i>
-											</span>
-											<span class="kt-nav__link-text">
-											My Tasks</span>
-										</a>
-									</li>
-									<li class="kt-nav__item">
-										<a href="/keen/preview/demo1/custom/user/profile-v1.html" class="kt-nav__link">
-											<span class="kt-nav__link-icon">
-												<i class="la la-mail" style="font-size:25px;">
-												</i>
-											</span>
-											<span class="kt-nav__link-text">
-											Messages</span>
-										</a>
-									</li>
-									<li class="kt-nav__item">
-										<a href="/keen/preview/demo1/custom/user/profile-v1.html" class="kt-nav__link">
-											<span class="kt-nav__link-icon">
-												<i class="la la-gear" style="font-size:25px;">
-												</i>
-											</span>
-											<span class="kt-nav__link-text">
-											Settings</span>
+											Mon Profile</span>
 										</a>
 									</li>
 									<li class="kt-nav__item kt-nav__item--custom kt-margin-t-15">
-										<a href="/keen/preview/demo1/custom/user/login-v1.html" target="_blank" class="btn btn-label-brand btn-upper btn-sm btn-bold">
-										Sign Out</a>
+										<a href="../../login/deconnexion.php" class="btn btn-label-brand btn-upper btn-sm btn-bold">
+										Se déconnecter</a>
 									</li>
 								</ul>
 							</div>

@@ -1,4 +1,8 @@
 <?php 
+session_start();
+if(!isset($_SESSION["id_admin"])){
+    header("location: ../../../pages_error/404.html");
+}
 include "../../../../entities/class_activiter.php";
 $titre="";
 $description="";
@@ -36,50 +40,28 @@ $etat=activiter::retourne_valeur("id",$_GET["id"],"etat");
 </head>
 <body operation="<?php echo (isset($_GET["id"]))?"modifier":"ajouter";?>" id="<?php echo (isset($_GET["id"]))?$_GET["id"]:"";?>">
 
-					<!-- begin:: Subheader -->
-					<div class="kt-subheader   kt-grid__item" id="kt_subheader">
-						<div class="kt-subheader__main">
-							<h3 class="kt-subheader__title">
-							Blank Page</h3>
-							<span class="kt-subheader__separator kt-hidden">
-							</span>
-							<div class="kt-subheader__breadcrumbs">
-								<a href="#" class="kt-subheader__breadcrumbs-home">
-									<i class="la la-shelter" style="font-size:25px;">
-									</i>
-								</a>
-								<span class="kt-subheader__breadcrumbs-separator">
-								</span>
-								<a href="" class="kt-subheader__breadcrumbs-link">
-								Features                    </a>
-								<span class="kt-subheader__breadcrumbs-separator">
-								</span>
-								<a href="" class="kt-subheader__breadcrumbs-link">
-								Misc                    </a>
-								<span class="kt-subheader__breadcrumbs-separator">
-								</span>
-								<a href="" class="kt-subheader__breadcrumbs-link">
-								Blank Page                    </a>
-								<!-- <span class="kt-subheader__breadcrumbs-link kt-subheader__breadcrumbs-link--active">
-								Active link</span>
-								-->
-							</div>
-							
-						</div>
-						<div class="kt-subheader__toolbar">
-							<div class="kt-subheader__wrapper">
-								<div class="dropdown dropdown-inline" data-toggle="kt-tooltip" title="Quick actions" data-placement="top">
-									<a href="#" class="btn btn-icon btn btn-label btn-label-brand btn-bold" data-toggle="dropdown" data-offset="0px,0px" aria-haspopup="true" aria-expanded="false">
-										<i class="la la-plus">
-										</i>
-									</a>
-								</div>
-								
-							</div>
-						</div>
-					</div>
-					<!-- end:: Subheader -->
-					<!-- begin:: Content -->
+<div class="kt-subheader   kt-grid__item bg-white" style="padding:20px;padding-left:40px;" id="kt_subheader">
+    <div class="kt-subheader__main">
+              <h3 class="kt-subheader__title">
+              Services</h3>
+              <span class="kt-subheader__separator kt-hidden">
+              </span>
+              <div class="kt-subheader__breadcrumbs">
+                <a href="#" class="kt-subheader__breadcrumbs-home">
+                  <i class="la la-shelter" style="font-size:25px;">
+                  </i>
+                </a>
+                <span class="kt-subheader__breadcrumbs-separator">
+                </span>
+                <a href="" class="kt-subheader__breadcrumbs-link">
+                Ajouter un service                  </a>
+                <!-- <span class="kt-subheader__breadcrumbs-link kt-subheader__breadcrumbs-link--active">
+                Active link</span>
+                -->
+              </div>
+              
+            </div>
+</div>
 					<div class="kt-content  kt-grid__item kt-grid__item--fluid" id="kt_content">
 								<div class="preload" style="position:fixed;width:100%;height:100%;background:white;left:0;top:0;z-index:100;padding-top:10%;">
 				<center><div class="lds-ring"><div></div><div></div><div></div><div></div></div></center>
@@ -88,7 +70,7 @@ $etat=activiter::retourne_valeur("id",$_GET["id"],"etat");
 			<div class="kt-portlet col-xl-5">
 				<div class="kt-portlet__head">
 					<div class="kt-portlet__head-label">
-						<h3 class="kt-portlet__head-title">Ajouter une activitée</h3>
+						<h3 class="kt-portlet__head-title">Ajouter un service</h3>
 					</div>
 				</div>
 				<!--begin::Form-->
@@ -136,7 +118,7 @@ $etat=activiter::retourne_valeur("id",$_GET["id"],"etat");
 								<div class="col-2">
 								</div>
 								<div class="col-10">
-									<button type="submit" class="btn btn-success">Ajouter</button>
+									<button type="submit" class="btn btn-success"><?php echo (isset($_GET["id"]))?"Modifier":"Ajouter";?></button>
 								</div>
 							</div>
 						</div>

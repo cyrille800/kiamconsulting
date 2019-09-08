@@ -1,4 +1,8 @@
 <?php 
+session_start();
+if(!isset($_SESSION["id_admin"])){
+    header("location: ../../../pages_error/404.html");
+}
 include_once "../../../../entities/class_paiement.php";
 ?>
 <!DOCTYPE html>
@@ -22,38 +26,29 @@ include_once "../../../../entities/class_paiement.php";
         </script>
 </head>
 <body  id="<?php echo (isset($_GET["id"]))?$_GET["id"]:"";?>" operation="ajouter">
-                    <!-- end:: Subheader -->
-                    <!-- begin:: Content -->
-                    <div class="kt-content  kt-grid__item kt-grid__item--fluid" id="kt_content" style="padding:0px;">
-                    <div class="kt-subheader   kt-grid__item bg-white mb-4" style="padding:10px;padding-left:40px;" id="kt_subheader">
-    <div class="kt-container  kt-container--fluid ">
-        <div class="kt-subheader__main">
-                            <h3 class="kt-subheader__title">
-                                            Matieres                               
-                </h3>
-                       
-
-            <span class="kt-subheader__separator kt-subheader__separator--v"></span>
-            
-            <div class="kt-subheader__toolbar" id="kt_subheader_search">
-                <span class="kt-subheader__desc" id="kt_subheader_total">
-                                            <span class="rps">0</span> Totals                                   </span>
-                
-                                    <form class="kt-subheader__search" id="kt_subheader_search_form">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search..." id="generalSearch">
-                            <div class="input-group-append">
-                                <span class="input-group-text" id="basic-addon2">
-                                    <i class="la la-search"></i>
-                                </span>
-                            </div>
-                        </div>
-                    </form>
-                            </div>
-
-                    </div>        
-    </div>
+<div class="kt-subheader   kt-grid__item bg-white" style="padding:20px;padding-left:40px;margin-bottom:30px;" id="kt_subheader">
+    <div class="kt-subheader__main">
+              <h3 class="kt-subheader__title">
+              Paiement</h3>
+              <span class="kt-subheader__separator kt-hidden">
+              </span>
+              <div class="kt-subheader__breadcrumbs">
+                <a href="#" class="kt-subheader__breadcrumbs-home">
+                  <i class="la la-shelter" style="font-size:25px;">
+                  </i>
+                </a>
+                <span class="kt-subheader__breadcrumbs-separator">
+                </span>
+                <a href="" class="kt-subheader__breadcrumbs-link">
+                Consulter les paiements                  </a>
+                <!-- <span class="kt-subheader__breadcrumbs-link kt-subheader__breadcrumbs-link--active">
+                Active link</span>
+                -->
+              </div>
+              
+            </div>
 </div>
+                    <div class="kt-content  kt-grid__item kt-grid__item--fluid" id="kt_content" style="padding:0px;">
                                 <div class="preload" style="position:fixed;width:100%;height:100%;background:white;left:0;top:0;z-index:100;padding-top:10%;">
                 <center><div class="lds-ring"><div></div><div></div><div></div><div></div></div></center>
             </div>
@@ -68,7 +63,7 @@ include_once "../../../../entities/class_paiement.php";
                 <div class="kt-section">
                     <div class="kt-section__content">
                         <span class="lead">Liste des offres de paiement :</span> 
-                        <ul class="kt-nav kt-nav--v2 kt-nav--md-space kt-nav--bold kt-nav--lg-font">
+                        <ul class="kt-nav kt-nav--v2 kt-nav--md-space kt-nav--bold kt-nav--lg-font" style="height:570px;overflow-y:scroll;">
 <?php 
 $id=(isset($_GET["id"]))?$_GET["id"]:"";
     paiement::afficher($id);
@@ -212,6 +207,8 @@ $('[name="id_active"]').attr("value",d.find("a").attr("id"))
     $(".descriptionss").text(d.attr("description"))
     $(".titress").text(d.attr("titre"))
     $(".typess").text(d.attr("type"))
+    $("a.btn.btn-brand.btn-sm.btn-bold.btn-upper").attr("href","ajouter.php?id="+d.attr("id"))
+    $("[data-original-title='supprmer']").attr("id",d.attr("id"))
 },100)
 })
  $(".supprimer").click(function(e){

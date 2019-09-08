@@ -1,4 +1,8 @@
 <?php 
+session_start();
+if(!isset($_SESSION["id_admin"])){
+    header("location: ../../../pages_error/404.html");
+}
 include "../../../../entities/class_quizz.php";
 ?>
 <!DOCTYPE html>
@@ -62,7 +66,7 @@ padding-right: 1.1rem;
 					<div class="kt-subheader   kt-grid__item bg-white" id="kt_subheader" style="padding:10px;padding-left:40px;">
 						<div class="kt-subheader__main bg-white">
 							<h3 class="kt-subheader__title">
-							Blank Page</h3>
+							Concours</h3>
 							<span class="kt-subheader__separator kt-hidden">
 							</span>
 							<div class="kt-subheader__breadcrumbs bg-white">
@@ -72,16 +76,12 @@ padding-right: 1.1rem;
 								</a>
 								<span class="kt-subheader__breadcrumbs-separator">
 								</span>
-								<a href="" class="kt-subheader__breadcrumbs-link">
-								Features                    </a>
+								<a href="afficher.php" class="kt-subheader__breadcrumbs-link">
+								Liste matières                    </a>
 								<span class="kt-subheader__breadcrumbs-separator">
 								</span>
 								<a href="" class="kt-subheader__breadcrumbs-link">
-								Misc                    </a>
-								<span class="kt-subheader__breadcrumbs-separator">
-								</span>
-								<a href="" class="kt-subheader__breadcrumbs-link">
-								Blank Page                    </a>
+								quizz                    </a>
 								<a href="#" class="btn btn-primary ml-4"   data-toggle="modal" data-target="#ajouter_image"><i class="la la-plus"></i>&nbsp;&nbsp;Ajouter un quizz</a>
 							</div>
 							
@@ -236,6 +236,12 @@ var selectedClass = "";
 			 $("#formulaire1").submit(function(e){
 e.preventDefault();
 var autre_reponse="";
+var var1=$("[name='faux1']").val();
+var var2=$("[name='faux2']").val();
+var var3=$("[name='faux3']").val();
+if(var1.indexOf(";")!=-1 || var2.indexOf(";")!=-1 || var3.indexOf(";")!=-1){
+	toastr.error("vous ne devez pas utiliser  ';'")
+}else{
 autre_reponse+=$("[name='faux1']").val()+";";
 autre_reponse+=$("[name='faux2']").val()+";";
 autre_reponse+=$("[name='faux3']").val();
@@ -259,6 +265,7 @@ toastr.error(data);
 })
 }else{
  toastr.error("remplir tous les champs");  
+}
 }
 })
 

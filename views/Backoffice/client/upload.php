@@ -1,5 +1,8 @@
 <?php 
 session_start();
+if(!isset($_SESSION["id"])){
+    header("location:../../pages_error/404.html");
+}
 require_once "../../../entities/class_ecole.php";
 require_once "../../../entities/class_etudiant.php";
 require_once "../../../entities/class_activiter.php";

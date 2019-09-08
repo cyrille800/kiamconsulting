@@ -1,11 +1,19 @@
 <?php 
 session_start();
+if(!isset($_SESSION["id"])){
+    header("location:../../pages_error/404.html");
+}
 require_once "../../../entities/class_ecole.php";
 require_once "../../../entities/class_etudiant.php";
 require_once "../../../entities/class_activiter.php";
 require_once "../../../entities/class_activiter_client.php";
 require_once "../../../entities/class_galerie.php";
 require_once "../../../entities/class_details_plus.php";
+include_once "../../../entities/class_etudiant.php";
+$resultat=etudiant::retourne_valeur("id_client",$_SESSION["id"],"resultat");
+if($resultat!=1 && $_SESSION["type"]==0){
+    header("location:../../pages_error/404.html");
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -48,7 +56,7 @@ require_once "../../../entities/class_details_plus.php";
     <div class="kt-portlet__body">
         <div id="kt-widget-slider-13-2" class="kt-slider carousel slide pointer-event" data-ride="carousel" data-interval="4000">
             <div class="kt-slider__head">
-                <div class="kt-slider__label">Activités</div>
+                <div class="kt-slider__label">Services</div>
                 <div class="kt-slider__nav">
                     <a class="kt-slider__nav-prev carousel-control-prev" href="#kt-widget-slider-13-2" role="button" data-slide="prev">
                         <i class="fa fa-angle-left"></i>

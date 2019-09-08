@@ -139,16 +139,26 @@ if(intval($data["id"])==$id){
 	}
 
 
-public static function afficher_client($id){
+public static function afficher_client($id,$n){
+	if($n!=1){
+		if($n==2){
+			$n=4;
+		}else{
+			$n*=2+1;
+		}
+	}
+	if($n==1){
+		$n=0;
+	}
 	$type=client::retourne_valeur("id",$id,"type");
 	$type=($type==0)?"etudiant":"patient";
-	  	$requette=config::$bdd->query("select * from paiement where type='".$type."'");
+	  	$requette=config::$bdd->query("select * from paiement where type='".$type."' limit ".intval($n).",4");
 	  	$o=0;
                 		while($data=$requette->fetch()){
                 			$reponse=paiement_client::verifier_exite($id,$data["id"]);
 					if($reponse==false){
 						$rps=paiement_client::exite_panier($id,$data["id"]);
-						echo '<div class="col-md-3 mx-auto">
+						echo '<div class="col-md-3">
 							<div class="kt-pricing-v2__item kt-pricing-v2--';
 if($rps==true){
 	echo "danger";
@@ -218,7 +228,9 @@ if($rps==true){
 
 public static function verifiers($type,$valeur){
 		$i=0;
-		  	$requette=config::$bdd->query("select * from paiement where ".$type."='".$valeur."'");
+		  	$requette=config::$bdd->prepare("select * from paiement where ".$type."=:".$type);
+		  	$requette->bindValue(":".$type,$valeur);
+		  	$requette->execute();
     while($data=$requette->fetch()){
 		$i=1;                		
 	}
@@ -234,7 +246,10 @@ public static function verifiers($type,$valeur){
 
 public static function verifier($id,$type,$valeur){
 		$i=0;
-		  	$requette=config::$bdd->query("select * from paiement where ".$type."='".$valeur."' and id!=".$id);
+		  	$requette=config::$bdd->prepare("select * from paiement where ".$type."=:".$type." and id!=:id");
+		  			  	$requette->bindValue(":".$type,$valeur);
+		  			  	$requette->bindValue(":id",$id);
+		  	$requette->execute();
                 		while($data=$requette->fetch()){
 		$i=1;                		
 	}

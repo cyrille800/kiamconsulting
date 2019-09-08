@@ -58,7 +58,9 @@ function ajouter(){
 
 public static function verifiers($type,$valeur){
 		$i=0;
-		  	$requette=config::$bdd->query("select * from activite where ".$type."='".$valeur."'");
+		  	$requette=config::$bdd->prepare("select * from activite where ".$type."=:".$type);
+		  	$requette->bindValue(":".$type,$valeur);
+		  	$requette->execute();
     while($data=$requette->fetch()){
 		$i=1;                		
 	}
@@ -74,7 +76,10 @@ public static function verifiers($type,$valeur){
 
 public static function verifier($id,$type,$valeur){
 		$i=0;
-		  	$requette=config::$bdd->query("select * from activite where ".$type."='".$valeur."' and id!=".$id);
+		  	$requette=config::$bdd->prepare("select * from activite where ".$type."=:".$type." and id!=:id");
+		  			  	$requette->bindValue(":".$type,$valeur);
+		  			  	$requette->bindValue(":id",$id);
+		  	$requette->execute();
                 		while($data=$requette->fetch()){
 		$i=1;                		
 	}
@@ -90,13 +95,16 @@ public static function verifier($id,$type,$valeur){
 
 public static function nombre_pourcentage($id,$v){
 			$nombre=proccedure::nombre("id_active",$v);
-			$rt=config::$bdd->query("select * from activiter_client where id_client=".$id." && id_activiter=".$v);
+			$rt=config::$bdd->prepare("select * from activiter_client where id_client=:id_client && id_activiter=:id_activiter");
+					  	$rt->bindValue(":id_activiter",$v);
+		  			  	$rt->bindValue(":id_client",$id);
+		  	$rt->execute();
 			$vx=$rt->fetch();
 			$po=$vx["nombre_etape_fait"];
 			$op=intval($nombre);
 			$fini=0;
 			if($op>0){
-				$fini=ceil(intval(($po+1)*100)/$op);
+				$fini=ceil(intval(($po)*100)/$op);
 			}
 			if($po==0){
 				$fini=0;
@@ -104,14 +112,21 @@ public static function nombre_pourcentage($id,$v){
 			return $fini;
 }
 
-	public static function afficher_client($id_client,$id,$v){
+
+
+
+public static function afficher_dashboard($id_client,$id,$v){
 			$type=client::retourne_valeur("id",$id_client,"type");
 	$type=($type==0)?"1":"0";
 	$type=intval($type);
-		$si=config::$bdd->query("select count(*) from activite where etat=$type");
+		$si=config::$bdd->prepare("select count(*) from activite where etat=:etat");
+		$si->bindValue(":etat",$type);
+		$si->execute();
 		$nom=$si->fetch();
 		$nombre_final=$nom[0];
-		$requette=config::$bdd->query("select * from activite where etat=$type");
+		$requette=config::$bdd->prepare("select * from activite where etat=:etat");
+				$requette->bindValue(":etat",$type);
+		$requette->execute();
 		$i=0;
 		while($data=$requette->fetch()){
 			$fini=0;
@@ -122,68 +137,12 @@ public static function nombre_pourcentage($id,$v){
 			}
 			$veri=activiter_client::nombre($id_client,"id_activiter",$data["id"]);
 
-
-			echo '                <div class="carousel-item kt-slider__body '.(($i==0)?"active":"").'">
-                    <div class="kt-widget-13">
-                        <div class="kt-widget-13__body">
-                            <a class="kt-widget-13__title" href="#">'.$data['titre'].'</a>
-                            <div class="kt-widget-13__desc">
-                                '.$data['description'].'
-                            </div>
-                        </div>
-                        <div class="kt-widget-13__foot">';
-if($veri==0){
-	$p=proccedure::retourne_valeur("id_active",$data["id"],"id");
-	if($p==""){
-		$p=0;
-	}
-echo '<button type="button" class="btn btn-primary mx-auto ii" value="commencer" etape_actuel="'.$p.'" nombre_etape_fait="0" etape_actuel="" id="'.$data["id"].'" name="'.$data["titre"].'">commencer&nbsp;&nbsp;<i class="la la-arrow-right"></i></button>';
-}else{
-echo '                            <div class="kt-widget-13__progress">
-                                <div class="kt-widget-13__progress-info">
-                                    <div class="kt-widget-13__progress-status">
-                                        Progress
-                                    </div>
-                                    <div class="kt-widget-13__progress-value">'.$fini.'%</div>
-                                </div>
-                                <div class="progress">
-                                    <div class="progress-bar kt-bg-brand" role="progressbar" style="width: '.$fini.'%" aria-valuenow="'.$fini.'" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                            </div>';
-
-}
-                        echo '</div>';
-if($veri!=0){
-               	echo '<div class="row mt-3 col-12"><button type="button" class="btn btn-danger btn-sm annuler" name="'.$data["titre"].'" id="'.$data["id"].'" style="border-radius:0px;border-top-left-radius:3px;border-bottom-left-radius:3px;">annuler</button>
-                <button type="button" class="btn btn-info btn-sm poursuivre" id="'.$data["id"].'" style="border-radius:0px;border-top-right-radius:3px;border-bottom-right-radius:3px;">';
-if(intval($v)==intval($data["id"])){
-	echo "en cours  <div class='spinner-grow spinner-grow-sm' role='status'>
-                            <span class='sr-only'>Loading...</span>
-                        </div>";
-}else{
-	echo 'Poursuivre&nbsp;&nbsp;<i class="la la-arrow-right"></i>';
-}
-                echo'</button></div>';
-}
-                        echo'
-                    </div>
-                    ';
-for($j=0;$j<$nombre_final;$j++){
-	if($j==$i){
-		echo '<div class="mr-2 bg-primary" style="width:10px;height:10px;display:inline-block;border-radius:5px;"> </div>';
-	}
-	else{
-		echo '<div class="mr-2" style="width:10px;height:10px;display:inline-block;border-radius:5px;background-color:#919191;"> </div>';
-	}
-}
-                    echo'
-                </div>';
                 if($i==0){
-                	echo '<table class="table" style="margin-top:25%;">
+                	echo '<table class="table mt-2 col-11 mx-auto">
                             <thead class="thead-dark">
                                 <tr>
                                 <th class="text-center"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Numéro</font></font></th>
-                                    <th class="text-center"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Titre activité</font></font></th>
+                                    <th class="text-center"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Titre services</font></font></th>
                                     <th class="text-center"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Progression</font></font></th>
                                     <th class="text-center"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Etat</font></font></th>
                                 </tr>
@@ -209,6 +168,7 @@ if($veri!=0){
 }
                                     echo '</font></font></td>
                                     <td scope="row" class="text-center"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">';
+if(intval($fini)!=100){
 if($veri!=0){
 if(intval($v)==intval($data["id"])){
 	echo "<span class='text-success'>en cours</span>";
@@ -218,10 +178,155 @@ if(intval($v)==intval($data["id"])){
 }else{
 	echo "<span class='text-danger'>inactif</span>";
 }
+}else{
+	echo "<span class='text-success'>terminer</span>";
+}
                                     echo '</font></font></td>
                                 </tr>';
                               
-                                if($i==$nombre_final){echo ' </tbody>
+                                if($i==($nombre_final-1)){echo '</tbody>
+                        </table>';
+                }
+                
+$i++;
+		}
+	}
+
+
+
+
+	public static function afficher_client($id_client,$id,$v){
+			$type=client::retourne_valeur("id",$id_client,"type");
+	$type=($type==0)?"1":"0";
+	$type=intval($type);
+		$si=config::$bdd->prepare("select count(*) from activite where etat=:etat");
+		$si->bindValue(":etat",$type);
+		$si->execute();
+		$nom=$si->fetch();
+		$nombre_final=$nom[0];
+		$requette=config::$bdd->prepare("select * from activite where etat=:etat");
+				$requette->bindValue(":etat",$type);
+		$requette->execute();
+		$i=0;
+		while($data=$requette->fetch()){
+			$fini=0;
+			$cv="non";
+			if($v!=""){
+				$fini=self::nombre_pourcentage($id_client,$data["id"]);
+				$cv="oui";
+			}
+			$veri=activiter_client::nombre($id_client,"id_activiter",$data["id"]);
+
+
+			echo '                <div class="carousel-item kt-slider__body '.(($i==0)?"active":"").'">
+                    <div class="kt-widget-13">
+                        <div class="kt-widget-13__body">
+                            <a class="kt-widget-13__title" href="#">'.$data['titre'].'</a>
+                            <div class="kt-widget-13__desc">
+                                '.$data['description'].'
+                            </div>
+                        </div>
+                        <div class="kt-widget-13__foot">';
+if($fini!=100){
+if($veri==0){
+	$p=proccedure::retourne_valeur("id_active",$data["id"],"id");
+	if($p==""){
+		$p=0;
+	}
+echo '<button type="button" class="btn btn-primary mx-auto ii" value="commencer" etape_actuel="'.$p.'" nombre_etape_fait="0" etape_actuel="" id="'.$data["id"].'" name="'.$data["titre"].'">commencer&nbsp;&nbsp;<i class="la la-arrow-right"></i></button>';
+}else{
+echo '                            <div class="kt-widget-13__progress">
+                                <div class="kt-widget-13__progress-info">
+                                    <div class="kt-widget-13__progress-status">
+                                        Progress
+                                    </div>
+                                    <div class="kt-widget-13__progress-value">'.$fini.'%</div>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar kt-bg-brand" role="progressbar" style="width: '.$fini.'%" aria-valuenow="'.$fini.'" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>';
+
+}
+}
+                        echo '</div>';
+if($fini!=100){
+	if($veri!=0){
+               	echo '<div class="row mt-3 col-12"><button type="button" class="btn btn-danger btn-sm annuler" name="'.$data["titre"].'" id="'.$data["id"].'" style="border-radius:0px;border-top-left-radius:3px;border-bottom-left-radius:3px;">annuler</button>
+                <button type="button" class="btn btn-info btn-sm poursuivre" id="'.$data["id"].'" style="border-radius:0px;border-top-right-radius:3px;border-bottom-right-radius:3px;">';
+if(intval($v)==intval($data["id"])){
+	echo "en cours  <div class='spinner-grow spinner-grow-sm' role='status'>
+                            <span class='sr-only'>Loading...</span>
+                        </div>";
+}else{
+	echo 'Poursuivre&nbsp;&nbsp;<i class="la la-arrow-right"></i>';
+}
+                echo'</button></div>';
+}
+}else{
+	echo "<span class='text-primary lead'>Terminer</span><br><br><br>";
+}
+                        echo'
+                    </div>
+                    ';
+for($j=0;$j<$nombre_final;$j++){
+	if($j==$i){
+		echo '<div class="mr-2 bg-primary" style="width:10px;height:10px;display:inline-block;border-radius:5px;"> </div>';
+	}
+	else{
+		echo '<div class="mr-2" style="width:10px;height:10px;display:inline-block;border-radius:5px;background-color:#919191;"> </div>';
+	}
+}
+                    echo'
+                </div>';
+                if($i==0){
+                	echo '<table class="table" style="margin-top:25%;">
+                            <thead class="thead-dark">
+                                <tr>
+                                <th class="text-center"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Numéro</font></font></th>
+                                    <th class="text-center"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Titre services</font></font></th>
+                                    <th class="text-center"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Progression</font></font></th>
+                                    <th class="text-center"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Etat</font></font></th>
+                                </tr>
+                            </thead>
+                            <tbody>';
+
+                    }
+                            	echo '<tr>
+                            <td scope="row" class="text-center"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">'.($i+1).'</font></font></td>
+                                    <td scope="row" class="text-center"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">'.$data["titre"].'</font></font></td>
+                                    <td class="text-center"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;" class="pourt">';
+if($veri!=0){
+	echo '<div class="kt-widget-13__progress">
+                                <div class="kt-widget-13__progress-info">
+                                    <div class="kt-widget-13__progress-value">'.$fini.'%</div>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar kt-bg-brand" role="progressbar" style="width: '.$fini.'%" aria-valuenow="'.$fini.'" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>';
+}else{
+	echo 'inactif';
+}
+                                    echo '</font></font></td>
+                                    <td scope="row" class="text-center"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">';
+if(intval($fini)!=100){
+if($veri!=0){
+if(intval($v)==intval($data["id"])){
+	echo "<span class='text-success'>en cours</span>";
+}else{
+	echo '<span class="text-warning">pause</span>';
+}
+}else{
+	echo "<span class='text-danger'>inactif</span>";
+}
+}else{
+	echo "<span class='text-success'>terminer</span>";
+}
+                                    echo '</font></font></td>
+                                </tr>';
+                              
+                                if($i==($nombre_final-1)){echo ' </tbody>
                         </table>';
                 }
                 
@@ -324,14 +429,21 @@ if(intval($data["etat"])==1){
 		$tableaui=[];
 		  	$requette=config::$bdd->query("select * from activite");
                 		while($data=$requette->fetch()){
-					echo '<a class="dropdown-item text-center click" style="color:black;" target="frame1" href="activite/controler.php?id='.$data['id'].'">'.$data['titre'].'</a>';
+
+		$t=config::$bdd->query("select count(*) from activiter_client,proccedure where (activiter_client.etape_actuel=proccedure.id && activiter_client.id_activiter=".$data['id'].") && proccedure.fichier=0");
+		$n=$t->fetch();
+		$nombre=$n[0];
+		
+					echo '<a class="dropdown-item text-center click" style="color:black;" target="frame1" href="activite/controler.php?id='.$data['id'].'">'.$data['titre'].'<span class="ml-5 kt-badge kt-badge--brand service_imbriquer" name="'.$data['id'].'" style="position:absolute;left:70%;'.(($nombre==0)?"display: none":"").'">'.$nombre.'</span></a>';
                 		}
 	}
 
 	public static function controler($i_activiter){
 		$tableau=[];
 		$tableaui=[];
-		  	$requette=config::$bdd->query("select * from proccedure where id_active=".$i_activiter);
+		  	$requette=config::$bdd->prepare("select * from proccedure where id_active=:id_active");
+		  			  	$requette->bindValue(":id_active",$i_activiter);
+		  	$requette->execute();
                 		while($data=$requette->fetch()){
                 			$fichier=$data["fichier"];
 					echo '<div class="col-md-3 col-xs-12 col-sm-12 bg-white mr-2 px-2 py-2 un" style="height:650px;border-radius:4px;" id_proccedure="'.$data["id"].'">
@@ -354,8 +466,10 @@ echo'
 </div>
 <div class="col-11 mx-auto" style="height:550px;overflow-y:scroll;">';
 
-$mo=config::$bdd->query("select * from activiter_client where id_activiter=".$i_activiter." && etape_actuel=".$data["id"]);
-
+$mo=config::$bdd->prepare("select * from activiter_client where id_activiter=:id_activiter && etape_actuel=:etape_actuel");
+		  	$mo->bindValue(":id_activiter",$i_activiter);
+		  	$mo->bindValue(":etape_actuel",$data["id"]);
+		  	$mo->execute();
 while($do=$mo->fetch()){
 	echo '<div class="card mb-4" style="border:1px solid #d8d8d8;">
 								<div class="w-100 py-2" style="background:#d2e0ff;"><div class="kt-widget-7__item mx-auto text-center">

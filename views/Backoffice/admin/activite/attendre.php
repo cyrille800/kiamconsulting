@@ -1,3 +1,9 @@
+<?php 
+session_start();
+if(!isset($_SESSION["id_admin"])){
+    header("location: ../../../pages_error/404.html");
+}
+?>
 <!DOCTYPE html>
 <html lang="en" >
     <!-- begin::Head -->

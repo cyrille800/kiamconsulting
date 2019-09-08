@@ -76,7 +76,9 @@ function ajouter(){
 
 public static function verifiers($type,$valeur){
 		$i=0;
-		  	$requette=config::$bdd->query("select * from concours where ".$type."='".$valeur."'");
+		  	$requette=config::$bdd->prepare("select * from concours where ".$type."=:".$type);
+		  	$requette->bindValue(":".$type,$valeur);
+		  	$requette->execute();
     while($data=$requette->fetch()){
 		$i=1;                		
 	}
@@ -92,7 +94,10 @@ public static function verifiers($type,$valeur){
 
 public static function verifier($id,$type,$valeur){
 		$i=0;
-		  	$requette=config::$bdd->query("select * from concours where ".$type."='".$valeur."' and id!=".$id);
+		  	$requette=config::$bdd->prepare("select * from concours where ".$type."=:".$type." and id!=:id");
+		  			  	$requette->bindValue(":".$type,$valeur);
+		  			  	$requette->bindValue(":id",$id);
+		  	$requette->execute();
                 		while($data=$requette->fetch()){
 		$i=1;                		
 	}
@@ -263,7 +268,9 @@ echo $req[1];
 		 else return -1;
 }
 public static function afficherProchainConcours($id){
-	$req=config::$bdd->query("select * from concours where id=".$id);
+	$req=config::$bdd->prepare("select * from concours where id=:id");
+	$req->bindValue(":id",$id);
+	$req->execute();
 	$data=$req->fetch();
 	echo "<h4> Sujet:".$data["titre"]." <h4><br><h4 >Description: ".$data["description"]."</h4><br> <h4>Date: ".$data["date_concour"]."</h4><br> <h4>Heure :";
 	$req=explode(":",$data["heure"]);

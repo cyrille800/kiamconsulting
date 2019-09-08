@@ -57,12 +57,14 @@ function ajouter(){
 
 public static function verifiers($type,$valeur){
 		$i=0;
-		  	$requette=config::$bdd->query("select * from client where ".$type."=".$valeur);
-                		while($data=$requette->fetch()){
+		  	$requette=config::$bdd->prepare("select * from client where ".$type."=:".$type);
+		  	$requette->bindValue(":".$type,$valeur);
+		  	$requette->execute();
+    while($data=$requette->fetch()){
 		$i=1;                		
 	}
 
-	if($i==1){
+	if($i>=1){
 		return false;
 	}
 	else{
@@ -97,6 +99,7 @@ public static function verifiers($type,$valeur){
 		$tableau=[];
 		$tableaui=[];
 		  	$requette=config::$bdd->query("select * from message where (id_expediteur=0 && id_receveur=".$res.") or (id_expediteur=".$res." && id_receveur=0)");
+		  	$o=0;
                 		while($data=$requette->fetch()){
 										if(intval($data["id_expediteur"])==intval($res)){
 						echo '<div class="kt-chat__message kt-chat__message--right"><div class="kt-chat__user">';
@@ -112,6 +115,11 @@ public static function verifiers($type,$valeur){
                                 </div>
                             </div>';
                 		}
+                		$o=1;
+					}
+
+					if($o==0){
+						echo "<div class='col-5 mx-auto text-center bg-info text-white vide' style='border-radius:5px;'>Aucun message</div>";
 					}
 					}
 

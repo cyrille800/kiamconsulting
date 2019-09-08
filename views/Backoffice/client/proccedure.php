@@ -1,11 +1,18 @@
 <?php
 session_start();
+if(!isset($_SESSION["id"])){
+    header("location:../../pages_error/404.html");
+}
 require_once "../../../entities/class_ecole.php";
 require_once "../../../entities/class_etudiant.php";
 require_once "../../../entities/class_activiter.php";
 require_once "../../../entities/class_activiter_client.php";
 require_once "../../../entities/class_galerie.php";
 require_once "../../../entities/class_details_plus.php";
+$resultat=etudiant::retourne_valeur("id_client",$_SESSION["id"],"resultat");
+if($resultat!=1 && $_SESSION["type"]==0){
+    header("location:../../pages_error/404.html");
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -39,9 +46,10 @@ require_once "../../../entities/class_details_plus.php";
 
                     <center>
                                 <div class="element">
-                                    <?php
+                                    <?php 
                                     if(isset($_COOKIE["id_activiter".$_SESSION["id"]])){
                                     if(!empty($_COOKIE["id_activiter".$_SESSION["id"]])){
+                                        echo $_COOKIE["id_activiter".$_SESSION["id"]];
                                     ?>
                                     <div class="kt-portlet"  style="box-shadow:none;">
                                         <div class="kt-portlet__body kt-portlet__body--fit col-8 mx-auto shadow-sm" style="border:1px solid #eee;">
@@ -136,12 +144,17 @@ $.ajax({
     success: function(data){
         var dat=JSON.parse(data);
                 if(dat.reponose=="ok"){
-        socket.emit("envoyer_notification",{type:"warning",message:dat.message})
+                    if($.trim(dat.message)!=""){
+                    socket.emit("envoyer_notification",{type:"warning",message:dat.message})
+                    }
         var id_activiter=$("[name='id_activiter']").val();
-        socket.emit("next_step",{id_client:ideo,id_activiter:id_activiter})
+                   
+                    socket.emit("next_step",{id_client:ideo,id_activiter:id_activiter})
+                   
 
         document.location.href="proccedure.php";  
         }else{
+
             toastr.error(dat.reponose);
         }  
     }

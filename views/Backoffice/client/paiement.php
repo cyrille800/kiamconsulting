@@ -1,6 +1,18 @@
 <?php 
 session_start();
+if(!isset($_SESSION["id"])){
+    header("location:../../pages_error/404.html");
+}
 require_once "../../../entities/class_paiement.php";
+$nombre=1;
+if(isset($_GET["nombre"])){
+$nombre=intval($_GET["nombre"]);
+}
+include_once "../../../entities/class_etudiant.php";
+$resultat=etudiant::retourne_valeur("id_client",$_SESSION["id"],"resultat");
+if($resultat!=1 && $_SESSION["type"]==0){
+    header("location:../../pages_error/404.html");
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -23,8 +35,9 @@ require_once "../../../entities/class_paiement.php";
         <link href="../../assets/Backoffice/css/demo1/pages/pricing/pricing-v2.css" rel="stylesheet" type="text/css" />
         <link href="../../assets/Backoffice/vendors/global/vendors.bundle.css" rel="stylesheet" type="text/css" />
         <link href="../../assets/Backoffice/css/demo4/style.bundle.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-<body style="padding:0px;margin:0px;background-color:transparent;overflow:hidden;" id="<?php echo $_SESSION["id"];?>">
+<body style="padding:0px;margin:0px;background-color:rgba(0,0,0,0.06);overflow:hidden;" id="<?php echo $_SESSION["id"];?>">
                 <div class="preload" style="position:fixed;width:100%;height:100%;background:white;left:0;top:0;z-index:100;padding-top:10%;">
                 <center>
                 <div class="lds-ring">
@@ -39,7 +52,7 @@ require_once "../../../entities/class_paiement.php";
                 </div>
                 </center>
             </div>
-<div class="kt-subheader   kt-grid__item bg-white mb-4" id="kt_subheader" style="padding:10px;padding-left:40px;">
+<div class="kt-subheader   kt-grid__item bg-white mb-4" id="kt_subheader" style="padding:2px;padding-left:40px;">
     <div class="kt-subheader   kt-grid__item" id="kt_subheader">
     <div class="kt-container  kt-container--fluid ">
         <div class="kt-subheader__main">
@@ -53,34 +66,14 @@ require_once "../../../entities/class_paiement.php";
                             Liste des paiements                        </a>
                                             <span class="kt-subheader__breadcrumbs-separator"></span>
                 </div>
-                    
-        </div>
-    </div>
-</div>
-                        <div class="kt-subheader__main bg-white">
-                            <h3 class="kt-subheader__title">
-                            Recherche</h3>
-                            <div class="kt-subheader__toolbar" id="kt_subheader_search">
-                <span class="kt-subheader__desc" id="kt_subheader_total">
-                                            <span class="rps">0</span> Totals                                   </span>
-<form class="kt-subheader__search" id="kt_subheader_search_form">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search..." id="generalSearch">
-                            <div class="input-group-append">
-                                <span class="input-group-text" id="basic-addon2">
-                                    <i class="la la-search"></i>
-                                </span>
-                            </div>
-                                                                <a href="panier.php" class="btn btn btn-label btn-label-brand btn-bold ml-5" >
+                    <a href="panier.php"  class="ml-5 btn btn btn-label btn-label-brand btn-bold" >
                                         <i class="la la-cc-paypal" style="font-size:50px;">
                                         </i>
                                         Ouvrir le panier
                                     </a>
-                        </div>
-                    </form>
-                            </div>
-                            </div>
-                            
+        </div>
+    </div>
+</div>
                         </div>
                                 <!-- begin:: Content -->
                                 <div class="kt-content kt-grid__item kt-grid__item--fluid" style="background-color:transparent;">
@@ -91,18 +84,55 @@ require_once "../../../entities/class_paiement.php";
 <div class="row mx-auto">
     <div class="col-xl-12 mx-auto">
         <div class="kt-pricing-v2 mx-auto">
-            <div class="tab-content mx-auto">
-                                        <div class="alert alert-success fade show col-md-5 mx-auto" role="alert">
+            <div class="row tab-content">
+                <div class="col-3">
+            <div class="alert alert-warning fade show mx-auto mb-0" role="alert">
                             <div class="alert-icon"><i class="la la-question-circle"></i></div>
-                            <div class="alert-text">Selectionner les paiements à effectuer puis selectionner le boutton effectué le paiement</div>
+                            <div class="alert-text">Effectuer le paiement si necessaire</div>
                         </div>
-                <div class="tab-pane active" id="kt_tabs_4_2" role="tabpanel">
-                    <div class="row px-5">
+<div class="alert alert-success fade show mx-auto mt-2" role="alert">
+                            <div class="alert-icon"><i class="la la-question-circle"></i></div>
+                            <div class="alert-text">Selectionner les paiements à effectuer puis selectionner le boutton ouvrir le panier</div>
+                        </div>        
+                </div> 
+                <div class="col-9">
+                <div class="tab-pane active" id="kt_tabs_4_2 col-12" role="tabpanel">
+                    <div class="kt-section__content kt-section__content--border col-12">
+                        <nav aria-label="...">
+                            <ul class="pagination mx-auto col-5 mb-4">
+                                <?php 
+                                    $type=intval(client::retourne_valeur("id",$_SESSION['id'],"type"));
+                                    $type=($type==0)?"etudiant":"patient";
+                                $requette=config::$bdd->query("select count(*) from paiement where type='".$type."'");
+                                $fr=$requette->fetch();
+                                $nombres=intval($fr[0]);
+                                for($i=0;$i<$nombres/4;$i++){
+                                    echo '<li class="page-item ';
+                                    if(isset($_GET["nombre"])){
+                                        if(intval($_GET["nombre"])==($i+1)){
+                                            echo "active";
+                                        }
+                                    }else{
+                                        if($i==0){
+                                            echo "active";
+                                        }
+                                    }
+                                    echo '"><a class="page-link" href="paiement?nombre='.($i+1).'">'.($i+1).'</a></li>';
+                                }
+                                ?>
+                                
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="row">
                         <?php 
-                        paiement::afficher_client($_SESSION["id"]);
+                        paiement::afficher_client($_SESSION["id"],$nombre);
                         ?>
                     </div>
                 </div>
+                </div> 
+                
+                    </div>
             </div>      
         </div>
     </div>
@@ -111,6 +141,33 @@ require_once "../../../entities/class_paiement.php";
                                     <!--end::Dashboard 5-->
                                 </div>
                                 <!-- end:: Content -->
+<button type="button" class="btn btn-primary mol" data-toggle="modal" data-target="#exampleModal" style="display:none;">
+  Launch demo modal
+</button>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content" style="width:120%;">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"><i class="fa fa-paypal"></i>&nbsp;&nbsp;&nbsp; Paiement</h5>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+            <div class="col-5">
+                <img src="https://www.unsimpleclic.com/wp-content/uploads/2018/10/181008-localiser-00.png" width="100%" alt="">
+            </div> 
+            <div class="col-7">
+               <h3 class="lead">
+                    Si vous ne parvenez pas à effectuer un paiement en ligne ! <br> <br> vous pouvez vous rapprochez au prés de nos agences .
+               </h3> 
+            </div> 
+        </div> 
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
         <script>
         var KTAppOptions = {
         "colors": {
@@ -150,6 +207,13 @@ require_once "../../../entities/class_paiement.php";
         <script>
                 $(window).on("load",function(){
            $(".preload").fadeOut("fast");
+           <?php 
+           if(!isset($_GET["nombre"])){
+            ?>
+$(".mol").trigger("click");
+            <?php
+           }
+           ?>
         })
 
                 $(function(){

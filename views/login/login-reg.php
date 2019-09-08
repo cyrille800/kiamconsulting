@@ -62,8 +62,8 @@
     <div class="uv-login-reg-form">
         <div class="container">
             <div class="row">
-                <div class="col-md-8 col-xs-12 uv-login-reg-from-inner">
-                    <div class="login-logo ">
+                <div class="col-md-5 col-xs-12 uv-login-reg-from-inner">
+                    <div class="login-logo" style="margin-top:-20%;">
                         <center>
                         <a href="../index.php" >
                             <img src="../Frontend/assets/images/logo3.png" alt="" class="img-responsive " style="transform:scale(0.7,0.7)">
@@ -270,13 +270,14 @@
                     cache: false,
                     processData: false,
                     success: function(data) {
-                        if (data != "ok") {
+                        if (data != "client" && data != "admin") {
                             $(".erreur").text(data)
                             $(".erreur").fadeIn("fast");
                             setTimeout(function() {
                                 $(".erreur").fadeOut("fast");
                             }, 2000)
                         } else {
+                            var lien=data;
                             $(".erreur").hide();
                             if ($("[name='remember-me']").prop("checked") == true) {
                                 Cookies.set('username', $("[name='username']").val(), {
@@ -297,7 +298,7 @@
                             }
 
 
-                            document.location.href = "../Backoffice/client/index.php?commentaire="+"<?= isset($_GET["commentaire"])?$_GET["commentaire"]:""?>";
+                            document.location.href = "../Backoffice/"+lien+"/index.php";
                         }
                     }
                 })

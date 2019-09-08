@@ -1,8 +1,17 @@
 <?php 
+session_start();
+if(!isset($_SESSION["id_admin"])){
+	header("location: ../../pages_error/404.html");
+}
 require "../../../entities/class_ecole.php";
 require "../../../entities/class_concour.php";
 require "../../../entities/class_activiter.php";
 require "../../../entities/class_notification.php";
+require "../../../entities/class_admin.php";
+
+$username=admin::retourne_valeur("id",$_SESSION["id_admin"],"username");
+$email=admin::retourne_valeur("id",$_SESSION["id_admin"],"email");
+$password=admin::retourne_valeur("id",$_SESSION["id_admin"],"password");
 ?>
 <!DOCTYPE html>
 <html lang="en" >
@@ -37,7 +46,7 @@ require "../../../entities/class_notification.php";
 
 		<div id="kt_header_mobile" class="kt-header-mobile  kt-header-mobile--fixed " >
 			<div class="kt-header-mobile__logo">
-				<a href="/keen/preview/demo1/index.html">
+				<a href="">
 					<img alt="Logo" src="../../assets/Backoffice/media/logos/logo-6.png"/>
 				</a>
 			</div>
@@ -70,7 +79,7 @@ include "bout_code/navbar_vertical.php";
 include "bout_code/navbar_horizontal.php";
 ?>
 				<div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor" style="padding:0px;">
-					<iframe src="page_vierge.php" style="height:auto;border:none;background-color: #f2f3fa;padding:0px;" class="col-md-12" name="frame1">
+					<iframe src="dashboard.php" style="height:auto;border:none;background-color: #f2f3fa;padding:0px;" class="col-md-12" name="frame1">
 						
 					</iframe>
 				</div>
@@ -87,15 +96,122 @@ include "bout_code/action_rapide.php";
 		<i class="la la-arrow-up">
 		</i>
 	</div>
-	<ul class="kt-sticky-toolbar" style="margin-top: 30px;">
-		<li class="kt-sticky-toolbar__item kt-sticky-toolbar__item--demo-toggle" id="kt_demo_panel_toggle" data-toggle="kt-tooltip"  title="Check out more demos" data-placement="right">
-			<a href="#" class="">
-			modes</a>
-		</li>
-	</ul>
-<?php 
-include "bout_code/liste_mode.php";
-?>
+
+
+<div class="modal fade" id="exampleModalLon" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Modifier compte administrateur</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+<div class="kt-portlet__body">
+				<!--begin::Accordion-->
+				<div class="accordion" id="accordionExample4">
+					<div class="card">
+						<div class="card-header" id="headingOne4">
+							<div class="card-title" data-toggle="collapse" data-target="#collapseOne4" aria-expanded="true" aria-controls="collapseOne4">
+								<i class="fas fa-user"></i> Changer les linformations de connexion
+							</div>
+						</div>
+						<div id="collapseOne4" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample4">
+							<div class="card-body">
+<form class="kt-form kt-form--label-right" action="" method="post" enctype="multipart/form-data" id="formulaire" autocomplete="off">
+	<input type="text" name="id" value="<?php echo $_SESSION["id_admin"];?>" style="display:none;">
+					<div class="kt-portlet__body">
+						<div class="form-group row">
+							<label for="example-text-input" class="col-2 col-form-label">Pseudo</label>
+							<div class="col-10">
+								<input type="text" class="form-control" name="pseudo" placeholder="Pseudo" value="<?php echo $username; ?>">
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="example-text-input" class="col-2 col-form-label">Email</label>
+							<div class="col-10">
+								<input type="text" class="form-control" name="email" placeholder="Email" value="<?php echo $email; ?>">
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="example-text-input" class="col-2 col-form-label">password</label>
+							<div class="col-10">
+								<input type="password" class="form-control" name="pass" placeholder="saisir votre mot de passe pour valider">
+							</div>
+						</div>
+
+					</div>
+					<div class="kt-portlet__foot">
+						<div class="kt-form__actions">
+							<div class="row">
+								<div class="col-2">
+								</div>
+								<div class="col-10">
+									<button type="submit" class="btn btn-success">modifier</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+							</div>
+						</div>
+					</div>
+					<div class="card">
+						<div class="card-header" id="headingTwo4">
+							<div class="card-title collapsed" data-toggle="collapse" data-target="#collapseTwo4" aria-expanded="false" aria-controls="collapseTwo4">
+								<i class="fa fa-key" aria-hidden="true"></i> changer le mot de passe
+							</div>
+						</div>
+						<div id="collapseTwo4" class="collapse" aria-labelledby="headingTwo1" data-parent="#accordionExample4">
+							<div class="card-body">
+<form class="kt-form kt-form--label-right" action="" method="post" enctype="multipart/form-data" id="formulaire_password" autocomplete="off">
+	<input type="text" name="id" value="<?php echo $_SESSION["id_admin"];?>" style="display:none;">
+					<div class="kt-portlet__body">
+						<div class="form-group row">
+							<label for="example-text-input" class="col-3 col-form-label">Password</label>
+							<div class="col-9">
+								<input type="password" class="form-control" name="ancien_password" placeholder="ancien password" value="" autocomplete="off" data-identify="<?php echo $password; ?>">
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="example-text-input" class="col-3 col-form-label">Password</label>
+							<div class="col-9">
+								<input type="password" class="form-control" name="nouveau_password" placeholder="nouveau password" value="">
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="example-text-input" class="col-3 col-form-label">Password</label>
+							<div class="col-9">
+								<input type="password" class="form-control" name="nouveau_nouveau_password" placeholder="réecrire à nouveau le nouveau password" value="">
+							</div>
+						</div>
+					</div>
+					<div class="kt-portlet__foot">
+						<div class="kt-form__actions">
+							<div class="row">
+								<div class="col-2">
+								</div>
+								<div class="col-10">
+									<button type="submit" class="btn btn-success">modifier</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--end::Accordion-->
+			</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 						<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 							<div class="modal-dialog" role="document">
@@ -237,9 +353,140 @@ include "bout_code/liste_mode.php";
 	<!--end::Page Vendors -->
 	<script src="../../assets/Backoffice/js/demo1/pages/dashboard.js" type="text/javascript">
 	</script>
+	<script src="../../assets/Backoffice/js/jquery-visibility.js" type="text/javascript"></script>
+	<script src="../../assets/Backoffice/js/jquery.inactivityTimeout.js" type="text/javascript"></script>
 	<script src="http://localhost:1337/socket.io/socket.io.js" type="text/javascript"></script>
 	<script>
 		$(function(){
+
+
+            $(document).inactivityTimeout({
+                inactivityWait: 900,
+                dialogWait: 5,
+                logoutUrl: '../../login/index.php'
+            })
+
+var temps;
+setInterval(function(){
+	$("#inactivity-notifier div").css({"background-color":"#5867dd","opacity":"0.7","border-color":"rgb(0,0,230)"})
+})
+$ ( document ). on ( ' hide ' , function () {
+ temps = setTimeout(function(){
+document.location.href="../../login/index.php";
+  },(1000*60)*5)
+}); 
+
+$ ( document ). on ( ' show ' , function () {
+	clearTimeout(temps);
+}); 
+
+$(".drf").click(function(){
+	$(".nombre_demande").text("0")
+	$(".nombre_demande").css("display","none");
+})
+$("#kt_offcanvas_toolbar_quick_actions_toggler_btn").click(function(){
+$(".page-link:eq(0)").trigger("click");
+})
+
+$(".page-item").click(function(){
+    $(".page-item").removeClass("active");
+    $(this).addClass("active")
+})
+                $('[target="notification"]').click(function(){
+                    var chaine=$("iframe[name='notification']").attr("src");
+                    if(chaine.indexOf("notifications.php")==-1){
+                        $("iframe[name='notification']").attr("src","notifications.php?nombre=1");
+                    }
+                })
+
+                var gty="";
+var numero="";
+$(".dropdown-item").click(function(){
+    gty=$(this).text();
+    setTimeout(function(){
+$("[name='notification']").attr("src","notifications.php?type="+gty+"&&nombre="+numero)
+    },300)
+})
+$(".page-link").click(function(){
+    var f=$(this)
+        setTimeout(function(){
+$("[name='notification']").attr("src","notifications.php?type="+gty+"&&nombre="+parseInt(f.text()))
+    },300)
+    numero=$(this).text();
+})
+          
+
+$("#formulaire_password").submit(function(e){
+	e.preventDefault();
+
+	var verification=$("[data-identify]").attr("data-identify");
+	var ancien_password=$("[name='ancien_password']").val();
+	var nouveau_password=$("[name='nouveau_password']").val();
+	var nouveau_nouveau_password=$("[name='nouveau_nouveau_password']").val();
+	var formulaire=$(this);
+if(ancien_password=="" || nouveau_password=="" || nouveau_nouveau_password==""){
+	toastr.error("remplir tous les champs");
+}else{
+	                             $.post( "../../../entities/admin.php",{operation:"convertir",pass:ancien_password},function(data){
+    if(data!=verification){
+    toastr.error("vous n'avez pas le droit d'effectuer cette operation");
+    }else{
+    if(nouveau_password!=nouveau_nouveau_password){
+    toastr.error("le troisième champs ne correspond pas au deuxieme champs");	
+    }else{
+    $.post( "../../../entities/admin.php",formulaire.serialize(),function(datas){
+    	if(datas!="ok"){
+    		toastr.error(datas)
+    	}else{
+    		$.post( "../../../entities/admin.php",{operation:"convertir",pass:nouveau_password},function(d){
+    			$("[data-identify]").attr("data-identify",d)
+    		})
+    		toastr.success("operation terminer");
+    	}
+    })
+    }
+    }
+ });
+}
+})
+$("#formulaire").submit(function(e){
+	e.preventDefault();
+	var verification=$("[data-identify]").attr("data-identify");
+	var pass=$("[name='pass']").val();
+	var pseudo=$("[name='pseudo']").val();
+	var email=$("[name='email']").val();
+	var form=$(this);
+	    		$.post( "../../../entities/admin.php",{operation:"convertir",pass:pass},function(d){
+    			if(d==verification){
+	if(pseudo=="" || email==""){
+		toastr.error("remplir tous les champs");
+	}else{
+	                             $.post( "../../../entities/admin.php",form.serialize(),function(data){
+    if(data!="ok"){
+    toastr.error(data);
+    }else{
+    toastr.success("operation terminé avec succèe");	
+    }
+ } );
+	}
+    			}else{
+    				toastr.error("la confirmation du mot de passe est incorrect, impossible d'effectuer les changement")
+    			}
+    		})
+
+})
+
+
+                $(".kt-menu__item").click(function(){
+                    $(".kt-menu__item").removeClass("kt-menu__item--here");
+                    $(this).addClass("kt-menu__item--here")
+                })
+
+                $(".kt-menu__link").click(function(){
+                	$(".kt-menu__item--active").removeClass("kt-menu__item--active")
+                	$(this).parent().addClass("kt-menu__item--active")
+                	$(".kt-menu__item--open").not($(this).parents(".kt-menu__item--open")).removeClass("kt-menu__item--open")
+                })
 
 			            var socket = io.connect("http://localhost:1337");
 
@@ -260,6 +507,13 @@ socket.on("recevoir_notification",function(data){
 	}
 	if(data.type=="error"){
 		toastr.error(data.message);
+	}
+
+	if(data.message=="vous avez recu une demande de service"){
+		var n=parseInt($(".nombre_demande").text());
+		n++;
+		$(".nombre_demande").text(n)
+		$(".nombre_demande").css("display","");
 	}
 })
 
@@ -299,6 +553,7 @@ $(".hy").each(function(){
 })
 
         $(".hy").click(function(){
+        	$(".page-link:eq(0)").trigger("click");
               $("#kt_offcanvas_toolbar_quick_actions").addClass(" kt-offcanvas-panel--on");
               $("#kt_offcanvas_toolbar_quick_actions").css("opacity","1");
               $("#kt_offcanvas_toolbar_quick_actions").after('<div class="kt-offcanvas-panel-overlay bv"></div>')
@@ -351,6 +606,7 @@ socket.on("recevoir_notification",function(data){
                         $(".remplir").show();
                         $(".remplir").prepend(datas);
         $(".hy").click(function(){
+        	$(".page-link:eq(0)").trigger("click");
               $("#kt_offcanvas_toolbar_quick_actions").addClass(" kt-offcanvas-panel--on");
               $("#kt_offcanvas_toolbar_quick_actions").css("opacity","1");
               $("#kt_offcanvas_toolbar_quick_actions").after('<div class="kt-offcanvas-panel-overlay bv"></div>')

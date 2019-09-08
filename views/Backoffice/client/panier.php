@@ -1,6 +1,16 @@
 <?php 
 session_start();
+if(!isset($_SESSION["id"])){
+    header("location:../../pages_error/404.html");
+}
 require_once "../../../entities/class_paiement_client.php";
+include_once "../../../entities/class_etudiant.php";
+require_once "../../../entities/class_client.php"; 
+require_once "../../../entities/class_paiement.php";
+$resultat=etudiant::retourne_valeur("id_client",$_SESSION["id"],"resultat");
+if($resultat!=1 && $_SESSION["type"]==0){
+    header("location:../../pages_error/404.html");
+}
 if(isset($_SESSION["id"])){
     ?>
 <!DOCTYPE html>
@@ -43,8 +53,8 @@ if(isset($_SESSION["id"])){
             gtag('config', 'UA-37564768-1');
         </script>
 </head>
-<body style="padding:0px;margin:0px;">
-<div class="kt-subheader   kt-grid__item bg-white mb-4" id="kt_subheader" style="padding:10px;padding-left:40px;">
+<body style="padding:0px;margin:0px;background-color:rgba(0,0,0,0.06);" id="<?php echo $_SESSION["id"];?>">
+<div class="kt-subheader   kt-grid__item bg-white mb-4" id="kt_subheader" style="padding:2px;padding-left:40px;">
     <div class="kt-subheader   kt-grid__item" id="kt_subheader">
     <div class="kt-container  kt-container--fluid ">
         <div class="kt-subheader__main">
@@ -77,6 +87,15 @@ if(isset($_SESSION["id"])){
                             </div>
                             
                         </div>
+
+                        <?php 
+                        if(isset($_GET["oui"])){
+                            echo '<div class="alert alert-success fade show col-md-5 mx-auto mt-2" role="alert">
+                            <div class="alert-icon"><i class="la la-question-circle"></i></div>
+                            <div class="alert-text">Votre paiement a été effectuer avec succè</div>
+                        </div>';
+                        }
+                        ?>
                                 <!-- begin:: Content -->
                                 <div class="kt-content kt-grid__item kt-grid__item--fluid" style="background-color:white;">
 <div class="preload" style="position:fixed;width:100%;height:100%;background:white;left:0;top:0;z-index:100;padding-top:10%;">
@@ -115,13 +134,28 @@ if(isset($_SESSION["id"])){
                         </tbody>
                     </table>
                 </div>
-                                                    <button type="button" class="btn btn-danger mt-5 payer"> <i class="la la-cc-paypal text-white" style="font-size:25px;">
-                                        </i> Cliquer ici pour payer</button>
+                   <center class="mt-5">
+                    <h3 class="lead text-primary">Selectionner un mode de paiement pour effectuer le paiement</h3> 
+                                <div class="mode mt-4"></div> 
+                   </center>
             </div>
         </div>
                                     
                                     <!--end::Dashboard 5-->
                                 </div>
+
+                                            <?php 
+
+    $requette=config::$bdd->query("select * from paiement_client where id_client=".$_SESSION["id"]." && etat=0");
+    $id_commande="";
+    $v=0;
+    while($data=$requette->fetch()){
+    $v+=ceil(paiement::retourne_valeur("id",$data["id_paiement"],"montant")/656.63);
+    $id_commande.=$data["id_paiement"].",";
+    }
+    
+            ?>
+            
                                 <!-- end:: Content -->
         <script>
         var KTAppOptions = {
@@ -159,23 +193,71 @@ if(isset($_SESSION["id"])){
         </script>
         <script src="../../assets/Backoffice/js/demo4/scripts.bundle.js" type="text/javascript">
         </script>
+        <script src="https://www.paypal.com/sdk/js?client-id=sb&currency=EUR"></script>
         <script>
+ 
                 $(window).on("load",function(){
            $(".preload").fadeOut("fast");
+paypal.Buttons({
+
+   createOrder: function(data, actions) {
+      // Set up the transaction
+      return actions.order.create({
+        intent : 'CAPTURE',
+        purchase_units: [{
+            description : 'Sporting Goods',
+          custom_id : <?php echo "'".$id_commande."'"; ?>,
+          amount: {
+            value: <?php echo $v; ?>
+          }
+        }]
+      });
+    },
+onApprove: function(data, actions) {
+      return actions.order.capture().then(function(details) {
+        // Call your server to save the transaction
+        
+        alert("veuillez patienter quelques instant,ne quitter pas la page");
+        var code=details.purchase_units[0].custom_id;
+    return fetch('../../../entities/test.php?id='+data.orderID, {
+          method: 'post',
+          headers: {
+            'content-type': 'application/json'
+          },
+          body: JSON.stringify({
+            orderID: data.orderID
+          })
+        }).then(function(da){
+            $.post("../../../entities/mettre_jour.php",{id_client:$('body').attr("id"),code:code},function(datas){
+                if(datas==""){
+                    alert("le paiement a été effectuer avec succèe");
+                    document.location.href="paiement.php";
+                }
+            })
+        });
+      });
+    }
+
+
+
+
+}).render('.mode');
         })
 
                 $(function(){
                     var t=0;
+                    var euro=0;
                     $(".montant").each(function(){
                         t+=parseInt($(this).text());
                     })
 
                     $(".ptdo").text(t);
                     
-                    var gt=t*(5/100);
+                    var gt=t*(2.5/100);
                     $(".fd").text(gt)
                     var total=gt+t;
                     $(".ptap").text(total)
+                   
                     if(total==0){
                         $(".payer").remove()
                     }

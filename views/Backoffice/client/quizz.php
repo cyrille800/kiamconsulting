@@ -1,9 +1,19 @@
 <?php
+session_start();
 include_once "../../../entities/class_quizz.php";
 include_once "../../../entities/class_concour.php";
-session_start();
-if (!isset($_SESSION["id"]))
-    header("../../../views/login/login-reg.php");
+include_once "../../../entities/class_etudiant.php";
+if(!isset($_SESSION["id"])){
+    header("location:../../pages_error/404.html");
+}
+$ecole="";
+$specialite="";
+$ecole=etudiant::retourne_valeur("id_client",$_SESSION["id"],"ecole_choisie");
+$specialite=etudiant::retourne_valeur("id_client",$_SESSION["id"],"specialite");
+$resultat=etudiant::retourne_valeur("id_client",$_SESSION["id"],"resultat");
+if($resultat!=0){
+    header("location:../../pages_error/404.html");
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -63,32 +73,32 @@ if (!isset($_SESSION["id"]))
     </style>
 </head>
 
-<body style="padding:0px;margin:0px;">
-
-
-
-    <!-- begin:: Subheader -->
-    <div class="kt-subheader   kt-grid__item" id="kt_subheader" style="background-color:white;padding-left:50px;">
+<body style="padding:0px;margin:0px;background-color:rgba(0,0,0,0.06);">
+<div class="kt-subheader   kt-grid__item bg-white mb-4" id="kt_subheader" style="padding:2px;padding-left:40px;">
+    <div class="kt-subheader   kt-grid__item" id="kt_subheader">
+    <div class="kt-container  kt-container--fluid ">
         <div class="kt-subheader__main">
-            <h3 class="kt-subheader__title">
-                Bienvenu</h3>
-            <span class="kt-subheader__separator kt-hidden">
-            </span>
-
-        </div>
-        <div class="kt-subheader__toolbar">
-            <div class="kt-subheader__wrapper">
-                <a href="#" class="btn btn-icon btn btn-label btn-label-brand btn-bold" data-toggle="kt-tooltip" title="Calendar" data-placement="top">
-                    <i class="flaticon2-hourglass-1">
-                    </i>
-                </a>
-            </div>
+                            <h3 class="kt-subheader__title">quizz</h3>
+            
+                            <span class="kt-subheader__separator kt-hidden"></span>
+                <div class="kt-subheader__breadcrumbs">
+                    <a href="#" class="kt-subheader__breadcrumbs-home"><i class="la la-tachometer"></i></a>
+                                            <span class="kt-subheader__breadcrumbs-separator"></span>
+                        <a href="" class="kt-subheader__breadcrumbs-link">
+                            Liste des quizz                        </a>
+                                            <span class="kt-subheader__breadcrumbs-separator"></span>
+                </div>
+                    
         </div>
     </div>
-    <!-- end:: Subheader -->
+</div>
+                        </div> 
 
     <!-- begin:: Content -->
     <div class="kt-content kt-grid__item kt-grid__item--fluid" style="background-color:white;">
+        <?php 
+if($ecole!=0){
+?>
         <div class="preload" style="position:fixed;width:100%;height:100%;background:white;left:0;top:0;z-index:100;padding-top:10%;">
             <center>
                 <div class="lds-ring">
@@ -99,9 +109,19 @@ if (!isset($_SESSION["id"]))
                 </div>
             </center>
         </div>
+<?php
+}
+        ?>
         <!--begin::Dashboard 5-->
         <!-- <center> -->
         <!-- quizz -->
+<?php 
+if($ecole=="" || $ecole==0){
+?>
+<div class="alert alert-primary mx-auto ml-5 mr-5 col-5" style="margin-top:6%;">Avant de participer au concours, vous devez choisir l'école que vous allez faire. choisisser bien, car vous n'auriez plus la possibilité de revenir. </div>
+<?php
+}else{
+    ?>
         <div class="container mb-5">
             <div class="row " id="concours">
                 <div class="col-sm-6">
@@ -213,6 +233,9 @@ if (!isset($_SESSION["id"]))
 
             </div>
         </div>
+    <?php
+}
+?>
     </div>
     <!-- </center> -->
 
@@ -223,7 +246,7 @@ if (!isset($_SESSION["id"]))
     </script>
     <script src="../../assets/Backoffice/js/demo4/scripts.bundle.js" type="text/javascript">
     </script>
-    < script src="../../assets/Backoffice/js/demo4/pages/components/extended/toastr.js" type="text/javascript">
+    <script src="../../assets/Backoffice/js/demo4/pages/components/extended/toastr.js" type="text/javascript">
         <script src="../../assets/Backoffice/js/jQuery-Plugin-To-Transform-Radio-Buttons-Into-A-Slider-Radios-To-Slider/js/jquery.radios-to-slider.js"></script>
         <script>
             var KTAppOptions = {

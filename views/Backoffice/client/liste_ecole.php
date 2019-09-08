@@ -1,7 +1,20 @@
 <?php 
 session_start();
+if(!isset($_SESSION["id"])){
+    header("location:../../pages_error/404.html");
+}
+$nombre=1;
+if(isset($_GET["nombre"])){
+$nombre=intval($_GET["nombre"]);
+}
 require_once "../../../entities/class_ecole.php";
 require_once "../../../entities/class_activiter_client.php";
+require_once "../../../entities/class_etudiant.php";
+
+$resultat=etudiant::retourne_valeur("id_client",$_SESSION["id"],"resultat");
+if($resultat!=0){
+    header("location:../../pages_error/404.html");
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -24,8 +37,8 @@ require_once "../../../entities/class_activiter_client.php";
         <link href="../../assets/Backoffice/vendors/global/vendors.bundle.css" rel="stylesheet" type="text/css" />
         <link href="../../assets/Backoffice/css/demo4/style.bundle.css" rel="stylesheet" type="text/css" />
     </head>
-    <body style="padding:0px;margin:0px;" id="<?php echo $_SESSION["id"];?>">
-<div class="kt-subheader   kt-grid__item bg-white mb-4" id="kt_subheader" style="padding:10px;padding-left:40px;">
+    <body style="padding:0px;margin:0px;background-color:rgba(0,0,0,0.06);" id="<?php echo $_SESSION["id"];?>">
+<div class="kt-subheader   kt-grid__item bg-white mb-4" id="kt_subheader" style="padding:2px;padding-left:40px;">
     <div class="kt-subheader   kt-grid__item" id="kt_subheader">
     <div class="kt-container  kt-container--fluid ">
         <div class="kt-subheader__main">
@@ -43,26 +56,6 @@ require_once "../../../entities/class_activiter_client.php";
         </div>
     </div>
 </div>
-                        <div class="kt-subheader__main bg-white">
-                            <h3 class="kt-subheader__title">
-                            Recherche</h3>
-                            <div class="kt-subheader__toolbar" id="kt_subheader_search">
-                <span class="kt-subheader__desc" id="kt_subheader_total">
-                                            <span class="rps">0</span> Totals                                   </span>
-                
-                                    <form class="kt-subheader__search" id="kt_subheader_search_form">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search..." id="generalSearch">
-                            <div class="input-group-append">
-                                <span class="input-group-text" id="basic-addon2">
-                                    <i class="la la-search"></i>
-                                </span>
-                            </div>
-                        </div>
-                    </form>
-                            </div>
-                            </div>
-                            
                         </div>        
         
         <!-- begin:: Content -->
@@ -109,6 +102,32 @@ require_once "../../../entities/class_activiter_client.php";
                     <div class="kt-portlet__body kt-portlet__body--fit">
                         <!--begin: Datatable -->
                         <div class="kt-datatable kt-datatable--default kt-datatable--brand kt-datatable--loaded" id="kt_apps_user_list_datatable" style="">
+                                                <div class="kt-section__content kt-section__content--border col-12">
+                        <nav aria-label="...">
+                            <ul class="pagination mx-auto col-5 mb-4 mt-4">
+                                <?php 
+                                $requette=config::$bdd->query("select count(*) from school");
+                                $fr=$requette->fetch();
+                                $nombres=intval($fr[0]);
+
+                                for($i=0;$i<$nombres/4;$i++){
+                                    echo '<li class="page-item ';
+                                    if(isset($_GET["nombre"])){
+                                        if(intval($_GET["nombre"])==($i+1)){
+                                            echo "active";
+                                        }
+                                    }else{
+                                        if($i==0){
+                                            echo "active";
+                                        }
+                                    }
+                                    echo '"><a class="page-link" href="liste_ecole.php?nombre='.($i+1).'">'.($i+1).'</a></li>';
+                                }
+                                ?>
+                                
+                            </ul>
+                        </nav>
+                    </div>
                             <table class="kt-datatable__table" style="display: block; min-height: 500px;">
                                 <thead class="kt-datatable__head">
                                     <tr class="kt-datatable__row" style="left: 0px;">
@@ -142,64 +161,9 @@ require_once "../../../entities/class_activiter_client.php";
                                 </thead>
                                 <tbody class="kt-datatable__body" style="">
 <?php 
-ecole::afficher_client();
+ecole::afficher_client($nombre,$_SESSION["id"]);
 ?>
                             </table>
-                            <div class="kt-datatable__pager kt-datatable--paging-loaded">
-                                <ul class="kt-datatable__pager-nav">
-                                    <li>
-                                        <a title="First" class="kt-datatable__pager-link kt-datatable__pager-link--first" data-page="1">
-                                            <i class="flaticon2-fast-back">
-                                            </i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a title="Previous" class="kt-datatable__pager-link kt-datatable__pager-link--prev" data-page="1">
-                                            <i class="flaticon2-back">
-                                            </i>
-                                        </a>
-                                    </li>
-                                    <li style="">
-                                    </li>
-                                    <li style="display: none;">
-                                        <input type="text" class="kt-pager-input form-control" title="Page number">
-                                    </li>
-                                    <li>
-                                        <a class="kt-datatable__pager-link kt-datatable__pager-link-number" data-page="1" title="1">
-                                        1</a>
-                                    </li>
-                                    <li>
-                                        <a class="kt-datatable__pager-link kt-datatable__pager-link-number kt-datatable__pager-link--active" data-page="2" title="2">
-                                        2</a>
-                                    </li>
-                                    <li>
-                                        <a class="kt-datatable__pager-link kt-datatable__pager-link-number" data-page="3" title="3">
-                                        3</a>
-                                    </li>
-                                    <li>
-                                        <a class="kt-datatable__pager-link kt-datatable__pager-link-number" data-page="4" title="4">
-                                        4</a>
-                                    </li>
-                                    <li>
-                                        <a class="kt-datatable__pager-link kt-datatable__pager-link-number" data-page="5" title="5">
-                                        5</a>
-                                    </li>
-                                    <li>
-                                    </li>
-                                    <li>
-                                        <a title="Next" class="kt-datatable__pager-link kt-datatable__pager-link--next" data-page="3">
-                                            <i class="flaticon2-next">
-                                            </i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a title="Last" class="kt-datatable__pager-link kt-datatable__pager-link--last" data-page="100">
-                                            <i class="flaticon2-fast-next">
-                                            </i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
                         </div>
                         <!--end: Datatable -->
                     </div>
@@ -280,8 +244,8 @@ ecole::afficher_client();
                     }else{
                         toastr.success("l'operation s'est terminé avec succès,<br> veuiller patienter un instant");
                         setTimeout(function(){
-                            document.location.href="detail.php";
-                        },1500)
+                            document.location.href="liste_ecole.php";
+                        },500)
                     }
                 })
             })

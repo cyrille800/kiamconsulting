@@ -48,9 +48,11 @@ function ajouter(){
                 			$titre=paiement::retourne_valeur("id",$data["id_paiement"],"titre");
                 			$description=paiement::retourne_valeur("id",$data["id_paiement"],"description");
                 			$montant=paiement::retourne_valeur("id",$data["id_paiement"],"montant");
+                			if($titre!=""){
 					echo '<tr><td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">'.$titre.'</font></font></td>
                                 <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">'.$description.'</font></font></td>
                                 <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"><span class="montant">'.$montant.'</span> <span class="text-primary">XAF</span></font></font></td></tr>';
+                			}
 }
                 		
 
@@ -84,7 +86,9 @@ function ajouter(){
 
 public static function verifiers($type,$valeur){
 		$i=0;
-		  	$requette=config::$bdd->query("select * from paiement_client where ".$type."='".$valeur."'");
+		  	$requette=config::$bdd->prepare("select * from paiement_client where ".$type."=:".$type);
+		  	$requette->bindValue(":".$type,$valeur);
+		  	$requette->execute();
     while($data=$requette->fetch()){
 		$i=1;                		
 	}
@@ -100,7 +104,10 @@ public static function verifiers($type,$valeur){
 
 public static function verifier($id,$type,$valeur){
 		$i=0;
-		  	$requette=config::$bdd->query("select * from paiement_client where ".$type."='".$valeur."' and id!=".$id);
+		  	$requette=config::$bdd->prepare("select * from paiement_client where ".$type."=:".$type." and id!=:id");
+		  			  	$requette->bindValue(":".$type,$valeur);
+		  			  	$requette->bindValue(":id",$id);
+		  	$requette->execute();
                 		while($data=$requette->fetch()){
 		$i=1;                		
 	}

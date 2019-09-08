@@ -254,8 +254,8 @@ class Post
 		}
 	}
 	static function afficherPostPopulaire($post){
-		foreach ($post as $key => $post) {
-			$sql="select * from post where id=".$post;
+		foreach ($post as $key => $s) {
+			$sql="select * from post where id=".$s;
 			try {
 				$requette = config::$bdd->prepare($sql);
 				if ($requette->execute()) {

@@ -83,7 +83,9 @@ function ajouter(){
 
 public static function verifiers($type,$valeur){
 		$i=0;
-		  	$requette=config::$bdd->query("select * from client where ".$type."='".$valeur."'");
+		  	$requette=config::$bdd->prepare("select * from client where ".$type."=:".$type);
+		  	$requette->bindValue(":".$type,$valeur);
+		  	$requette->execute();
     while($data=$requette->fetch()){
 		$i=1;                		
 	}
@@ -99,12 +101,10 @@ public static function verifiers($type,$valeur){
 
 public static function verifier($id,$type,$valeur){
 		$i=0;
-		if($type=="password"){
-		$requette=config::$bdd->query("select * from client where ".$type."='".md5($valeur)."' and id=".$id);
-		}else{
-		$requette=config::$bdd->query("select * from client where ".$type."='".$valeur."' and id=".$id);
-		}
-
+		  	$requette=config::$bdd->prepare("select * from admin_root where ".$type."=:".$type." and id!=:id");
+		  			  	$requette->bindValue(":".$type,$valeur);
+		  			  	$requette->bindValue(":id",$id);
+		  	$requette->execute();
                 		while($data=$requette->fetch()){
 		$i=1;                		
 	}
@@ -127,7 +127,7 @@ public static function verifier($id,$type,$valeur){
                 			$o=1;
 					echo '<div class="kt-widget__item">
                                 <span class="kt-userpic kt-userpic--circle"> 
-                                    <img src="../../assets/Backoffice/media/users/'.$data["id"].'.png" alt="image"> 
+                                    <img src="../../assets/Backoffice/media/users/'.$data["id"].'.png?'.time().'" alt="image"> 
                                 </span>
 
                                 <div class="kt-widget__info">';
@@ -165,17 +165,17 @@ if(intval($f[0])!=0){
 
 
 
-	public static function afficher_tout(){
+	public static function afficher_tout($nbr){
 		$tableau=[];
 		$tableaui=[];
 		$o=0;
-		  	$requette=config::$bdd->query("select * from client");
+		  	$requette=config::$bdd->query("select * from client where type=".$nbr);
                 		while($data=$requette->fetch()){
                 			$o=1;
-					echo '    <div class="col-xl-3 col-lg-6 bg-white px-4 py-4 mx-2 my-2 mx-auto">
+					echo '    <div class="col-xl-4 col-lg-6 bg-white px-4 py-4 ml-3 mb-3">
 					<div class="row">
 					<div class="col-xl-2 mr-1">
-					<img src="../../assets/Backoffice/media/users/'.$data["id"].'.png" alt="image" width="65px" height="65px">
+					<img src="../../assets/Backoffice/media/users/'.$data["id"].'.png?'.time().'" alt="image" width="65px" height="65px">
 					</div>
 					<div class="col-xl-6">
                             <a href="#" class="kt-widget__title">
@@ -186,7 +186,7 @@ if(intval($f[0])!=0){
                             </span>
 					</div>
 					<div class="col-xl-3">
-                            <a href="profil.php?id='.$data["id"].'" class="btn btn-default btn-sm btn-bold btn-upper">profile</a>
+                            <a href="profil.php?id='.$data["id"].'" class="btn btn-default btn-sm btn-bold btn-upper">Consulter</a>
 					</div>
 					</div>
     </div>';
@@ -210,7 +210,7 @@ if(intval($f[0])!=0){
 
 <div class="row px-4 py-4">
                         <div class="col-md-2 col-xs-12">
-                            <img src="../../assets/Backoffice/media/users/'.$data["id"].'.png" alt="image" class="rounded-circle" width="90px">
+                            <img src="../../assets/Backoffice/media/users/'.$data["id"].'.png?'.time().'" alt="image" class="rounded-circle" width="90px">
                         </div>
                         <div class="col-md-4 pt-3 col-xs-12">
                             <a href="#" class="kt-widget__title btn-bold" style="color:#595d6e;">
@@ -223,12 +223,18 @@ if(intval($f[0])!=0){
                         <div class="col-md-6 col-xs-12">
                             <div class="row">
                             	<div class="col-12" style="font-size:15px;">
-                            		<i class="la la-phone-square text-success"></i> '.$data["numero"].'
+                            	<a href="#" class="btn btn-icon btn-sm btn-circle btn-brand">
+                                                            <i class="fa fa-phone">
+                                                            </i>
+                                                        </a> '.$data["numero"].'
                             	</div>
                             </div> 
                             <div class="row">
-                            	<div class="col-12" style="font-size:15px;">
-                            		<i class="la la-send-o text-warning"></i> '.$data["email"].'
+                            	<div class="col-12 mt-2" style="font-size:15px;">
+                            		<a href="#" class="btn btn-icon btn-sm btn-circle btn-success">
+                                                            <i class="fa fa-envelope">
+                                                            </i>
+                                                        </a> '.$data["email"].'
                             	</div> 
                             </div> 
                         </div>
@@ -253,10 +259,12 @@ if(intval($f[0])!=0){
                 			$tableau["sexe"]=etudiant::retourne_valeur("id",$data["id"],"sexe");
                 			$tableau["pays"]=etudiant::retourne_valeur("id",$data["id"],"pays");
                 			$tableau["ville"]=etudiant::retourne_valeur("id",$data["id"],"ville");
-                			$tableau["niveau_scolaire"]=etudiant::retourne_valeur("id",$data["id"],"niveau_scolaire");
+if(intval($data["type"])==0){
+	                			$tableau["niveau_scolaire"]=etudiant::retourne_valeur("id",$data["id"],"niveau_scolaire");
                 			$tableau["etablissement"]=etudiant::retourne_valeur("id",$data["id"],"etablissement");
                 			$tableau["ecole_choisie"]=ecole::retourne_valeur("id",etudiant::retourne_valeur("id",$data["id"],"ecole_choisie"),"titre");
                 			$tableau["specialite"]=etudiant::retourne_valeur("id",$data["id"],"specialite");
+}
 
 foreach ($tableau as $key => $value) {
 	echo '			<div class="kt-widget-16__item kt-widget-16__item--info">
@@ -386,7 +394,7 @@ while($gt=$hys->fetch()){
 
 					echo '									<li>
 										<a href="messagerie.php?id='.$data["id"].'">
-											<div class="status online"><img src="../../assets/Backoffice/media/users/'.$data["id"].'.png" alt="avatar"><i data-eva="radio-button-on"></i></div>
+											<div class="status online"><img src="../../assets/Backoffice/media/users/'.$data["id"].'.png?'.time().'" alt="avatar"><i data-eva="radio-button-on"></i></div>
 											<div class="content">
 												<h5>'.$data["username"].'</h5>
 												<span>'.$data["email"].'</span>

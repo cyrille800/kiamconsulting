@@ -1,7 +1,15 @@
 <?php 
 session_start();
+if(!isset($_SESSION["id"])){
+    header("location:../../pages_error/404.html");
+}
 require_once "../../../entities/class_client.php";
 require_once "../../../entities/class_message.php";
+include_once "../../../entities/class_etudiant.php";
+$resultat=etudiant::retourne_valeur("id_client",$_SESSION["id"],"resultat");
+if($resultat!=1 && $_SESSION["type"]==0){
+    header("location:../../pages_error/404.html");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en" >
@@ -63,9 +71,27 @@ require_once "../../../entities/class_message.php";
     <!-- end::Head -->
 
     <!-- begin::Body -->
-    <body  class="kt-quick-panel--right kt-demo-panel--right kt-offcanvas-panel--right kt-header--fixed kt-header-mobile--fixed kt-subheader--enabled kt-subheader--fixed kt-subheader--solid kt-aside--enabled kt-aside--fixed kt-page--loading" style="background-color:#f9f9fc;" id="<?php echo $_SESSION["id"];?>">
-
-        <div class="alert alert-primary mx-auto ml-5 mr-5 mt-5">Utiliser cette interface pour des demandes de renseignements et pour pouvoir effectuer une communication direct avec l'administrateur .</div> 
+    <body  class="kt-quick-panel--right kt-demo-panel--right kt-offcanvas-panel--right kt-header--fixed kt-header-mobile--fixed kt-subheader--enabled kt-subheader--fixed kt-subheader--solid kt-aside--enabled kt-aside--fixed kt-page--loading" style="background-color:rgba(0,0,0,0.06);" id="<?php echo $_SESSION["id"];?>">
+<div class="kt-subheader   kt-grid__item bg-white mb-4" id="kt_subheader" style="position:absolute;left:0;top:0;">
+    <div class="kt-subheader   kt-grid__item" id="kt_subheader" style="position:absolute;top:0;">
+    <div class="kt-container  kt-container--fluid ">
+        <div class="kt-subheader__main">
+                            <h3 class="kt-subheader__title">Messages</h3>
+            
+                            <span class="kt-subheader__separator kt-hidden"></span>
+                <div class="kt-subheader__breadcrumbs">
+                    <a href="#" class="kt-subheader__breadcrumbs-home"><i class="la la-tachometer"></i></a>
+                                            <span class="kt-subheader__breadcrumbs-separator"></span>
+                        <a href="" class="kt-subheader__breadcrumbs-link">
+                            Inbox message                      </a>
+                                            <span class="kt-subheader__breadcrumbs-separator"></span>
+                </div>
+                    
+        </div>
+    </div>
+</div>
+                        </div>     
+        <div class="alert alert-primary mx-auto ml-5 mr-5" style="margin-top:6%;">Utiliser cette interface pour des demandes de renseignements et pour pouvoir effectuer une communication direct avec l'administrateur .</div> 
 <?php 
 $verifier=false;
 if(isset($_SESSION["id"])){
@@ -240,15 +266,13 @@ $(window).on("beforeunload", function()
         $(".kt-chat__editor textarea").keyup(function(e){
             var message=$(this).val()
     if( e.which == 13 ){
-$(".kt-chat__messages").append('<div class="kt-chat__message kt-chat__message--right"><div class="kt-chat__user"><span class="kt-userpic kt-userpic--circle kt-userpic--sm">Vous</span></div><div class="kt-chat__text" style="background-color:#1d1dff;color:white;">'+message+'</div></div>').queue(function(){
+
                              $.post( "../../../entities/message.php",{id_expediteur:$("body").attr("id"),id_receveur:0,message:message},function(data){
     if(data!="ok"){
     toastr.error(data);
-    }
- } ); 
-
-
-    $(".msg").animate({scrollTop:$(".kt-chat__messages").height()},50)
+    }else{
+$(".kt-chat__messages").append('<div class="kt-chat__message kt-chat__message--right"><div class="kt-chat__user"><span class="kt-userpic kt-userpic--circle kt-userpic--sm">Vous</span></div><div class="kt-chat__text" style="background-color:#1d1dff;color:white;">'+message+'</div></div>').queue(function(){
+$(".msg").animate({scrollTop:$(".kt-chat__messages").height()},50)
     $(this).dequeue();
 })
 
@@ -256,24 +280,35 @@ socket.emit("send_message_admin",{
     id_client: id_user,
     message: message
 })
-    $(this).val("");
+    $("textarea").val("");
+        $(".vide").remove();
+    }
+ } ); 
+
     }
         })
 
         $(".kt-chat__reply").click(function(){
         var message=$(".kt-chat__editor textarea").val()  
-$(".kt-chat__messages").append('<div class="kt-chat__message kt-chat__message--right"><div class="kt-chat__user"><span class="kt-userpic kt-userpic--circle kt-userpic--sm"></span></div><div class="kt-chat__text kt-bg-light-brand">'+message+'</div></div>').queue(function(){
                              $.post( "../../../entities/message.php",{id_expediteur:$("body").attr("id"),id_receveur:0,message:message},function(data){
     if(data!="ok"){
     alert("no")
+    }else{
+$(".kt-chat__messages").append('<div class="kt-chat__message kt-chat__message--right"><div class="kt-chat__user"><span class="kt-userpic kt-userpic--circle kt-userpic--sm">Vous</span></div><div class="kt-chat__text" style="background-color:#1d1dff;color:white;">'+message+'</div></div>').queue(function(){
+$(".msg").animate({scrollTop:$(".kt-chat__messages").height()},50)
+    $(this).dequeue();
+})
+
+socket.emit("send_message_admin",{
+    id_client: id_user,
+    message: message
+})
+    $("textarea").val("");
+    $(".vide").remove();
     }
  } ); 
 
 
-    $(".msg").animate({scrollTop:$(".kt-chat__messages").height()},50)
-    $(".kt-chat__editor textarea").dequeue();
-})
-    $(".kt-chat__editor textarea").val("");  
         })
 var ki=0;
 

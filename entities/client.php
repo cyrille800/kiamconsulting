@@ -1,6 +1,7 @@
 <?php 
 session_start();
 include_once "class_client.php";
+include_once "class_admin.php";
 	function verification_post($tableau){
 
 		for($i=0;$i<sizeof($tableau);$i++){
@@ -60,7 +61,21 @@ if(verification_post(["username","email","password","type"])==1 && !isset($_POST
 		if($operation=="connexion"){
 			if(client::verifiers("username",$username)==true && client::verifiers("email",$username)==true){
 				$reponse="login ou mot de pas incorrect";
-			}else{
+			if(admin::verifiers("username",$username)==true && admin::verifiers("email",$username)==true){
+				$reponse="login ou mot de pas incorrect";
+				}else{
+				if(admin::retourne_valeur("username",$username,"password")!=md5($password) && admin::retourne_valeur("email",$username,"password")!=md5($password)){
+				$reponse="login ou mot de pas incorrect";
+				}else{
+					if(admin::retourne_valeur("username",$username,"id")==""){
+						$_SESSION["id_admin"]=intval(admin::retourne_valeur("email",$username,"id"));
+					}else{
+						$_SESSION["id_admin"]=intval(admin::retourne_valeur("username",$username,"id"));
+					}
+					$reponse="admin";				
+				}
+				}
+}else{
 				if(client::retourne_valeur("username",$username,"password")!=md5($password) && client::retourne_valeur("email",$username,"password")!=md5($password)){
 				$reponse="username/email ou mot de pas incorrect";
 				}else{
@@ -71,7 +86,7 @@ if(verification_post(["username","email","password","type"])==1 && !isset($_POST
 						$_SESSION["id"]=intval(client::retourne_valeur("username",$username,"id"));
 						$_SESSION["type"]=intval(client::retourne_valeur("username",$username,"type"));
 					}
-					$reponse="ok";
+					$reponse="client";
 				}
 			}
 		}
