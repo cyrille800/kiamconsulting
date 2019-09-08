@@ -30,16 +30,14 @@ if($method == 'GET')
    'date' => $row['date'],
    'contenu' => substr(htmlspecialchars($row['contenu']),0,40)."....",
    'Categorie' => $row['Categorie'],
-   'titre'   => substr($row['titre'],0,20)."...",
+   'titre'   => substr($row['titre'],0,15)."...",
    'auteur'   => $row['auteur'],
-   'image'   => substr($row['image'],0,20)."...",
-   'introduction'  => substr($row['introduction'],0,20)."..."
+   'image'   => substr($row['image'],0,15)."...",
+   'introduction'  => substr($row['introduction'],0,15)."..."
   );
-//    print_r($output);
  }
  header("Content-Type: application/json");
  echo json_encode($output);
-//    var_dump($output);
 }
 
 

@@ -57,39 +57,38 @@
 									</div>
 								</li>
 
-<li class="kt-menu__item  kt-menu__item--submenu">
-	<a href="messagerie.php" class="kt-menu__link kt-menu__toggle" target="frame1">
-		<i class="kt-menu__link-icon la la-comments-o"  style="font-size:25px;">
-		</i>
-		<span class="kt-menu__link-text">
-			<font style="vertical-align: inherit;">
-			<font style="vertical-align: inherit;">
-			Communication</font>
-			</font>
-		</span>
-											<span class="kt-menu__link-badge">
-										<span class="kt-badge kt-badge--brand iok">0</span>
-									</span>
-		<i class="kt-menu__ver-arrow la la-angle-right">
-		</i>
-	</a>
-</li>
+								<li class="kt-menu__item  kt-menu__item--submenu">
+									<a href="messagerie.php" class="kt-menu__link kt-menu__toggle" target="frame1">
+										<i class="kt-menu__link-icon la la-comments-o" style="font-size:25px;">
+										</i>
+										<span class="kt-menu__link-text">
+											<font style="vertical-align: inherit;">
+												<font style="vertical-align: inherit;">
+													Communication</font>
+											</font>
+										</span>
+										<span class="kt-menu__link-badge">
+											<span class="kt-badge kt-badge--brand iok">0</span>
+										</span>
+										<i class="kt-menu__ver-arrow la la-angle-right">
+										</i>
+									</a>
+								</li>
 
-<li class="kt-menu__item  kt-menu__item--submenu">
-	<a href="client.php" class="kt-menu__link kt-menu__toggle" target="frame1">
-		<i class="kt-menu__link-icon la la-user"  style="font-size:25px;">
-		</i>
-		<span class="kt-menu__link-text">
-			<font style="vertical-align: inherit;">
-			<font style="vertical-align: inherit;">
-			Gestion des clients</font>
-			</font>
-		</span>
-		<i class="kt-menu__ver-arrow la la-angle-right">
-		</i>
-	</a>
-</li>
-
+								<li class="kt-menu__item  kt-menu__item--submenu">
+									<a href="client.php" class="kt-menu__link kt-menu__toggle" target="frame1">
+										<i class="kt-menu__link-icon la la-user" style="font-size:25px;">
+										</i>
+										<span class="kt-menu__link-text">
+											<font style="vertical-align: inherit;">
+												<font style="vertical-align: inherit;">
+													Gestion des clients</font>
+											</font>
+										</span>
+										<i class="kt-menu__ver-arrow la la-angle-right">
+										</i>
+									</a>
+								</li>
 
 								<li class="kt-menu__section ">
 									<h4 class="kt-menu__section-text">
@@ -97,72 +96,72 @@
 								</li>
 
 
-							<li class="kt-menu__item  kt-menu__item--submenu" aria-haspopup="true"  data-ktmenu-submenu-toggle="hover">
-								<a  href="javascript:;" class="kt-menu__link kt-menu__toggle">
-									<i class="kt-menu__link-icon la la-building" style="font-size:25px;">
-									</i>
-									<span class="kt-menu__link-text">
-									Ecole</span>
-									<i class="kt-menu__ver-arrow la la-angle-right">
-									</i>
-								</a>
-								<div class="kt-menu__submenu ">
-									<span class="kt-menu__arrow">
-									</span>
-									<ul class="kt-menu__subnav">
-										<li class="kt-menu__item " aria-haspopup="true" >
-											<a  href="ecole/specialite.php" class="kt-menu__link " target="frame1">
-												<i class="kt-menu__link-bullet kt-menu__link-bullet--dot">
-												<span>
-												</span>
-												</i>
-												<span class="kt-menu__link-text">
-												Spécialité et option</span>
-											</a>
-										</li>
-										<li class="kt-menu__item " aria-haspopup="true" >
-											<a  href="ecole/ajouter.php" class="kt-menu__link " target="frame1">
-												<i class="kt-menu__link-bullet kt-menu__link-bullet--dot">
-												<span>
-												</span>
-												</i>
-												<span class="kt-menu__link-text">
-												Ajouer une école</span>
-											</a>
-										</li>
-										<li class="kt-menu__item " aria-haspopup="true" >
-											<a  href="#" class="kt-menu__link "  data-toggle="modal" data-target="#exampleModal">
-												<i class="kt-menu__link-bullet kt-menu__link-bullet--dot">
-												<span>
-												</span>
-												</i>
-												<span class="kt-menu__link-text">
-												Ajouer plus de détails</span>
-											</a>
-										</li>
-										<li class="kt-menu__item " aria-haspopup="true" >
-											<a  href="ecole/afficher.php" target="frame1" class="kt-menu__link ">
-												<i class="kt-menu__link-bullet kt-menu__link-bullet--dot">
-												<span>
-												</span>
-												</i>
-												<span class="kt-menu__link-text">
-												Consulter les écoles</span>
-											</a>
-										</li>
-										<li class="kt-menu__item " aria-haspopup="true" >
-											<a  href="/keen/preview/demo1/components/extended/idle-timer.html" class="kt-menu__link ">
-												<i class="kt-menu__link-bullet kt-menu__link-bullet--dot">
-												<span>
-												</span>
-												</i>
-												<span class="kt-menu__link-text">
-												Statistique de demandes</span>
-											</a>
-										</li>
-									</ul>
-								</div>
-							</li>
+								<li class="kt-menu__item  kt-menu__item--submenu" aria-haspopup="true" data-ktmenu-submenu-toggle="hover">
+									<a href="javascript:;" class="kt-menu__link kt-menu__toggle">
+										<i class="kt-menu__link-icon la la-building" style="font-size:25px;">
+										</i>
+										<span class="kt-menu__link-text">
+											Ecole</span>
+										<i class="kt-menu__ver-arrow la la-angle-right">
+										</i>
+									</a>
+									<div class="kt-menu__submenu ">
+										<span class="kt-menu__arrow">
+										</span>
+										<ul class="kt-menu__subnav">
+											<li class="kt-menu__item " aria-haspopup="true">
+												<a href="ecole/specialite.php" class="kt-menu__link " target="frame1">
+													<i class="kt-menu__link-bullet kt-menu__link-bullet--dot">
+														<span>
+														</span>
+													</i>
+													<span class="kt-menu__link-text">
+														Spécialité et option</span>
+												</a>
+											</li>
+											<li class="kt-menu__item " aria-haspopup="true">
+												<a href="ecole/ajouter.php" class="kt-menu__link " target="frame1">
+													<i class="kt-menu__link-bullet kt-menu__link-bullet--dot">
+														<span>
+														</span>
+													</i>
+													<span class="kt-menu__link-text">
+														Ajouer une école</span>
+												</a>
+											</li>
+											<li class="kt-menu__item " aria-haspopup="true">
+												<a href="#" class="kt-menu__link " data-toggle="modal" data-target="#exampleModal">
+													<i class="kt-menu__link-bullet kt-menu__link-bullet--dot">
+														<span>
+														</span>
+													</i>
+													<span class="kt-menu__link-text">
+														Ajouer plus de détails</span>
+												</a>
+											</li>
+											<li class="kt-menu__item " aria-haspopup="true">
+												<a href="ecole/afficher.php" target="frame1" class="kt-menu__link ">
+													<i class="kt-menu__link-bullet kt-menu__link-bullet--dot">
+														<span>
+														</span>
+													</i>
+													<span class="kt-menu__link-text">
+														Consulter les écoles</span>
+												</a>
+											</li>
+											<li class="kt-menu__item " aria-haspopup="true">
+												<a href="/keen/preview/demo1/components/extended/idle-timer.html" class="kt-menu__link ">
+													<i class="kt-menu__link-bullet kt-menu__link-bullet--dot">
+														<span>
+														</span>
+													</i>
+													<span class="kt-menu__link-text">
+														Statistique de demandes</span>
+												</a>
+											</li>
+										</ul>
+									</div>
+								</li>
 
 								<li class="kt-menu__item  kt-menu__item--submenu" aria-haspopup="true" data-ktmenu-submenu-toggle="hover">
 									<a href="javascript:;" class="kt-menu__link kt-menu__toggle">
@@ -217,104 +216,124 @@
 														Statistique reussite</span>
 												</a>
 											</li>
+											<li class="kt-menu__item " aria-haspopup="true">
+												<a href="concour/Resultat.php" class="kt-menu__link " target="frame1">
+													<i class="kt-menu__link-bullet kt-menu__link-bullet--dot">
+														<span>
+														</span>
+													</i>
+													<span class="kt-menu__link-text">
+														Resultat</span>
+												</a>
+											</li>
+											<li class="kt-menu__item " aria-haspopup="true">
+												<a href="concour/ajouter.php" class="kt-menu__link " data-toggle="modal" data-target="#exampleModal4" target="frame1">
+													<i class="kt-menu__link-bullet kt-menu__link-bullet--dot">
+														<span>
+														</span>
+													</i>
+													<span class="kt-menu__link-text">
+														Date de publication</span>
+												</a>
+											</li>
 										</ul>
 									</div>
 								</li>
 
 
 
-							<li class="kt-menu__item  kt-menu__item--submenu" aria-haspopup="true"  data-ktmenu-submenu-toggle="hover">
-								<a  href="javascript:;" class="kt-menu__link kt-menu__toggle">
-									<i class="kt-menu__link-icon la la-eur" style="font-size:25px;">
-									</i>
-									<span class="kt-menu__link-text">
-									Paiement</span>
-									<i class="kt-menu__ver-arrow la la-angle-right">
-									</i>
-								</a>
-								<div class="kt-menu__submenu ">
-									<span class="kt-menu__arrow">
-									</span>
-									<ul class="kt-menu__subnav">
-										<li class="kt-menu__item " aria-haspopup="true" >
-											<a  href="paiement/ajouter.php" class="kt-menu__link " target="frame1">
-												<i class="kt-menu__link-bullet kt-menu__link-bullet--dot">
-												<span>
-												</span>
-												</i>
-												<span class="kt-menu__link-text">
-												Ajouter un mode de paiement</span>
-											</a>
-										</li>
-										<li class="kt-menu__item " aria-haspopup="true" >
-											<a  href="paiement/afficher.php" class="kt-menu__link " target="frame1">
-												<i class="kt-menu__link-bullet kt-menu__link-bullet--dot">
-												<span>
-												</span>
-												</i>
-												<span class="kt-menu__link-text">
-												Consulter les paiements</span>
-											</a>
-										</li>
-										<li class="kt-menu__item " aria-haspopup="true" >
-											<a  href="#" class="kt-menu__link "   data-toggle="modal" data-target="#exampleModal3" target="frame1">
-												<i class="kt-menu__link-bullet kt-menu__link-bullet--dot">
-												<span>
-												</span>
-												</i>
-												<span class="kt-menu__link-text">
-												Statistique des paiements</span>
-											</a>
-										</li>
+								<li class="kt-menu__item  kt-menu__item--submenu" aria-haspopup="true" data-ktmenu-submenu-toggle="hover">
+									<a href="javascript:;" class="kt-menu__link kt-menu__toggle">
+										<i class="kt-menu__link-icon la la-eur" style="font-size:25px;">
+										</i>
+										<span class="kt-menu__link-text">
+											Paiement</span>
+										<i class="kt-menu__ver-arrow la la-angle-right">
+										</i>
+									</a>
+									<div class="kt-menu__submenu ">
+										<span class="kt-menu__arrow">
+										</span>
+										<ul class="kt-menu__subnav">
+											<li class="kt-menu__item " aria-haspopup="true">
+												<a href="paiement/ajouter.php" class="kt-menu__link " target="frame1">
+													<i class="kt-menu__link-bullet kt-menu__link-bullet--dot">
+														<span>
+														</span>
+													</i>
+													<span class="kt-menu__link-text">
+														Ajouter un mode de paiement</span>
+												</a>
+											</li>
+											<li class="kt-menu__item " aria-haspopup="true">
+												<a href="paiement/afficher.php" class="kt-menu__link " target="frame1">
+													<i class="kt-menu__link-bullet kt-menu__link-bullet--dot">
+														<span>
+														</span>
+													</i>
+													<span class="kt-menu__link-text">
+														Consulter les paiements</span>
+												</a>
+											</li>
+											<li class="kt-menu__item " aria-haspopup="true">
+												<a href="#" class="kt-menu__link " data-toggle="modal" data-target="#exampleModal3" target="frame1">
+													<i class="kt-menu__link-bullet kt-menu__link-bullet--dot">
+														<span>
+														</span>
+													</i>
+													<span class="kt-menu__link-text">
+														Statistique des paiements</span>
+												</a>
+											</li>
 
-									</ul>
-								</div>
-							</li>
+										</ul>
+									</div>
+								</li>
 
 
-							<li class="kt-menu__item  kt-menu__item--submenu" aria-haspopup="true"  data-ktmenu-submenu-toggle="hover">
-								<a  href="javascript:;" class="kt-menu__link kt-menu__toggle">
-									<i class="kt-menu__link-icon la la-ioxhost" style="font-size:25px;">
-									</i>
-									<span class="kt-menu__link-text">
-									Activité</span>
-									<i class="kt-menu__ver-arrow la la-angle-right">
-									</i>
-								</a>
-								<div class="kt-menu__submenu ">
-									<span class="kt-menu__arrow">
-									</span>
-									<ul class="kt-menu__subnav">
-										<li class="kt-menu__item " aria-haspopup="true" >
-											<a  href="activite/ajouter.php" class="kt-menu__link " target="frame1">
-												<i class="kt-menu__link-bullet kt-menu__link-bullet--dot">
-												<span>
-												</span>
-												</i>
-												<span class="kt-menu__link-text">
-												Ajouter une activitée</span>
-											</a>
-										</li>
-										<li class="kt-menu__item " aria-haspopup="true" >
-											<a  href="activite/afficher.php" class="kt-menu__link " target="frame1">
-												<i class="kt-menu__link-bullet kt-menu__link-bullet--dot">
-												<span>
-												</span>
-												</i>
-												<span class="kt-menu__link-text">
-												Consulter les activitées</span>
-											</a>
-										</li>
-										<li class="kt-menu__item " aria-haspopup="true" >
-											<a  href="#" class="kt-menu__link "   data-toggle="modal" data-target="#exampleModal3" target="frame1">
-												<i class="kt-menu__link-bullet kt-menu__link-bullet--dot">
-												<span>
-												</span>
-												</i>
-												<span class="kt-menu__link-text">
-												Controler les activités</span>
-											</a>
-										</li>
+								<li class="kt-menu__item  kt-menu__item--submenu" aria-haspopup="true" data-ktmenu-submenu-toggle="hover">
+									<a href="javascript:;" class="kt-menu__link kt-menu__toggle">
+										<i class="kt-menu__link-icon la la-ioxhost" style="font-size:25px;">
+										</i>
+										<span class="kt-menu__link-text">
+											Activité</span>
+										<i class="kt-menu__ver-arrow la la-angle-right">
+										</i>
+									</a>
+									<div class="kt-menu__submenu ">
+										<span class="kt-menu__arrow">
+										</span>
+										<ul class="kt-menu__subnav">
+											<li class="kt-menu__item " aria-haspopup="true">
+												<a href="activite/ajouter.php" class="kt-menu__link " target="frame1">
+													<i class="kt-menu__link-bullet kt-menu__link-bullet--dot">
+														<span>
+														</span>
+													</i>
+													<span class="kt-menu__link-text">
+														Ajouter une activitée</span>
+												</a>
+											</li>
+											<li class="kt-menu__item " aria-haspopup="true">
+												<a href="activite/afficher.php" class="kt-menu__link " target="frame1">
+													<i class="kt-menu__link-bullet kt-menu__link-bullet--dot">
+														<span>
+														</span>
+													</i>
+													<span class="kt-menu__link-text">
+														Consulter les activitées</span>
+												</a>
+											</li>
+											<li class="kt-menu__item " aria-haspopup="true">
+												<a href="#" class="kt-menu__link " data-toggle="modal" data-target="#exampleModal3" target="frame1">
+													<i class="kt-menu__link-bullet kt-menu__link-bullet--dot">
+														<span>
+														</span>
+													</i>
+													<span class="kt-menu__link-text">
+														Controler les activités</span>
+												</a>
+											</li>
 
 										</ul>
 									</div>
@@ -345,121 +364,122 @@
 													<ul class="kt-menu__subnav">
 														<li class="kt-menu__item " aria-haspopup="true"><a href="../admin/Blog/ajouterPost.php" class="kt-menu__link " target="frame1"><i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span class="kt-menu__link-text">Ajouter un post</span></a></li>
 														<li class="kt-menu__item " aria-haspopup="true"><a href="../admin/Blog/afficherPost.php" class="kt-menu__link " target="frame1"><i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span class="kt-menu__link-text">consulter les posts</span></a></li>
-														</li>
-													</ul>
-												</div>
 											</li>
-											
-											<li class="kt-menu__item  kt-menu__item--submenu" aria-haspopup="true" data-ktmenu-submenu-toggle="hover"><a href="javascript:;" class="kt-menu__link kt-menu__toggle"><i class="kt-menu__link-bullet kt-menu__link-bullet--line"><span></span></i><span class="kt-menu__link-text">Catégorie</span><i class="kt-menu__ver-arrow la la-angle-right"></i></a>
-												<div class="kt-menu__submenu "><span class="kt-menu__arrow"></span>
-													<ul class="kt-menu__subnav">
-														<li class="kt-menu__item " aria-haspopup="true"><a href="../admin/Blog/ajouterCategorie.php" class="kt-menu__link " target="frame1"><i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span class="kt-menu__link-text">ajouter une catégorie</span></a></li>
-														<li class="kt-menu__item " aria-haspopup="true"><a href="../admin/Blog/afficherCategorie.php" class="kt-menu__link " target="frame1"><i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span class="kt-menu__link-text">consulter  catégories</span></a></li>
-													</ul>
-												</div>
-											</li>
-											<li class="kt-menu__item  kt-menu__item--submenu" aria-haspopup="true" data-ktmenu-submenu-toggle="hover"><a href="javascript:;" class="kt-menu__link kt-menu__toggle"><i class="kt-menu__link-bullet kt-menu__link-bullet--line"><span></span></i><span class="kt-menu__link-text">Commentaire</span><i class="kt-menu__ver-arrow la la-angle-right"></i></a>
-												<div class="kt-menu__submenu "><span class="kt-menu__arrow"></span>
-													<ul class="kt-menu__subnav">
-														<li class="kt-menu__item " aria-haspopup="true"><a href="../admin/Blog/afficherCommentaire.php" class="kt-menu__link " target="frame1"><i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span class="kt-menu__link-text">consulter les commentaires</span></a></li>
-											
-													</ul>
-												</div>
-											</li>
-											<li class="kt-menu__item  kt-menu__item--submenu" aria-haspopup="true" data-ktmenu-submenu-toggle="hover"><a href="javascript:;" class="kt-menu__link kt-menu__toggle"><i class="kt-menu__link-bullet kt-menu__link-bullet--line"><span></span></i><span class="kt-menu__link-text">Dahboard</span><i class="kt-menu__ver-arrow la la-angle-right"></i></a>
-												<div class="kt-menu__submenu "><span class="kt-menu__arrow"></span>
-													<ul class="kt-menu__subnav">
-														<li class="kt-menu__item " aria-haspopup="true"><a href="../admin/Blog/ajouterCommentaire.php" class="kt-menu__link " target="frame1"><i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span class="kt-menu__link-text">post</span></a></li>
-											
-													</ul>
-												</div>
-											</li>
-											
+										</ul>
+									</div>
+								</li>
+								
+
+								<li class="kt-menu__item  kt-menu__item--submenu" aria-haspopup="true" data-ktmenu-submenu-toggle="hover"><a href="javascript:;" class="kt-menu__link kt-menu__toggle"><i class="kt-menu__link-bullet kt-menu__link-bullet--line"><span></span></i><span class="kt-menu__link-text">Catégorie</span><i class="kt-menu__ver-arrow la la-angle-right"></i></a>
+									<div class="kt-menu__submenu "><span class="kt-menu__arrow"></span>
+										<ul class="kt-menu__subnav">
+											<li class="kt-menu__item " aria-haspopup="true"><a href="../admin/Blog/ajouterCategorie.php" class="kt-menu__link " target="frame1"><i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span class="kt-menu__link-text">ajouter une catégorie</span></a></li>
+											<li class="kt-menu__item " aria-haspopup="true"><a href="../admin/Blog/afficherCategorie.php" class="kt-menu__link " target="frame1"><i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span class="kt-menu__link-text">consulter catégories</span></a></li>
+										</ul>
+									</div>
+								</li>
+								<li class="kt-menu__item  kt-menu__item--submenu" aria-haspopup="true" data-ktmenu-submenu-toggle="hover"><a href="javascript:;" class="kt-menu__link kt-menu__toggle"><i class="kt-menu__link-bullet kt-menu__link-bullet--line"><span></span></i><span class="kt-menu__link-text">Commentaire</span><i class="kt-menu__ver-arrow la la-angle-right"></i></a>
+									<div class="kt-menu__submenu "><span class="kt-menu__arrow"></span>
+										<ul class="kt-menu__subnav">
+											<li class="kt-menu__item " aria-haspopup="true"><a href="../admin/Blog/afficherCommentaire.php" class="kt-menu__link " target="frame1"><i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span class="kt-menu__link-text">consulter les commentaires</span></a></li>
+
+										</ul>
+									</div>
+								</li>
+								<li class="kt-menu__item  kt-menu__item--submenu" aria-haspopup="true" data-ktmenu-submenu-toggle="hover"><a href="javascript:;" class="kt-menu__link kt-menu__toggle"><i class="kt-menu__link-bullet kt-menu__link-bullet--line"><span></span></i><span class="kt-menu__link-text">Dahboard</span><i class="kt-menu__ver-arrow la la-angle-right"></i></a>
+									<div class="kt-menu__submenu "><span class="kt-menu__arrow"></span>
+										<ul class="kt-menu__subnav">
+											<li class="kt-menu__item " aria-haspopup="true"><a href="../admin/Blog/ajouterCommentaire.php" class="kt-menu__link " target="frame1"><i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span class="kt-menu__link-text">post</span></a></li>
+
 										</ul>
 									</div>
 								</li>
 
-								<li class="kt-menu__item  kt-menu__item--submenu" aria-haspopup="true" data-ktmenu-submenu-toggle="hover">
-									<a href="javascript:;" class="kt-menu__link kt-menu__toggle">
-										<i class="kt-menu__link-icon la la-cube" style="font-size:25px;">
-										</i>
-										<span class="kt-menu__link-text">
-											Extended</span>
-										<span class="kt-menu__link-badge">
-											<span class="kt-badge kt-badge--brand">
-												2</span>
-										</span>
-										<i class="kt-menu__ver-arrow la la-angle-right">
-										</i>
-									</a>
-									<div class="kt-menu__submenu ">
-										<span class="kt-menu__arrow">
-										</span>
-										<ul class="kt-menu__subnav">
-											<li class="kt-menu__item " aria-haspopup="true">
-												<a href="/keen/preview/demo1/components/extended/idle-timer.html" class="kt-menu__link ">
-													<i class="kt-menu__link-bullet kt-menu__link-bullet--dot">
-														<span>
-														</span>
-													</i>
-													<span class="kt-menu__link-text">
-														Idle Timer</span>
-												</a>
-											</li>
-										</ul>
-									</div>
-								</li>
-								<li class="kt-menu__item  kt-menu__item--submenu" aria-haspopup="true" data-ktmenu-submenu-toggle="hover">
-									<a href="javascript:;" class="kt-menu__link kt-menu__toggle">
-										<i class="kt-menu__link-icon la la-copy" style="font-size:25px;">
-										</i>
-										<span class="kt-menu__link-text">
-											Forms</span>
-										<i class="kt-menu__ver-arrow la la-angle-right">
-										</i>
-									</a>
-									<div class="kt-menu__submenu ">
-										<span class="kt-menu__arrow">
-										</span>
-										<ul class="kt-menu__subnav">
-											<li class="kt-menu__item  kt-menu__item--parent" aria-haspopup="true">
-												<span class="kt-menu__link">
-													<span class="kt-menu__link-text">
-														Forms</span>
-												</span>
-											</li>
-											<li class="kt-menu__item  kt-menu__item--submenu" aria-haspopup="true" data-ktmenu-submenu-toggle="hover">
-												<a href="javascript:;" class="kt-menu__link kt-menu__toggle">
-													<i class="kt-menu__link-bullet kt-menu__link-bullet--dot">
-														<span>
-														</span>
-													</i>
-													<span class="kt-menu__link-text">
-														Controls</span>
-													<i class="kt-menu__ver-arrow la la-angle-right">
-													</i>
-												</a>
-												<div class="kt-menu__submenu ">
-													<span class="kt-menu__arrow">
-													</span>
-													<ul class="kt-menu__subnav">
-														<li class="kt-menu__item " aria-haspopup="true">
-															<a href="/keen/preview/demo1/components/forms/controls/base.html" class="kt-menu__link ">
-																<i class="kt-menu__link-bullet kt-menu__link-bullet--dot">
-																	<span>
-																	</span>
-																</i>
-																<span class="kt-menu__link-text">
-																	Base Inputs</span>
-															</a>
-														</li>
-													</ul>
-												</div>
-											</li>
-										</ul>
-									</div>
-								</li>
 							</ul>
 						</div>
+						</li>
+
+						<li class="kt-menu__item  kt-menu__item--submenu" aria-haspopup="true" data-ktmenu-submenu-toggle="hover">
+							<a href="javascript:;" class="kt-menu__link kt-menu__toggle">
+								<i class="kt-menu__link-icon la la-cube" style="font-size:25px;">
+								</i>
+								<span class="kt-menu__link-text">
+									Contact</span>
+								<span class="kt-menu__link-badge">
+									<span class="kt-badge kt-badge--brand">
+										2</span>
+								</span>
+								<i class="kt-menu__ver-arrow la la-angle-right">
+								</i>
+							</a>
+							<div class="kt-menu__submenu ">
+								<span class="kt-menu__arrow">
+								</span>
+								<ul class="kt-menu__subnav">
+									<li class="kt-menu__item " aria-haspopup="true">
+										<a href="Contact/afficherMessage.php" class="kt-menu__link " target="frame1">
+											<i class="kt-menu__link-bullet kt-menu__link-bullet--dot">
+												<span>
+												</span>
+											</i>
+											<span class="kt-menu__link-text">
+												Messages</span>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</li>
+						<li class="kt-menu__item  kt-menu__item--submenu" aria-haspopup="true" data-ktmenu-submenu-toggle="hover">
+							<a href="javascript:;" class="kt-menu__link kt-menu__toggle">
+								<i class="kt-menu__link-icon la la-copy" style="font-size:25px;">
+								</i>
+								<span class="kt-menu__link-text">
+									Forms</span>
+								<i class="kt-menu__ver-arrow la la-angle-right">
+								</i>
+							</a>
+							<div class="kt-menu__submenu ">
+								<span class="kt-menu__arrow">
+								</span>
+								<ul class="kt-menu__subnav">
+									<li class="kt-menu__item  kt-menu__item--parent" aria-haspopup="true">
+										<span class="kt-menu__link">
+											<span class="kt-menu__link-text">
+												Forms</span>
+										</span>
+									</li>
+									<li class="kt-menu__item  kt-menu__item--submenu" aria-haspopup="true" data-ktmenu-submenu-toggle="hover">
+										<a href="javascript:;" class="kt-menu__link kt-menu__toggle">
+											<i class="kt-menu__link-bullet kt-menu__link-bullet--dot">
+												<span>
+												</span>
+											</i>
+											<span class="kt-menu__link-text">
+												Controls</span>
+											<i class="kt-menu__ver-arrow la la-angle-right">
+											</i>
+										</a>
+										<div class="kt-menu__submenu ">
+											<span class="kt-menu__arrow">
+											</span>
+											<ul class="kt-menu__subnav">
+												<li class="kt-menu__item " aria-haspopup="true">
+													<a href="/keen/preview/demo1/components/forms/controls/base.html" class="kt-menu__link ">
+														<i class="kt-menu__link-bullet kt-menu__link-bullet--dot">
+															<span>
+															</span>
+														</i>
+														<span class="kt-menu__link-text">
+															Base Inputs</span>
+													</a>
+												</li>
+											</ul>
+										</div>
+									</li>
+								</ul>
+							</div>
+						</li>
+						</ul>
 					</div>
+				</div>
 				</div>

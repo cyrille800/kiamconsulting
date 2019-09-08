@@ -1122,6 +1122,7 @@ ul li {
   margin-right: 0;
   margin-top: 18px;
 }
+
 .navbar-nav > li {
   padding: 0 25px;
 }
@@ -2650,4 +2651,7 @@ nav ul.xt-side-menu > li > ul.xt-dropdown {
 }
 .xt-view a.active {
   background-color: #f26667;
+}
+.error{
+  color:"red";
 }

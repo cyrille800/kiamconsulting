@@ -50,7 +50,11 @@
     <link rel="shortcut icon" href="../assets/Backoffice/media/logos/favicon.ico" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css">
 
-
+    <style>
+        .lien {
+            color: #2D89AB;
+        }
+    </style>
 
     <!--[if lt IE 9]>
             <script src="js/plagin-js/html5shiv.js"></script>
@@ -58,6 +62,7 @@
         <![endif]-->
 
 </head>
+
 <body class="login-reg-page">
     <div class="uv-login-reg-form">
         <div class="container">
@@ -65,16 +70,16 @@
                 <div class="col-md-8 col-xs-12 uv-login-reg-from-inner">
                     <div class="login-logo ">
                         <center>
-                        <a href="../index.php" >
-                            <img src="../Frontend/assets/images/logo3.png" alt="" class="img-responsive " style="transform:scale(0.7,0.7)">
-                        </a>
-</center>
+                            <a href="../index.php">
+                                <img src="../Frontend/assets/images/logo3.png" alt="" class="img-responsive " style="transform:scale(0.7,0.7)">
+                            </a>
+                        </center>
                     </div>
                     <div class="uv-login-reg shadow-1">
                         <!-- Nav tabs -->
                         <div class="login-reg-nav">
                             <ul class="nav nav-tabs" role="tablist" id="myTabs">
-                                <li role="presentation" ><a  href="#home" aria-controls="home" role="tab" data-toggle="tab">Se connecter</a></li>
+                                <li role="presentation"><a href="#home" aria-controls="home" role="tab"   data-toggle="tab">Se connecter</a></li>
                                 <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">S'enregistrer</a></li>
                             </ul>
                             <hr>
@@ -87,14 +92,17 @@
                         <div class="tab-content">
                             <div role="tabpanel" class="tab-pane active" id="home">
                                 <form id="login-form" class="uv-login-form">
-                                <div class="form-group">
-                                        <input type="hidden" name="operation"   class="form-control"  value="connexion">
+                                    <div class="form-group">
+                                        <input type="hidden" name="operation" class="form-control" value="connexion">
                                     </div>
                                     <div class="form-group">
                                         <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
                                     </div>
                                     <div class="form-group">
                                         <input type="password" name="password" id="login-password" tabindex="2" class="form-control" placeholder="Password">
+                                    </div>
+                                    <div class="erreur" style="background-color:rgba(255,0,0,0.1);color:red;padding:2%;width:100%;border-radius:7px;display:none;">
+                                        message
                                     </div>
                                     <div class="form-group text-center">
                                         <input type="checkbox" tabindex="3" class="" name="remember-me" id="remember">
@@ -169,35 +177,35 @@
         -->
     <!-- jquery -->
     <script src="../Frontend/assets/plugins/js/jquery-1.11.3.min.js"></script>
-        <!-- Bootstrap -->
-        <script src="../Frontend/assets/plugins/js/bootstrap.min.js"></script>
-        <!-- mean menu nav-->
-        <script src="../Frontend/assets/plugins/js/meanmenu.js"></script>
-        <!-- ajaxchimp -->
-        <script src="../Frontend/assets/plugins/js/jquery.ajaxchimp.min.js"></script>
-        <!-- wow -->
-        <script src="../Frontend/assets/plugins/js/wow.min.js"></script>
-        <!-- Owl carousel-->
-        <script src="../Frontend/assets/plugins/js/owl.carousel.js"></script>
-        <!--dropdownhover-->
-        <script src="../Frontend/assets/plugins/js/bootstrap-dropdownhover.min.js"></script>
-        <!--jquery-ui.min-->
-        <script src="../Frontend/assets/plugins/js/bars.js"></script>
-        <!--validator -->
-        <script src="../Frontend/assets/plugins/js/validator.min.js"></script>
-        <!--smooth scroll-->
-        <script src="../Frontend/assets/plugins/js/smooth-scroll.js"></script>
-        <!-- Fancybox js-->
-        <script src="../Frontend/assets/plugins/js/jquery.fancybox.min.js"></script>
-        <!-- fitvids -->
-        <script src="../Frontend/assets/plugins/js/jquery.fitvids.js"></script>
-        <!-- SELECTIZE-->
-        <script src="../Frontend/assets/plugins/js/standalone/selectize.js"></script>
-        <!-- isotope js-->
-        <script src="../Frontend/assets/plugins/js/isotope.pkgd.js"></script>
-        <script src="../Frontend/assets/plugins/js/packery-mode.pkgd.js"></script>
-        <script src="../Frontend/assets/plugins/js/jquery.inview.min.js"></script>
-        <script src="../Frontend/assets/plugins/js/progressbar.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="../Frontend/assets/plugins/js/bootstrap.min.js"></script>
+    <!-- mean menu nav-->
+    <script src="../Frontend/assets/plugins/js/meanmenu.js"></script>
+    <!-- ajaxchimp -->
+    <script src="../Frontend/assets/plugins/js/jquery.ajaxchimp.min.js"></script>
+    <!-- wow -->
+    <script src="../Frontend/assets/plugins/js/wow.min.js"></script>
+    <!-- Owl carousel-->
+    <script src="../Frontend/assets/plugins/js/owl.carousel.js"></script>
+    <!--dropdownhover-->
+    <script src="../Frontend/assets/plugins/js/bootstrap-dropdownhover.min.js"></script>
+    <!--jquery-ui.min-->
+    <script src="../Frontend/assets/plugins/js/bars.js"></script>
+    <!--validator -->
+    <script src="../Frontend/assets/plugins/js/validator.min.js"></script>
+    <!--smooth scroll-->
+    <script src="../Frontend/assets/plugins/js/smooth-scroll.js"></script>
+    <!-- Fancybox js-->
+    <script src="../Frontend/assets/plugins/js/jquery.fancybox.min.js"></script>
+    <!-- fitvids -->
+    <script src="../Frontend/assets/plugins/js/jquery.fitvids.js"></script>
+    <!-- SELECTIZE-->
+    <script src="../Frontend/assets/plugins/js/standalone/selectize.js"></script>
+    <!-- isotope js-->
+    <script src="../Frontend/assets/plugins/js/isotope.pkgd.js"></script>
+    <script src="../Frontend/assets/plugins/js/packery-mode.pkgd.js"></script>
+    <script src="../Frontend/assets/plugins/js/jquery.inview.min.js"></script>
+    <script src="../Frontend/assets/plugins/js/progressbar.min.js"></script>
     <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
     <!--===============================================================================================-->
     <script src="vendor/animsition/js/animsition.min.js"></script>
@@ -219,12 +227,32 @@
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 
-    
+
 
     <!-- init -->
     <script src="../Frontend/assets/js/init.js"></script>
     <script>
+        var commentaire = "<?= isset($_GET["commentaire"]) ? $_GET["commentaire"] : "false" ?>";
+        var id = <?= isset($_GET["id"]) ? $_GET["id"] : 0 ?>;
         $(function() {
+            $('[role="presentation"] a').eq(0).addClass("lien");
+            $('[role="presentation"] a').each(function(index, element) {
+                $(this).click(function() {
+                    if (!$(this).hasClass("lien")) {
+                        $(this).addClass("lien");
+                    }
+                    if (index == 0) {
+                        $('[role="presentation"] a').eq(1).removeClass("lien");
+                    } else {
+                        $('[role="presentation"] a').eq(0).removeClass("lien");
+
+                    }
+
+                });
+            });
+
+
+
             $("#customRadioInline1").click(function() {
                 swal.fire({
                     title: 'Etudiant!',
@@ -238,7 +266,6 @@
                     }
                 })
             })
-
             $("#customRadioInline2").click(function() {
                 swal.fire({
                     title: 'Patient!',
@@ -252,8 +279,6 @@
                     }
                 })
             })
-
-
             if (Cookies.get("username") != undefined) {
                 $("[name='username']").val(Cookies.get("username"))
                 $("[name='password']").val(Cookies.get("password"))
@@ -261,7 +286,6 @@
             }
             $("#login-form").submit(function(e) {
                 e.preventDefault();
-
                 $.ajax({
                     type: 'POST',
                     url: '../../entities/client.php',
@@ -270,12 +294,19 @@
                     cache: false,
                     processData: false,
                     success: function(data) {
+
                         if (data != "ok") {
                             $(".erreur").text(data)
                             $(".erreur").fadeIn("fast");
                             setTimeout(function() {
+                                
                                 $(".erreur").fadeOut("fast");
                             }, 2000)
+                            if (commentaire == "false")
+                                document.location.href = "../Backoffice/client/index.php";
+                            else 
+                                document.location.href = "../Frontend/blog-single.php?id=" + id + "&commentaire=" + commentaire;
+
                         } else {
                             $(".erreur").hide();
                             if ($("[name='remember-me']").prop("checked") == true) {
@@ -296,8 +327,8 @@
                                 });
                             }
 
+                          
 
-                            document.location.href = "../Backoffice/client/index.php?commentaire="+"<?= isset($_GET["commentaire"])?$_GET["commentaire"]:""?>";
                         }
                     }
                 })
@@ -316,10 +347,7 @@
                     if (element.prop('type') === 'text' || element.prop('type') === 'mail' || element.prop('type') === 'password') {
                         element.after(error);
                     } else if (element.prop('type') === 'radio') {
-                        // element.closest('[name="username"]').before(error);
                         element.parent().parent().after(error);
-
-
                     }
                 }
             });
@@ -340,6 +368,16 @@
                 }
                 return true;
             }, "Pas de caractères spéciaux");
+
+            $.validator.addMethod("phoneNumberControl", function(value, element) {
+                var regex = new RegExp("^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$");
+                var key = value;
+
+                if (!regex.test(key)) {
+                    return false;
+                }
+                return true;
+            }, "écriver un numéro conforme svp");
             var isOneFieldEmpty = false;
             var submit = false;
 
@@ -347,7 +385,6 @@
                 onkeyup: (element) => {
                     $(element).valid();
                 },
-
                 rules: {
                     email: {
                         required: true,
@@ -361,7 +398,7 @@
                                 }
                             }
                         },
-                      
+
                     },
                     regpassword: {
                         required: true,
@@ -388,10 +425,10 @@
                     type: {
                         required: true,
                     },
-                    phoneNumber:{
-                        required:true,
+                    phoneNumber: {
+                        required: true,
+                        phoneNumberControl: true,
                     }
-
                 },
                 messages: {
                     email: {
@@ -410,8 +447,8 @@
                     type: {
                         required: "vous devez choisir ",
                     },
-                    phoneNumber:{
-                        required:"vous devez remplir"
+                    phoneNumber: {
+                        required: "vous devez remplir"
                     }
                 },
                 submitHandler: function(form) {
@@ -424,8 +461,9 @@
                             toastr.info("Enregistrement terminé veuillez vous connecter");
                             $("[name='email']").val("");
                             $("[name='regusername']").val("");
+                            $("[name='regpassword']").val("");
                             $("[name='confirmPassword']").val("");
-                            $("[name='type']").val("");
+                            $("[name='type']").prop("checked", false);
                             $("[name='email']").val("");
                             $("[name='phoneNumber']").val("");
 
@@ -437,7 +475,7 @@
 
             })
 
-     
+
 
 
 

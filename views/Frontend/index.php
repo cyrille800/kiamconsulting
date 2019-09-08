@@ -1,6 +1,6 @@
 <?php
-session_start();
 include 'header.php';
+require_once "../../entities/class_post.php";
 ?>
 <!--
         |========================
@@ -21,8 +21,15 @@ include 'header.php';
                                     <h1>MEILLEURES <br> SOLUTIONS SANITAIRES </h1>
                                     <p>Miker Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
                                     <div class="slide-buttons">
-
-                                        <a href="" class="slide-btn btn btn-base">Se connecter</a>
+                                        <?php 
+                                        if(!isset($_SESSION["id"]))
+                                        {
+                                            ?>
+                                              <a href="../login/login-reg.php" class="slide-btn btn btn-base">Se connecter</a>
+                                            <?php
+                                        }
+                                        ?>
+                                      
                                     </div>
                                 </div>
                             </div>
@@ -44,7 +51,14 @@ include 'header.php';
                                     <h1>VISITEZ LA TUNISIE </h1>
                                     <p>Miker Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
                                     <div class="slide-buttons">
-                                        <a href="#" class="slide-btn btn btn-base"> Se connecter</a>
+                                    <?php 
+                                        if(!isset($_SESSION["id"]))
+                                        {
+                                            ?>
+                                              <a href="../login/login-reg.php" class="slide-btn btn btn-base">Se connecter</a>
+                                            <?php
+                                        }
+                                        ?>
                                     </div>
                                 </div>
                             </div>
@@ -66,7 +80,14 @@ include 'header.php';
                                     <h1>ÊTES VOUS PRÊTS <br> A POSTULER?</h1>
                                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore dolore</p>
                                     <div class="slide-buttons">
-                                        <a href="#" class="slide-btn btn btn-base">Se connecter</a>
+                                    <?php 
+                                        if(!isset($_SESSION["id"]))
+                                        {
+                                            ?>
+                                              <a href="../login/login-reg.php" class="slide-btn btn btn-base">Se connecter</a>
+                                            <?php
+                                        }
+                                        ?>
                                     </div>
                                 </div>
                             </div>
@@ -96,7 +117,13 @@ include 'header.php';
             <div class="col-sm-4">
                 <div class="uv-join-tagline wow fadeInRight" data-wow-delay="0.2s">
                     <h2><b>KIAM</b>CONSULTING</h2>
-                    <a href="" class="btn btn-base">Postuler<i class="fa fa-long-arrow-right"></i></a>
+                    <?php 
+                    if (isset($_SESSION["id"])) {
+                        $lien="../Backoffice/client/index.php";
+                    }
+                    else $lien="../login/login-reg.php";
+                    ?>
+                    <a href=<?=$lien?> class="btn btn-base">Postuler<i class="fa fa-long-arrow-right"></i></a>
                 </div>
             </div>
             <div class="col-sm-8">
@@ -149,7 +176,7 @@ include 'header.php';
                             Parmi les  meilleurs du maghreb</h6>
                         <p>Lorem ipsum dolor sit amet, consectetur adipi sicing elit, sed do eiusmod tempor
                             incididunt ut labore et.dolore magna aliqua.</p>
-                        <a href="" class="btn btn-base">Read more</a>
+                        <a href="about.php" class="btn btn-base">Lire Plus</a>
                     </div>
                 </div>
             </div>
@@ -164,7 +191,7 @@ include 'header.php';
                         <h6>La Tunisie une référence pour les soins médicaux</h6>
                         <p>Lorem ipsum dolor sit amet, consectetur adipi sicing elit, sed do eiusmod tempor
                             incididunt ut labore et.dolore magna aliqua.</p>
-                        <a href="" class="btn btn-base">Read more</a>
+                        <a href="about.php" class="btn btn-base">Lire Plus</a>
                     </div>
                 </div>
             </div>
@@ -174,12 +201,12 @@ include 'header.php';
                     <p>Lorem ipsum dolor sit amet</p>
                 </div>
                 <div class="featured-post-inner uv-hover-style">
-                    <img src="assets/images/e2.jpg" alt="" class="img-responsive">
+                    <img src="assets/images/149.jpg" alt="" class="img-responsive">
                     <div class="uv-post-inner-content">
-                        <h6>Life is Like Riding a Bicycle</h6>
+                        <h6>Des sites archélogiques et pittoresques </h6>
                         <p>Lorem ipsum dolor sit amet, consectetur adipi sicing elit, sed do eiusmod tempor
                             incididunt ut labore et.dolore magna aliqua.</p>
-                        <a href="" class="btn btn-base">Read more</a>
+                        <a href="Tunisie.php" class="btn btn-base">Lire Plus</a>
                     </div>
                 </div>
             </div>
@@ -198,10 +225,10 @@ include 'header.php';
         <div class="section-separator">
             <div class="uv-join-inner image-bg" style="background-image: url(assets/images/join-bg.jpg);">
                 <div class="join-content wow fadeIn" data-wow-delay="0.2s">
-                    <span>Click to Apply Now for Details</span>
-                    <h3>Summer Admission is Going on</h3>
+                    <span>Cliquer pour postuler maintenant</span>
+                    <h3>Les inscriptions continuent</h3>
                     <div class="join-btn">
-                        <a href="" class="btn btn-base">Apply Now</a>
+                        <a href="<?= $lien ?>" class="btn btn-base">Postuler</a>
                     </div>
                 </div>
             </div>
@@ -249,7 +276,7 @@ include 'header.php';
                         <div class="col-sm-6">
                             <div class="uv-event-content">
                                 <a href="">
-                                    <h4>How to Become Successful</h4>
+                                    <h4>première qualité</h4>
                                 </a>
                                 <p>Morbi accumsan ipsum velit. Nam nec tellus a odio tincidunt
                                     auctor a ornare odio. Sed non mauris itae erat conuat</p>
@@ -269,7 +296,7 @@ include 'header.php';
                         <div class="col-sm-6">
                             <div class="uv-event-content">
                                 <a href="">
-                                    <h4>How to Find a College That Fits You</h4>
+                                    <h4>Seconde qualité</h4>
                                 </a>
                                 <p>Morbi accumsan ipsum velit. Nam nec tellus a odio tincidunt
                                     auctor a ornare odio. Sed non mauris itae erat conuat</p>
@@ -289,7 +316,7 @@ include 'header.php';
                         <div class="col-sm-6">
                             <div class="uv-event-content">
                                 <a href="">
-                                    <h4>The Right High School: Myth Versus Reality</h4>
+                                    <h4>Troisème qualité</h4>
                                 </a>
                                 <p>Morbi accumsan ipsum velit. Nam nec tellus a odio tincidunt
                                     auctor a ornare odio. Sed non mauris itae erat conuat</p>
@@ -310,13 +337,13 @@ include 'header.php';
         |  video
         |========================
         -->
-<section class="uv-video image-bg" style="background-image: url(assets/images/video-bg.jpg);">
+<section class="uv-video image-bg" style="background-image: url(assets/images/SidiBousaid2.jpg);">
     <div class="overlay">
         <div class="container">
             <div class="row section-separator wow fadeIn" data-wow-delay="0.2s">
-                <h2>Curricular Campus Tour</h2>
+                <h2>Visiter la Tunisie</h2>
                 <div class="button">
-                    <a data-fancybox href="//www.youtube.com/watch?v=n9EUqIoBJXA"><i class="fa flaticon-play-button"></i></a>
+                    <a data-fancybox href="https://www.youtube.com/watch?v=99WrONXC3Oo"><i class="fa flaticon-play-button"></i></a>
                 </div>
             </div>
         </div>
@@ -335,66 +362,11 @@ include 'header.php';
                 <h2>Blog Posts</h2>
                 <span>Education blog to feed your brain</span>
                 <hr class="uv-hr">
-                <a href="" class="btn btn-base view-full-event"> View All</a>
+                <a href="blog.php" class="btn btn-base view-full-event">Tout voir</a>
             </div>
             <div class="each-blogs col-xs-12 wow fadeIn" data-wow-delay="0.3s" id="uv-blog-carousel">
-                <div class="item">
-                    <div class="blog-inner">
-                        <div class="blog-banner">
-                            <img src="assets/images/b1.jpg" alt="" class="img-responsive">
-                        </div>
-                        <div class="blog-content">
-                            <h4>10 Reasons Why Postgraduate Study Might Be Right For You</h4>
-                            <div class="blog-schedule">
-                                <a href="">
-                                    <h4>10 Reasons Why Postgraduate Study Might Be Right For You</h4>
-                                </a>
-                                <div class="blog-meta">
-                                    <span><i class="fa fa-calendar-o"></i> January 15, 2018</span>
-                                </div>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="blog-inner">
-                        <div class="blog-banner">
-                            <img src="assets/images/b2.jpg" alt="" class="img-responsive">
-                        </div>
-                        <div class="blog-content">
-                            <h4>10 of the Best Student Blogs for Millennial Life</h4>
-                            <div class="blog-schedule">
-                                <a href="">
-                                    <h4>10 of the Best Student Blogs for Millennial Life</h4>
-                                </a>
-                                <div class="blog-meta">
-                                    <span><i class="fa fa-calendar-o"></i> January 25, 2018</span>
-                                </div>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="blog-inner">
-                        <div class="blog-banner">
-                            <img src="assets/images/b1.jpg" alt="" class="img-responsive">
-                        </div>
-                        <div class="blog-content">
-                            <h4>Why Your Choice Of Verb Helps You Evaluate A Text</h4>
-                            <div class="blog-schedule">
-                                <a href="">
-                                    <h4>Why Your Choice Of Verb Helps You Evaluate A Text</h4>
-                                </a>
-                                <div class="blog-meta">
-                                    <span><i class="fa fa-calendar-o"></i> January 29, 2018</span>
-                                </div>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+               <?php Post::afficherPostAccueil(); ?>
+              
             </div>
         </div>
     </div>
@@ -419,7 +391,7 @@ include 'header.php';
                                         <blockquote>
                                             <div class="row">
                                                 <div class="uv-client-quates">
-                                                    <h3>Sam Andro</h3>
+                                                    <h3>Lorem ipsum</h3>
                                                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore</p>
                                                 </div>
                                             </div>
@@ -430,7 +402,7 @@ include 'header.php';
                                         <blockquote>
                                             <div class="row">
                                                 <div class="uv-client-quates">
-                                                    <h3>Linux Wlis</h3>
+                                                    <h3>Lorem ipsum</h3>
                                                     <p>It is a long established fact that a reader will be distracted by the readable content of a page</p>
                                                 </div>
                                             </div>
@@ -441,7 +413,7 @@ include 'header.php';
                                         <blockquote>
                                             <div class="row">
                                                 <div class="uv-client-quates">
-                                                    <h3>Becky Rand</h3>
+                                                    <h3>Lorem ipsum</h3>
                                                     <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered</p>
                                                 </div>
                                             </div>
@@ -452,7 +424,7 @@ include 'header.php';
                                         <blockquote>
                                             <div class="row">
                                                 <div class="uv-client-quates">
-                                                    <h3>Jenny</h3>
+                                                    <h3>Lorem ipsum</h3>
                                                     <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin</p>
                                                 </div>
                                             </div>
@@ -526,6 +498,17 @@ include 'header.php';
 
 <!-- init -->
 <script src="assets/js/init.js"></script>
+<script>
+$(function(){
+    $(".uv-event-content a").click(function (e) { 
+        e.preventDefault();
+        
+    });
+    $(".footer-item.uv-program,.footer-item").click(function (e) { 
+        e.preventDefault();
+    });
+})
+</script>
 </body>
 
 </html>

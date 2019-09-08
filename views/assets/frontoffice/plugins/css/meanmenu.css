@@ -516,7 +516,7 @@ p.total {
 }
 .mean-container .mean-bar::before {
   color: #fff;
-  content: url(../images/logo.png);
+  /* content: url(../images/logo.png); */
   font-size: 18px;
   font-weight: 700;
   left: 15px;

@@ -218,9 +218,8 @@ if (isset($_SESSION["id"]) && isset($_SESSION["type"])) {
                 $(".preload").fadeOut("slow");
             })
             $(function() {
-
+                
                 $("#quizz").click(function(e) {
-                    console.log($(this).attr("href"));
                     if ($(this).attr("href") == "quizzDejaFait") {
                         e.preventDefault();
                         toastr.info("vous avez déjà passé le quizz");

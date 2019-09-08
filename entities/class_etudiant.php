@@ -84,7 +84,6 @@ public function __construct($a,$b,$c,$d,$e,$f,$g,$h){
 function ajouter(){
 
 	if(self::verifiers("id_client",$this->get_id_client())==true){
-
 		$req=config::$bdd->prepare("insert into etudiant(nom,prenom,sexe,id_client,pays,ville,niveau_scolaire,etablissement,ecole_choisie,specialite,resultat) VALUE(:nom,:prenom,:sexe,:id_client,:pays,:ville,:niveau_scolaire,:etablissement,0,'',0)");
 		$req->bindValue(':nom',$this->get_nom());
 		$req->bindValue(':prenom',$this->get_prenom());
@@ -197,14 +196,13 @@ public static function verifier($id,$type,$valeur){
 		$req=config::$bdd->prepare("update etudiant set ".$e."=:".$e." where id=:id");
 		$req->bindValue(':id',$id);
 		$req->bindValue(':'.$e,$i);	
-		
-
 	  	if($req->execute()){
 	  		return true;
 	  	}else{
 	  		return false;
 	  	}
 	}
+	
 
 }
 ?>

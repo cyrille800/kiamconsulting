@@ -82,14 +82,28 @@ y<?php
   <!-- end:: Subheader -->
   <!-- begin:: Content -->
 
-
-
-  <div id="grid_table"></div>
-  <div id="jsGrid"></div>
-
-
-
-
+<!-- end:: Subheader -->
+  <!-- begin:: Content -->
+  <div class="container-fluid page-body-wrapper">
+    <div class="main-panel">
+      <div class="content-wrapper">
+        <div class="row">
+          <div class="col-sm-12 grid-margin ">
+            <div id="grid_table"></div>
+          </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:../../partials/_footer.php -->
+        <footer class="footer">
+          <div class="w-100 clearfix">
+            <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © 2018 <a href="http://www.urbanui.com/" target="_blank">Urbanui</a>. All rights reserved.</span>
+            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted &amp; made with <i class="icon-heart text-danger"></i></span>
+          </div>
+        </footer>
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+    </div>
+    <!-- end:: Content -->
 
   <!-- content-wrapper ends -->
   <!-- partial:../../partials/_footer.php -->
@@ -254,19 +268,27 @@ y<?php
         }
       ],
       onDataLoaded: function(items) {
-        $( ".jsgrid-edit-button").click(function(){
+        $(".jsgrid-edit-button").click(function() {
           let idPost;
-          idPost=$( ".jsgrid-edit-button").parent().parent(".jsgrid-row.jsgrid-selected-row").children("td").first().text();
-          window.location.href="modifierPost?idPost="+idPost;
+          idPost = $(".jsgrid-edit-button").parent().parent(".jsgrid-row.jsgrid-selected-row").children("td").first().text();
+          window.location.href = "modifierPost?idPost=" + idPost;
         })
 
-      },     // on done of controller.loadData
+        console.log($("#grid_table").find("th"));
+        $("#grid_table").find("th").css({
+          "background-color":"#343a40",
+          "border-color":"#454d55",
+          "color":"white",
+        })
+        
+
+      }, // on done of controller.loadData
 
 
     });
 
 
-    
+
 
     $(function() {
 

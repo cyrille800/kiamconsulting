@@ -129,7 +129,7 @@ class Commentaire
 						 <div class="media comment">
 							 <div class="media-left">
 								 <a href="#">
-									 <img " src="assets/images/t3.jpg" >  
+									 <img " src="../assets/Backoffice/media/users/'.$rows["idClient"].'.png " >  
 								 </a>
 							 </div>
 							 <div class="media-body">
@@ -157,7 +157,7 @@ class Commentaire
 				echo ' <div class="media comment-reply">
 		<div class="media-left">
 			<a href="#">
-				<img " src="assets/images/t3.jpg" alt="">
+				<img " src="../assets/Backoffice/media/users/'.$rows["idClient"].'.png "  alt="">
 			</a>
 		</div>
 		<div class="media-body">

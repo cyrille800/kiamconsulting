@@ -236,7 +236,17 @@ y<?php
             {
                 type: "control"
             }
-        ]
+        ],
+        onDataLoaded: function(items) {
+        console.log($("#grid_table").find("th"));
+        $("#grid_table").find("th").css({
+          "background-color":"#343a40",
+          "border-color":"#454d55",
+          "color":"white",
+        })
+        
+
+      }, 
 
     });
     </script>

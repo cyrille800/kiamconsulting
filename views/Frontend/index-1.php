@@ -12,10 +12,16 @@
                 <div class="container">
                     <div class="row">
                         <div class="uv-subhead-content col-xs-12">
-                            <h2>About Us</h2>
-                            <span>Curricular Responsive Bootstrap Education Template</span>
+                            <h2>Tourisme</h2>
+                            <span>La Tunisie une référence touristique</span>
                             <div class="slide-buttons " style="margin-top:50px;">
-                        <a href="#" class="slide-btn btn btn-base">Se connecter</a>
+                            <?php
+                        if (!isset($_SESSION["id"])) {
+                            ?>
+                            <a href="../login/login-reg.php" class="slide-btn btn btn-base">Se connecter</a>
+                        <?php
+                        }
+                        ?>
                     </div>
                         </div>
                     </div>
@@ -51,18 +57,18 @@
                     <div class="uv-about-content overflow">
                         <div class="bg-3 overflow">
                             <div class="col-sm-6 padding-o">
-                                <img src="assets/images/girl.jpg" alt="" class="img-responsive">
+                                <img src="assets/images/donne_tunisine_vergini.jpg" alt="" class="img-responsive">
                             </div>
                             <div class="col-sm-6">
                                 <div class="uv-about-info">
-                                    <h4>About Our Journey</h4>
+                                    <h4>Au Sujet de La Tunisie</h4>
                                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor 
                                     incididunt ut labore et.dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.</p>
                                     <p>exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor 
                                     in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
                                 </div>
                                 <div class="uv-about-info">
-                                    <h4>Our History & Passion</h4>
+                                    <h4>Son Histoire et Sa Passion</h4>
                                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor 
                                     incididunt ut labore et.dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.</p>
                                     <p>exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor 
@@ -95,165 +101,49 @@
         |   Course slide
         |========================
         -->
-        <section class="uv-course-slide image-bg" style="background-image:url(assets/images/home-2-bg.jpg);margin-top:30px;">
+        <section class="uv-course-slide image-bg" style="background-image:url(assets/images/tunisian-flag-2000x1111.jpg);margin-top:30px;">
             <div class="color-overlay-2">
                 <div class="container">
                     <div class="row section-separator">
                         <div class="each-inner-top col-xs-12">
-                            <h2>Get the coaching training FREE</h2>
-                            <p>This course, we’ll learn the fundamentals of JavaScript, the programming language of the 
-                            Web.Javascript is a scripting language produced.</p>
+                            <h2>Quelques Vidéos Touristiques</h2>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae, obcaecati dictaeius?</p>
                         </div>
                         <div class="col-xs-12" id="uv-course-slide">
                             <!--TESTIMONIAL 1 -->
                             <div class="item" >
                                 <div class="shadow-effect uv-course-slide-inner">
-                                    <div class="image-bg" style="background-image:url(assets/images/home-2-bg.jpg)">
+                                    <div class="image-bg" style="background-image:url(assets/images/SidiBousaid2.jpg)">
                                         <div class="color-overlay-3 each-inner">
-                                            <a data-fancybox href="https://www.youtube.com/watch?v=QNGBwajfgAA"><i class="fa flaticon-play-button-1 video-icon"></i></a>
-                                            <h3>Angular 2 Essential Training JavaScript </h3>
-                                            <div class="uv-slide-course-rating">
-                                                <i class="fa fa-star-o"></i>
-                                                <i class="fa fa-star-o"></i>
-                                                <i class="fa fa-star-o"></i>
-                                                <i class="fa fa-star-o"></i>
-                                                <i class="fa fa-star-o"></i>
-                                                <span>( 120 Ratings )</span>
-                                            </div>
-                                            <ul>
-                                                <li><a href=""><i class="fa fa-facebook"></i></a></li>
-                                                <li><a href=""><i class="fa fa-twitter"></i></a></li>
-                                                <li><a href=""><i class="fa fa-linkedin"></i></a></li>
-                                                <li><a href=""><i class="fa fa-dribbble"></i></a></li>
-                                                <li><a href=""><i class="fa fa-codepen"></i></a></li>
-                                                <li><a href=""><i class="fa fa-vimeo"></i></a></li>
-                                            </ul>
+                                            <a data-fancybox href="https://www.youtube.com/watch?v=99WrONXC3Oo"><i class="fa flaticon-play-button-1 video-icon"></i></a>
+                                            <h3>Visiter la Tunisie 1 </h3>
+                                           
                                         </div>
                                     </div>
-                                    <div class="uv-course-slide-content">
-                                        <ul>
-                                            <li class="col-sm-4 col-xs-12">
-                                                <div class="uv-slide-course-price">
-                                                    <p><span class="uv-c-price">$150.00</span> <del>$300.00</del></p>
-                                                </div>
-                                            </li>
-                                            <li class="col-sm-4 col-xs-12">
-                                                <div class="uv-slide-teacher">
-                                                    <img src="assets/images/t2.jpg" alt="">
-                                                    <div class="uv-trainer-info">
-                                                        <span>Teacher</span>
-                                                        <h4>John Doe</h4>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="col-sm-4 col-xs-12">
-                                                <div class="uv-slide-sudent-info">
-                                                    <span>Students</span>
-                                                    <h4>360 students</h4>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
+                                  
                                 </div>
                             </div>
                             <div class="item" >
                                 <div class="shadow-effect uv-course-slide-inner">
-                                    <div class="image-bg" style="background-image:url(assets/images/home-3-bg.jpg)">
+                                    <div class="image-bg" style="background-image:url(assets/images/SadBousaid3.webp)">
                                         <div class="color-overlay-3 each-inner">
-                                            <a data-fancybox href="https://www.youtube.com/watch?v=QNGBwajfgAA"><i class="fa flaticon-play-button-1 video-icon"></i></a>
-                                            <h3>Photography – Become a Better Photographer (Beginner) </h3>
-                                            <div class="uv-slide-course-rating">
-                                                <i class="fa fa-star-o"></i>
-                                                <i class="fa fa-star-o"></i>
-                                                <i class="fa fa-star-o"></i>
-                                                <i class="fa fa-star-o"></i>
-                                                <i class="fa fa-star-o"></i>
-                                                <span>( 100 Ratings )</span>
-                                            </div>
-                                            <ul>
-                                                <li><a href=""><i class="fa fa-facebook"></i></a></li>
-                                                <li><a href=""><i class="fa fa-twitter"></i></a></li>
-                                                <li><a href=""><i class="fa fa-linkedin"></i></a></li>
-                                                <li><a href=""><i class="fa fa-dribbble"></i></a></li>
-                                                <li><a href=""><i class="fa fa-codepen"></i></a></li>
-                                                <li><a href=""><i class="fa fa-vimeo"></i></a></li>
-                                            </ul>
+                                            <a data-fancybox href="https://www.youtube.com/watch?v=xfUML-3s7tU"><i class="fa flaticon-play-button-1 video-icon"></i></a>
+                                            <h3>visiter la Tunsisie 2 </h3>
+                                           
                                         </div>
                                     </div>
-                                    <div class="uv-course-slide-content">
-                                        <ul>
-                                            <li class="col-sm-4 col-xs-12">
-                                                <div class="uv-slide-course-price">
-                                                    <p><span class="uv-c-price">$250.00</span> <del>$400.00</del></p>
-                                                </div>
-                                            </li>
-                                            <li class="col-sm-4 col-xs-12">
-                                                <div class="uv-slide-teacher">
-                                                    <img src="assets/images/t1.jpg" alt="">
-                                                    <div class="uv-trainer-info">
-                                                        <span>Teacher</span>
-                                                        <h4>Loura Jahan</h4>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="col-sm-4 col-xs-12">
-                                                <div class="uv-slide-sudent-info">
-                                                    <span>Students</span>
-                                                    <h4>860 students</h4>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
+                                    
                                 </div>
                             </div>
                             <div class="item" >
                                 <div class="shadow-effect uv-course-slide-inner">
-                                    <div class="image-bg" style="background-image:url(assets/images/digital-marketing.jpg)">
+                                    <div class="image-bg" style="background-image:url(assets/images/Thalassa-hotel-monastir.jpg)">
                                         <div class="color-overlay-3 each-inner">
-                                            <a data-fancybox href="https://www.youtube.com/watch?v=QNGBwajfgAA"><i class="fa flaticon-play-button-1 video-icon"></i></a>
-                                            <h3>Complete Digital Marketing for Beginners </h3>
-                                            <div class="uv-slide-course-rating">
-                                                <i class="fa fa-star-o"></i>
-                                                <i class="fa fa-star-o"></i>
-                                                <i class="fa fa-star-o"></i>
-                                                <i class="fa fa-star-o"></i>
-                                                <i class="fa fa-star-o"></i>
-                                                <span>( 250 Ratings )</span>
-                                            </div>
-                                            <ul>
-                                                <li><a href=""><i class="fa fa-facebook"></i></a></li>
-                                                <li><a href=""><i class="fa fa-twitter"></i></a></li>
-                                                <li><a href=""><i class="fa fa-linkedin"></i></a></li>
-                                                <li><a href=""><i class="fa fa-dribbble"></i></a></li>
-                                                <li><a href=""><i class="fa fa-codepen"></i></a></li>
-                                                <li><a href=""><i class="fa fa-vimeo"></i></a></li>
-                                            </ul>
+                                            <a data-fancybox href="https://www.youtube.com/watch?v=Yh7It8bwFME"><i class="fa flaticon-play-button-1 video-icon"></i></a>
+                                            <h3>Visiter la Tunisie 3 </h3>
                                         </div>
                                     </div>
-                                    <div class="uv-course-slide-content">
-                                        <ul>
-                                            <li class="col-sm-4 col-xs-12">
-                                                <div class="uv-slide-course-price">
-                                                    <p><span class="uv-c-price">$200.00</span> <del>$300.00</del></p>
-                                                </div>
-                                            </li>
-                                            <li class="col-sm-4 col-xs-12">
-                                                <div class="uv-slide-teacher">
-                                                    <img src="assets/images/student-1.png" alt="">
-                                                    <div class="uv-trainer-info">
-                                                        <span>Teacher</span>
-                                                        <h4>Jenny Richard</h4>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="col-sm-4 col-xs-12">
-                                                <div class="uv-slide-sudent-info">
-                                                    <span>Students</span>
-                                                    <h4>420 students</h4>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
+                                   
                                 </div>
                             </div>
                         </div>
@@ -281,6 +171,7 @@
         |========================
         -->
         <footer class="uv-footer footer-bg section-separator">
+    
         <?php include "footer.php" ?>
 
         
@@ -337,7 +228,7 @@
 <script type="text/javascript">
     $(function(){
         $("#elastic_grid_demo").elastic_grid({
-            'showAllText' : 'All',
+            'showAllText' : 'Tout',
             'filterEffect': 'popup', // moveup, scaleup, fallperspective, fly, flip, helix , popup
             'hoverDirection': true,
             'hoverDelay': 0,
@@ -347,204 +238,151 @@
             'items' :
             [
                 {
-                    'title'         : 'Azuki bean',
+                    'title'         : 'Sousse',
                     'description'   : 'Swiss chard pumpkin bunya nuts maize plantain aubergine napa cabbage soko coriander sweet pepper water spinach winter purslane shallot tigernut lentil beetroot.Swiss chard pumpkin bunya nuts maize plantain aubergine napa cabbage.',
-                    'thumbnail'     : ['assets/images/small/1.jpg', 'assets/images/small/2.jpg', 'assets/images/small/3.jpg', 'assets/images/small/10.jpg', 'assets/images/small/11.jpg'],
-                    'large'         : ['https://youtu.be/-6Xl9tBWt54', 'assets/images/large/2.jpg', 'assets/images/large/3.jpg', 'assets/images/large/10.jpg', 'assets/images/large/11.jpg'],
+                    'thumbnail'     : ['assets/images/small/sousse4.jpg', 'assets/images/small/sousse1.jpg', 'assets/images/small/sousse3.jpg', 'assets/images/small/sousse0.jpg'],
+                    'large'         : ['assets/images/large/sousse4.jpg', 'assets/images/large/sousse1.jpg', 'assets/images/large/sousse3.jpg', 'assets/images/large/sousse0.jpg'],
                     'img_title'     : ['jquery elastic grid 1 ', 'jquery elastic grid 2', 'jquery elastic grid 3', 'jquery elastic grid 4', 'jquery elastic grid 5'],
-                    'button_list'   :
-                    [
-                        { 'title':'Demo', 'url' : 'http://porfolio.bonchen.net/', 'new_window' : true },
-                        { 'title':'Download', 'url':'http://porfolio.bonchen.net/', 'new_window' : false}
-                    ],
-                    'tags'          : ['Self Portrait']
+                    'button_list'   :[],
+                    'tags'          : ['balnéaire']
                 },
                 {
-                    'title'         : 'Swiss chard pumpkin',
+                    'title'         : 'djerba',
                     'description'   : 'Swiss chard pumpkin bunya nuts maize plantain aubergine napa cabbage soko coriander sweet pepper water spinach winter purslane shallot tigernut lentil beetroot.Swiss chard pumpkin bunya nuts maize plantain aubergine napa cabbage.',
-                    'thumbnail'     : ['assets/images/small/4.jpg', 'assets/images/small/5.jpg', 'assets/images/small/6.jpg', 'assets/images/small/7.jpg'],
-                    'large'         : ['assets/images/large/4.jpg', 'assets/images/large/5.jpg', 'assets/images/large/6.jpg', 'assets/images/large/7.jpg'],
+                    'thumbnail'     : ['assets/images/small/djerba0.jpg', 'assets/images/small/djerba2.jpg', 'assets/images/small/djerba3.jpg', 'assets/images/small/djerba4.jpg'],
+                    'large'         : ['assets/images/large/djerba0.jpg', 'assets/images/large/djerba2.jpg', 'assets/images/large/djerba3.jpg', 'assets/images/large/djerba4.jpg'],
                     'img_title'     : ['jquery elastic grid 6 ', 'jquery elastic grid 7 ', 'jquery elastic grid 8', 'jquery elastic grid 9', 'jquery elastic grid 9'],
                     'button_list'   :
                     [
-                        { 'title':'Demo', 'url' : 'http://porfolio.bonchen.net/', 'new_window' : true },
-                        { 'title':'Download', 'url':'http://porfolio.bonchen.net/', 'new_window' : true}
+                    
                     ],
-                    'tags'          : ['Landscape']
+                    'tags'          : ['balnéaire']
                 },
                 {
-                    'title'         : 'Spinach winter purslane',
+                    'title'         : 'Nabeul-Hammamet',
                     'description'   : 'Swiss chard pumpkin bunya nuts maize plantain aubergine napa cabbage soko coriander sweet pepper water spinach winter purslane shallot tigernut lentil beetroot.Swiss chard pumpkin bunya nuts maize plantain aubergine napa cabbage.',
-                    'thumbnail'     : ['assets/images/small/15.jpg','assets/images/small/8.jpg', 'assets/images/small/9.jpg', 'assets/images/small/10.jpg'],
-                    'large'         : ['assets/images/large/15.jpg','assets/images/large/8.jpg', 'assets/images/large/9.jpg', 'assets/images/large/10.jpg'],
+                    'thumbnail'     : ['assets/images/small/nabeul3.jpg','assets/images/small/nabeul0.jpg', 'assets/images/small/nabeul1.jpg', 'assets/images/small/nabeul4.jpg'],
+                    'large'         : ['assets/images/large/nabeul3.jpg','assets/images/large/nabeul0.jpg', 'assets/images/large/nabeul1.jpg', 'assets/images/large/nabeul4.jpg'],
                     'img_title'     : ['jquery elastic grid', 'jquery elastic grid', 'jquery elastic grid', 'jquery elastic grid', 'jquery elastic grid'],
                     'button_list'   :
                     [
-                        { 'title':'Demo', 'url' : 'http://porfolio.bonchen.net/', 'new_window' : true },
-                        { 'title':'Download', 'url':'http://porfolio.bonchen.net/', 'new_window' : true}
+                    
                     ],
-                    'tags'          : ['Self Portrait', 'Landscape']
+                    'tags'          : ['balnéaire']
                 },
                 {
-                    'title'         : 'Aubergine napa cabbage',
+                    'title'         : 'sfax-Monastir',
                     'description'   : 'Swiss chard pumpkin bunya nuts maize plantain aubergine napa cabbage soko coriander sweet pepper water spinach winter purslane shallot tigernut lentil beetroot.Swiss chard pumpkin bunya nuts maize plantain aubergine napa cabbage.',
-                    'thumbnail'     : ['assets/images/small/12.jpg', 'assets/images/small/13.jpg', 'assets/images/small/14.jpg', 'assets/images/small/15.jpg', 'assets/images/small/16.jpg'],
-                    'large'         : ['assets/images/large/12.jpg', 'assets/images/large/13.jpg', 'assets/images/large/14.jpg', 'assets/images/large/15.jpg', 'assets/images/large/16.jpg'],
+                    'thumbnail'     : ['assets/images/small/sfax0.jpg', 'assets/images/small/sfax1.jpg', 'assets/images/small/sfax2.jpg', 'assets/images/small/sfax3.jpg'],
+                    'large'         : ['assets/images/large/sfax0.jpg', 'assets/images/large/sfax1.jpg', 'assets/images/large/sfax2.jpg', 'assets/images/large/sfax3.jpg'],
                     'img_title'     : ['jquery elastic grid', 'jquery elastic grid', 'jquery elastic grid', 'jquery elastic grid', 'jquery elastic grid'],
                     'button_list'   :
                     [
-                        { 'title':'Demo', 'url' : 'http://porfolio.bonchen.net/', 'new_window' : true },
-                        { 'title':'Download', 'url':'http://porfolio.bonchen.net/', 'new_window' : true}
+                    
                     ],
-                    'tags'          : ['Portrait']
+                    'tags'          : ['balnéaire']
                 },
                 {
-                    'title'         : 'Swiss chard pumpkin',
+                    'title'         : 'Yasmine Hammamet',
                     'description'   : 'Swiss chard pumpkin bunya nuts maize plantain aubergine napa cabbage soko coriander sweet pepper water spinach winter purslane shallot tigernut lentil beetroot.Swiss chard pumpkin bunya nuts maize plantain aubergine napa cabbage.',
-                    'thumbnail'     : ['assets/images/small/17.jpg', 'assets/images/small/18.jpg', 'assets/images/small/19.jpg', 'assets/images/small/20.jpg'],
-                    'large'         : ['assets/images/large/17.jpg', 'assets/images/large/18.jpg', 'assets/images/large/19.jpg', 'assets/images/large/20.jpg'],
+                    'thumbnail'     : ['assets/images/small/hammamet3.jpg','assets/images/small/hammamet1.jpg', 'assets/images/small/hammamet2.jpg', 'assets/images/small/hammamet0.jpg'],
+                    'large'         : ['assets/images/large/hammamet3.jpg','assets/images/large/hammamet1.jpg', 'assets/images/large/hammamet2.jpg', 'assets/images/large/hammamet0.jpg'],
                     'img_title'     : ['jquery elastic grid', 'jquery elastic grid', 'jquery elastic grid', 'jquery elastic grid', 'jquery elastic grid'],
                     'button_list'   :
                     [
-                        { 'title':'Demo', 'url' : 'http://porfolio.bonchen.net/', 'new_window' : true },
-                        { 'title':'Download', 'url':'http://porfolio.bonchen.net/', 'new_window' : true}
+                    
                     ],
-                    'tags'          : ['Landscape']
+                    'tags'          : ['balnéaire']
                 },
                 {
-                    'title'         : 'Spinach winter purslane',
+                    'title'         : 'kairouan',
                     'description'   : 'Swiss chard pumpkin bunya nuts maize plantain aubergine napa cabbage soko coriander sweet pepper water spinach winter purslane shallot tigernut lentil beetroot.Swiss chard pumpkin bunya nuts maize plantain aubergine napa cabbage.',
-                    'thumbnail'     : ['assets/images/small/13.jpg','assets/images/small/15.jpg', 'assets/images/small/11.jpg', 'assets/images/small/10.jpg'],
-                    'large'         : ['assets/images/large/13.jpg','assets/images/large/15.jpg', 'assets/images/large/11.jpg', 'assets/images/large/10.jpg'],
+                    'thumbnail'     : ['assets/images/small/kairouan0.jpg', 'assets/images/small/kairouan1.jpg', 'assets/images/small/kairouan2.jpg',  'assets/images/small/kairouan4.jpg'],
+                    'large'         : ['assets/images/large/kairouan0.jpg', 'assets/images/large/kairouan1.jpg', 'assets/images/large/kairouan2.jpg',  'assets/images/large/kairouan4.jpg'],
                     'img_title'     : ['jquery elastic grid', 'jquery elastic grid', 'jquery elastic grid', 'jquery elastic grid', 'jquery elastic grid'],
                     'button_list'   :
                     [
-                        { 'title':'Demo', 'url' : 'http://porfolio.bonchen.net/', 'new_window' : true },
-                        { 'title':'Download', 'url':'http://porfolio.bonchen.net/', 'new_window' : true}
+                    
                     ],
-                    'tags'          : ['Vintage']
+                    'tags'          : ['patrimoine unesco']
                 },
                 {
-                    'title'         : 'Spinach winter purslane',
+                    'title'         : 'gafsa',
                     'description'   : 'Swiss chard pumpkin bunya nuts maize plantain aubergine napa cabbage soko coriander sweet pepper water spinach winter purslane shallot tigernut lentil beetroot.Swiss chard pumpkin bunya nuts maize plantain aubergine napa cabbage.',
-                    'thumbnail'     : ['assets/images/small/7.jpg','assets/images/small/8.jpg', 'assets/images/small/9.jpg', 'assets/images/small/10.jpg'],
-                    'large'         : ['assets/images/large/7.jpg','assets/images/large/8.jpg', 'assets/images/large/9.jpg', 'assets/images/large/10.jpg'],
+                    'thumbnail'     : ['assets/images/small/gafsa0.jpg', 'assets/images/small/gafsa1.jpg', 'assets/images/small/gafsa2.jpg', 'assets/images/small/gafsa3.jpg'],
+                    'large'         : ['assets/images/large/gafsa0.jpg', 'assets/images/large/gafsa1.jpg', 'assets/images/large/gafsa2.jpg', 'assets/images/large/gafsa3.jpg'],
                     'img_title'     : ['jquery elastic grid', 'jquery elastic grid', 'jquery elastic grid', 'jquery elastic grid', 'jquery elastic grid'],
                     'button_list'   :
                     [
-                        { 'title':'Demo', 'url' : 'http://porfolio.bonchen.net/', 'new_window' : true },
-                        { 'title':'Download', 'url':'http://porfolio.bonchen.net/', 'new_window' : true}
+                    
                     ],
-                    'tags'          : ['Portrait']
+                    'tags'          : ['saharien']
                 },
                 {
-                    'title'         : 'Azuki bean',
+                    'title'         : 'Dougga / Thugga',
                     'description'   : 'Swiss chard pumpkin bunya nuts maize plantain aubergine napa cabbage soko coriander sweet pepper water spinach winter purslane shallot tigernut lentil beetroot.Swiss chard pumpkin bunya nuts maize plantain aubergine napa cabbage.',
-                    'thumbnail'     : ['assets/images/small/16.jpg', 'assets/images/small/13.jpg', 'assets/images/small/14.jpg', 'assets/images/small/15.jpg', 'assets/images/small/16.jpg'],
-                    'large'         : ['assets/images/large/16.jpg', 'assets/images/large/13.jpg', 'assets/images/large/14.jpg', 'assets/images/large/15.jpg', 'assets/images/large/16.jpg'],
+                    'thumbnail'     : ['assets/images/small/Dougga-Thugga0.jpg','assets/images/small/Dougga-Thugga1.jpg', 'assets/images/small/Dougga-Thugga2.jpg', 'assets/images/small/Dougga-Thugga3.jpg'],
+                    'large'         : ['assets/images/large/Dougga-Thugga0.jpg','assets/images/large/Dougga-Thugga1.jpg', 'assets/images/large/Dougga-Thugga2.jpg', 'assets/images/large/Dougga-Thugga3.jpg'],
                     'img_title'     : ['jquery elastic grid', 'jquery elastic grid', 'jquery elastic grid', 'jquery elastic grid', 'jquery elastic grid'],
                     'button_list'   :
                     [
-                        { 'title':'Demo', 'url' : 'http://porfolio.bonchen.net/', 'new_window' : true },
-                        { 'title':'Download', 'url':'http://porfolio.bonchen.net/', 'new_window' : true}
+                    
                     ],
-                    'tags'          : ['Vintage']
+                    'tags'          : ['patrimoine unesco']
                 },
                 {
-                    'title'         : 'Swiss chard pumpkin',
+                    'title'         : 'nefzaoua Guermessa ksour ksar Ghilane',
                     'description'   : 'Swiss chard pumpkin bunya nuts maize plantain aubergine napa cabbage soko coriander sweet pepper water spinach winter purslane shallot tigernut lentil beetroot.Swiss chard pumpkin bunya nuts maize plantain aubergine napa cabbage.',
-                    'thumbnail'     : ['assets/images/small/18.jpg', 'assets/images/small/18.jpg', 'assets/images/small/19.jpg', 'assets/images/small/20.jpg'],
-                    'large'         : ['assets/images/large/18.jpg', 'assets/images/large/18.jpg', 'assets/images/large/19.jpg', 'assets/images/large/20.jpg'],
+                    'thumbnail'     : ['assets/images/small/nefzaoua0.jpg','assets/images/small/nefzaoua1.jpg', 'assets/images/small/nefzaoua2.jpg', 'assets/images/small/1nefzaoua3.jpg'],
+                    'large'         : ['assets/images/large/nefzaoua0.jpg','assets/images/large/nefzaoua1.jpg', 'assets/images/large/nefzaoua2.jpg', 'assets/images/large/1nefzaoua3.jpg'],
                     'img_title'     : ['jquery elastic grid', 'jquery elastic grid', 'jquery elastic grid', 'jquery elastic grid', 'jquery elastic grid'],
                     'button_list'   :
                     [
-                        { 'title':'Demo', 'url' : 'http://porfolio.bonchen.net/', 'new_window' : true },
-                        { 'title':'Download', 'url':'http://porfolio.bonchen.net/', 'new_window' : true}
+                    
                     ],
-                    'tags'          : ['Landscape']
+                    'tags'          : ['saharien']
                 },
                 {
-                    'title'         : 'Winter purslane',
+                    'title'         : 'palmyra',
                     'description'   : 'Swiss chard pumpkin bunya nuts maize plantain aubergine napa cabbage soko coriander sweet pepper water spinach winter purslane shallot tigernut lentil beetroot.Swiss chard pumpkin bunya nuts maize plantain aubergine napa cabbage.',
-                    'thumbnail'     : ['assets/images/small/11.jpg','assets/images/small/15.jpg', 'assets/images/small/11.jpg', 'assets/images/small/10.jpg'],
-                    'large'         : ['assets/images/large/11.jpg','assets/images/large/15.jpg', 'assets/images/large/11.jpg', 'assets/images/large/10.jpg'],
+                    'thumbnail'     : ['assets/images/small/palmyra4.jpg', 'assets/images/small/palmyra1.jpg', 'assets/images/small/palmyra2.jpg', 'assets/images/small/palmyra0.jpg'],
+                    'large'         : ['assets/images/large/palmyra4.jpg',  'assets/images/large/palmyra1.jpg', 'assets/images/large/palmyra2.jpg', 'assets/images/large/palmyra0.jpg'],
                     'img_title'     : ['jquery elastic grid', 'jquery elastic grid', 'jquery elastic grid', 'jquery elastic grid', 'jquery elastic grid'],
                     'button_list'   :
                     [
-                        { 'title':'Demo', 'url' : 'http://porfolio.bonchen.net/', 'new_window' : true },
-                        { 'title':'Download', 'url':'http://porfolio.bonchen.net/', 'new_window' : true}
+                    
                     ],
-                    'tags'          : ['Portrait']
+                    'tags'          : ['patrimoine unesco']
                 },
                 {
-                    'title'         : 'Spinach winter purslane',
+                    'title'         : 'matmata',
                     'description'   : 'Swiss chard pumpkin bunya nuts maize plantain aubergine napa cabbage soko coriander sweet pepper water spinach winter purslane shallot tigernut lentil beetroot.Swiss chard pumpkin bunya nuts maize plantain aubergine napa cabbage.',
-                    'thumbnail'     : ['assets/images/small/3.jpg','assets/images/small/15.jpg', 'assets/images/small/11.jpg', 'assets/images/small/10.jpg'],
-                    'large'         : ['assets/images/large/3.jpg','assets/images/large/15.jpg', 'assets/images/large/11.jpg', 'assets/images/large/10.jpg'],
+                    'thumbnail'     : ['assets/images/small/matmata0.jpg', 'assets/images/small/matmata1.jpg', 'assets/images/small/matmata2.jpg', 'assets/images/small/matmata3.jpg'],
+                    'large'         : ['assets/images/large/matmata0.jpg', 'assets/images/large/matmata1.jpg', 'assets/images/large/matmata2.jpg', 'assets/images/large/matmata3.jpg'],
                     'img_title'     : ['jquery elastic grid', 'jquery elastic grid', 'jquery elastic grid', 'jquery elastic grid', 'jquery elastic grid'],
                     'button_list'   :
                     [
-                        { 'title':'Demo', 'url' : 'http://porfolio.bonchen.net/', 'new_window' : true },
-                        { 'title':'Download', 'url':'http://porfolio.bonchen.net/', 'new_window' : true}
+                    
                     ],
-                    'tags'          : ['Vintage']
+                    'tags'          : ['saharien']
                 },
                 {
-                    'title'         : 'Spinach winter purslane',
+                    'title'         : 'El Jem',
                     'description'   : 'Swiss chard pumpkin bunya nuts maize plantain aubergine napa cabbage soko coriander sweet pepper water spinach winter purslane shallot tigernut lentil beetroot.Swiss chard pumpkin bunya nuts maize plantain aubergine napa cabbage.',
-                    'thumbnail'     : ['assets/images/small/5.jpg','assets/images/small/8.jpg', 'assets/images/small/9.jpg', 'assets/images/small/10.jpg'],
-                    'large'         : ['assets/images/large/5.jpg','assets/images/large/8.jpg', 'assets/images/large/9.jpg', 'assets/images/large/10.jpg'],
+                    'thumbnail'     : ['assets/images/small/El Jem1.jpg','assets/images/small/El Jem0.jpg', 'assets/images/small/El Jem2.jpg', 'assets/images/small/El Jem3.jpg'],
+                    'large'         : ['assets/images/large/El Jem1.jpg','assets/images/large/El Jem0.jpg', 'assets/images/large/El Jem2.jpg', 'assets/images/large/El Jem3.jpg'],
                     'img_title'     : ['jquery elastic grid', 'jquery elastic grid', 'jquery elastic grid', 'jquery elastic grid', 'jquery elastic grid'],
                     'button_list'   :
                     [
-                        { 'title':'Demo', 'url' : 'http://porfolio.bonchen.net/', 'new_window' : true },
-                        { 'title':'Download', 'url':'http://porfolio.bonchen.net/', 'new_window' : true}
+                    
                     ],
-                    'tags'          : ['Portrait', 'Landscape']
-                },
-                {
-                    'title'         : 'Azuki bean',
-                    'description'   : 'Swiss chard pumpkin bunya nuts maize plantain aubergine napa cabbage soko coriander sweet pepper water spinach winter purslane shallot tigernut lentil beetroot.Swiss chard pumpkin bunya nuts maize plantain aubergine napa cabbage.',
-                    'thumbnail'     : ['assets/images/small/6.jpg', 'assets/images/small/13.jpg', 'assets/images/small/14.jpg', 'assets/images/small/15.jpg', 'assets/images/small/16.jpg'],
-                    'large'         : ['assets/images/large/6.jpg', 'assets/images/large/13.jpg', 'assets/images/large/14.jpg', 'assets/images/large/15.jpg', 'assets/images/large/16.jpg'],
-                    'img_title'     : ['jquery elastic grid', 'jquery elastic grid', 'jquery elastic grid', 'jquery elastic grid', 'jquery elastic grid'],
-                    'button_list'   :
-                    [
-                        { 'title':'Demo', 'url' : 'http://porfolio.bonchen.net/', 'new_window' : true },
-                        { 'title':'Download', 'url':'http://porfolio.bonchen.net/', 'new_window' : true}
-                    ],
-                    'tags'          : ['Vintage']
-                },
-                {
-                    'title'         : 'Swiss chard pumpkin',
-                    'description'   : 'Swiss chard pumpkin bunya nuts maize plantain aubergine napa cabbage soko coriander sweet pepper water spinach winter purslane shallot tigernut lentil beetroot.Swiss chard pumpkin bunya nuts maize plantain aubergine napa cabbage.',
-                    'thumbnail'     : ['assets/images/small/8.jpg', 'assets/images/small/18.jpg', 'assets/images/small/19.jpg', 'assets/images/small/20.jpg'],
-                    'large'         : ['assets/images/large/8.jpg', 'assets/images/large/18.jpg', 'assets/images/large/19.jpg', 'assets/images/large/20.jpg'],
-                    'img_title'     : ['jquery elastic grid', 'jquery elastic grid', 'jquery elastic grid', 'jquery elastic grid', 'jquery elastic grid'],
-                    'button_list'   :
-                    [
-                        { 'title':'Demo', 'url' : 'http://porfolio.bonchen.net/', 'new_window' : true },
-                        { 'title':'Download', 'url':'http://porfolio.bonchen.net/', 'new_window' : true}
-                    ],
-                    'tags'          : ['Landscape']
-                },
-                {
-                    'title'         : 'Spinach winter purslane',
-                    'description'   : 'Swiss chard pumpkin bunya nuts maize plantain aubergine napa cabbage soko coriander sweet pepper water spinach winter purslane shallot tigernut lentil beetroot.Swiss chard pumpkin bunya nuts maize plantain aubergine napa cabbage.',
-                    'thumbnail'     : ['assets/images/small/9.jpg','assets/images/small/15.jpg', 'assets/images/small/11.jpg', 'assets/images/small/10.jpg'],
-                    'large'         : ['assets/images/large/9.jpg','assets/images/large/15.jpg', 'assets/images/large/11.jpg', 'assets/images/large/10.jpg'],
-                    'img_title'     : ['jquery elastic grid', 'jquery elastic grid', 'jquery elastic grid', 'jquery elastic grid', 'jquery elastic grid'],
-                    'button_list'   :
-                    [
-                        { 'title':'Demo', 'url' : 'http://porfolio.bonchen.net/', 'new_window' : true },
-                        { 'title':'Download', 'url':'http://porfolio.bonchen.net/', 'new_window' : true}
-                    ],
-                    'tags'          : ['Vintage', 'Landscape']
+                    'tags'          : ['patrimoine unesco']
                 }
 
             ]
         });
     });
+ 
 </script>
 
     </body>

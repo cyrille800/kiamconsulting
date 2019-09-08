@@ -430,17 +430,17 @@
 |================
 */
         
-      $("#contactForm").validator().on("submit", function (event) {
-          if (event.isDefaultPrevented()) {
-            // handle the invalid form...
-            formError();
-            submitMSG(false, "Did you fill in the form properly?");
-          } else {
-            // everything looks good!
-            event.preventDefault();
-            submitForm();
-          }
-       });
+      // $("#contactForm").validator().on("submit", function (event) {
+      //     if (event.isDefaultPrevented()) {
+      //       // handle the invalid form...
+      //       formError();
+      //       submitMSG(false, "Did you fill in the form properly?");
+      //     } else {
+      //       // everything looks good!
+      //       event.preventDefault();
+      //       submitForm();
+      //     }
+      //  });
   
       function submitForm(){
         var name = $("#name").val();
@@ -503,7 +503,7 @@
                 filter: selector,
                 animationOptions: {
                     queue: true
-                }
+                } 
             });
             return false;
         }); 
@@ -518,7 +518,7 @@
           zoom: 13,
           scrollwheel: false, 
           navigationControl: false,
-          center: new google.maps.LatLng(40.6700, -73.9400),
+          center: new google.maps.LatLng(36.8573162, 10.1897906),
           styles: [{"stylers":[{"saturation":-100},{"gamma":1}]},{"elementType":"labels.text.stroke","stylers":[{"visibility":"off"}]},{"featureType":"poi.business","elementType":"labels.text","stylers":[{"visibility":"off"}]},
           {"featureType":"poi.business","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"poi.place_of_worship","elementType":"labels.text","stylers":[{"visibility":"off"}]},
           {"featureType":"poi.place_of_worship","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"road","elementType":"geometry","stylers":[{"visibility":"simplified"}]},
@@ -528,7 +528,7 @@
         var mapElement = document.getElementById('map');
         var map = new google.maps.Map(mapElement, mapOptions);
         var marker = new google.maps.Marker({
-            position: new google.maps.LatLng(40.6700, -73.9400),
+            position: new google.maps.LatLng(36.8573162, 10.1897906),
             map: map,
             title: '24 Golden Tower (2nd floor), Amborkhana, Sylhet.!'
         });

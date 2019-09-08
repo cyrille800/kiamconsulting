@@ -1,7 +1,7 @@
 <?php
-  include "../../../../entities/class_concour.php";
-  config::connexion();
-  ?>
+include "../../../../entities/class_concour.php";
+config::connexion();
+?>
 
 <!DOCTYPE html>
 <html>
@@ -105,8 +105,8 @@
                   </div>
 
                   <div class="form-group">
-                    <label for="Categorie">Catégorie</label>
-                    <select class="form-control"  name="Categorie" id="Categorie">
+                    <label for="Categorie">Categorie</label>
+                    <select class="form-control" name="Categorie" id="Categorie">
                       <?php
                       $sql = "select titre from categorie";
                       $requette = config::$bdd->prepare($sql);
@@ -114,7 +114,7 @@
                       $rows = $requette->fetchAll();
                       foreach ($rows as $key => $rows) {
                         ?>
-                      <option><?= $rows["titre"] ?></option>
+                        <option><?= $rows["titre"] ?></option>
                       <?php } ?>
                     </select>
                   </div>
@@ -124,7 +124,7 @@
                   </div>
                   <div class="form_group mt-3 ">
                     <label for="introduction">introduction</label>
-                    <input type="text"  class="form-control" name="introduction" id="introduction">
+                    <input type="text" class="form-control" name="introduction" id="introduction">
                   </div>
                   <div class="form-group mt-3">
                     <label for="Contenu">Contenu</label>
@@ -148,7 +148,7 @@
         <!-- partial:../../partials/_footer.php -->
         <footer class="footer">
           <div class="w-100 clearfix">
-            <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © 2018 <a href="http://www.urbanui.com/" target="_blank">Urbanui</a>. All rights reserved.</span>
+            <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright � 2018 <a href="http://www.urbanui.com/" target="_blank">Urbanui</a>. All rights reserved.</span>
             <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted &amp; made with <i class="icon-heart text-danger"></i></span>
           </div>
         </footer>
@@ -183,7 +183,7 @@
             "shape": [
               "#f0f3ff",
               "#d9dffa",
-              "#afb4d4",
+              "#afb4d4", - +
               "#646c9a"
             ]
           }
@@ -224,112 +224,112 @@
         $(".preload").fadeOut("fast");
       })
       $(function() {
-            $.validator.setDefaults({
-              errorClass: 'invalid-feedback',
-              highlight: function(element) {
-                $(element).addClass('is-invalid');
-              },
-              unhighlight: function(element) {
-                $(element).removeClass('is-invalid');
-              },
-              errorPlacement: function(error, element) {
-                if (element.prop('type') === 'text' || element.prop('type') === 'mail' || element.prop('type') === 'password') {
-                  element.after(error);
-                } else if (element.prop('type') === 'radio') {
-                  // element.closest('[name="username"]').before(error);
-                  element.parent().parent().after(error);
+        $.validator.setDefaults({
+          errorClass: 'invalid-feedback',
+          highlight: function(element) {
+            $(element).addClass('is-invalid');
+          },
+          unhighlight: function(element) {
+            $(element).removeClass('is-invalid');
+          },
+          errorPlacement: function(error, element) {
+            if (element.prop('type') === 'text' || element.prop('type') === 'mail' || element.prop('type') === 'password') {
+              element.after(error);
+            } else if (element.prop('type') === 'radio') {
+              // element.closest('[name="username"]').before(error);
+              element.parent().parent().after(error);
+            }
+          }
+
+        });
+        $("#Post").validate({
+          onkeyup: (element) => {
+            $(element).valid();
+          },
+          rules: {
+            Titre: {
+              required: true,
+              remote: {
+                url: "../../../../entities/remoteTitrePost.php",
+                type: "post",
+                data: {
+                  Titre: function() {
+                    return $("#Titre").val();
+                  }
                 }
               }
 
+            },
+
+            Date: {
+              required: true,
+            },
+            Contenu: {
+              required: true,
+            },
+            introduction: {
+              required: true,
+            },
+
+          },
+          messages: {
+            Titre: {
+              required: 'ce champ est requis.',
+              remote: 'Titre d�j� utilis�.',
+            },
+            Date: {
+              required: 'ce champ est requis',
+            },
+            Contenu: {
+              required: 'ce champ est requis',
+            },
+            introduction: {
+              required: 'ce champ est requis',
+            },
+
+          },
+          submitHandler: function(form, e) {
+            e.preventDefault();
+            var file = $("#image")[0].files[0];
+
+            var formData = new FormData(form);
+            // formData.append('image',file); 
+            // formData.append('operation', "inserer");
+            // formData.append('Titre', $("#Titre").val()); 
+            // formData.append('Date', $("#Date").val());
+            //  formData.append('Categorie', $('#Categorie option:selected').val()); 
+            //  formData.append('introduction', $('#introduction').val()); 
+            tinyMCE.activeEditor.getContent();
+            tinyMCE.activeEditor.getContent({
+              format: 'raw'
             });
-            $("#Post").validate({
-                onkeyup: (element) => {
-                  $(element).valid();
+            formData.append('Contenu', tinyMCE.get('tinyMceExample').getContent());
+            formData.append('auteur', "romualdjunior");
+            $.ajax({
+                type: "POST",
+                url: "../../../../entities/Post.php",
+                data: formData,
+                cache: false,
+                processData: false,
+                contentType: false,
+                success: function(data) {
+                  console.log(data);
                 },
+              })
+              .fail(function() {
+                alert("l'envoi n'a pas marche");
 
-                rules: {
-                  Titre: {
-                    required: true,
-                    remote: {
-                      url: "../../../../entities/remoteTitrePost.php",
-                      type: "post",
-                      data: {
-                        Titre: function() {
-                          return $("#Titre").val();
-                        }
-                      }
-                    }
+              })
 
-                  },
-
-                  Date: {
-                    required: true,
-                  },
-                  Contenu: {
-                    required: true,
-                  },
-                  introduction:{
-                    required:true,
-                  },
-
-                },
-                messages: {
-                  Titre: {
-                    required: 'ce champ est requis.',
-                    remote: 'Titre déjà utilisé.',
-                  },
-                  Date: {
-                    required: 'ce champ est requis',
-                  },
-                  Contenu: {
-                    required: 'ce champ est requis',
-                  },
-                  introduction: {
-                    required: 'ce champ est requis',
-                  },
-
-                },
-                submitHandler: function(form, e) {
-                  e.preventDefault();
-                  var file = $("#image")[0].files[0];
-                  
-                  var formData = new FormData(form);
-                  // formData.append('image',file); 
-                  // formData.append('operation', "inserer");
-                  // formData.append('Titre', $("#Titre").val()); 
-                  // formData.append('Date', $("#Date").val());
-                  //  formData.append('Categorie', $('#Categorie option:selected').val()); 
-                  //  formData.append('introduction', $('#introduction').val()); 
-                   tinyMCE.activeEditor.getContent(); tinyMCE.activeEditor.getContent({
-                      format: 'raw'
-                    }); 
-                    formData.append('Contenu', tinyMCE.get('tinyMceExample').getContent()); 
-                    formData.append('auteur', "romualdjunior"); 
-                    $.ajax({
-                      type: "POST",
-                      url: "../../../../entities/Post.php",
-                      data: formData,
-                      cache: false,
-                      processData: false,
-                       contentType: false,
-                      success: function(data) {
-                        console.log(data);
-                      },
-                    })
-                    .fail(function() {
-                      alert("l'envoi n'a pas marche");
-
-                    })
-
-                    return false;
-                  }
+            return false;
+          }
 
 
-                })
-                console.log($("#tinyMceExample").width());
-                
+        })
+        console.log($("#tinyMceExample").width());
 
-            })
+
+      })
     </script>
 </body>
 

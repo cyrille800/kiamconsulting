@@ -1,6 +1,7 @@
 <?php
 require_once "../../../entities/class_quizz.php";
 require_once "../../../entities/class_concour.php";
+require_once "../../../entities/class_client.php";
 ?>
 <div class="kt-container">
     <!-- begin: Header Menu -->
@@ -113,12 +114,9 @@ require_once "../../../entities/class_concour.php";
                                 </a>
                             </li>
                             <li class="kt-menu__item im" aria-haspopup="true">
-                                <?php
-                                $blog = isset($_GET["commentaire"]) ? $_GET["commentaire"] : "";
-                                ?>
-                                <a href="<?= '../../../views/Frontend/blog-single.php?commentaire=' . $blog ?>" class="kt-menu__link " target="_blank">
+                                <a href="<?= '../../../views/Frontend/index.php' ?>" class="kt-menu__link " target="_blank">
                                     <span class="kt-menu__link-text">
-                                        Acceder au forum</span>
+                                        Revenir à l'acceuil </span>
                                     <i class="kt-menu__hor-arrow la la-angle-down">
                                     </i>
                                     <i class="kt-menu__ver-arrow la la-angle-right">
@@ -128,33 +126,41 @@ require_once "../../../entities/class_concour.php";
                         </ul>
                     </div>
                 </li>
-
-                <li class="kt-menu__item kt-menu__item--submenu kt-menu__item--rel">
-                    <?php
-                    $lien = "";
-                    $temp = concours::concoursLePlusProche();
-                    if (isset($_SESSION["id"]) && $temp > 0)
-                        $lien = intval(quizz::verifierPasserQuizz($_SESSION["id"], $temp)) ? "quizzDejaFait" : "quizz.php";
-                    else
-                        $lien = "quizz.php";
+                <?php
+                $isEtutiant = client::verifierEtudiant($_SESSION["id"]);
+                if ($isEtutiant == 0) {
                     ?>
-                    <a href="<?= $lien ?>" target="frame1" class="kt-menu__link ">
+                    <li class="kt-menu__item kt-menu__item--submenu kt-menu__item--rel">
+                        <?php
+                            $lien = "";
+                            $temp = concours::concoursLePlusProche();
+                            if (isset($_SESSION["id"]) && $temp > 0)
+                                $lien = intval(quizz::verifierPasserQuizz($_SESSION["id"], $temp)) ? "quizzDejaFait" : "quizz.php";
+                            else
+                                $lien = "quizz.php";
+                            ?>
+                        <a href="<?= $lien ?>" target="frame1" class="kt-menu__link " id="quizz">
 
-                        <span class="kt-menu__link-text">
+                            <span class="kt-menu__link-text">
 
-                            Quizz</span>
+                                Quizz</span>
 
-                        <i class="kt-menu__hor-arrow la la-angle-down">
+                            <i class="kt-menu__hor-arrow la la-angle-down">
 
-                        </i>
+                            </i>
 
-                        <i class="kt-menu__ver-arrow la la-angle-right">
+                            <i class="kt-menu__ver-arrow la la-angle-right">
 
-                        </i>
+                            </i>
 
-                    </a>
+                        </a>
 
-                </li>
+                    </li>
+                <?php
+                }
+                ?>
+
+
 
                 <li class="kt-menu__item kt-menu__item--submenu kt-menu__item--rel">
 
@@ -175,6 +181,7 @@ require_once "../../../entities/class_concour.php";
                     </a>
 
                 </li>
+
 
             </ul>
 

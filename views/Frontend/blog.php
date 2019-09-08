@@ -16,10 +16,16 @@ include 'header.php';
         <div class="container">
             <div class="row">
                 <div class="uv-subhead-content col-xs-12">
-                    <h2>Blog & News </h2>
-                    <span>Curricular Responsive Bootstrap Education Template</span>
+                    <h2>Blog</h2>
+                    <span>lorep ipsum msdkf sdfmsdf sdfsmmqsmdf smdf</span>
                     <div class="slide-buttons " style="margin-top:50px;">
-                        <a href="#" class="slide-btn btn btn-base">Se connecter</a>
+                    <?php
+                        if (!isset($_SESSION["id"])) {
+                            ?>
+                            <a href="../login/login-reg.php" class="slide-btn btn btn-base">Se connecter</a>
+                        <?php
+                        }
+                        ?> </div>
                     </div>
                 </div>
             </div>
@@ -29,7 +35,7 @@ include 'header.php';
 <div class="uv-pagination">
     <div class="container">
         <ul>
-            <li class="active"><a href="">Home</a></li>
+            <li class="active"><a href="index.php">Home</a></li>
             <li><a href="blog.php?page=1">Blog</a></li>
         </ul>
     </div>
@@ -44,7 +50,7 @@ include 'header.php';
 
                 if (isset($_GET["Search"]) and !empty($_GET["Search"])) {
                     extract($_GET);
-                    $sql = "select * from post where Categorie like '%".$Search."%' or titre like '%".$Search."%' or date  like '%".$Search."%' or introduction like '%".$Search."%' or contenu like '%".$Search."%' or auteur like '%".$Search."%' ";
+                    $sql = "select * from post where Categorie like '%" . $Search . "%' or titre like '%" . $Search . "%' or date  like '%" . $Search . "%' or introduction like '%" . $Search . "%' or contenu like '%" . $Search . "%' or auteur like '%" . $Search . "%' ";
                 } else {
                     $sql = "select * from post";
                 }
@@ -61,14 +67,14 @@ include 'header.php';
                 } else {
                     $pageCourante = 1;
                     $pagePrecedent = 1;
-                    $pageSuivant = $totalPage>1?2:1;
+                    $pageSuivant = $totalPage > 1 ? 2 : 1;
                 }
                 $depart = ($pageCourante - 1) * $postParPage;
                 Post::afficherBlog($depart, $postParPage, $sql);
                 $temp = "&Search=";
                 $temp .= isset($Search) ? $Search : "";
                 $pagePrecedent .= isset($Search) ? $temp : "";
-                    $pageSuivant .= isset($Search) ? $temp : "";
+                $pageSuivant .= isset($Search) ? $temp : "";
                 ?>
 
                 <div class="uv_pagination_outer_wrap">
@@ -99,40 +105,29 @@ include 'header.php';
                     </div>
                 </div>
                 <div class="clearfix"></div>
-                <div class="uv-widget">
-                    <div class="widget-title">
-                        <h4>Subscribe Us</h4>
-                        <hr>
-                    </div>
-                    <div class="uv-newsletter">
-                        <p>Subscribe to our weekly Newsletter and stay tuned and get more freebies.</p>
-                        <form lpformnum="3" _lpchecked="1">
-                            <input type="text" class="form-control" placeholder="Enter your email here...">
-                            <input type="" value="Subscribe Now!" class="btn btn-fill btn-block">
-                        </form>
-                    </div>
-                </div>
+              
                 <div class="uv-widget">
                     <div class="widget-title">
                         <h4>Les plus populaires</h4>
                         <hr>
                     </div>
                     <ul class="popular-courses">
-                    <?php 
-                    Post::afficherPostPopulaire(Post::postPopulaire());
-                    ?>
+                        <?php
+                        Post::afficherPostPopulaire(Post::postPopulaire());
+                        ?>
                     </ul>
                 </div>
                 <div class="uv-widget">
                     <div class="widget-title">
-                        <h4>Recent Tweets</h4>
+                        <h4>Commentaires récents
+                        </h4>
                         <hr>
                     </div>
                     <div class="twitter-widget">
                         <ul class="latest-tweets">
-                        <?php 
-                           Commentaire::commentaireRecent();
-                           ?>
+                            <?php
+                            Commentaire::commentaireRecent();
+                            ?>
                         </ul>
                     </div>
                 </div>

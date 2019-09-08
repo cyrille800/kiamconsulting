@@ -105,35 +105,41 @@ if (!isset($_SESSION["id"]))
         <div class="container mb-5">
             <div class="row " id="concours">
                 <div class="col-sm-6">
+                   
                     <?php
-
                     $temp = concours::concoursLePlusProche();
                     if ($temp > 0) {
                         $concours = concours::afficherProchainConcours($temp);
-                    } else echo "Pas de concours prévu pour le moment<br>";
+                    } else {
+                        $req = config::$bdd->prepare("select date from datepublication");
+                        if ($req->execute()) {
+                            $rows = $req->fetchAll();
+                            $date0 = explode("T", $rows[0]["date"]);
+                            $date1 = $date0[0];
+                            $heure = $date0[1];
+                            $date = explode("-", $date1);
+                            $annee = $date[0];
+                            $jour = $date[1];
+                            $mois = $date[2];
+                            $dateFinal = $mois . "/" . $jour . "/" . $annee." ".$heure;
+                    }
+                }
                     ?>
                 </div>
                 <div class="col-sm-6" style="position:relative">
-                    <?php
-                    $temp = concours::concoursLePlusProche();
-                    if ($temp > 0) {
-                        ?>
+                    
 
-                    <div id="countdownTimer2">
-                        <h1>
-                            compte à rebours jusqu'au quizz:</h1>
-                        <ul>
-                            <li><span id="days"></span>days</li>
-                            <li><span id="hours"></span>Hours</li>
-                            <li><span id="minutes"></span>Minutes</li>
-                            <li><span id="seconds"></span>Seconds</li>
-                        </ul>
-                    </div>
-
-                    <?php
-                    }
-                    ?>
-
+                        <div id="countdownTimer2">
+                            <h1>
+                                </h1>
+                            <ul>
+                                <li><span id="days"></span></li>
+                                <li><span id="hours"></span></li>
+                                <li><span id="minutes"></span></li>
+                                <li><span id="seconds"></span></li>
+                            </ul>
+                        </div>
+                    
 
                 </div>
                 <button href="#" class="btn btn-primary mt-5" id="loading" role="button">Passer le quizz</button>
@@ -150,29 +156,30 @@ if (!isset($_SESSION["id"]))
                         <h3 id="question" class="mt-5 d-inline">
                             Question
                         </h3>
-                        <img src="" alt="" width="10px" height="100%">
+
+                        <img src="" alt="" width="5%" class="img-fluid ml-3">
                         <div id="options" class="form-group mt-3">
                             <div class="custom-control custom-radio mt-2 mb-3">
                                 <input type="radio" name="option" class="custom-control-input" id="customRadioInline1" number=0>
                                 <label class="custom-control-label" for="customRadioInline1">Check this custom radio</label>
-                                <img src="" alt='' width="10px" height="100%">
+                                <img src="" alt='' width="5%" class="img-fluid ml-3">
                             </div>
                             <div class="custom-control custom-radio mt-2 mb-3">
                                 <input type="radio" name="option" class="custom-control-input" id="customRadioInline2" number=1>
                                 <label class="custom-control-label" for="customRadioInline2">Check this custom radio</label>
-                                <img src="" alt='' width="10px" height="100%">
+                                <img src="" alt='' width="5%" class="img-fluid ml-3">
 
                             </div>
                             <div class="custom-control custom-radio mt-2 mb-3">
                                 <input type="radio" name="option" class="custom-control-input" id="customRadioInline3" number=2>
                                 <label class="custom-control-label" for="customRadioInline3">Check this custom radio</label>
-                                <img src="" alt='' width="10px" height="100%">
+                                <img src="" alt='' width="5%" class="img-fluid ml-3">
 
                             </div>
                             <div class="custom-control custom-radio mt-2 mb-3">
                                 <input type="radio" name="option" class="custom-control-input" id="customRadioInline4" number=3>
                                 <label class="custom-control-label" for="customRadioInline4">Check this custom radio</label>
-                                <img src="" alt='' width="10px" height="100%">
+                                <img src="" alt='' width="5%" class="img-fluid ml-3">
 
                             </div>
                         </div>
@@ -196,8 +203,8 @@ if (!isset($_SESSION["id"]))
                                 $req->execute();
                                 for ($i = 1; $i <= $req->rowCount(); $i++) {
                                     ?>
-                                <input id="option<?= $i ?>" name="options" type="radio">
-                                <label for="option<?= $i ?>"> question <?= $i ?> </label>
+                                    <input id="option<?= $i ?>" name="options" type="radio">
+                                    <label for="option<?= $i ?>" width="40px" style="font-size:10px">&nbsp;&nbsp;question&nbsp;<?= $i ?> </label>
                                 <?php
                                 }
                                 ?>
@@ -214,380 +221,477 @@ if (!isset($_SESSION["id"]))
             </div>
         </div>
     </div>
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- </center> -->
 
     <!--end::Dashboard 5-->
     </div>
     <!-- end:: Content -->
+    <!-- <script src="../../assets/Backoffice/js/demo4/pages/components/extended/toastr.js" type="text/javascript"></script> -->
     <script src="../../assets/Backoffice/vendors/global/vendors.bundle.js" type="text/javascript">
     </script>
     <script src="../../assets/Backoffice/js/demo4/scripts.bundle.js" type="text/javascript">
     </script>
-    < script src="../../assets/Backoffice/js/demo4/pages/components/extended/toastr.js" type="text/javascript">
-        <script src="../../assets/Backoffice/js/jQuery-Plugin-To-Transform-Radio-Buttons-Into-A-Slider-Radios-To-Slider/js/jquery.radios-to-slider.js"></script>
-        <script>
-            var KTAppOptions = {
-                "colors": {
-                    "state": {
-                        "brand": "#385aeb",
-                        "metal": "#c4c5d6",
-                        "light": "#ffffff",
-                        "accent": "#00c5dc",
-                        "primary": "#5867dd",
-                        "success": "#34bfa3",
-                        "info": "#36a3f7",
-                        "warning": "#ffb822",
-                        "danger": "#fd3995",
-                        "focus": "#9816f4"
-                    },
-                    "base": {
-                        "label": [
-                            "#c5cbe3",
-                            "#a1a8c3",
-                            "#3d4465",
-                            "#3e4466"
-                        ],
-                        "shape": [
-                            "#f0f3ff",
-                            "#d9dffa",
-                            "#afb4d4",
-                            "#646c9a"
-                        ]
-                    }
+    <script src="../../assets/Backoffice/js/jQuery-Plugin-To-Transform-Radio-Buttons-Into-A-Slider-Radios-To-Slider/js/jquery.radios-to-slider.js"></script>
+    <script>
+        var KTAppOptions = {
+            "colors": {
+                "state": {
+                    "brand": "#385aeb",
+                    "metal": "#c4c5d6",
+                    "light": "#ffffff",
+                    "accent": "#00c5dc",
+                    "primary": "#5867dd",
+                    "success": "#34bfa3",
+                    "info": "#36a3f7",
+                    "warning": "#ffb822",
+                    "danger": "#fd3995",
+                    "focus": "#9816f4"
+                },
+                "base": {
+                    "label": [
+                        "#c5cbe3",
+                        "#a1a8c3",
+                        "#3d4465",
+                        "#3e4466"
+                    ],
+                    "shape": [
+                        "#f0f3ff",
+                        "#d9dffa",
+                        "#afb4d4",
+                        "#646c9a"
+                    ]
                 }
-            };
-        </script>
+            }
+        };
+    </script>
 
-        <script>
-            $(window).on("load", function() {
-                $(".preload").fadeOut("fast");
-            })
+    <script>
+        $(window).on("load", function() {
+            $(".preload").fadeOut("fast");
+        })
+        var questionNumber = 0;
+        var answers = [];
+        var answersJson = [];
+        var Quizz = [];
+        var options = [];
+        var checkbox = [];
+        var answersQuizz = [];
+        var progressBar;
+        var progressBar2 = 0;
+        var finished = false;
+        var Image = [];
+        var Image2 = [];
+        var page = 0;
+        var temp = [];
+
+        function notAnsweredQuestions(questionNumber) {
+            let a = questionNumber + 1;
+            let b = "question" + a;
+            if (answers[questionNumber] == null) {
+                $("#option" + a).css("color", "red");
+                if ($("#option" + a).next("label").children("span").length == 0)
+                    $("#option" + a).next("label").append("<span style='color:red;'>(non&nbsp;répondue)</span>");
+            } else $("#option" + a).next("label").text(b);
+        }
 
 
-            var questionNumber = 0;
-            var answers = [];
-            var answersJson = [];
-            var Quizz = [];
-            var options = [];
-            var checkbox = [];
-            var answersQuizz = [];
-            var progressBar;
-            var progressBar2 = 0;
-            var finished = false;
-            var Image = [];
-            var Image2 = [];
-            var page = 0;
-
-
-
-
-            function ProgressBar() {
-                let cmpt = 0;
-                answers.forEach(element => {
-                    if (element) cmpt++;
+        function ProgressBar() {
+            let cmpt = 0;
+            answers.forEach(element => {
+                if (element) cmpt++;
+            });
+            progressBar = cmpt * 100 / Quizz.length;
+            $(".progress-bar").animate({
+                    width: "" + progressBar - progressBar2 + "%",
+                }, 300, "linear")
+                .queue(function() {
+                    $(".lead").text("Complété à " + Math.floor(progressBar) + "%");
+                    $(this).dequeue();
                 });
-                progressBar = cmpt * 100 / Quizz.length;
-                $(".progress-bar").animate({
-                        width: "" + progressBar - progressBar2 + "%",
-                    }, 300, "linear")
-                    .queue(function() {
-                        $(".lead").text("Complété à " + Math.floor(progressBar) + "%");
 
-                        $(this).dequeue();
-                    });
+        }
 
+        function precedentButton() {
+            if (questionNumber == 0 || questionNumber < 0) {
+                $("#Precedent").prop('disabled', true);
+            } else {
+                $("#Precedent").prop('disabled', false);
             }
 
-            function precedentButton() {
-                if (questionNumber == 0 || questionNumber < 0) {
-                    $("#Precedent").prop('disabled', true);
-                } else {
-                    $("#Precedent").prop('disabled', false);
+        }
+
+        function Checkbox(questionNumber) {
+            var number;
+            if (answers[questionNumber] != null) {
+                number = checkbox[questionNumber];
+                $("[number=" + number + "]").prop("checked", true);
+
+            } else if (answers[questionNumber] == null) {
+                $(".custom-control-input").each(function() {
+                    $(this).prop("checked", false);
+                });
+            }
+        }
+
+        function currentQuestion() {
+            precedentButton();
+            $("#Suivant").click(function() {
+                if ($(this).text() == "Terminer") {
+                    toastr.success("Nous espérons que cela s'est bien passé");
+                    Results();
+                }
+                if (questionNumber < options.length - 1) {
+                    Answers(questionNumber);
+                    notAnsweredQuestions(questionNumber);
+                    ++questionNumber;
+                    questionPosition();
+                    updateQuizz(questionNumber);
+                    updateImage();
+                    Checkbox(questionNumber);
+                    ProgressBar();
+                    $(this).text("Suivant");
+
+                }
+                if (questionNumber == options.length - 1) {
+                    Answers(questionNumber);
+                    ProgressBar();
+                    $(this).text("Terminer");
                 }
 
-            }
-
-            function Checkbox(questionNumber) {
-                var number;
-
-                if (answers[questionNumber] != null) {
-                    number = checkbox[questionNumber];
-                    $("[number=" + number + "]").prop("checked", true);
-
-                } else if (answers[questionNumber] == null) {
-                    $(".custom-control-input").each(function() {
-                        $(this).prop("checked", false);
-                    });
-                }
-            }
-
-            function currentQuestion() {
                 precedentButton();
-                $("#Suivant").click(function() {
-
-                    if ($(this).text() == "Terminer") {
-                        toastr.success("Nous espérons que cela s'est bien passé");
-                        Results();
-                    }
-
-                    if (questionNumber < options.length - 1) {
-                        Answers(questionNumber);
-                        ++questionNumber;
-                        questionPosition();
-                        updateQuizz(questionNumber);
-                        updateImage();
-                        Checkbox(questionNumber);
-                        ProgressBar();
-                        $(this).text("Suivant");
-                    }
-                    if (questionNumber == options.length - 1) {
-                        Answers(questionNumber);
-                        ProgressBar();
-                        $(this).text("Terminer");
-                    }
-
+            });
+            $("#Abandonner").click(function(e) {
+                Results();
+            });
+            $("#Precedent").click(function(e) {
+                if (questionNumber < options.length) {
+                    Answers(questionNumber);
+                    notAnsweredQuestions(questionNumber);
+                    --questionNumber;
+                    Checkbox(questionNumber);
+                    questionPosition();
+                    updateQuizz(questionNumber);
+                    updateImage();
+                    ProgressBar();
                     precedentButton();
-                });
-                $("#Abandonner").click(function(e) {
-                    window.top.location.href = "index.php";
-                });
-                $("#Precedent").click(function(e) {
-                    if (questionNumber < options.length) {
-                        Answers(questionNumber);
-                        --questionNumber;
-                        Checkbox(questionNumber);
-                        questionPosition();
-                        updateQuizz(questionNumber);
-                        updateImage();
-                        ProgressBar();
-                        precedentButton();
-                        $("#Suivant").text("Suivant");
-                    };
-                    // precedentButton();
+                    $("#Suivant").text("Suivant");
+                };
 
-                });
+            });
 
-            }
+        }
 
-            function Answers(questionNumber) {
-                $(".custom-control-input").each(function(element) {
-                    if ($(this).prop("checked")) {
-                        answers[questionNumber] = $(this).next("label").text();
-                        checkbox[questionNumber] = $(this).attr("number");
-                        return false;
-                    }
-                });
-            }
+        function Answers(questionNumber) {
+            $(".custom-control-input").each(function(element) {
+                if ($(this).prop("checked")) {
+                    answers[questionNumber] = $(this).next("label").text();
+                    checkbox[questionNumber] = $(this).attr("number");
+                    return false;
+                }
+            });
+        }
 
 
-            function Results() {
-                var score = 0;
-                answers.forEach((element, index) => {
-                    if (element == answersQuizz[index]) {
-                        score++;
-                    }
-                });
-                setTimeout(function() {
-                    $.ajax({
-                            type: "post",
-                            url: "../../../entities/quizz.php",
-                            data: {
-                                operation: "quizz",
-                                resultat: score,
-                                idEtudiant: <?= $_SESSION["id"] ?>,
-                                idConcour: <?= isset($concours["id"]) ? $concours["id"] : 0 ?>
-                            },
-                            cache: false,
-                            success: function(response) {
-                                window.top.location.href = "index.php";
-                            }
-                        })
-                        .fail(function() {
-                            alert("cela n'a pas fonctionne");
-                        })
-                }, 1500);
-
-            }
-
-
-
-            function loadingQuizz() {
-                questionNumber = 0;
-                $("#quizz,#Suivant,#Precedent,#Abandonner,#radios").show("slow");
-                $("#loading,#timer,#concours").hide("slow");
-                $("#Precedent").disabled = true;
-                getQuizz();
-                getImages();
-                updateQuizz(questionNumber);
-                questionPosition();
-
-            }
-
-            function questionPosition() {
-                let temp = questionNumber + 1;
-                $("#option" + temp + "").prop("checked", true);
-                var radios = $("#radios").radiosToSlider({
-                    size: 'medium',
-                    animation: true,
-                    fitContainer: true,
-                    isDisable: false,
-                    onSelect: function(value) {
-                        var questionNumber2 = questionNumber;
-                        questionNumber = parseInt(value.attr("id").substr(6, 1)) - 1;
-                        console.log(questionNumber);
-                        precedentButton();
-                        Answers(questionNumber2);
-                        updateQuizz(questionNumber);
-                        updateImage();
-                        Checkbox(questionNumber);
-                        ProgressBar();
-                        if (questionNumber == options.length - 1) {
-                            $("#Suivant").text("Terminer");
-                        } else $("#Suivant").text("Suivant");
-                    }
-
-                });
-
-            }
-
-            function hidingQuizz() {
-                $("#quizz,#Suivant,#Precedent,#Abandonner,#radios").css("display", "none");
-            }
-
-            function getQuizz() {
+        function Results() {
+            var score = 0;
+            answers.forEach((element, index) => {
+                if (element == answersQuizz[index]) {
+                    score++;
+                }
+            });
+            setTimeout(function() {
                 $.ajax({
                         type: "post",
                         url: "../../../entities/quizz.php",
                         data: {
-                            operation: "afficherQuizz",
-                            idConcour: "<?= isset($concours['id']) ? $concours["id"] : 0 ?>",
+                            operation: "quizz",
+                            resultat: score,
+                            idEtudiant: <?= $_SESSION["id"] ?>,
+                            idConcour: <?= isset($concours["id"]) ? $concours["id"] : 0 ?>
                         },
-                        async: false,
                         cache: false,
-                        success: function(data) {
-                            Quizz = [...Object.values(JSON.parse(data))];
+                        success: function(response) {
+                            window.top.location.href = "index.php";
+                        }
+                    })
+                    .fail(function() {
+                        toastr.error("cela n'a pas fonctionne");
+                    })
+            }, 1500);
 
-                            var array = [];
-                            var array2 = [];
-                            var index = 0;
-                            var index1;
-                            var index2;
-                            var index3;
-                            var index4;
-                            for (var key in Quizz) {
-                                if (Quizz.hasOwnProperty(key)) {
+        }
 
-                                    array2[0] = Quizz[key].question;
-                                    index1 = random(array);
-                                    index2 = random(array);
-                                    index3 = random(array);
-                                    index4 = random(array);
-                                    //index=questionNumber
-                                    Image2[index] = {
-                                        "faux1": Quizz[key].autre_reponse.split(";")[0],
-                                        "faux2": Quizz[key].autre_reponse.split(";")[1],
-                                        "faux3": Quizz[key].autre_reponse.split(";")[2],
-                                        "question": Quizz[key].question,
-                                        "reponse": Quizz[key].reponse,
-                                    }
-                                    array2[index1] = Quizz[key].autre_reponse.split(";")[0];
-                                    array2[index2] = Quizz[key].autre_reponse.split(";")[1];
-                                    array2[index3] = Quizz[key].autre_reponse.split(";")[2];
-                                    array2[index4] = Quizz[key].reponse;
-                                    answersQuizz[index] = Quizz[key].reponse;
-                                    options.push(array2);
-                                    array2 = [];
-                                    array = [];
-                                    index++;
+        function loadingQuizz() {
+            questionNumber = 0;
+            $("#quizz,#Suivant,#Precedent,#Abandonner,#radios").show("slow");
+            $("#loading,#timer,#concours").hide("slow");
+            $("#Precedent").disabled = true;
+            getQuizz();
+            getImages();
+            updateQuizz(questionNumber);
+            updateImage();
+            questionPosition();
+        }
+
+        function questionPosition() {
+            let temp = questionNumber + 1;
+            $("#option" + temp + "").prop("checked", true);
+            var radios = $("#radios").radiosToSlider({
+                size: 'medium',
+                animation: true,
+                fitContainer: true,
+                isDisable: false,
+                onSelect: function(value) {
+                    var questionNumber2 = questionNumber;
+                    questionNumber = parseInt(value.attr("id").substr(6, 1)) - 1;
+                    precedentButton();
+                    Answers(questionNumber2);
+                    notAnsweredQuestions(questionNumber2)
+                    updateQuizz(questionNumber);
+                    updateImage();
+                    Checkbox(questionNumber);
+                    ProgressBar();
+                    if (questionNumber == options.length - 1) {
+                        $("#Suivant").text("Terminer");
+                    } else $("#Suivant").text("Suivant");
+                }
+
+            });
+
+        }
+
+        function hidingQuizz() {
+            $("#quizz,#Suivant,#Precedent,#Abandonner,#radios").css("display", "none");
+        }
+
+        function getQuizz() {
+            $.ajax({
+                    type: "post",
+                    url: "../../../entities/quizz.php",
+                    data: {
+                        operation: "afficherQuizz",
+                        idConcour: "<?= isset($concours['id']) ? $concours["id"] : 0 ?>",
+                    },
+                    async: false,
+                    cache: false,
+                    success: function(data) {
+                        Quizz = [...Object.values(JSON.parse(data))];
+                        var array = [];
+                        var array2 = [];
+                        var index = 0;
+                        var index1;
+                        var index2;
+                        var index3;
+                        var index4;
+                        for (var key in Quizz) {
+                            if (Quizz.hasOwnProperty(key)) {
+
+                                array2[0] = Quizz[key].question;
+                                index1 = random(array);
+                                index2 = random(array);
+                                index3 = random(array);
+                                index4 = random(array);
+                                //index=questionNumber
+                                Image2[index] = {
+                                    "faux1": Quizz[key].autre_reponse.split(";")[0],
+                                    "faux2": Quizz[key].autre_reponse.split(";")[1],
+                                    "faux3": Quizz[key].autre_reponse.split(";")[2],
+                                    "question": Quizz[key].question,
+                                    "reponse": Quizz[key].reponse,
                                 }
+                                array2[index1] = Quizz[key].autre_reponse.split(";")[0];
+                                array2[index2] = Quizz[key].autre_reponse.split(";")[1];
+                                array2[index3] = Quizz[key].autre_reponse.split(";")[2];
+                                array2[index4] = Quizz[key].reponse;
+                                answersQuizz[index] = Quizz[key].reponse;
+                                options.push(array2);
+                                array2 = [];
+                                array = [];
+                                index++;
+                            }
+                        }
+                    }
+
+                })
+                .fail(function() {
+                    alert("sending data throuugh  ajax failed");
+                });
+
+        }
+
+        function getImages() {
+            $.ajax({
+                    type: "post",
+                    url: "../../../entities/concour.php",
+                    cache: false,
+                    async: false,
+                    data: {
+                        operation: "afficherImage",
+                        idConcour: "<?= isset($concours['id']) ? $concours['id'] : 0 ?>",
+                    },
+                    success: function(response) {
+                        var response2 = JSON.parse(response);
+                        for (const key in response2) {
+                            if (response2.hasOwnProperty(key)) {
+                                Image[parseInt(key)] = response2[key];
                             }
                         }
 
-                    })
-                    .fail(function() {
-                        alert("sending data throuugh  ajax failed");
+                    }
+                })
+                .fail(function() {
+                    console.log("cela n'a pas marché");
+                })
+        }
+
+        function updateImage() {
+            let indice = 0;
+            $(".custom-control-input").each(function(element) {
+                if (questionNumber < options.length && Image[questionNumber] != null) {
+                    if (Image2[questionNumber].faux1 == $(this).next("label").text()) {
+                        if ($(this).next("label").next("button").length == 0)
+                            $(this).next("label").after('<button  style="padding-top:2px;padding-bottom:2px;" type="button" class="image btn btn-sm btn-info ml-5" data-toggle="modal" data-target="#exampleModal">voir l"image</button>');
+                    } else if (Image2[questionNumber].faux2 == $(this).next("label").text()) {
+                        if ($(this).next("label").next("button").length == 0)
+                            $(this).next("label").after('<button  style="padding-top:2px;padding-bottom:2px;" type="button" class="image btn btn-sm btn-info ml-5" data-toggle="modal" data-target="#exampleModal">voir l"image</button>');
+
+                    } else if (Image2[questionNumber].faux3 == $(this).next("label").text()) {
+                        if ($(this).next("label").next("button").length == 0)
+                            $(this).next("label").after('<button  style="padding-top:2px;padding-bottom:2px;" type="button" class="image btn btn-sm btn-info ml-5" data-toggle="modal" data-target="#exampleModal">voir l"image</button>');
+
+                    } else if (Image2[questionNumber].reponse == $(this).next("label").text()) {
+                        if ($(this).next("label").next("button").length == 0)
+                            $(this).next("label").after('<button  style="padding-top:2px;padding-bottom:2px;" type="button" class="image btn btn-sm btn-info ml-5" data-toggle="modal" data-target="#exampleModal">voir l"image</button>');
+
+                    }
+                    if (indice == 0) {
+                        if ($("#question").next("button").length == 0)
+                            $("#question").after('<button style="padding-top:2px;padding-bottom:2px;" type="button" class="image btn btn-sm btn-info ml-5" data-toggle="modal" data-target="#exampleModal">voir l"image</button>');
+                    }
+                }
+                indice++;
+                $(".image").each(function(index, element) {
+                    $(this).click(function() {
+                        if (Image2[questionNumber].faux1 == $(this).prev("label").text()) {
+                            $(".modal-body").html('<img width="80%" src=' + Image[questionNumber].faux1 + '> ');
+                        } else if (Image2[questionNumber].faux2 == $(this).prev("label").text()) {
+                            $(".modal-body").html('<img width="80%" src=' + Image[questionNumber].faux2 + '> ');
+                        } else if (Image2[questionNumber].faux3 == $(this).prev("label").text()) {
+                            $(".modal-body").html('<img width="80%" src=' + Image[questionNumber].faux3 + '> ');
+                        } else if (Image2[questionNumber].reponse == $(this).prev("label").text()) {
+                            $(".modal-body").html('<img width="80%" src=' + Image[questionNumber].reponse + '> ');
+                        } else if (Image2[questionNumber].question == $(this).prev("h3").text()) {
+                            $(".modal-body").html('<img width="80%" src=' + Image[questionNumber].question + '> ');
+                        }
                     });
 
-            }
-
-            function getImages() {
-                $.ajax({
-                        type: "post",
-                        url: "../../../entities/concour.php",
-                        async: false,
-                        cache: false,
-                        data: {
-                            operation: "afficherImage",
-                            idConcour: "<?= isset($concours['id']) ? $concours['id'] : 0 ?>",
-                        },
-                        success: function(response) {
-                            console.log(response);
-
-                            var response2 = JSON.parse(response);
-                            for (const key in response2) {
-                                if (response2.hasOwnProperty(key)) {
-                                    Image[parseFloat(key)] = response2[key];
-                                }
-                            }
-                        }
-                    })
-                    .fail(function() {
-                        console.log("cela n'a pas marché");
-                    })
-            }
-
-            function updateImage() {
-                $(".custom-control-input").each(function(element) {
-                    if (questionNumber < options.length && Image[questionNumber] != null) {
-                        if (Image2[questionNumber].faux1 == $(this).next("label").text()) {
-                            $(this).next("label").next("img").attr("src", Image[questionNumber].faux1);
-
-                        } else if (Image2[questionNumber].faux2 == $(this).next("label").text()) {
-
-                            $(this).next("label").next("img").attr("src", Image[questionNumber].faux2);
-                        } else if (Image2[questionNumber].faux3 == $(this).next("label").text()) {
-
-                            $(this).next("label").next("img").attr("src", Image[questionNumber].faux3);
-                        } else if (Image2[questionNumber].reponse == $(this).next("label").text()) {
-
-                            $(this).next("label").next("img").attr("src", Image[questionNumber].reponse);
-                        }
-                        $("#question").next("img").attr("src", Image[questionNumber].question);
-                    }
-
                 });
-            }
+            });
+        }
 
-            function random(randomArray) {
-                var bool = true;
-                while (bool) {
-                    bool = false;
-                    nombre = Math.floor(Math.random() * ((5 - 1)) + 1);
-                    if (randomArray.lenght != 0) {
-                        randomArray.forEach(element => {
-                            if (element == nombre && randomArray.length <= 4) bool = true;
-                        });
-                    }
-                    if (!bool) randomArray.push(nombre);
+        function random(randomArray) {
+            var bool = true;
+            while (bool) {
+                bool = false;
+                nombre = Math.floor(Math.random() * ((5 - 1)) + 1);
+                if (randomArray.lenght != 0) {
+                    randomArray.forEach(element => {
+                        if (element == nombre && randomArray.length <= 4) bool = true;
+                    });
                 }
-                return nombre;
+                if (!bool) randomArray.push(nombre);
             }
+            return nombre;
+        }
 
-            function updateQuizz(questionNumber) {
-                var i = 1;
-                $(".custom-control-input").each(function(element) {
-                    if (questionNumber < options.length) {
-                        $(this).next("label").text(options[questionNumber][i]);
-                        $("#question").text(options[questionNumber][0]);
-                        i++;
+        function updateQuizz(questionNumber) {
+            var i = 1;
+            $(".custom-control-input").each(function(element) {
+                if (questionNumber < options.length) {
+                    $(this).next("label").text(options[questionNumber][i]);
+                    $("#question").text(options[questionNumber][0]);
+                    i++;
+                }
+            });
+        }
+
+        function entranceCountDown() {
+            var countDownDate = new Date("<?= isset($concours['date']) ? $concours['date'] : "" ?>").getTime();
+            var time = 0;
+            var toast = "";
+            var toast2 = "";
+            var toast3 = "";
+            var bool = false;
+            var x = setInterval(function() {
+                    var now = new Date().getTime();
+                    var distance = countDownDate - now;
+                    var distance2 = 0;
+                    if (distance > 0) {
+                        $("#loading").prop("disabled", true);
                     }
-                });
+                    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                    $("#days").text(days);
+                    $("#hours").text(hours);
+                    $("#minutes").text(minutes);
+                    $("#seconds").text(seconds);
+                    $("#countdownTimer2 h1").text("compte à rebours jusqu'au quizz: ");
+                    if (distance <= 0) {
+                        if (Math.abs(distance) < 900000) {
+                            $("#loading").prop("disabled", false);
+                            $("#countdownTimer2 h1").text("Temps restant pour le quizz ");
+                            $("#days").text(0);
+                            $("#hours").text(0);
+                            $("#minutes").text(Math.floor((900000 - Math.abs(distance)) / 60000));
+                            $("#seconds").text(Math.floor(((900000 - Math.abs(distance)) % 60000) / 1000));
+                            if (Math.floor((900000 - Math.abs(distance)) / 60000) > 12 && toast == "") {
+                                toastr.info("Vous avez encore du temps Bonne chance");
+                                toast = "info";
+                                bool = true;
+
+                            } else if (Math.floor((900000 - Math.abs(distance)) / 60000) >= 10 && Math.floor((900000 - Math.abs(distance)) / 60000) <= 12 && toast2 == "") {
+                                toastr.warning("depêchez vous n'avez plus beaucoup de temps");
+                                toast2 = "warning";
+
+                            } else if (Math.floor((900000 - Math.abs(distance)) / 60000) < 10 && toast3 == "") {
+                                toastr.error("Magnez vous il vous reste très peu de temps");
+                                toast3 = "error";
+
+                            }
+
+                        } else {
+                            $("#loading").prop("disabled", true);
+                            document.getElementById("countdownTimer").innerHTML = "Quizz expiré";
+                            if (page == 0) {
+                                toastr.error("Vous êtes arrivé en retard le quizz est déjà terminé");
+                            }
+                            $("#quizz,#Suivant,#Precedent").hide("slow");
+                            clearInterval(x);
+
+                        }
+                    }
+                },
+                1000);
+
+        }
 
 
-            }
-
-            function entranceCountDown() {
-                var countDownDate = new Date("<?= isset($concours['date']) ? $concours['date'] : "" ?>").getTime();
+        function entranceCountDown2() {
+            var countDownDate = new Date("<?= isset($dateFinal) ? $dateFinal : "" ?>").getTime();
+            if (countDownDate > 0) {
                 var time = 0;
                 var toast = "";
                 var toast2 = "";
@@ -597,112 +701,83 @@ if (!isset($_SESSION["id"]))
                         var now = new Date().getTime();
                         var distance = countDownDate - now;
                         var distance2 = 0;
-                        if (distance > 0) {
-                            $("#loading").prop("disabled", true);
-                        }
+                        $("#loading").css("display", "none");
                         var days = Math.floor(distance / (1000 * 60 * 60 * 24));
                         var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                         var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
                         var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-                        $("#days").text(days);
+                        if(distance>0){
+                            $("#days").text(days);
                         $("#hours").text(hours);
                         $("#minutes").text(minutes);
                         $("#seconds").text(seconds);
-                        if (distance <= 0) {
-                            if (Math.abs(distance) < 900000) {
-                                $("#loading").prop("disabled", false);
-                                $("#countdownTimer2 h1").text("Temps restant pour le quizz ");
-                                $("#days").text(0);
-                                $("#hours").text(0);
-                                $("#minutes").text(Math.floor((900000 - Math.abs(distance)) / 60000));
-                                $("#seconds").text(Math.floor(((900000 - Math.abs(distance)) % 60000) / 1000));
-                                if (Math.floor((900000 - Math.abs(distance)) / 60000) > 12 && toast == "") {
-                                    toastr.info("Vous avez encore du temps Bonne chance");
-                                    toast = "info";
-                                    bool = true;
-
-                                } else if (Math.floor((900000 - Math.abs(distance)) / 60000) >= 10 && Math.floor((900000 - Math.abs(distance)) / 60000) <= 12 && toast2 == "") {
-                                    toastr.warning("depêchez vous n'avez plus beaucoup de temps");
-                                    toast2 = "warning";
-
-                                } else if (Math.floor((900000 - Math.abs(distance)) / 60000) < 10 && toast3 == "") {
-                                    toastr.error("Magnez vous il vous reste très peu de temps");
-                                    toast3 = "error";
-
-                                }
-
-                            } else {
-                                $("#loading").prop("disabled", true);
-                                document.getElementById("countdownTimer").innerHTML = "Quizz expiré";
-                                if (page == 0) {
-                                    toastr.error("Vous êtes arrivé en retard le quizz est déjà terminé");
-                                }
-                                $("#quizz,#Suivant,#Precedent").hide("slow");
-                                clearInterval(x);
-
-                            }
-
-
+                        $("#countdownTimer2 h1").text("proclamation des résultats prévus dans");
                         }
+                       else   {
+                        $("#days").text("");
+                        $("#hours").text("");
+                        $("#minutes").text("");
+                        $("#seconds").text("");
+                           $("#countdownTimer2 h1").text("veuillez vous reconnecter svp");
+                       }
+                        
                     },
                     1000);
-
             }
 
 
+        }
 
-            function quizzCountdown(dureeConcour) {
-                var tempsActuel = new Date().getTime();
-                var tempsDepart = new Date("<?= isset($concours['date']) ? $concours['date'] : "" ?>").getTime();
-                var difference = tempsActuel - tempsDepart;
-                var minutes = 0;
-                var seconds = 0;
-                var toast = "";
-                var toast2 = "";
-                if (difference >= 0) {
-                    difference = dureeConcour - difference;
-                    minutes = Math.floor(difference / 60000);
-                    seconds = Math.floor((difference % 60000) / 1000);
-                    var x = setInterval(function() {
-                        document.getElementById("quizzCountdown").innerHTML = "temps restant: " + minutes + ": " + seconds;
-                        if (seconds == 0) {
-                            minutes--;
-                            seconds = 60;
-                        }
-                        seconds--;
-                        if (minutes == 0 && seconds == 0) {
-                            toastr.info("le temps est terminé");
-                            clearInterval(x);
-                            document.getElementById("countdownTimer").innerHTML = "TERMINE";
-                            Results();
-                        }
-                    }, 1000);
-                }
 
+        function quizzCountdown(dureeConcour) {
+            var tempsActuel = new Date().getTime();
+            var tempsDepart = new Date("<?= isset($concours['date']) ? $concours['date'] : "" ?>").getTime();
+            var difference = tempsActuel - tempsDepart;
+            var minutes = 0;
+            var seconds = 0;
+            var toast = "";
+            var toast2 = "";
+            if (difference >= 0) {
+                difference = dureeConcour - difference;
+                minutes = Math.floor(difference / 60000);
+                seconds = Math.floor((difference % 60000) / 1000);
+                var x = setInterval(function() {
+                    document.getElementById("quizzCountdown").innerHTML = "temps restant: " + minutes + ": " + seconds;
+                    if (seconds == 0) {
+                        minutes--;
+                        seconds = 60;
+                    }
+                    seconds--;
+                    if (minutes == 0 && seconds == 0) {
+                        toastr.info("le temps est terminé");
+                        clearInterval(x);
+                        document.getElementById("countdownTimer").innerHTML = "TERMINE";
+                        Results();
+                    }
+                }, 1000);
             }
 
+        }
+        $(function() {
+            var temp = <?= $temp ?>;
+            if (temp > 0) {
+                $("#loading").prop('disabled', false);
+            } else {
+                $("#loading").prop('disabled', true);
+            }
+            hidingQuizz();
+            entranceCountDown();
+            entranceCountDown2();
+            $("#loading").click(function() {
+                page = 1;
+                loadingQuizz();
+                quizzCountdown(<?= isset($concours['duree']) ? $concours["duree"] : 0 ?> * 60000);
+                currentQuestion();
 
-            $(function() {
-                var temp = <?= $temp ?>;
-                if (temp > 0) {
-                    $("#loading").prop('disabled', false);
-                } else {
-                    $("#loading").prop('disabled', true);
-                }
-                hidingQuizz();
-                entranceCountDown();
-                $("#loading").click(function() {
-                    page = 1;
-                    loadingQuizz();
-                    quizzCountdown(<?= isset($concours['duree']) ? $concours["duree"] : 0 ?> * 60000);
-                    currentQuestion();
+            });
 
-                });
-
-
-
-            })
-        </script>
+        })
+    </script>
 </body>
 
 </html>

@@ -230,8 +230,6 @@ class quizz
 		$req = config::$bdd->prepare("update qizz set " . $e . "=:" . $e . " where id=:id");
 		$req->bindValue(':id', $id);
 		$req->bindValue(':' . $e, $i);
-
-
 		if ($req->execute()) {
 			return true;
 		} else {
@@ -247,7 +245,6 @@ class quizz
 	}
 	public static function imageQuizzExists($idQuizz)
 	{
-
 		$index = 1;
 		$reponsesFausses = "false";
 		$question = "false";

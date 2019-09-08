@@ -216,7 +216,6 @@ y<?php
         $.validator.addMethod("onlyText", function(value, element) {
                 var regex = new RegExp("^[a-zA-Z]+$");
                 var key = value;
-
                 if (!regex.test(key)) {
                     return false;
                 }

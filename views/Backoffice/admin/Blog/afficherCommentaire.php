@@ -180,7 +180,6 @@ y<?php
 
         width: "100%",
         height: "600px",
-
         filtering: true,
         inserting: false,
         editing: false,
@@ -189,7 +188,7 @@ y<?php
         autoload: true,
         pageSize: 10,
         pageButtonCount: 5,
-        deleteConfirm: "Do you really want to delete data?",
+        deleteConfirm: "Voulez vous vraiment supprimer ces données?",
 
         controller: {
           loadData: function(filter) {
@@ -259,7 +258,17 @@ y<?php
             type: "control",
             width:100
           }
-        ]
+        ],
+        onDataLoaded: function(items) {
+        console.log($("#grid_table").find("th"));
+        $("#grid_table").find("th").css({
+          "background-color":"#343a40",
+          "border-color":"#454d55",
+          "color":"white",
+        })
+        
+
+      }, 
 
       });
     </script>

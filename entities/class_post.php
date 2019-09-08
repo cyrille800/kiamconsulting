@@ -1,5 +1,4 @@
 <?php
-session_start();
 require_once "function.php";
 require_once "config.php";
 require_once "contractedFunctions.php";
@@ -144,8 +143,11 @@ class Post
 								<a class="lien" href="#">' . self::nombreCommentaire($rows["id"]) . ' commentaires</a>
 							</span>
 							<span>';
-					$views = isset($_SESSION["views"][$rows["id"]]) ? $_SESSION["views"][$rows["id"]] : 0;
-					echo '<a  class="lien" href="#">' . $views . ' views</a>
+					$req = config::$bdd->prepare("select  vues from post where id=" . $rows["id"]);
+					$req->execute();
+					$rows2 = $req->fetchAll();
+					$views = $rows2[0]["vues"];
+					echo '<a  class="lien" href="#">' . $views . ' vues</a>
 							</span>
 						</div>
 					</div>
@@ -211,8 +213,11 @@ class Post
 						</span>
 						<span>
 							<i class="fa fa-eye"></i>';
-					$views = isset($_SESSION["views"][$idPost]) ? $_SESSION["views"][$idPost] : 0;
-					echo '<a  class="lien" href="#">' . $views . ' views</a>
+					$req = config::$bdd->prepare("select  vues from post where id=" . $rows["id"]);
+					$req->execute();
+					$rows2 = $req->fetchAll();
+					$views = $rows2[0]["vues"];
+					echo '<a  class="lien" href="#">' . $views . ' vues</a>
 						</span>
 						<span>
 							<i class="fa fa-clock-o"></i>';
@@ -240,59 +245,98 @@ class Post
 	static function postPopulaire()
 	{
 		$views = array();
-		$temp=array();
-		if (isset($_SESSION["views"])) {
-			$temp=$_SESSION["views"];
-			$taille=count($temp)>6?6:count($temp);
-			for ($i = 0; $i < $taille; $i++) {
-				$max = max($temp);
-				$keys = array_search($max, $temp);
-				array_push($views,$keys);
-				unset($temp[$keys]);
+		$temp = array();
+		$sql = "select id,vues from post";
+		try {
+			$requette = config::$bdd->prepare($sql);
+			if ($requette->execute()) {
+				$rows = $requette->fetchAll();
+				foreach ($rows as $key => $rows) {
+					$temp[$rows["id"]] = $rows["vues"];
+				}
+				$taille = count($temp) > 6 ? 6 : count($temp);
+				for ($i = 0; $i < $taille; $i++) {
+					$max = max($temp);
+					$keys = array_search($max, $temp);
+					array_push($views, $keys);
+					unset($temp[$keys]);
+				}
+				return $views;
 			}
-			return $views;
+		} catch (Exception $e) {
+			return 'Erreur: ' . $e->getMessage();
 		}
 	}
-	static function afficherPostPopulaire($post){
+	static function afficherPostPopulaire($post)
+	{
 		foreach ($post as $key => $post) {
-			$sql="select * from post where id=".$post;
+			$sql = "select * from post where id=" . $post;
 			try {
 				$requette = config::$bdd->prepare($sql);
 				if ($requette->execute()) {
 					$rows = $requette->fetchAll();
 					self::parcourirPost($rows);
 				}
-			}
-			catch (Exception $e) {
+			} catch (Exception $e) {
 				return 'Erreur: ' . $e->getMessage();
 			}
 		}
 	}
-	static function parcourirPost($rows){
+	static function parcourirPost($rows)
+	{
 		foreach ($rows as $key => $rows) {
 			echo '	<li>
-			<a href="blog-single?id='.$rows["id"].'" title="">
-				<img src="../assets/Backoffice/image/'.$rows["image"].'" alt="" class="img-responsive" >
+			<a href="blog-single?id=' . $rows["id"] . '" title="">
+				<img src="../assets/Backoffice/image/' . $rows["image"] . '" alt="" class="img-responsive" >
 			</a>
 		</li>';
 		}
 	}
 
-	static function rechercherPost($idPost){
-		$sql="select * from post where id=".$idPost;
+	static function rechercherPost($idPost)
+	{
+		$sql = "select * from post where id=" . $idPost;
 		try {
 			$requette = config::$bdd->prepare($sql);
 			if ($requette->execute()) {
 				$rows = $requette->fetchAll();
 				return $rows;
 			}
-		}
-		catch (Exception $e) {
+		} catch (Exception $e) {
 			return 'Erreur: ' . $e->getMessage();
 		}
-
 	}
-
-	
+	static function afficherPostAccueil()
+	{
+		$sql = "select * from post  order by id desc limit 0 , 3";
+		try {
+			$requette = config::$bdd->prepare($sql);
+			if ($requette->execute()) {
+				$rows = $requette->fetchAll();
+				foreach ($rows as $key => $rows) {
+					echo ' <div class="item">
+                    <div class="blog-inner">
+                        <div class="blog-banner">
+                            <img src="../assets/Backoffice/image/' . $rows["image"] . '" alt="" class="img-responsive" height="100%">
+                        </div>
+                        <div class="blog-content">
+                            <h4>' . $rows["titre"] . '</h4>
+                            <div class="blog-schedule">
+                                <a href=blog-single.php?id=' . $rows["id"] . '>
+                                    <h4>' . $rows["titre"] . '</h4>
+                                </a>
+                                <div class="blog-meta">
+                                    <span><i class="fa fa-calendar-o"></i> January 15, 2018</span>
+                                </div>
+                                <p>' . $rows["introduction"] . '</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>';
+				}
+			}
+		} catch (Exception $e) {
+			return 'Erreur: ' . $e->getMessage();
+		}
+	}
 }
-// Post::afficherPostPopulaire(Post::postPopulaire());

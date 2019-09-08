@@ -12,11 +12,11 @@ function BindValue($requette, $names, $values)
     }
 }
 
-function differenceDate($date)
+function differenceDate($date,$a=900)
 {
     date_default_timezone_set('Africa/Douala');
     $chaine_c = strtotime(date("m/j/Y H:i", time()));
-    $dates=strtotime($date)+900;
+    $dates=strtotime($date)+$a;
      return $dates-$chaine_c;
 }
 

@@ -10,11 +10,16 @@
         <div class="container">
             <div class="row">
                 <div class="uv-subhead-content col-xs-12">
-                    <h2>About Us</h2>
-                    <span>Curricular Responsive Bootstrap Education Template</span>
+                    <h2>A Propos De Nous</h2>
+                    <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto </span>
                     <div class="slide-buttons " style="margin-top:50px;">
-                        <a href="#" class="slide-btn btn btn-base">Se connecter</a>
-                    </div>
+                        <?php
+                        if (!isset($_SESSION["id"])) {
+                            ?>
+                            <a href="../login/login-reg.php" class="slide-btn btn btn-base">Se connecter</a>
+                        <?php
+                        }
+                        ?> </div>
                 </div>
 
             </div>
@@ -34,18 +39,18 @@
                 <div class="">
                     <div class="col-md-5 padding-left-o">
                         <div class="uv_team_d_img default_width">
-                            <img src="assets/images/kiki.jpg" class="img-responsive">s
+                            <img src="assets/images/kiki.jpg" class="img-responsive">
                         </div>
                     </div>
                     <div class="col-md-7">
                         <div class="uv_team_d_outer default_width">
                             <div class="uv_team_d_title">
-                                <h4>GLENN MCNAIR</h4>
-                                <p>Associate Professor of History</p>
+                                <h4>WILLY KIKI KIAM</h4>
+                                <p>profession</p>
                             </div>
                             <div class="uv_team_scl">
                                 <ul class="uv_scl_icon">
-                                    <li><a class="bg_fb" href="#"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a class="bg_fb" href="https://www.facebook.com/willykiki.kiam"><i class="fa fa-facebook"></i></a></li>
                                     <li><a class="bg_twitter" href="#"><i class="fa fa-twitter"></i></a></li>
                                     <li><a class="bg_gp" href="#"><i class="fa fa-google-plus"></i></a></li>
                                     <li><a class="bg_linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>
@@ -70,21 +75,21 @@
                                     <div class="uv_contact_icon"><i class="fa fa-phone"></i></div>
                                     <div class="uv_contact_des">
                                         <h6>Phone</h6>
-                                        <p>(09) 111 454 242</p>
+                                        <p>+216 53 936 493</p>
                                     </div>
                                 </li>
                                 <li>
                                     <div class="uv_contact_icon"><i class="fa fa-clock-o"></i></div>
                                     <div class="uv_contact_des">
                                         <h6>Experience</h6>
-                                        <p>06 Year</p>
+                                        <p>06 Ans</p>
                                     </div>
                                 </li>
                                 <li>
                                     <div class="uv_contact_icon"><i class="fa fa-envelope"></i></div>
                                     <div class="uv_contact_des">
                                         <h6>Email</h6>
-                                        <p>Glenn@website.com</p>
+                                        <p>kiamconsulting2018@gmail.com</p>
                                     </div>
                                 </li>
                             </ul>
@@ -106,32 +111,39 @@
             <div class="col-md-6 col-md-offset-6 col-sm-6 col-sm-offset-6 uv-mission-inner">
                 <div class="mission-slide">
                     <div class="uv-mission-item">
-                        <span>Vivamus quis sapien cura</span>
-                        <h3><strong>OUR </strong>MISSION</h3>
+                        <span>Lorem ipsum</span>
+                        <h3><strong>NOTRE </strong>MISSION</h3>
                         <p>Phasellus nec dolor.Sed ornare semper ipsum. Sed pede orci volutpat
                             sed congue vels gravida non lacus.Vivamus quis sed metus quisque gravida
                             Quisque blandit sem esed erat. Maecenas porttitor neque eu sem. Nullam lectus neque,
                             blandit quis mattis quis varius eu eros. Vivamus ads metus. Mauris at tellus at sapien
                             .</p>
-                        <a href="" class="btn btn-fill">Contact Us</a>
+                        <?php
+                        if (isset($_SESSION["id"])) {
+                            $lien = "../Backoffice/client/index.php";
+                        } else $lien = "../login/login-reg.php";
+                        ?>
+                        <a href=<?= $lien ?> class="btn btn-base">Postuler</a>
                     </div>
                     <div class="uv-mission-item">
-                        <span>Vivamus quis sapien cura</span>
-                        <h3><strong>OUR </strong>AUDIENCE</h3>
+                        <span>Lorem ipsum</span>
+                        <h3><strong>NOTRE </strong>AUDIENCE</h3>
                         <p>Phasellus nec dolor.Sed ornare semper ipsum. Sed pede orci volutpat
                             sed congue vels gravida non lacus.Vivamus quis sed metus quisque gravida
                             Quisque blandit sem esed erat. Maecenas porttitor neque eu sem. Nullam lectus neque,
                             blandit quis mattis quis varius eu eros. Vivamus ads metus. Mauris at tellus at sapien.</p>
-                        <a href="" class="btn btn-fill">Contact Us</a>
+
+                        <a href=<?= $lien ?> class="btn btn-base">Postuler</a>
                     </div>
                     <div class="uv-mission-item">
-                        <span>Vivamus quis sapien cura</span>
-                        <h3><strong>OUR </strong>ACHIVEMENT</h3>
+                        <span>Lorem ipsum</span>
+                        <h3><strong>NOS </strong>REALISATIONS</h3>
                         <p>Phasellus nec dolor.Sed ornare semper ipsum. Sed pede orci volutpat
                             sed congue vels gravida non lacus.Vivamus quis sed metus quisque gravida
                             Quisque blandit sem esed erat. Maecenas porttitor neque eu sem. Nullam lectus neque,
                             blandit quis mattis quis varius eu eros. Vivamus ads metus. Mauris at tellus at sapien.</p>
-                        <a href="" class="btn btn-fill">Contact Us</a>
+
+                        <a href=<?= $lien ?> class="btn btn-base">Postuler</a>
                     </div>
                 </div>
             </div>
@@ -147,7 +159,7 @@
                         <div class="uv-service-icon">
                             <i class="fa fa-briefcase alignleft"></i>
                         </div>
-                        <p><strong>Multi-Tier Courses</strong></p>
+                        <p><strong>Etudes</strong></p>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiing elit. Integer lorem quam..
                             Lorem ipsum dolor sit amet, consectetur adipiing elit. Integer lorem quam..
                             Lorem ipsum dolor sit amet, consectetur adipiing elit. Integer lorem quam..
@@ -161,7 +173,7 @@
                         <div class="uv-service-icon">
                             <i class="fa fa-bullhorn alignleft"></i>
                         </div>
-                        <p><strong>Sell Online Courses</strong></p>
+                        <p><strong>Santé</strong></p>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiing elit. Integer lorem quam..
                             Lorem ipsum dolor sit amet, consectetur adipiing elit. Integer lorem quam..
                             Lorem ipsum dolor sit amet, consectetur adipiing elit. Integer lorem quam..
@@ -176,7 +188,7 @@
                         <div class="uv-service-icon">
                             <i class="fa fa-quora alignleft"></i>
                         </div>
-                        <p><strong>Advanced Quizzing</strong></p>
+                        <p><strong>Tourisme</strong></p>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiing elit. Integer lorem quam..
                             Lorem ipsum dolor sit amet, consectetur adipiing elit. Integer lorem quam..
                             Lorem ipsum dolor sit amet, consectetur adipiing elit. Integer lorem quam..
@@ -196,8 +208,8 @@
     <div class="container">
         <div class="row section-separator">
             <div class="section-title col-xs-12 center">
-                <h2>Happy Students</h2>
-                <span>What Our Students Say About LearnPLUS</span>
+                <h2>Etudiants satisfaits</h2>
+                <span>Ce que nos étudiants disent</span>
             </div>
             <div class="uv-happy-student-inner">
                 <div class="col-lg-4 col-md-4 col-sm-6">
@@ -205,7 +217,6 @@
                         <img src="assets/images/t3.jpg" alt="" class="img-circle">
                         <p>Lorem Ipsum is simply dummy text of the printing and industry. </p>
                         <div class="testimonial-meta">
-                            <h4>Gloria Flores <small><a href="#">themeforest.com</a></small></h4>
                         </div>
                     </div>
                 </div>
@@ -214,7 +225,6 @@
                         <img src="assets/images/student-1.png" alt="" class="img-circle">
                         <p>Lorem Ipsum is simply dummy text of the printing and industry. </p>
                         <div class="testimonial-meta">
-                            <h4>Michele Smith <small><a href="#">xoothemes.com</a></small></h4>
                         </div>
                     </div>
                 </div>
@@ -223,7 +233,6 @@
                         <img src="assets/images/t2.jpg" alt="" class="img-circle">
                         <p>Lorem Ipsum is simply dummy text of the printing and industry. </p>
                         <div class="testimonial-meta">
-                            <h4>John DOE <small><a href="#">envato.com</a></small></h4>
                         </div>
                     </div>
                 </div>
@@ -234,7 +243,7 @@
                         Lorem Ipsum has been the industry's standard dummy text ever since
                         the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
                     <div class="button">
-                        <a href="" class="btn btn-fill"><i class="fa fa-sign-in"></i> join us today</a>
+                        <a href="" class="btn btn-fill"><i class="fa fa-sign-in"></i> joignez nous ajourd'hui</a>
                     </div>
                 </div>
             </div>
@@ -246,27 +255,27 @@
     <div class="container">
         <div class="row section-separator">
             <div class="col-xs-12 center section-title">
-                <h2>Our Clients</h2>
-                <span>What University's Love Work With Us and With Our Teachers</span>
+                <h2>Nos partenaires</h2>
+                <span>Parmi les meilleurs du monde professionel et à votre disposition</span>
             </div>
             <div class="clients-logos">
                 <div class="col-md-2 col-sm-4">
-                    <img src="assets/images/clients-logo/1.webp" alt="" class="img-responsive">
+                    <img src="assets/images/clients-logo/LOGO-SMEDI-2018.jpg" alt="" class="img-responsive">
                 </div>
                 <div class="col-md-2 col-sm-4">
-                    <img src="assets/images/clients-logo/2.webp" alt="" class="img-responsive">
+                    <img src="assets/images/clients-logo/0.jpg" alt="" class="img-responsive">
                 </div>
                 <div class="col-md-2 col-sm-4">
-                    <img src="assets/images/clients-logo/3.webp" alt="" class="img-responsive">
+                    <img src="assets/images/clients-logo/avatar.jpg" alt="" class="img-responsive">
                 </div>
                 <div class="col-md-2 col-sm-4">
-                    <img src="assets/images/clients-logo/4.webp" alt="" class="img-responsive">
+                    <img src="assets/images/clients-logo/xuas_logo.jpg" alt="" class="img-responsive">
                 </div>
                 <div class="col-md-2 col-sm-4">
-                    <img src="assets/images/clients-logo/5.webp" alt="" class="img-responsive">
+                    <img src="assets/images/clients-logo/LOGO-SMEDI-2018.jpg" alt="" class="img-responsive">
                 </div>
                 <div class="col-md-2 col-sm-4">
-                    <img src="assets/images/clients-logo/6.webp" alt="" class="img-responsive">
+                    <img src="assets/images/clients-logo/LOGO-SMEDI-2018.jpg" alt="" class="img-responsive">
                 </div>
             </div>
         </div>
@@ -307,7 +316,7 @@
     <div class="container">
         <div class="row section-separator">
             <div class="section-title col-xs-12">
-                <h2>Our Achivements</h2>
+                <h2>Nos Réalisations</h2>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing aelit, sed do eiusmod tempor incididunt.</p>
             </div>
             <div class="col-xs-12">
@@ -367,14 +376,14 @@
 </section>
 
 
-<section class="uv-video image-bg" style="background-image: url(assets/images/video-bg.jpg);">
+<section class="uv-video image-bg" style="background-image: url(assets/images/SadBousaid3.webp);">
     <div class="overlay">
         <div class="container">
             <div class="row section-separator">
-                <h2>On site campus tour at our EUNIV.</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipi sicing elit, sed do eiusmod tempor incididunt ut labore et.dolore magna aliquauis aute irure dolor.</p>
+                <h2>Visiter la tunisie.</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipi sicing elit.</p>
                 <div class="button">
-                    <a data-fancybox href="https://www.youtube.com/watch?v=_sI_Ps7JSEk"><i class="fa flaticon-play-button"></i></a>
+                    <a data-fancybox href="https://www.youtube.com/watch?v=xfUML-3s7tU"><i class="fa flaticon-play-button"></i></a>
                 </div>
             </div>
         </div>
@@ -396,12 +405,12 @@
                             <img src="assets/images/tc3.jpg" alt="" class="img-responsive">
                         </div>
                         <div class="blog-content">
-                            <h4>Luyes Figrey</h4>
+                            <h4>Lorep ipsum</h4>
                             <div class="blog-schedule">
                                 <a href="">
-                                    <h4>Luyes Figrey</h4>
+                                    <h4>Lorep ipsum</h4>
                                 </a>
-                                <span>PHP Expert</span>
+                                <span>fonction</span>
                                 <ul>
                                     <li><a href=""><i class="fa fa-facebook"></i></a></li>
                                     <li><a href=""><i class="fa fa-twitter"></i></a></li>
@@ -419,12 +428,12 @@
                             <img src="assets/images/tc1.jpg" alt="" class="img-responsive">
                         </div>
                         <div class="blog-content">
-                            <h4>Albert Robber</h4>
+                            <h4>Lorep ipsum</h4>
                             <div class="blog-schedule">
                                 <a href="">
-                                    <h4>Albert Robber</h4>
+                                    <h4>Lorep ipsum</h4>
                                 </a>
-                                <span>Marketing Expert</span>
+                                <span>fonction</span>
                                 <ul>
                                     <li><a href=""><i class="fa fa-facebook"></i></a></li>
                                     <li><a href=""><i class="fa fa-twitter"></i></a></li>
@@ -442,12 +451,12 @@
                             <img src="assets/images/tc2.jpg" alt="" class="img-responsive">
                         </div>
                         <div class="blog-content">
-                            <h4>Jhon Watson</h4>
+                            <h4>Lorep ipsum</h4>
                             <div class="blog-schedule">
                                 <a href="">
-                                    <h4>Jhon Watson</h4>
+                                    <h4>Lorep ipsum</h4>
                                 </a>
-                                <span>JavaScript</span>
+                                <span>fonction</span>
                                 <ul>
                                     <li><a href=""><i class="fa fa-facebook"></i></a></li>
                                     <li><a href=""><i class="fa fa-twitter"></i></a></li>
@@ -476,7 +485,7 @@
                         <li>
                             <a class="uv-accordinaton-list">
                                 <div class="uv-right-arrow">+</div>
-                                <h2>Which text editor is perfect for android development?</h2>
+                                <h2>première question?</h2>
                             </a>
                             <div class="uv-accordition-detail">
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent a
@@ -488,7 +497,7 @@
                         <li>
                             <a class="uv-accordinaton-list">
                                 <div class="uv-right-arrow">+</div>
-                                <h2>How can I start my freelance carrier?</h2>
+                                <h2>Seconde question?</h2>
                             </a>
                             <div class="uv-accordition-detail">
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent a
@@ -500,7 +509,7 @@
                         <li>
                             <a class="uv-accordinaton-list">
                                 <div class="uv-right-arrow">+</div>
-                                <h2>Is EUNIV is a perfect theme for creating an online learning site?</h2>
+                                <h2>Troisième question?</h2>
                             </a>
                             <div class="uv-accordition-detail">
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent a
@@ -512,7 +521,7 @@
                         <li>
                             <a class="uv-accordinaton-list">
                                 <div class="uv-right-arrow">+</div>
-                                <h2>Is there any course related to digital marketing?</h2>
+                                <h2>Quatrième question?</h2>
                             </a>
                             <div class="uv-accordition-detail">
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent a
@@ -524,7 +533,7 @@
                         <li>
                             <a class="uv-accordinaton-list">
                                 <div class="uv-right-arrow">+</div>
-                                <h2>What is the minimum requirement to submit a theme in Marketplace?</h2>
+                                <h2>Cinquième question?</h2>
                             </a>
                             <div class="uv-accordition-detail">
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent a
@@ -536,7 +545,7 @@
                         <li>
                             <a class="uv-accordinaton-list">
                                 <div class="uv-right-arrow">+</div>
-                                <h2>5 common things every WordPress developer should know.</h2>
+                                <h2>Titre ou assertion.</h2>
                             </a>
                             <div class="uv-accordition-detail">
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent a
@@ -600,8 +609,25 @@
 <script src="assets/plugins/js/progressbar.min.js"></script>
 
 <!-- init -->
-<script src="assets/js/init.js"></script>
+<script src="assets/js/init.js">
 
+
+</script>
+<script>
+    $(function() {
+        $(".uv-event-content a").click(function(e) {
+            e.preventDefault();
+        });
+        $(".footer-item.uv-program,.footer-item").click(function(e) {
+            e.preventDefault();
+        });
+        $(".blog-schedule").children("a").click(function(e) {
+            e.preventDefault();
+
+        });
+
+    })
+</script>
 </body>
 
 </html>

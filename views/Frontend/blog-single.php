@@ -1,16 +1,22 @@
 <?php
-require_once "../../entities/class_post.php";
+
+
 include 'header.php';
+require_once "../../entities/class_post.php";
 require_once "../../entities/class_commentaire.php";
-if (isset($_SESSION["id"])) {
-    echo $_SESSION["id"];
-}
 
 if (isset($_GET["id"])) {
-    extract ($_GET);
-    if(!isset($_SESSION["views"][$_GET["id"]]))
-    $_SESSION["views"][$_GET["id"]]=0;
+    if (!isset($_SESSION["views"][$_GET["id"]])){
+        $req = config::$bdd->prepare("select  vues from post where id=".$_GET["id"]);
+        $req->execute();
+        $rows=$req->fetchAll();
+        $_SESSION["views"][$_GET["id"]] = $rows[0]["vues"];
+        
+    } 
     else $_SESSION["views"][$_GET["id"]]++;
+    $req = config::$bdd->prepare("update post set vues=:vues where id=:id ");
+    $req = BindValue($req, array("id", "vues"), array($_GET["id"], $_SESSION["views"][$_GET["id"]]));
+    $req->execute();
 }
 ?>
 <!--
@@ -54,7 +60,7 @@ if (isset($_GET["id"])) {
                 </div>
                 <div class="blog-wrapper comment-wrapper">
                     <div id="reviews" class="feedbacks">
-                        <h3>What others say about this post? (3 Comments)</h3>
+                        <h3>Ce que les autres disent  (<?= Post::nombreCommentaire(isset($_GET["id"])?$_GET["id"]:0)?> commentaires)</h3>
                         <div>
                             <div class="well">
                                 <?php
@@ -66,10 +72,9 @@ if (isset($_GET["id"])) {
 
                                 <div class="ldx-blog-comment-form">
                                     <div class="comment-title">
-                                        <h4>Leave a Replay</h4>
+                                        <h4>Laisser un commentaire</h4>
                                         <hr class="uv-hr-title">
                                         <div class="clearfix"></div>
-                                        <p>Please use only default html tags.</p>
                                     </div>
                                     <form id="contact-form" class="single-form comment-form">
                                         <div class="row">
@@ -92,29 +97,17 @@ if (isset($_GET["id"])) {
             </div>
             <div class="col-sm-4 uv-sidebar">
                 <div class="clearfix"></div>
-                <div class="uv-widget">
-                    <div class="widget-title">
-                        <h4>Subscribe Us</h4>
-                        <hr>
-                    </div>
-                    <div class="uv-newsletter">
-                        <p>Subscribe to our weekly Newsletter and stay tuned and get more freebies.</p>
-                        <form lpformnum="3" _lpchecked="1">
-                            <input type="text" class="form-control" placeholder="Enter your email here...">
-                            <input type="submit" value="Subscribe Now!" class="btn btn-fill btn-block">
-                        </form>
-                    </div>
-                </div>
+               
                 <div class="uv-widget">
                     <div class="widget-title">
                         <h4> Les plus populaires</h4>
                         <hr>
                     </div>
                     <ul class="popular-courses">
-                 
-                    <?php 
-                    Post::afficherPostPopulaire(Post::postPopulaire());
-                    ?>
+
+                        <?php
+                        Post::afficherPostPopulaire(Post::postPopulaire());
+                        ?>
                     </ul>
                 </div>
                 <div class="uv-widget">
@@ -124,9 +117,9 @@ if (isset($_GET["id"])) {
                     </div>
                     <div class="twitter-widget">
                         <ul class="latest-tweets">
-                           <?php 
-                           Commentaire::commentaireRecent();
-                           ?>
+                            <?php
+                            Commentaire::commentaireRecent();
+                            ?>
                         </ul>
                     </div>
                 </div>
@@ -270,7 +263,7 @@ if (isset($_GET["id"])) {
         var idCommentaireReponse = 0;
         var indiceCommentaire;
         var idClient = '<?= isset($_SESSION["id"]) ? $_SESSION["id"] : "" ?>';
-        
+
         var idPost = '<?= isset($_GET["id"]) ? $_GET["id"] : "" ?>';
         var date = new Date();
         var bool = "";
@@ -312,18 +305,18 @@ if (isset($_GET["id"])) {
                     },
                     success: function(response) {
                         if (bool) {
-                        let comments;
-                            $(".media.comment").each(function (index, element) {
-                                if($(this).find(".media-heading").attr("id")==bool){
-                                    comments=$(this);
+                            let comments;
+                            $(".media.comment").each(function(index, element) {
+                                if ($(this).find(".media-heading").attr("id") == bool) {
+                                    comments = $(this);
                                 }
-                                
+
                             });
                             $('html, body').animate({
                                 scrollTop: comments.offset().top
                             }, 1000, function() {
                                 console.log("cela fonctionne très bien");
-                                bool="";
+                                bool = "";
                             });
                         }
 
@@ -333,7 +326,7 @@ if (isset($_GET["id"])) {
                                 $(".ldx-blog-comment-form").before('<div class="media comment">' +
                                     '<div class="media-left">' +
                                     '<a href="#">' +
-                                    '<img " src="assets/images/t3.jpg" >' +
+                                    '<img " src="../assets/Backoffice/media/users/'+<?= isset($_SESSION["id"])?$_SESSION["id"]:0?>+'.png" >' +
                                     '</a>' +
                                     '</div>' +
                                     '<div class="media-body">' +
@@ -344,7 +337,7 @@ if (isset($_GET["id"])) {
                                     '</div>' +
                                     '<p>' + $("#commentaire").val() + '</p>' +
                                     '</div>' +
-                                    '</div>');  
+                                    '</div>');
                                 reponse();
 
 
@@ -354,7 +347,7 @@ if (isset($_GET["id"])) {
                                 let commentaireReponse = '<div class="media comment-reply">' +
                                     '<div class="media-left">' +
                                     '<a href="#">' +
-                                    '<img " src="assets/images/t3.jpg" alt="">' +
+                                    '<img " src="../assets/Backoffice/media/users/'+<?= isset($_SESSION["id"])?$_SESSION["id"]:0?>+'.png" alt="">' +
                                     '</a>' +
                                     '</div>' +
                                     '<div class="media-body">' +
@@ -386,7 +379,7 @@ if (isset($_GET["id"])) {
                     }
                 });
             } else {
-                window.location.href = "../login/login-reg.php?commentaire=" + $("#commentaire").val();
+                window.location.href = "../login/login-reg.php?id="+<?= isset($_GET["id"])?$_GET["id"]:0?>+"&commentaire=" + $("#commentaire").val();
 
             }
 
@@ -502,7 +495,6 @@ if (isset($_GET["id"])) {
                 element[0].after("<a href=''class='lienReponse' id=" + element[0].find(".media-heading").attr("id") + ">afficher " + element[1] + " autres reponses</a>");
             });
 
-            console.log(arrayReponseComment);
             arrayReponseComment.forEach(element => {
                 if (element[1].length > 2) {
                     for (let index = element[1].length - 1; index > element[1].length - 3; index--) {
@@ -514,7 +506,6 @@ if (isset($_GET["id"])) {
 
         function lienreponse() {
             $(".lienReponse").each(function() {
-
                 let lien = $(this);
                 $(this).click(function(e) {
                     e.preventDefault();
@@ -524,9 +515,7 @@ if (isset($_GET["id"])) {
                             lien.css("display", "none");
                         }
                     });
-
                 });
-
             });
             $(".lienReponse").css("color", "#6cb4e3");
 
