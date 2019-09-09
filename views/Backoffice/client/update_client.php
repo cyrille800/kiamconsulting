@@ -1,5 +1,8 @@
 <?php 
 session_start();
+if(!isset($_SESSION["id"])){
+    header("location:../../pages_error/404.html");
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -22,8 +25,26 @@ session_start();
         <link href="../../assets/Backoffice/vendors/global/vendors.bundle.css" rel="stylesheet" type="text/css" />
         <link href="../../assets/Backoffice/css/demo4/style.bundle.css" rel="stylesheet" type="text/css" />
     </head>
-    <body style="padding:0px;margin:0px;">
-        
+    <body style="padding:0px;margin:0px;background-color:rgba(0,0,0,0.06);">
+<div class="kt-subheader   kt-grid__item bg-white mb-4" id="kt_subheader" style="padding:2px;padding-left:40px;">
+    <div class="kt-subheader   kt-grid__item" id="kt_subheader">
+    <div class="kt-container  kt-container--fluid ">
+        <div class="kt-subheader__main">
+                            <h3 class="kt-subheader__title">users</h3>
+            
+                            <span class="kt-subheader__separator kt-hidden"></span>
+                <div class="kt-subheader__breadcrumbs">
+                    <a href="#" class="kt-subheader__breadcrumbs-home"><i class="la la-tachometer"></i></a>
+                                            <span class="kt-subheader__breadcrumbs-separator"></span>
+                        <a href="" class="kt-subheader__breadcrumbs-link">
+                           Mes informations                        </a>
+                                            <span class="kt-subheader__breadcrumbs-separator"></span>
+                </div>
+                    
+        </div>
+    </div>
+</div>
+                        </div> 
         <!-- begin:: Content -->
         <div class="kt-content kt-grid__item kt-grid__item--fluid">
             <div class="preload" style="position:fixed;width:100%;height:100%;background:white;left:0;top:0;z-index:100;padding-top:10%;">
@@ -51,10 +72,7 @@ session_start();
                                 </i>
                             </div>
                             <div class="alert-text">
-                                Les informations que vous vous apprettez à changer, ne serons plus reversible
-                                <br>
-                                utiliser cette page pour modifier les informations vous concernant . <a class="kt-link kt-font-bold" href="update_client.php">
-                                Cette page</a>
+                               Pas d'inquiétude, les informations seront modifiables à chaque fois que vous le voulez.
                                 
                             </div>
                         </div>
@@ -129,7 +147,7 @@ session_start();
                         </center>
                     </div>
                     <div class="col-lg-6 col-xl-8 mx-auto" style="height:80vh;">
-                        <iframe src="info_perso.php" style="height:100%;border:none;background-color:white;padding:0px;margin:0px;overflow:hidden;" class="col-md-12" name="frame2">
+                        <iframe src="info_perso.php" style="background-color:transparent;height:100%;border:none;padding:0px;margin:0px;overflow:hidden;" class="col-md-12" name="frame2">
                         
                         </iframe>
                     </div>

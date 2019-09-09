@@ -1,4 +1,8 @@
 <?php 
+session_start();
+if(!isset($_SESSION["id_admin"])){
+    header("location: ../../pages_error/404.html");
+}
 require_once "../../../entities/class_client.php";
 ?>
 <!DOCTYPE html>
@@ -23,73 +27,27 @@ require_once "../../../entities/class_client.php";
 		</script>
 </head>
 <body>
-<div class="kt-subheader   kt-grid__item bg-white mb-4" style="padding:10px;padding-left:40px;" id="kt_subheader">
-    <div class="kt-container  kt-container--fluid ">
-        <div class="kt-subheader__main">
-                            <h3 class="kt-subheader__title">
-                                            Client                               
-                </h3>
-                       
-
-            <span class="kt-subheader__separator kt-subheader__separator--v"></span>
-            
-            <div class="kt-subheader__toolbar" id="kt_subheader_search">
-                <span class="kt-subheader__desc" id="kt_subheader_total">
-                                            <span class="rps">3</span> Totals                                   </span>
-                
-                                    <form class="kt-subheader__search" id="kt_subheader_search_form">
-                        <div class="input-group">
-							<input type="text" class="form-control" placeholder="Search..." id="generalSearch">
-							<div class="input-group-append">
-                                <span class="input-group-text" id="basic-addon2">
-                                    <i class="la la-search"></i>
-                                </span>
-                            </div>
-                        </div>
-                    </form>
-                            </div>
-
-                    </div>        
-    </div>
+<div class="kt-subheader   kt-grid__item bg-white" style="padding:20px;padding-left:40px;" id="kt_subheader">
     <div class="kt-subheader__main">
-							<h3 class="kt-subheader__title">
-							Blank Page</h3>
-							<span class="kt-subheader__separator kt-hidden">
-							</span>
-							<div class="kt-subheader__breadcrumbs">
-								<a href="#" class="kt-subheader__breadcrumbs-home">
-									<i class="la la-shelter" style="font-size:25px;">
-									</i>
-								</a>
-								<span class="kt-subheader__breadcrumbs-separator">
-								</span>
-								<a href="" class="kt-subheader__breadcrumbs-link">
-								Features                    </a>
-								<span class="kt-subheader__breadcrumbs-separator">
-								</span>
-								<a href="" class="kt-subheader__breadcrumbs-link">
-								Misc                    </a>
-								<span class="kt-subheader__breadcrumbs-separator">
-								</span>
-								<a href="" class="kt-subheader__breadcrumbs-link">
-								Blank Page                    </a>
-								<!-- <span class="kt-subheader__breadcrumbs-link kt-subheader__breadcrumbs-link--active">
-								Active link</span>
-								-->
-							</div>
-							
-						</div>
-						<div class="kt-subheader__toolbar">
-							<div class="kt-subheader__wrapper">
-								<div class="dropdown dropdown-inline" data-toggle="kt-tooltip" title="Quick actions" data-placement="top">
-									<a href="#" class="btn btn-icon btn btn-label btn-label-brand btn-bold" data-toggle="dropdown" data-offset="0px,0px" aria-haspopup="true" aria-expanded="false">
-										<i class="la la-plus">
-										</i>
-									</a>
-								</div>
-								
-							</div>
-						</div>
+              <h3 class="kt-subheader__title">
+              Client</h3>
+              <span class="kt-subheader__separator kt-hidden">
+              </span>
+              <div class="kt-subheader__breadcrumbs">
+                <a href="#" class="kt-subheader__breadcrumbs-home">
+                  <i class="la la-shelter" style="font-size:25px;">
+                  </i>
+                </a>
+                <span class="kt-subheader__breadcrumbs-separator">
+                </span>
+                <a href="" class="kt-subheader__breadcrumbs-link">
+                Liste des clients                  </a>
+                <!-- <span class="kt-subheader__breadcrumbs-link kt-subheader__breadcrumbs-link--active">
+                Active link</span>
+                -->
+              </div>
+              
+            </div>
 </div>
 
 					<!-- begin:: Content -->
@@ -98,9 +56,9 @@ require_once "../../../entities/class_client.php";
 				<center><div class="lds-ring"><div></div><div></div><div></div><div></div></div></center>
 			</div>
 
-<div class="row">
+<div class="row pl-5 pr-5 ml-5 mr-5">
 <?php 
-client::afficher_tout();
+client::afficher_tout($_GET["nombre"]);
 ?>
 </div>
 		</div>

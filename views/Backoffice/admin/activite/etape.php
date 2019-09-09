@@ -1,4 +1,8 @@
 <?php 
+session_start();
+if(!isset($_SESSION["id_admin"])){
+    header("location: ../../../pages_error/404.html");
+}
 require_once "../../../../entities/class_proccedure.php";
 ?>
 <!DOCTYPE html>
@@ -67,20 +71,20 @@ if(isset($_GET["id"])){
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="example-text-input" class="col-2 col-form-label">Intervention du client</label>
+                            <label for="example-text-input" class="col-2 col-form-label">Action</label>
                             <div class="col-10">
                             <div class="ml-5"></div><div class="ml-5"></div><div class="ml-5"></div>
                         <label class="kt-radio kt-radio--solid kt-radio--brand mr-3 ml-5">
-                                <input type="radio" name="fichier"" value="0"> non
+                                <input type="radio" name="fichier"" value="0"> action de l'administrateur
                                 <span></span>
                             </label>
                         <label class="kt-radio kt-radio--solid kt-radio--brand ml-1">
-                                <input type="radio" name="fichier" value="1"> oui, "reponse simple"
+                                <input type="radio" name="fichier" value="1">  action du client (message de confirmation)
                                 <span></span>
                             </label>
                             <div style="margin-left:20px;"></div>
                             <label class="kt-radio kt-radio--solid kt-radio--brand ml-5">
-                                <input type="radio" name="fichier" value="2"> oui, "inserer des fichiers"
+                                <input type="radio" name="fichier" value="2">  action du client (envoyer un fichier)
                                 <span></span>
                             </label>
                             </div>

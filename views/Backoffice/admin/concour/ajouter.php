@@ -1,4 +1,8 @@
 <?php 
+session_start();
+if(!isset($_SESSION["id_admin"])){
+    header("location: ../../../pages_error/404.html");
+}
 include "../../../../entities/class_concour.php";
 $titre="";
 $date="";
@@ -44,51 +48,28 @@ $minutes=$decouper[1];
 		</script>
 </head>
 <body operation="<?php echo (isset($_GET["id"]))?"modifier":"ajouter";?>" id="<?php echo (isset($_GET["id"]))?$_GET["id"]:"";?>">
-
-					<!-- begin:: Subheader -->
-					<div class="kt-subheader   kt-grid__item" id="kt_subheader">
-						<div class="kt-subheader__main">
-							<h3 class="kt-subheader__title">
-							Blank Page</h3>
-							<span class="kt-subheader__separator kt-hidden">
-							</span>
-							<div class="kt-subheader__breadcrumbs">
-								<a href="#" class="kt-subheader__breadcrumbs-home">
-									<i class="la la-shelter" style="font-size:25px;">
-									</i>
-								</a>
-								<span class="kt-subheader__breadcrumbs-separator">
-								</span>
-								<a href="" class="kt-subheader__breadcrumbs-link">
-								Features                    </a>
-								<span class="kt-subheader__breadcrumbs-separator">
-								</span>
-								<a href="" class="kt-subheader__breadcrumbs-link">
-								Misc                    </a>
-								<span class="kt-subheader__breadcrumbs-separator">
-								</span>
-								<a href="" class="kt-subheader__breadcrumbs-link">
-								Blank Page                    </a>
-								<!-- <span class="kt-subheader__breadcrumbs-link kt-subheader__breadcrumbs-link--active">
-								Active link</span>
-								-->
-							</div>
-							
-						</div>
-						<div class="kt-subheader__toolbar">
-							<div class="kt-subheader__wrapper">
-								<div class="dropdown dropdown-inline" data-toggle="kt-tooltip" title="Quick actions" data-placement="top">
-									<a href="#" class="btn btn-icon btn btn-label btn-label-brand btn-bold" data-toggle="dropdown" data-offset="0px,0px" aria-haspopup="true" aria-expanded="false">
-										<i class="la la-plus">
-										</i>
-									</a>
-								</div>
-								
-							</div>
-						</div>
-					</div>
-					<!-- end:: Subheader -->
-					<!-- begin:: Content -->
+<div class="kt-subheader   kt-grid__item bg-white" style="padding:20px;padding-left:40px;" id="kt_subheader">
+    <div class="kt-subheader__main">
+              <h3 class="kt-subheader__title">
+              Concours</h3>
+              <span class="kt-subheader__separator kt-hidden">
+              </span>
+              <div class="kt-subheader__breadcrumbs">
+                <a href="#" class="kt-subheader__breadcrumbs-home">
+                  <i class="la la-shelter" style="font-size:25px;">
+                  </i>
+                </a>
+                <span class="kt-subheader__breadcrumbs-separator">
+                </span>
+                <a href="" class="kt-subheader__breadcrumbs-link">
+                Ajouter une matière                  </a>
+                <!-- <span class="kt-subheader__breadcrumbs-link kt-subheader__breadcrumbs-link--active">
+                Active link</span>
+                -->
+              </div>
+              
+            </div>
+</div>
 					<div class="kt-content  kt-grid__item kt-grid__item--fluid" id="kt_content">
 								<div class="preload" style="position:fixed;width:100%;height:100%;background:white;left:0;top:0;z-index:100;padding-top:10%;">
 				<center><div class="lds-ring"><div></div><div></div><div></div><div></div></div></center>
@@ -131,22 +112,22 @@ $minutes=$decouper[1];
 							</div>
 						</div>
 						<div class="form-group row">
-							<label for="example-text-input" class="col-2 col-form-label">Heure</label>
+							<label for="example-text-input" class="col-2 col-form-label">Heure du concours</label>
 							<div class="row col-10">
                 <div class="col-lg-5 col-md-5 col-sm-5 mx-auto">
-                    <div class="input-group bootstrap-touchspin bootstrap-touchspin-injected"><input value="<?php echo ($op)?$heures:"";?>" id="kt_touchspin_3" type="text" class="form-control" value="0" name="heures" placeholder="Nombre de places"></div>
+                    <div class="input-group bootstrap-touchspin bootstrap-touchspin-injected"><input value="<?php echo ($op)?$heures:"";?>" id="kt_touchspin_3" type="text" class="form-control" value="0" name="heures" placeholder="heures"></div>
                     <span class="form-text text-muted text-center">Heure(s)</span>
                 </div>
                 <div class="col-lg-5 col-md-5 col-sm-5 mx-auto">
-                    <div class="input-group bootstrap-touchspin bootstrap-touchspin-injected"><input id="kt_touchspin_3" value="<?php echo ($op)?$minutes:"";?>" type="text" class="form-control" value="0" name="minutes" placeholder="Nombre de places"></div>
+                    <div class="input-group bootstrap-touchspin bootstrap-touchspin-injected"><input id="kt_touchspin_3" value="<?php echo ($op)?$minutes:"";?>" type="text" class="form-control" value="0" name="minutes" placeholder="Minutes"></div>
                     <span class="form-text text-muted text-center">Minute(s)</span>
                 </div>
 							</div>
 						</div>
 						<div class="form-group row">
-							<label for="example-text-input" class="col-2 col-form-label">Durée du concou</label>
+							<label for="example-text-input" class="col-2 col-form-label">Durée du concour</label>
 							<div class="col-10">
-								<input type="text" class="form-control" name="duress" placeholder="description" value="<?php echo ($op)?$duree:"";?>">
+								<input type="text" class="form-control" name="duress" placeholder="en minutes" value="<?php echo ($op)?$duree:"";?>">
 							</div>
 						</div>
 						<div class="form-group row">
@@ -162,7 +143,7 @@ $minutes=$decouper[1];
 								<div class="col-2">
 								</div>
 								<div class="col-10">
-									<button type="submit" class="btn btn-success">Ajouter</button>
+									<button type="submit" class="btn btn-success"><?php echo (isset($_GET["id"]))?"Modifier":"Ajouter";?></button>
 								</div>
 							</div>
 						</div>
@@ -222,8 +203,12 @@ $minutes=$decouper[1];
 e.preventDefault();
 
 if($("body").attr("operation")=="ajouter"){
-if($.trim($("[name='duress']").val())=="" || (($.trim($("[name='label']").val())=="" || $.trim($("[name='descriptionss']").val())=="") || ($.trim($("[name='date']").val())=="" || $.trim($("[name='heures']").val())==""))){
+if($.trim($("[name='minutes']").val())=="" ||  $.trim($("[name='duress']").val())=="" || (($.trim($("[name='label']").val())=="" || $.trim($("[name='descriptionss']").val())=="") || ($.trim($("[name='date']").val())=="" || $.trim($("[name='heures']").val())==""))){
     toastr.error("remplir toutes les cases");
+}else{
+			var regex = new RegExp("^[0-9]+$");
+if (regex.test($("[name='minutes']").val())==false || regex.test($("[name='heures']").val())==false || regex.test($("[name='duress']").val())==false) {
+toastr.error("verifier les champs à chiffre, pas de carractère")
 }else{
     var heure=$("[name='heures']").val()+":"+$("[name='minutes']").val();
     $.post( "../../../../entities/concour.php",{duree:$("[name='duress']").val(),titre:$("[name='label']").val(),description:$("[name='descriptionss']").val(),date:$("[name='date']").val(),heure:heure},function(data){
@@ -234,9 +219,14 @@ if($.trim($("[name='duress']").val())=="" || (($.trim($("[name='label']").val())
     }
  } )
 }
+}
 }else{
-if($.trim($("[name='duress']").val())=="" || (($.trim($("[name='label']").val())=="" || $.trim($("[name='descriptionss']").val())=="") || ($.trim($("[name='date']").val())=="" || $.trim($("[name='heures']").val())==""))){
+if($.trim($("[name='minutes']").val())=="" || $.trim($("[name='duress']").val())=="" || (($.trim($("[name='label']").val())=="" || $.trim($("[name='descriptionss']").val())=="") || ($.trim($("[name='date']").val())=="" || $.trim($("[name='heures']").val())==""))){
     toastr.error("remplir toutes les cases");
+}else{
+				var regex = new RegExp("^[0-9]+$");
+if (regex.test($("[name='minutes']").val())==false || regex.test($("[name='heures']").val())==false || regex.test($("[name='duress']").val())==false) {
+toastr.error("verifier les champs à chiffre, pas de carractère")
 }else{
 	var heure=$("[name='heures']").val()+":"+$("[name='minutes']").val();
 $.post( "../../../../entities/concour.php",{duree:$("[name='duress']").val(),operation:"modifier",id:$("body").attr("id"),titre:$("[name='label']").val(),date:$("[name='date']").val(),heure:heure,description:$("[name='descriptionss']").val()},function(data){
@@ -246,6 +236,7 @@ $.post( "../../../../entities/concour.php",{duree:$("[name='duress']").val(),ope
 		toastr.success("operation terminer");
 	}
 }); 
+}
 }
 }
 

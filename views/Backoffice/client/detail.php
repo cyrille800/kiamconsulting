@@ -1,11 +1,18 @@
 <?php
 session_start();
+if(!isset($_SESSION["id"])){
+    header("location:../../pages_error/404.html");
+}
 require_once "../../../entities/class_ecole.php";
 require_once "../../../entities/class_etudiant.php";
 require_once "../../../entities/class_activiter.php";
 require_once "../../../entities/class_activiter_client.php";
 require_once "../../../entities/class_galerie.php";
 require_once "../../../entities/class_details_plus.php";
+$resultat=etudiant::retourne_valeur("id_client",$_SESSION["id"],"resultat");
+if($resultat!=1 && $_SESSION["type"]==0){
+    header("location:../../pages_error/404.html");
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -28,8 +35,26 @@ require_once "../../../entities/class_details_plus.php";
         <link href="../../assets/Backoffice/vendors/global/vendors.bundle.css" rel="stylesheet" type="text/css" />
         <link href="../../assets/Backoffice/css/demo4/style.bundle.css" rel="stylesheet" type="text/css" />
     </head>
-    <body style="padding:0px;margin:0px;" id=<?php echo $_SESSION["id"];?>>
-        
+    <body style="padding:0px;margin:0px;background-color:rgba(0,0,0,0.06);" id=<?php echo $_SESSION["id"];?>>
+<div class="kt-subheader   kt-grid__item bg-white mb-2" id="kt_subheader" style="padding:2px;padding-left:40px;">
+    <div class="kt-subheader   kt-grid__item" id="kt_subheader">
+    <div class="kt-container  kt-container--fluid ">
+        <div class="kt-subheader__main">
+                            <h3 class="kt-subheader__title">Services</h3>
+            
+                            <span class="kt-subheader__separator kt-hidden"></span>
+                <div class="kt-subheader__breadcrumbs">
+                    <a href="#" class="kt-subheader__breadcrumbs-home"><i class="la la-tachometer"></i></a>
+                                            <span class="kt-subheader__breadcrumbs-separator"></span>
+                        <a href="" class="kt-subheader__breadcrumbs-link">
+                            Liste des Services                       </a>
+                                            <span class="kt-subheader__breadcrumbs-separator"></span>
+                </div>
+                    
+        </div>
+    </div>
+</div>
+                        </div>     
         
         <!-- begin:: Content -->
         <div class="kt-content kt-grid__item kt-grid__item--fluid">
@@ -50,11 +75,12 @@ require_once "../../../entities/class_details_plus.php";
             <!--begin::Dashboard 5-->
             <div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
                 <?php
-                $valeur=etudiant::retourne_valeur("id",$_SESSION["id"],"ecole_choisie");
-                if($valeur==0 || $valeur==""){
+                $id_etudiant=etudiant::retourne_valeur("id_client",$_SESSION["id"],"id");
+                $valeur=etudiant::retourne_valeur("id",$id_etudiant,"ecole_choisie");
+                if(($valeur==0 || $valeur=="") && $_SESSION["type"]!=1){
                 echo '<div class="alert alert-danger fade show" role="alert">
                     <div class="alert-icon"><i class="la la-question-circle"></i></div>
-                    <div class="alert-text">Vous n\'avez selectionner aucune école.<br>
+                    <div class="alert-text">Selectionner une école et une spécialité.<br>
                     Veuiller consulter la liste des écoles et choisisser une .</div>
                 </div>';
                 }
@@ -156,7 +182,7 @@ if($_SESSION["type"]==0){
                                                 <b><?php echo $cnombre;?></b>
                                             </div>
                                             <div class="col-md-12 text-center">
-                                                Activités
+                                                Services
                                             </div>
                                         </div>
                                     </div>
@@ -180,7 +206,7 @@ if($_SESSION["type"]==0){
                                     <ul class="nav nav-tabs nav-tabs-space-xl nav-tabs-line nav-tabs-clear nav-tabs-bold nav-tabs-line-3x nav-tabs-line-brand kt-portlet__space-x" style="background-color:#edeff4;" role="tablist">
                                         <li class="nav-item iop">
                                             <a class="nav-link  bf <?php echo (isset($_COOKIE["id_activiter".$_SESSION["id"]]))?"":"active"; ?> " href="activiter.php" target="frame2">
-                                                <i class="la la-tachometer" style="font-size:25px;"></i> Activités
+                                                <i class="la la-tachometer" style="font-size:25px;"></i> Services
                                             </a>
                                         </li>
                                         <li class="nav-item iop">

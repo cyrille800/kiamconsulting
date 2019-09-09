@@ -1,9 +1,7 @@
 <?php
 session_start();
-use PHPMailer\PHPMailer\PHPMailer;
- use PHPMailer\PHPMailer\Exception;
- require 'phpMailer/vendor/autoload.php';
 include_once "class_client.php";
+include_once "class_admin.php";
 function verification_post($tableau)
 {
 
@@ -26,7 +24,7 @@ if (isset($_FILES["avatar"])) {
 	echo "ok";
 } else {
 	if (verification_post(["username", "email", "password", "type"]) == 1 && !isset($_POST["operation"])) {
-		$exemple = new client($username, $email, $password, $type);
+		$exemple = new client($username, $email, $password, $type, $numero);
 		if ($exemple->ajouter() == true) {
 			$reponse = "ok";
 		} else {
@@ -60,9 +58,24 @@ if (isset($_FILES["avatar"])) {
 						}
 					}
 				} else {
+
 					if ($operation == "connexion") {
 						if (client::verifiers("username", $username) == true && client::verifiers("email", $username) == true) {
 							$reponse = "login ou mot de pas incorrect";
+							if (admin::verifiers("username", $username) == true && admin::verifiers("email", $username) == true) {
+								$reponse = "login ou mot de pas incorrect";
+							} else {
+								if (admin::retourne_valeur("username", $username, "password") != md5($password) && admin::retourne_valeur("email", $username, "password") != md5($password)) {
+									$reponse = "login ou mot de pas incorrect";
+								} else {
+									if (admin::retourne_valeur("username", $username, "id") == "") {
+										$_SESSION["id_admin"] = intval(admin::retourne_valeur("email", $username, "id"));
+									} else {
+										$_SESSION["id_admin"] = intval(admin::retourne_valeur("username", $username, "id"));
+									}
+									$reponse = "admin";
+								}
+							}
 						} else {
 							if (client::retourne_valeur("username", $username, "password") != md5($password) && client::retourne_valeur("email", $username, "password") != md5($password)) {
 								$reponse = "username/email ou mot de pas incorrect";
@@ -74,7 +87,7 @@ if (isset($_FILES["avatar"])) {
 									$_SESSION["id"] = intval(client::retourne_valeur("username", $username, "id"));
 									$_SESSION["type"] = intval(client::retourne_valeur("username", $username, "type"));
 								}
-								$reponse = "ok";
+								$reponse = "client";
 							}
 						}
 					} else {
@@ -82,20 +95,17 @@ if (isset($_FILES["avatar"])) {
 							$type2 = ($type == "Etudiant") ? 0 : ($type == "Patient") ? 1 : 0;
 							$client = new client($regusername, $email, $regpassword, $type2, $phoneNumber);
 							$reponse = $client->ajouter();
-						}
-						else if ($operation == "envoyerMessage"){
+						} else if ($operation == "envoyerMessage") {
 							if (isset($_SESSION["id"])) {
-								$req = config::$bdd->prepare("select nom,prenom,email from etudiant inner join client where id_client=".$_SESSION["id"]);
+								$req = config::$bdd->prepare("select nom,prenom,email from etudiant inner join client where id_client=" . $_SESSION["id"]);
 								$req->execute();
-								$rows=$req->fetchAll();
-								$reponse=client::ajouterMessage($message,$rows[0]["email"],$rows[0]["nom"],$rows[0]["prenom"],$repondu);
+								$rows = $req->fetchAll();
+								$reponse = client::ajouterMessage($message, $rows[0]["email"], $rows[0]["nom"], $rows[0]["prenom"], $repondu);
 							} else {
-								$reponse=client::ajouterMessage($message,$mail,$lastName,$firstName,$repondu);
+								$reponse = client::ajouterMessage($message, $mail, $lastName, $firstName, $repondu);
 							}
-							
-						}
-						else if ($operation == "repondre"){
-							$reponse=client::envoyerMail($id);
+						} else if ($operation == "repondre") {
+							$reponse = client::envoyerMail($id);
 							$mail = new PHPMailer(true);
 							try {
 								$mail->SMTPDebug = 2;
@@ -117,7 +127,6 @@ if (isset($_FILES["avatar"])) {
 							} catch (Exception $e) {
 								echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
 							}
-
 						}
 					}
 				}

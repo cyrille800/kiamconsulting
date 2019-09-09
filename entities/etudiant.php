@@ -69,6 +69,12 @@ $reponse="remplir toutes les cases";
 					etudiant::modifier($idEtudiant,"resultat",$resultat);
 					$reponse="ok résultat enregistré";
 				}
+
+				else if($operation=="modifier_ecle"){
+				$deo=etudiant::retourne_valeur("id_client",$id_client,"id");
+			etudiant::modifier($deo,"ecole_choisie",$id_ecole);
+			$reponse="ok";
+	}
 				
 				else{
 					$reponse="opération echoué";

@@ -1,5 +1,10 @@
-<?php
+<?php 
+session_start();
+if(!isset($_SESSION["id_admin"])){
+    header("location: ../../../pages_error/404.html");
+}
 include "../../../../entities/class_quizz.php";
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -64,38 +69,36 @@ include "../../../../entities/class_quizz.php";
 		}
 	</style>
 </head>
+<body id="<?php echo $_GET["id"];?>">
 
-<body id="<?php echo $_GET["id"]; ?>">
 
-	<!-- begin:: Subheader -->
-	<div class="kt-subheader   kt-grid__item bg-white" id="kt_subheader" style="padding:10px;padding-left:40px;">
-		<div class="kt-subheader__main bg-white">
-			<h3 class="kt-subheader__title">
-				Blank Page</h3>
-			<span class="kt-subheader__separator kt-hidden">
-			</span>
-			<div class="kt-subheader__breadcrumbs bg-white">
-				<a href="#" class="kt-subheader__breadcrumbs-home">
-					<i class="la la-shelter" style="font-size:25px;">
-					</i>
-				</a>
-				<span class="kt-subheader__breadcrumbs-separator">
-				</span>
-				<a href="" class="kt-subheader__breadcrumbs-link">
-					Features </a>
-				<span class="kt-subheader__breadcrumbs-separator">
-				</span>
-				<a href="" class="kt-subheader__breadcrumbs-link">
-					Misc </a>
-				<span class="kt-subheader__breadcrumbs-separator">
-				</span>
-				<a href="" class="kt-subheader__breadcrumbs-link">
-					Blank Page </a>
-				<a href="#" class="btn btn-primary ml-4" data-toggle="modal" data-target="#ajouter_image"><i class="la la-plus"></i>&nbsp;&nbsp;Ajouter un quizz</a>
-			</div>
+					<!-- begin:: Subheader -->
+					<div class="kt-subheader   kt-grid__item bg-white" id="kt_subheader" style="padding:10px;padding-left:40px;">
+						<div class="kt-subheader__main bg-white">
+							<h3 class="kt-subheader__title">
+							Concours</h3>
+							<span class="kt-subheader__separator kt-hidden">
+							</span>
+							<div class="kt-subheader__breadcrumbs bg-white">
+								<a href="#" class="kt-subheader__breadcrumbs-home">
+									<i class="la la-shelter" style="font-size:25px;">
+									</i>
+								</a>
+								<span class="kt-subheader__breadcrumbs-separator">
+								</span>
+								<a href="afficher.php" class="kt-subheader__breadcrumbs-link">
+								Liste matières                    </a>
+								<span class="kt-subheader__breadcrumbs-separator">
+								</span>
+								<a href="" class="kt-subheader__breadcrumbs-link">
+								quizz                    </a>
+								<a href="#" class="btn btn-primary ml-4"   data-toggle="modal" data-target="#ajouter_image"><i class="la la-plus"></i>&nbsp;&nbsp;Ajouter un quizz</a>
+							</div>
+							
+						</div>
+					</div>
 
-		</div>
-	</div>
+
 
 	<!-- end:: Subheader -->
 	<!-- begin:: Content -->
@@ -249,34 +252,41 @@ include "../../../../entities/class_quizz.php";
 		$(function() {
 			var selectedClass = "";
 
-			$("#formulaire1").submit(function(e) {
-				e.preventDefault();
-				var autre_reponse = "";
-				autre_reponse += $("[name='faux1']").val() + ";";
-				autre_reponse += $("[name='faux2']").val() + ";";
-				autre_reponse += $("[name='faux3']").val();
-				if ($.trim($("[name='faux1']").val()) != "" && $.trim($("[name='faux2']").val()) != "" && $.trim($("[name='faux3']").val()) != "" && $.trim($("[name='question']").val()) != "" && $.trim($("[name='reponse']").val()) != "") {
-					$("[name='autre_reponse']").val(autre_reponse)
-					$.ajax({
-						type: 'POST',
-						url: '../../../../entities/quizz.php',
-						data: new FormData(this),
-						contentType: false,
-						cache: false,
-						processData: false,
-						success: function(data) {
-							if (data != "ok") {
-								toastr.error(data);
-							} else {
-								toastr.success("opération terminer");
-								document.location.href = "quizz.php?id=" + $("body").attr("id");
-							}
-						}
-					})
-				} else {
-					toastr.error("remplir tous les champs");
-				}
-			})
+			 $("#formulaire1").submit(function(e){
+e.preventDefault();
+var autre_reponse="";
+var var1=$("[name='faux1']").val();
+var var2=$("[name='faux2']").val();
+var var3=$("[name='faux3']").val();
+if(var1.indexOf(";")!=-1 || var2.indexOf(";")!=-1 || var3.indexOf(";")!=-1){
+	toastr.error("vous ne devez pas utiliser  ';'")
+}else{
+autre_reponse+=$("[name='faux1']").val()+";";
+autre_reponse+=$("[name='faux2']").val()+";";
+autre_reponse+=$("[name='faux3']").val();
+if($.trim($("[name='faux1']").val())!="" && $.trim($("[name='faux2']").val())!="" && $.trim($("[name='faux3']").val())!="" && $.trim($("[name='question']").val())!="" && $.trim($("[name='reponse']").val())!=""){
+$("[name='autre_reponse']").val(autre_reponse)
+$.ajax({
+    type : 'POST',
+    url : '../../../../entities/quizz.php',
+   data:  new FormData(this),
+   contentType: false,
+         cache: false,
+   processData:false,
+    success: function(data){  
+if(data!="ok"){
+toastr.error(data);   
+    }else{
+ toastr.success("opération terminer");    
+ document.location.href="quizz.php?id="+$("body").attr("id");	
+    }
+}
+})
+}else{
+ toastr.error("remplir tous les champs");  
+}
+}
+})
 
 			$(".supprimer").click(function() {
 				id = $(this).attr("id");

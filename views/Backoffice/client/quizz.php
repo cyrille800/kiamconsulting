@@ -1,9 +1,37 @@
 <?php
+session_start();
 include_once "../../../entities/class_quizz.php";
 include_once "../../../entities/class_concour.php";
-session_start();
-if (!isset($_SESSION["id"]))
-    header("../../../views/login/login-reg.php");
+include_once "../../../entities/class_etudiant.php";
+if (!isset($_SESSION["id"])) {
+    header("location:../../pages_error/404.html");
+}
+$ecole = "";
+$specialite = "";
+$ecole = etudiant::retourne_valeur("id_client", $_SESSION["id"], "ecole_choisie");
+$specialite = etudiant::retourne_valeur("id_client", $_SESSION["id"], "specialite");
+$resultat = etudiant::retourne_valeur("id_client", $_SESSION["id"], "resultat");
+if ($resultat != 0) {
+    header("location:../../pages_error/404.html");
+}
+$passe = "false";
+function datePublication2()
+{
+    $req = config::$bdd->prepare("select date from datepublication");
+    if ($req->execute()) {
+        $rows = $req->fetchAll();
+        $date0 = explode("T", $rows[0]["date"]);
+        $date1 = $date0[0];
+        $heure = $date0[1];
+        $date = explode("-", $date1);
+        $annee = $date[0];
+        $jour = $date[1];
+        $mois = $date[2];
+        $dateFinal = $mois . "/" . $jour . "/" . $annee . " " . $heure;
+        return $dateFinal;
+    }
+    return "";
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -63,75 +91,82 @@ if (!isset($_SESSION["id"]))
     </style>
 </head>
 
-<body style="padding:0px;margin:0px;">
+<body style="padding:0px;margin:0px;background-color:rgba(0,0,0,0.06);">
+    <div class="kt-subheader   kt-grid__item bg-white mb-4" id="kt_subheader" style="padding:2px;padding-left:40px;">
+        <div class="kt-subheader   kt-grid__item" id="kt_subheader">
+            <div class="kt-container  kt-container--fluid ">
+                <div class="kt-subheader__main">
+                    <h3 class="kt-subheader__title">quizz</h3>
 
+                    <span class="kt-subheader__separator kt-hidden"></span>
+                    <div class="kt-subheader__breadcrumbs">
+                        <a href="#" class="kt-subheader__breadcrumbs-home"><i class="la la-tachometer"></i></a>
+                        <span class="kt-subheader__breadcrumbs-separator"></span>
+                        <a href="" class="kt-subheader__breadcrumbs-link">
+                            Liste des quizz </a>
+                        <span class="kt-subheader__breadcrumbs-separator"></span>
+                    </div>
 
-
-    <!-- begin:: Subheader -->
-    <div class="kt-subheader   kt-grid__item" id="kt_subheader" style="background-color:white;padding-left:50px;">
-        <div class="kt-subheader__main">
-            <h3 class="kt-subheader__title">
-                Bienvenu</h3>
-            <span class="kt-subheader__separator kt-hidden">
-            </span>
-
-        </div>
-        <div class="kt-subheader__toolbar">
-            <div class="kt-subheader__wrapper">
-                <a href="#" class="btn btn-icon btn btn-label btn-label-brand btn-bold" data-toggle="kt-tooltip" title="Calendar" data-placement="top">
-                    <i class="flaticon2-hourglass-1">
-                    </i>
-                </a>
+                </div>
             </div>
         </div>
     </div>
-    <!-- end:: Subheader -->
 
     <!-- begin:: Content -->
     <div class="kt-content kt-grid__item kt-grid__item--fluid" style="background-color:white;">
-        <div class="preload" style="position:fixed;width:100%;height:100%;background:white;left:0;top:0;z-index:100;padding-top:10%;">
-            <center>
-                <div class="lds-ring">
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                </div>
-            </center>
-        </div>
+        <?php
+        if ($ecole != 0) {
+            ?>
+            <div class="preload" style="position:fixed;width:100%;height:100%;background:white;left:0;top:0;z-index:100;padding-top:10%;">
+                <center>
+                    <div class="lds-ring">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </center>
+            </div>
+        <?php
+        }
+        ?>
         <!--begin::Dashboard 5-->
         <!-- <center> -->
         <!-- quizz -->
-        <div class="container mb-5">
-            <div class="row " id="concours">
-                <div class="col-sm-6">
-                   
-                    <?php
-                    $temp = concours::concoursLePlusProche();
-                    if ($temp > 0) {
-                        $concours = concours::afficherProchainConcours($temp);
-                    } else {
-                        $req = config::$bdd->prepare("select date from datepublication");
-                        if ($req->execute()) {
-                            $rows = $req->fetchAll();
-                            $date0 = explode("T", $rows[0]["date"]);
-                            $date1 = $date0[0];
-                            $heure = $date0[1];
-                            $date = explode("-", $date1);
-                            $annee = $date[0];
-                            $jour = $date[1];
-                            $mois = $date[2];
-                            $dateFinal = $mois . "/" . $jour . "/" . $annee." ".$heure;
-                    }
-                }
-                    ?>
-                </div>
-                <div class="col-sm-6" style="position:relative">
-                    
+        <?php
+        if ($ecole == "" || $ecole == 0) {
+            echo $ecole;
+            ?>
+            <div class="alert alert-primary mx-auto ml-5 mr-5 col-5" style="margin-top:6%;">Avant de participer au concours, vous devez choisir l'école que vous allez faire. choisisser bien, car vous n'auriez plus la possibilité de revenir. </div>
+        <?php
+        } else {
+            ?>
+            <div class="container mb-5">
+                <div class="row " id="concours">
+                    <div class="col-sm-6">
+
+                        <?php
+                            $temp = concours::concoursLePlusProche();
+                            if ($temp > 0) {
+                                $concours = concours::afficherProchainConcours($temp);
+                                if (quizz::verifierPasserQuizz($_SESSION["id"])) {
+                                    $passe = "true";
+                                    $dateFinal = datePublication2();
+                                }
+                            } else {
+                                if (quizz::verifierPasserQuizz($_SESSION["id"])) {
+                                    $passe = "true";
+                                    $dateFinal = datePublication2();
+                                }
+                            }
+                            ?>
+                    </div>
+                    <div class="col-sm-6" style="position:relative">
+
 
                         <div id="countdownTimer2">
                             <h1>
-                                </h1>
+                            </h1>
                             <ul>
                                 <li><span id="days"></span></li>
                                 <li><span id="hours"></span></li>
@@ -139,87 +174,90 @@ if (!isset($_SESSION["id"]))
                                 <li><span id="seconds"></span></li>
                             </ul>
                         </div>
-                    
 
-                </div>
-                <button href="#" class="btn btn-primary mt-5" id="loading" role="button">Passer le quizz</button>
-            </div>
-            <div class="row">
-                <div class="col-sm-12">
-                    <form id="quizz">
-                        <p class="lead">Complété à 0%</p>
-                        <div class="progress mb-3">
-                            <div class="progress-bar" role="progressbar">
-                                <span class="sr-only">completé à 40%</span>
-                            </div>
-                        </div>
-                        <h3 id="question" class="mt-5 d-inline">
-                            Question
-                        </h3>
-
-                        <img src="" alt="" width="5%" class="img-fluid ml-3">
-                        <div id="options" class="form-group mt-3">
-                            <div class="custom-control custom-radio mt-2 mb-3">
-                                <input type="radio" name="option" class="custom-control-input" id="customRadioInline1" number=0>
-                                <label class="custom-control-label" for="customRadioInline1">Check this custom radio</label>
-                                <img src="" alt='' width="5%" class="img-fluid ml-3">
-                            </div>
-                            <div class="custom-control custom-radio mt-2 mb-3">
-                                <input type="radio" name="option" class="custom-control-input" id="customRadioInline2" number=1>
-                                <label class="custom-control-label" for="customRadioInline2">Check this custom radio</label>
-                                <img src="" alt='' width="5%" class="img-fluid ml-3">
-
-                            </div>
-                            <div class="custom-control custom-radio mt-2 mb-3">
-                                <input type="radio" name="option" class="custom-control-input" id="customRadioInline3" number=2>
-                                <label class="custom-control-label" for="customRadioInline3">Check this custom radio</label>
-                                <img src="" alt='' width="5%" class="img-fluid ml-3">
-
-                            </div>
-                            <div class="custom-control custom-radio mt-2 mb-3">
-                                <input type="radio" name="option" class="custom-control-input" id="customRadioInline4" number=3>
-                                <label class="custom-control-label" for="customRadioInline4">Check this custom radio</label>
-                                <img src="" alt='' width="5%" class="img-fluid ml-3">
-
-                            </div>
-                        </div>
-                    </form>
-                    <div class="row">
-                        <div class="col-sm-12 ">
-
-                            <button class="btn btn-danger mr-3" role="button" id="Abandonner">Abandonner</button>
-                            <button class="btn btn-primary mr-3" role="button" id="Precedent">Précédent</button>
-                            <button class="btn btn-default " role="button" id="Suivant">Suivant</button>
-                            <span class="pull-right  mt-2" id="quizzCountdown" style=""></span>
-                        </div>
 
                     </div>
-                    <div class="row" style="margin-top:50px">
-                        <div class="col-sm-12 ">
-                            <div id="radios">
-                                <?php
-                                $idConcour = isset($concours["id"]) ? $concours["id"] : 0;
-                                $req = config::$bdd->prepare("select * from qizz where id_concour=" . $idConcour);
-                                $req->execute();
-                                for ($i = 1; $i <= $req->rowCount(); $i++) {
-                                    ?>
-                                    <input id="option<?= $i ?>" name="options" type="radio">
-                                    <label for="option<?= $i ?>" width="40px" style="font-size:10px">&nbsp;&nbsp;question&nbsp;<?= $i ?> </label>
-                                <?php
-                                }
-                                ?>
+                    <button href="#" class="btn btn-primary mt-5" id="loading" role="button">Passer le quizz</button>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <form id="quizz">
+                            <p class="lead">Complété à 0%</p>
+                            <div class="progress mb-3">
+                                <div class="progress-bar" role="progressbar">
+                                    <span class="sr-only">completé à 40%</span>
+                                </div>
+                            </div>
+                            <h3 id="question" class="mt-5 d-inline">
+                                Question
+                            </h3>
+
+                            <img src="" alt="" width="5%" class="img-fluid ml-3">
+                            <div id="options" class="form-group mt-3">
+                                <div class="custom-control custom-radio mt-2 mb-3">
+                                    <input type="radio" name="option" class="custom-control-input" id="customRadioInline1" number=0>
+                                    <label class="custom-control-label" for="customRadioInline1">Check this custom radio</label>
+                                    <img src="" alt='' width="5%" class="img-fluid ml-3">
+                                </div>
+                                <div class="custom-control custom-radio mt-2 mb-3">
+                                    <input type="radio" name="option" class="custom-control-input" id="customRadioInline2" number=1>
+                                    <label class="custom-control-label" for="customRadioInline2">Check this custom radio</label>
+                                    <img src="" alt='' width="5%" class="img-fluid ml-3">
+
+                                </div>
+                                <div class="custom-control custom-radio mt-2 mb-3">
+                                    <input type="radio" name="option" class="custom-control-input" id="customRadioInline3" number=2>
+                                    <label class="custom-control-label" for="customRadioInline3">Check this custom radio</label>
+                                    <img src="" alt='' width="5%" class="img-fluid ml-3">
+
+                                </div>
+                                <div class="custom-control custom-radio mt-2 mb-3">
+                                    <input type="radio" name="option" class="custom-control-input" id="customRadioInline4" number=3>
+                                    <label class="custom-control-label" for="customRadioInline4">Check this custom radio</label>
+                                    <img src="" alt='' width="5%" class="img-fluid ml-3">
+
+                                </div>
+                            </div>
+                        </form>
+                        <div class="row">
+                            <div class="col-sm-12 ">
+
+                                <button class="btn btn-danger mr-3" role="button" id="Abandonner">Abandonner</button>
+                                <button class="btn btn-primary mr-3" role="button" id="Precedent">Précédent</button>
+                                <button class="btn btn-default " role="button" id="Suivant">Suivant</button>
+                                <span class="pull-right  mt-2" id="quizzCountdown" style=""></span>
+                            </div>
+
+                        </div>
+                        <div class="row" style="margin-top:50px">
+                            <div class="col-sm-12 ">
+                                <div id="radios">
+                                    <?php
+                                        $idConcour = isset($concours["id"]) ? $concours["id"] : 0;
+                                        $req = config::$bdd->prepare("select * from qizz where id_concour=" . $idConcour);
+                                        $req->execute();
+                                        for ($i = 1; $i <= $req->rowCount(); $i++) {
+                                            ?>
+                                        <input id="option<?= $i ?>" name="options" type="radio">
+                                        <label for="option<?= $i ?>" width="40px" style="font-size:10px">&nbsp;&nbsp;&nbsp;<?= $i ?> </label>
+                                    <?php
+                                        }
+                                        ?>
+
+                                </div>
 
                             </div>
 
                         </div>
-
                     </div>
+
+
+
                 </div>
-
-
-
             </div>
-        </div>
+        <?php
+        }
+        ?>
     </div>
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -279,6 +317,47 @@ if (!isset($_SESSION["id"]))
     <script>
         $(window).on("load", function() {
             $(".preload").fadeOut("fast");
+            setTimeout(function() {
+                $("#Suivant").click(function() {
+                    var i = 1;
+                    $(".slider-label").not($(".slider-label.slider-label-active")).each(function() {
+                        if ($(this).find("span").length == 1) {
+                            $("[data-radio='option" + i + "']").css({
+                                "background-color": "#FF7069",
+                                "opacity": "1"
+                            });
+                        } else {
+                            if ($("[data-radio='option" + i + "']").css("background-color") != "#FF7069") {
+                                $("[data-radio='option" + i + "']").css({
+                                    "opacity": "0.4"
+                                });
+                            }
+                        }
+
+                        i++;
+                    })
+                })
+                $("#Precedent").click(function() {
+                    var i = 1;
+                    $(".slider-label").not($(".slider-label.slider-label-active")).each(function() {
+                        if ($(this).find("span").length == 1) {
+                            $("[data-radio='option" + i + "']").css({
+                                "background-color": "#FF7069",
+                                "opacity": "1"
+                            });
+                        } else {
+                            if ($("[data-radio='option" + i + "']").css("background-color") != "#FF7069") {
+                                $("[data-radio='option" + i + "']").css({
+                                    "opacity": "0.4"
+                                });
+                            }
+                        }
+
+                        i++;
+                    })
+                })
+               
+            }, 3000)
         })
         var questionNumber = 0;
         var answers = [];
@@ -297,14 +376,25 @@ if (!isset($_SESSION["id"]))
 
         function notAnsweredQuestions(questionNumber) {
             let a = questionNumber + 1;
-            let b = "question" + a;
+            let b = a;
             if (answers[questionNumber] == null) {
                 $("#option" + a).css("color", "red");
                 if ($("#option" + a).next("label").children("span").length == 0)
-                    $("#option" + a).next("label").append("<span style='color:red;'>(non&nbsp;répondue)</span>");
+                    $("#option" + a).next("label").append("<span></span>");
             } else $("#option" + a).next("label").text(b);
         }
 
+        function notAnsweredQuestions2(questionNumber) {
+            for (let index = 0; index < questionNumber; index++) {
+                let c = index + 1;
+                if (answers[index] == null) {
+                    console.log(c,questionNumber);
+                    $("#option" + c).css("color", "red");
+                    if ($("#option" + c).next("label").children("span").length == 0)
+                        $("#option" + c).next("label").append("<span></span>");
+                } else $("#option" + c).next("label").text(c);
+            }
+        }
 
         function ProgressBar() {
             let cmpt = 0;
@@ -453,11 +543,18 @@ if (!isset($_SESSION["id"]))
                 fitContainer: true,
                 isDisable: false,
                 onSelect: function(value) {
+                    value.siblings("ins").each(function(index, element) {
+                        if ($(this).attr("data-radio") == value.attr("id")) {
+                            if (!$(this).hasClass("slider-lower-level")) {
+                                $(this).addClass("slider-lower-level");
+                            }
+                        }
+                    });
                     var questionNumber2 = questionNumber;
-                    questionNumber = parseInt(value.attr("id").substr(6, 1)) - 1;
+                    questionNumber = parseInt(value.attr("id").substr(6, 2)) - 1;
                     precedentButton();
                     Answers(questionNumber2);
-                    notAnsweredQuestions(questionNumber2)
+                    notAnsweredQuestions2(questionNumber)
                     updateQuizz(questionNumber);
                     updateImage();
                     Checkbox(questionNumber);
@@ -465,6 +562,35 @@ if (!isset($_SESSION["id"]))
                     if (questionNumber == options.length - 1) {
                         $("#Suivant").text("Terminer");
                     } else $("#Suivant").text("Suivant");
+
+
+                    value.siblings("label").not("slider-label.slider-label-active").each(function(index, element) {
+                        if ($(this).find("span").length == 1) {
+                            let label = $(this);
+                            $(this).siblings("ins").each(function() {
+                                if ($(this).attr("data-radio") == label.attr("for")) {
+                                    $(this).css({
+                                        "background-color": "#FF7069",
+                                        "opacity": "1"
+                                    });
+                                }
+                            })
+                        } else {
+                            let label = $(this);
+                            $(this).siblings("ins").each(function() {
+                                if ($(this).attr("data-radio") == label.attr("for")) {
+                                    if ($(this).css("background-color") != "#FF7069") {
+                                        $(this).css({
+                                            "opacity": "0.4"
+                                        });
+                                    }
+                                }
+                            })
+                        }
+                    });
+
+
+
                 }
 
             });
@@ -551,7 +677,7 @@ if (!isset($_SESSION["id"]))
                     }
                 })
                 .fail(function() {
-                    console.log("cela n'a pas marché");
+                    taostr.error("cela n'a pas marché");
                 })
         }
 
@@ -579,6 +705,14 @@ if (!isset($_SESSION["id"]))
                         if ($("#question").next("button").length == 0)
                             $("#question").after('<button style="padding-top:2px;padding-bottom:2px;" type="button" class="image btn btn-sm btn-info ml-5" data-toggle="modal" data-target="#exampleModal">voir l"image</button>');
                     }
+                } else if (Image[questionNumber] == null) {
+                    if ($(this).next("label").next("button").length) {
+                        $(this).next("label").next("button").remove();
+                    }
+                    if ($("#question").next("button").length) {
+                        $("#question").next("button").remove();
+                    }
+
                 }
                 indice++;
                 $(".image").each(function(index, element) {
@@ -633,6 +767,7 @@ if (!isset($_SESSION["id"]))
             var toast2 = "";
             var toast3 = "";
             var bool = false;
+            var duree = <?= isset($concours['duree']) ? $concours["duree"] : 0 ?> * 60000;
             var x = setInterval(function() {
                     var now = new Date().getTime();
                     var distance = countDownDate - now;
@@ -650,23 +785,24 @@ if (!isset($_SESSION["id"]))
                     $("#seconds").text(seconds);
                     $("#countdownTimer2 h1").text("compte à rebours jusqu'au quizz: ");
                     if (distance <= 0) {
-                        if (Math.abs(distance) < 900000) {
+
+                        if (Math.abs(distance) < duree) {
                             $("#loading").prop("disabled", false);
                             $("#countdownTimer2 h1").text("Temps restant pour le quizz ");
                             $("#days").text(0);
                             $("#hours").text(0);
-                            $("#minutes").text(Math.floor((900000 - Math.abs(distance)) / 60000));
-                            $("#seconds").text(Math.floor(((900000 - Math.abs(distance)) % 60000) / 1000));
-                            if (Math.floor((900000 - Math.abs(distance)) / 60000) > 12 && toast == "") {
+                            $("#minutes").text(Math.floor((duree - Math.abs(distance)) / 60000));
+                            $("#seconds").text(Math.floor(((duree - Math.abs(distance)) % 60000) / 1000));
+                            if (Math.floor((duree - Math.abs(distance)) / 60000) > 12 && toast == "") {
                                 toastr.info("Vous avez encore du temps Bonne chance");
                                 toast = "info";
                                 bool = true;
 
-                            } else if (Math.floor((900000 - Math.abs(distance)) / 60000) >= 10 && Math.floor((900000 - Math.abs(distance)) / 60000) <= 12 && toast2 == "") {
+                            } else if (Math.floor((duree - Math.abs(distance)) / 60000) >= 10 && Math.floor((duree - Math.abs(distance)) / 60000) <= 12 && toast2 == "") {
                                 toastr.warning("depêchez vous n'avez plus beaucoup de temps");
                                 toast2 = "warning";
 
-                            } else if (Math.floor((900000 - Math.abs(distance)) / 60000) < 10 && toast3 == "") {
+                            } else if (Math.floor((duree - Math.abs(distance)) / 60000) < 10 && toast3 == "") {
                                 toastr.error("Magnez vous il vous reste très peu de temps");
                                 toast3 = "error";
 
@@ -674,7 +810,7 @@ if (!isset($_SESSION["id"]))
 
                         } else {
                             $("#loading").prop("disabled", true);
-                            document.getElementById("countdownTimer").innerHTML = "Quizz expiré";
+                            // document.getElementById("countdownTimer").innerHTML = "Quizz expiré";
                             if (page == 0) {
                                 toastr.error("Vous êtes arrivé en retard le quizz est déjà terminé");
                             }
@@ -697,6 +833,7 @@ if (!isset($_SESSION["id"]))
                 var toast2 = "";
                 var toast3 = "";
                 var bool = false;
+
                 var x = setInterval(function() {
                         var now = new Date().getTime();
                         var distance = countDownDate - now;
@@ -706,23 +843,33 @@ if (!isset($_SESSION["id"]))
                         var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                         var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
                         var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-                        if(distance>0){
+                        if (distance > 0) {
                             $("#days").text(days);
-                        $("#hours").text(hours);
-                        $("#minutes").text(minutes);
-                        $("#seconds").text(seconds);
-                        $("#countdownTimer2 h1").text("proclamation des résultats prévus dans");
+                            $("#hours").text(hours);
+                            $("#minutes").text(minutes);
+                            $("#seconds").text(seconds);
+                            $("#countdownTimer2 h1").text("proclamation des résultats prévus dans");
+
+                        } else {
+                            $("#days").text("");
+                            $("#hours").text("");
+                            $("#minutes").text("");
+                            $("#seconds").text("");
+
+                            let passe = "<?= $passe ?>";
+                            if (passe == "true")
+                                $("#countdownTimer2 h1").text("veuillez vous reconnecter svp");
+                            else $("#countdownTimer2 h1").text("pas de quizz prevue pour le moment");
+
                         }
-                       else   {
-                        $("#days").text("");
-                        $("#hours").text("");
-                        $("#minutes").text("");
-                        $("#seconds").text("");
-                           $("#countdownTimer2 h1").text("veuillez vous reconnecter svp");
-                       }
-                        
+
                     },
                     1000);
+            }
+            let passe = "<?= $passe ?>";
+            if (passe == "false") {
+                $("#countdownTimer2 h1").text("pas de quizz prevue pour le moment");
+
             }
 
 
@@ -750,9 +897,9 @@ if (!isset($_SESSION["id"]))
                     seconds--;
                     if (minutes == 0 && seconds == 0) {
                         toastr.info("le temps est terminé");
-                        clearInterval(x);
-                        document.getElementById("countdownTimer").innerHTML = "TERMINE";
                         Results();
+                        document.getElementById("countdownTimer").innerHTML = "TERMINE";
+                        clearInterval(x);
                     }
                 }, 1000);
             }
@@ -760,14 +907,19 @@ if (!isset($_SESSION["id"]))
         }
         $(function() {
             var temp = <?= $temp ?>;
+            var passe = "<?= $passe ?>";
+
+
             if (temp > 0) {
                 $("#loading").prop('disabled', false);
             } else {
                 $("#loading").prop('disabled', true);
             }
             hidingQuizz();
-            entranceCountDown();
-            entranceCountDown2();
+            if (temp > 0 && passe == "false")
+                entranceCountDown();
+            else
+                entranceCountDown2();
             $("#loading").click(function() {
                 page = 1;
                 loadingQuizz();

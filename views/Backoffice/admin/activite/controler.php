@@ -1,4 +1,8 @@
 <?php 
+session_start();
+if(!isset($_SESSION["id_admin"])){
+    header("location: ../../../pages_error/404.html");
+}
 include_once "../../../../entities/class_activiter.php";
 include_once "../../../../entities/class_proccedure.php";
 ?>
@@ -24,55 +28,47 @@ include_once "../../../../entities/class_proccedure.php";
 		</script>
 </head>
 <body>
+<div class="kt-subheader   kt-grid__item bg-white" style="padding:20px;padding-left:40px;" id="kt_subheader">
+    <div class="kt-subheader__main">
+              <h3 class="kt-subheader__title">
+              Services</h3>
+              <span class="kt-subheader__separator kt-hidden">
+              </span>
+              <div class="kt-subheader__breadcrumbs mr-5 pr-5">
+                <a href="#" class="kt-subheader__breadcrumbs-home">
+                  <i class="la la-shelter" style="font-size:25px;">
+                  </i>
+                </a>
+                <span class="kt-subheader__breadcrumbs-separator">
+                </span>
+                <a href="" class="kt-subheader__breadcrumbs-link">
+                Controler service                 </a>
+                <!-- <span class="kt-subheader__breadcrumbs-link kt-subheader__breadcrumbs-link--active">
+                Active link</span>
+                -->
+              </div>
+                                    <div class="kt-subheader__toolbar ml-5 pl-5"  style="">
+                            <div class="kt-subheader__wrapper">
+                                <div class="dropdown dropdown-inline">
+                                    <div class="btn btn-icon btn btn-primary btn-bold lefts" style="cursor:pointer;">
+                                        <i class="fa fa-angle-left">
+                                        </i>
+                                    </div>
+                                    <div class="btn btn-icon btn btn-primary btn-bold rights" style="cursor:pointer;">
+                                        <i class="fa fa-angle-right">
+                                        </i>
+                                    </div>
+                                    <a href="liste.php?id=<?php echo $_GET["id"];?>" class="btn btn-info btn-bold rights" style="cursor:pointer;">
+                                        <i class="fas fa-list"></i>&nbsp;&nbsp; Consulter la liste des personnes ayant fini
+                                    </a>
+                                </div>
+                                
+                            </div>
+                        </div>
+            </div>
+</div>
 
-					<!-- begin:: Subheader -->
-					<div class="kt-subheader   kt-grid__item" id="kt_subheader">
-						<div class="kt-subheader__main">
-							<h3 class="kt-subheader__title">
-							Blank Page</h3>
-							<span class="kt-subheader__separator kt-hidden">
-							</span>
-							<div class="kt-subheader__breadcrumbs">
-								<a href="#" class="kt-subheader__breadcrumbs-home">
-									<i class="la la-shelter" style="font-size:25px;">
-									</i>
-								</a>
-								<span class="kt-subheader__breadcrumbs-separator">
-								</span>
-								<a href="" class="kt-subheader__breadcrumbs-link">
-								Features                    </a>
-								<span class="kt-subheader__breadcrumbs-separator">
-								</span>
-								<a href="" class="kt-subheader__breadcrumbs-link">
-								Misc                    </a>
-								<span class="kt-subheader__breadcrumbs-separator">
-								</span>
-								<a href="" class="kt-subheader__breadcrumbs-link">
-								Blank Page                    </a>
-								<!-- <span class="kt-subheader__breadcrumbs-link kt-subheader__breadcrumbs-link--active">
-								Active link</span>
-								-->
-							</div>
-							
-						</div>
-						<div class="kt-subheader__toolbar"  style="position:static;">
-							<div class="kt-subheader__wrapper">
-								<div class="dropdown dropdown-inline">
-									<div class="btn btn-icon btn btn-primary btn-bold lefts" style="cursor:pointer;">
-										<i class="fa fa-angle-left">
-										</i>
-									</div>
-									<div class="btn btn-icon btn btn-primary btn-bold rights" style="cursor:pointer;">
-										<i class="fa fa-angle-right">
-										</i>
-									</div>
-								</div>
-								
-							</div>
-						</div>
-					</div>
-					<!-- end:: Subheader -->
-					<!-- begin:: Content -->
+
 					<div class="kt-content  kt-grid__item kt-grid__item--fluid" id="kt_content">
 								<div class="preload" style="position:fixed;width:100%;height:100%;background:white;left:0;top:0;z-index:100;padding-top:10%;">
 				<center><div class="lds-ring"><div></div><div></div><div></div><div></div></div></center>
@@ -334,6 +330,17 @@ if(data=="oui"){
         		$(".principale").animate({scrollLeft: "-="+($(".un").width())}, 200);
         	})
 
+$(".terminer").click(function(){
+                    var id_client=parseInt($(this).attr("id_client"));
+                var activiter=parseInt($(this).attr("id_activiter"));
+                var id=parseInt($(this).attr("id_activiter_client"));
+                var nombre_etape=parseInt($(this).attr("nombre_etape"))+1;
+                var element=$(this);
+                $.post("../../../../entities/activiter_client.php",{operation:"modifier",id:id,id_client:id_client,id_activiter:activiter,nombre_etape_fait:nombre_etape,etape_actuel:-1},function(data){
+                    socket.emit("evolution",{id_activiter:activiter,id_client:id_client})
+                    element.parents(".card.mb-4").remove();
+                })
+})
         	$(".droite").click(function(){
 
         		var el=$(this).parent().parent().parent().parent();
@@ -349,8 +356,29 @@ if(data=="oui"){
                     els.after('<div class="w-75 rounded-circle text-center pt-2 gauche bg-dark text-white" id_client="'+id_client+'" id_activiter_client="'+id_activiter_client+'" id_activiter="'+id_activiter+'" nombre_etape="'+(parseInt(nombre_etapes)+1)+'" style="cursor:pointer;height:30px;"><i class="fa fa-angle-left"></i></div>');
                     els.remove();
 
-
+$(".terminer").click(function(){
+                    var id_client=parseInt($(this).attr("id_client"));
+                var activiter=parseInt($(this).attr("id_activiter"));
+                var id=parseInt($(this).attr("id_activiter_client"));
+                var nombre_etape=parseInt($(this).attr("nombre_etape"))+1;
+                var element=$(this);
+                $.post("../../../../entities/activiter_client.php",{operation:"modifier",id:id,id_client:id_client,id_activiter:activiter,nombre_etape_fait:nombre_etape,etape_actuel:-1},function(data){
+                    socket.emit("evolution",{id_activiter:activiter,id_client:id_client})
+                    element.parents(".card.mb-4").remove();
+                })
+})
         	$(".gauche").click(function(){
+                $(".terminer").click(function(){
+                    var id_client=parseInt($(this).attr("id_client"));
+                var activiter=parseInt($(this).attr("id_activiter"));
+                var id=parseInt($(this).attr("id_activiter_client"));
+                var nombre_etape=parseInt($(this).attr("nombre_etape"))+1;
+                var element=$(this);
+                $.post("../../../../entities/activiter_client.php",{operation:"modifier",id:id,id_client:id_client,id_activiter:activiter,nombre_etape_fait:nombre_etape,etape_actuel:-1},function(data){
+                    socket.emit("evolution",{id_activiter:activiter,id_client:id_client})
+                    element.parents(".card.mb-4").remove();
+                })
+})
         		var el=$(this).parent().parent().parent().parent();
         		var etape_suivante=parseInt(el.parent().parent().parent().prev().attr("id_proccedure"));
         		if(!isNaN(etape_suivante)){
@@ -447,7 +475,29 @@ if(data=="oui"){
         			els.addClass("bg-dark")
         			els.addClass("text-white")
         			els.removeClass("terminer")
+                    $(".terminer").click(function(){
+                    var id_client=parseInt($(this).attr("id_client"));
+                var activiter=parseInt($(this).attr("id_activiter"));
+                var id=parseInt($(this).attr("id_activiter_client"));
+                var nombre_etape=parseInt($(this).attr("nombre_etape"))+1;
+                var element=$(this);
+                $.post("../../../../entities/activiter_client.php",{operation:"modifier",id:id,id_client:id_client,id_activiter:activiter,nombre_etape_fait:nombre_etape,etape_actuel:-1},function(data){
+                    socket.emit("evolution",{id_activiter:activiter,id_client:id_client})
+                    element.parents(".card.mb-4").remove();
+                })
+})
         	$(".droite").click(function(){
+                $(".terminer").click(function(){
+                    var id_client=parseInt($(this).attr("id_client"));
+                var activiter=parseInt($(this).attr("id_activiter"));
+                var id=parseInt($(this).attr("id_activiter_client"));
+                var nombre_etape=parseInt($(this).attr("nombre_etape"))+1;
+                var element=$(this);
+                $.post("../../../../entities/activiter_client.php",{operation:"modifier",id:id,id_client:id_client,id_activiter:activiter,nombre_etape_fait:nombre_etape,etape_actuel:-1},function(data){
+                    socket.emit("evolution",{id_activiter:activiter,id_client:id_client})
+                    element.parents(".card.mb-4").remove();
+                })
+})
         		var el=$(this).parent().parent().parent().parent();
         		var etape_suivante=parseInt(el.parent().parent().parent().next().attr("id_proccedure"));
         		if(!isNaN(etape_suivante)){
@@ -591,7 +641,7 @@ $(".send_message").click(function(){
                         toastr.success("message envoyer")
                         socket.emit("envoyer_notification_client",{type:"warning",message:message,id_client:$("#id_personne").val()})
                     }else{
-                        toastr.error(data)
+                        toastr.error("changer le nom du fichier");
                     }
                 })
         }

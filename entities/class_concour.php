@@ -89,7 +89,9 @@ class concours
 	public static function verifiers($type, $valeur)
 	{
 		$i = 0;
-		$requette = config::$bdd->query("select * from concours where " . $type . "='" . $valeur . "'");
+		$requette = config::$bdd->prepare("select * from concours where " . $type . "=:" . $type);
+		$requette->bindValue(":" . $type, $valeur);
+		$requette->execute();
 		while ($data = $requette->fetch()) {
 			$i = 1;
 		}
@@ -104,7 +106,10 @@ class concours
 	public static function verifier($id, $type, $valeur)
 	{
 		$i = 0;
-		$requette = config::$bdd->query("select * from concours where " . $type . "='" . $valeur . "' and id!=" . $id);
+		$requette = config::$bdd->prepare("select * from concours where " . $type . "=:" . $type . " and id!=:id");
+		$requette->bindValue(":" . $type, $valeur);
+		$requette->bindValue(":id", $id);
+		$requette->execute();
 		while ($data = $requette->fetch()) {
 			$i = 1;
 		}
@@ -127,41 +132,41 @@ class concours
 			$o = 1;
 			$titre = trim($data["titre"]);
 			echo '<div class="col-xl-3 col-lg-3 col-sm-5 element" spe="" nom="' . $data["titre"] . '">
-									<span style="position:absolute;background:rgba(0,0,0,0.6);color:white;top:5%;cursor:pointer;left:83%;border-radius:10px;width:20px;height:20px;" class="kt-avatar__cancel text-center supprimer" data-toggle="kt-tooltip" title="" data-original-title="supprmer" id="' . $data["id"] . '">
-										<i class="la la-trash"></i>
-									</span>
-									<!--begin::Portlet-->
-									<div class="kt-portlet  ">
-										<div class="kt-portlet__body">
-											<div class="kt-widget kt-widget--general-4">
-											<div class="kt-user-card-v2__pic">									<div class="kt-badge kt-badge--xl ';
+<span style="position:absolute;background:rgba(0,0,0,0.6);color:white;top:5%;cursor:pointer;left:83%;border-radius:10px;width:20px;height:20px;" class="kt-avatar__cancel text-center supprimer" data-toggle="kt-tooltip" title="" data-original-title="supprmer" id="' . $data["id"] . '">
+<i class="la la-trash"></i>
+</span>
+<!--begin::Portlet-->
+<div class="kt-portlet  ">
+<div class="kt-portlet__body">
+<div class="kt-widget kt-widget--general-4">
+<div class="kt-user-card-v2__pic"> <div class="kt-badge kt-badge--xl ';
 			if ($i % 2 == 0) {
 				echo "kt-badge--warning";
 			} else {
 				echo "kt-badge--success";
 			}
-			echo '">' . $titre[0] . '</div>								</div>
-											<br>
-												<a href="#" class="kt-widget__title">
-													' . $data["titre"] . '
-												</a>
-												<specialite style="display:none;">' . $data["titre"] . '</specialite>
-												<br><br>
-												<div class="kt-widget__desc">
-												durée du concour :	' . $data["duree"] . ' minutes
-												</div><br><br>
-												<div class="kt-widget__desc">
-													' . $data["description"] . '
-												</div>
-											</div>
-											<div class="kt-widget__links mt-3">
-												<div class="kt-widget__link">
-													<i class="la la-calendar-o kt-font-skype" style="font-size:20px;"></i>&nbsp;&nbsp;<a href="#">date : &nbsp;&nbsp;&nbsp; ' . $data["date_concour"] . '</a>
-												</div>
-											</div>
-											<div class="kt-widget__links mt-3">
-												<div class="kt-widget__link">
-													<i class="la la-calendar-check-o kt-font-skype" style="font-size:20px;"></i>&nbsp;&nbsp;<a href="#">heure : &nbsp;&nbsp;&nbsp; ';
+			echo '">' . $titre[0] . '</div> </div>
+<br>
+<a href="#" class="kt-widget__title">
+' . $data["titre"] . '
+</a>
+<specialite style="display:none;">' . $data["titre"] . '</specialite>
+<br><br>
+<div class="kt-widget__desc">
+durée du concour : ' . $data["duree"] . ' minutes
+</div><br><br>
+<div class="kt-widget__desc">
+' . $data["description"] . '
+</div>
+</div>
+<div class="kt-widget__links mt-3">
+<div class="kt-widget__link">
+<i class="la la-calendar-o kt-font-skype" style="font-size:20px;"></i>&nbsp;&nbsp;<a href="#">date : &nbsp;&nbsp;&nbsp; ' . $data["date_concour"] . '</a>
+</div>
+</div>
+<div class="kt-widget__links mt-3">
+<div class="kt-widget__link">
+<i class="la la-calendar-check-o kt-font-skype" style="font-size:20px;"></i>&nbsp;&nbsp;<a href="#">heure : &nbsp;&nbsp;&nbsp; ';
 
 			$req = explode(":", $data["heure"]);
 			if (intval($req[0]) < 10) {
@@ -186,18 +191,18 @@ class concours
 			echo $req[1];
 
 			echo '</a>
-												</div>
-											</div>
-											<br><br>
-											<div class="kt-widget__actions">
-												<div class="kt-widget__left">
-													<a style="margin-left:-2%;" href="quizz.php?id=' . $data["id"] . '" class="btn btn-default btn-sm btn-bold btn-upper"><i class="la la-plus"></i>&nbsp;add quizz</a>
-													<a style="margin-left:1%;" href="ajouter.php?id=' . $data["id"] . '" class="btn btn-brand btn-sm btn-bold btn-upper"><i class="la la-edit"></i>&nbsp;modifier</a>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>';
+</div>
+</div>
+<br><br>
+<div class="kt-widget__actions">
+<div class="kt-widget__left">
+<a style="margin-left:-2%;" href="quizz.php?id=' . $data["id"] . '" class="btn btn-default btn-sm btn-bold btn-upper"><i class="la la-plus"></i>&nbsp;add quizz</a>
+<a style="margin-left:1%;" href="ajouter.php?id=' . $data["id"] . '" class="btn btn-brand btn-sm btn-bold btn-upper"><i class="la la-edit"></i>&nbsp;modifier</a>
+</div>
+</div>
+</div>
+</div>
+</div>';
 			$i++;
 		}
 		if ($o == 0) {
@@ -259,9 +264,12 @@ class concours
 		$req = config::$bdd->query("select id,date_concour,heure from concours");
 		while ($data = $req->fetch()) {
 			$date .= $data["date_concour"] . " " . $data["heure"];
-			if (differenceDate($date) > 0) {
+			$req2=config::$bdd->prepare("select duree from concours where id=".$data["id"]);
+			$req2->execute();
+			$rows=$req2->fetchAll();
+			if (differenceDate($date,$rows[0]["duree"]*60) > 0) {
 				$ids[$index] = $data["id"];
-				$timeDifference[$index] = differenceDate($date);
+				$timeDifference[$index] = differenceDate($date,$rows[0]["duree"]*60);
 				$index++;
 			}
 			$date = "";
@@ -550,7 +558,6 @@ class concours
 			return 'Erreur: ' . $e->getMessage();
 		}
 	}
+	
+
 }
-
-
-

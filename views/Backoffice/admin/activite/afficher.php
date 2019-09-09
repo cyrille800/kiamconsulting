@@ -1,4 +1,8 @@
 <?php 
+session_start();
+if(!isset($_SESSION["id_admin"])){
+    header("location: ../../../pages_error/404.html");
+}
 include_once "../../../../entities/class_activiter.php";
 ?>
 <!DOCTYPE html>
@@ -22,35 +26,27 @@ include_once "../../../../entities/class_activiter.php";
 		</script>
 </head>
 <body  id="<?php echo (isset($_GET["id"]))?$_GET["id"]:"";?>" operation="ajouter">
-					<!-- end:: Subheader -->
-					<!-- begin:: Content -->
-					<div class="kt-content  kt-grid__item kt-grid__item--fluid" id="kt_content" style="padding:0px;">
-					<div class="kt-subheader   kt-grid__item bg-white mb-4" style="padding:10px;padding-left:40px;" id="kt_subheader">
-    <div class="kt-container  kt-container--fluid ">
-        <div class="kt-subheader__main">
-                            <h3 class="kt-subheader__title">
-                                            Matieres                               
-                </h3>
-                       
-
-            <span class="kt-subheader__separator kt-subheader__separator--v"></span>
-            
-            <div class="kt-subheader__toolbar" id="kt_subheader_search">
-                <span class="kt-subheader__desc" id="kt_subheader_total">
-                                            <span class="rps">0</span> Totals                                   </span>
-                
-                                    <form class="kt-subheader__search" id="kt_subheader_search_form">
-                        <div class="input-group">
-							<input type="text" class="form-control" placeholder="Search..." id="generalSearch">
-							<div class="input-group-append">
-                                <span class="input-group-text" id="basic-addon2">
-                                    <i class="la la-search"></i>
-                                </span>
-                            </div>
-                        </div>
-                    </form>
-                    <div class="ml-5"></div><div class="ml-5"></div><div class="ml-5"></div><div class="ml-5"></div>
-                            <div class="kt-subheader__wrapper ml-5">
+<div class="kt-subheader   kt-grid__item bg-white" style="padding:20px;padding-left:40px;margin-bottom:20px;" id="kt_subheader">
+    <div class="kt-subheader__main">
+              <h3 class="kt-subheader__title">
+              Services</h3>
+              <span class="kt-subheader__separator kt-hidden">
+              </span>
+              <div class="kt-subheader__breadcrumbs">
+                <a href="#" class="kt-subheader__breadcrumbs-home">
+                  <i class="la la-shelter" style="font-size:25px;">
+                  </i>
+                </a>
+                <span class="kt-subheader__breadcrumbs-separator">
+                </span>
+                <a href="" class="kt-subheader__breadcrumbs-link">
+                Afficher les services                 </a>
+                <!-- <span class="kt-subheader__breadcrumbs-link kt-subheader__breadcrumbs-link--active">
+                Active link</span>
+                -->
+              </div>
+                                  <div class="ml-5"></div><div class="ml-5"></div><div class="ml-5"></div><div class="ml-5"></div>
+                            <div class="kt-subheader__wrapper ml-5 pl-5">
                                 <div class="dropdown dropdown-inline" data-toggle="kt-tooltip" title="" data-placement="top" data-original-title="Ajouter">
                                     <a href="#" class="btn btn btn-label btn-label-brand btn-bold bv" data-toggle="modal" data-target="#ajouter_etape">
                                         <i class="la la-plus">
@@ -60,11 +56,11 @@ include_once "../../../../entities/class_activiter.php";
                                 </div>
                                 
                             </div>
-                            </div>
-
-                    </div>        
-    </div>
+            </div>
 </div>
+
+
+					<div class="kt-content  kt-grid__item kt-grid__item--fluid" id="kt_content" style="padding:0px;">
 								<div class="preload" style="position:fixed;width:100%;height:100%;background:white;left:0;top:0;z-index:100;padding-top:10%;">
 				<center><div class="lds-ring"><div></div><div></div><div></div><div></div></div></center>
 			</div>
@@ -78,7 +74,7 @@ include_once "../../../../entities/class_activiter.php";
                 <!--begin::Section-->
                 <div class="kt-section">
                     <div class="kt-section__content">
-                        <span class="lead">Liste des activitées :</span> 
+                        <span class="lead">Liste des services :</span> 
                         <ul class="kt-nav kt-nav--v2 kt-nav--md-space kt-nav--bold kt-nav--lg-font">
 <?php 
 $id=(isset($_GET["id"]))?$_GET["id"]:"";
@@ -97,7 +93,7 @@ $id=(isset($_GET["id"]))?$_GET["id"]:"";
 <div class="kt-portlet">
             <div class="kt-portlet__head">
                 <div class="kt-portlet__head-label">
-                    <h3 class="kt-portlet__head-title">Liste des étapes de lactiviée</h3>
+                    <h3 class="kt-portlet__head-title">Liste des étapes du services</h3>
                 </div>
             </div>
             <div class="kt-portlet__body" style="height:600px;">
@@ -150,20 +146,20 @@ $id=(isset($_GET["id"]))?$_GET["id"]:"";
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="example-text-input" class="col-2 col-form-label">Intervention du client</label>
+                            <label for="example-text-input" class="col-2 col-form-label">Action</label>
                             <div class="col-10">
                             <div class="ml-5"></div><div class="ml-5"></div><div class="ml-5"></div>
                         <label class="kt-radio kt-radio--solid kt-radio--brand mr-3 ml-5">
-                                <input type="radio" name="fichier"" value="0"> non
+                                <input type="radio" name="fichier"" value="0"> action de l'administrateur
                                 <span></span>
                             </label>
                         <label class="kt-radio kt-radio--solid kt-radio--brand ml-1">
-                                <input type="radio" name="fichier" value="1"> oui, "reponse simple"
+                                <input type="radio" name="fichier" value="1"> action du client (message de confirmation)
                                 <span></span>
                             </label>
                             <div style="margin-left:20px;"></div>
                             <label class="kt-radio kt-radio--solid kt-radio--brand ml-5">
-                                <input type="radio" name="fichier" value="2"> oui, "inserer des fichiers"
+                                <input type="radio" name="fichier" value="2"> action du client (envoyer un fichier)
                                 <span></span>
                             </label>
                             </div>

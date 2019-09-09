@@ -38,9 +38,12 @@ if(verification_post(["titre","description","etat"])==1 && !isset($_POST["operat
 		}	
 		if($operation=="nombre_pourcentage"){
 			echo $nombre=activiter::nombre_pourcentage($id,$o);
-			$do=config::$bdd->query("update activiter_client set etat=0 where id_client=$id");
+			$do=config::$bdd->prepare("update activiter_client set etat=0 where id_client=:id_client");
+			$do->bindValue(":id_client",$id);
 			$do->execute();
-			$dr=config::$bdd->query("update activiter_client set etat=1 where id_client=$id && id_activiter=$o");
+			$dr=config::$bdd->prepare("update activiter_client set etat=1 where id_client=:id_client && id_activiter=:id_activiter");
+			$dr->bindValue(":id_client",$id);
+			$dr->bindValue(":id_activiter",$o);
 			if($dr->execute()){
 				echo "";
 			}else{

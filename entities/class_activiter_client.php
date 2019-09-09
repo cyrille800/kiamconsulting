@@ -62,9 +62,11 @@ function ajouter(){
 	  	
 }
 
-public static function verifiers($type,$valeur,$id){
+public static function verifiers($type,$valeur){
 		$i=0;
-		  	$requette=config::$bdd->query("select * from activiter_client where ".$type."='".$valeur."' && etape_actuel=".$id);
+		  	$requette=config::$bdd->prepare("select * from activiter_client where ".$type."=:".$type);
+		  	$requette->bindValue(":".$type,$valeur);
+		  	$requette->execute();
     while($data=$requette->fetch()){
 		$i=1;                		
 	}
@@ -90,7 +92,10 @@ public static function verifiers($type,$valeur,$id){
 
 public static function verifier($id,$type,$valeur){
 		$i=0;
-		  	$requette=config::$bdd->query("select * from activiter_client where ".$type."='".$valeur."' and id!=".$id);
+		  	$requette=config::$bdd->prepare("select * from activiter_client where ".$type."=:".$type." and id!=:id");
+		  			  	$requette->bindValue(":".$type,$valeur);
+		  			  	$requette->bindValue(":id",$id);
+		  	$requette->execute();
                 		while($data=$requette->fetch()){
 		$i=1;                		
 	}
@@ -109,7 +114,9 @@ public static function verifier($id,$type,$valeur){
 		$tableaui=[];
 		$o=0;
 		$i=0;
-		  	$requette=config::$bdd->query("select * from activiter_client where etape_actuel=".intval($id));
+		  	$requette=config::$bdd->prepare("select * from activiter_client where etape_actuel=:etape_actuel");
+		  		$requette->bindValue(":etape_actuel",intval($id));
+	$requette->execute();
                 		while($data=$requette->fetch()){
                 			$o=1;
 					echo '
@@ -162,7 +169,7 @@ if(intval($data["nombre_etape_fait"])==2){
 	}
 
 	public static function supprimer($id_client,$id_activiter){
-		$req=config::$bdd->prepare("delete from activiter_client where id_client=:id_client && id_activiter=:id_activiter");
+		$req=config::$bdd->prepare("delete from activiter_client where id_client=:id_client && id_activiter=:id_activiter && etat!=-1");
 	  	if($req->execute([
 		':id_client'=>intval($id_client),
 	':id_activiter'=>intval($id_activiter)]

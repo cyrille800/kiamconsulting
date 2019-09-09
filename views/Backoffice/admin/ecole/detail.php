@@ -1,4 +1,8 @@
 <?php 
+session_start();
+if(!isset($_SESSION["id_admin"])){
+    header("location: ../../../pages_error/404.html");
+}
 include "../../../../entities/class_galerie.php";
 include "../../../../entities/class_details_plus.php";
 ?>
@@ -63,7 +67,7 @@ padding-right: 1.1rem;
 					<div class="kt-subheader   kt-grid__item bg-white" id="kt_subheader" style="padding:10px;padding-left:40px;">
 						<div class="kt-subheader__main bg-white">
 							<h3 class="kt-subheader__title">
-							Blank Page</h3>
+							Ecoles</h3>
 							<span class="kt-subheader__separator kt-hidden">
 							</span>
 							<div class="kt-subheader__breadcrumbs bg-white">
@@ -73,12 +77,12 @@ padding-right: 1.1rem;
 								</a>
 								<span class="kt-subheader__breadcrumbs-separator">
 								</span>
-								<a href="" class="kt-subheader__breadcrumbs-link">
-								Features                    </a>
+								<a href="afficher.php" class="kt-subheader__breadcrumbs-link">
+								Consulter écoles                    </a>
 								<span class="kt-subheader__breadcrumbs-separator">
 								</span>
 								<a href="" class="kt-subheader__breadcrumbs-link">
-								Misc                    </a>
+								detail de l'école                    </a>
 								<span class="kt-subheader__breadcrumbs-separator">
 								</span>
 								<a href="" class="kt-subheader__breadcrumbs-link">

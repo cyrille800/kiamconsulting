@@ -1,5 +1,8 @@
 <?php 
 session_start();
+if(!isset($_SESSION["id"])){
+    header("location:../../pages_error/404.html");
+}
 $nom="";
 $prenom="";
 $sexe="";
@@ -48,13 +51,20 @@ $ville=patient::retourne_valeur("id_client",$_SESSION["id"],"ville");
         <link href="../../assets/Backoffice/vendors/global/vendors.bundle.css" rel="stylesheet" type="text/css" />
         <link href="../../assets/Backoffice/css/demo4/style.bundle.css" rel="stylesheet" type="text/css" />
 </head>
-<body id="<?php echo $_SESSION["id"];?>">
+<body id="<?php echo $_SESSION["id"];?>" style="background-color:transparent;">
 <div class="preload" style="position:fixed;width:100%;height:100%;background:white;left:0;top:0;z-index:100;padding-top:10%;">
 <center><div class="lds-ring"><div></div><div></div><div></div><div></div></div></center>
 </div>
 
 
 <center>
+	<?php 
+if(isset($_GET["avr"])){
+?>
+<div class="alert alert-primary mx-auto col-5" style="margin-top:6%;">Completer les informations ci dessous avant de continuer </div>
+<?php
+}
+    ?>
 <div class="kt-portlet col-xl-5">
 			<div class="kt-portlet__head">
 				<div class="kt-portlet__head-label">
@@ -236,7 +246,7 @@ toastr.options = {
   "debug": false,
   "newestOnTop": false,
   "progressBar": true,
-  "positionClass": "toast-bottom-right",
+  "positionClass": "toast-top-right",
   "preventDuplicates": false,
   "onclick": null,
   "showDuration": "300",
@@ -268,6 +278,11 @@ if(data!="ok"){
    toastr.error(data);
 }else{
    toastr.success("operation terminée. <br> Les informations seront à jours à la prochiane connexion");
+<?php 
+   if(isset($_GET["avr"])){
+   	echo "document.location.href='index.php';";
+   }
+?>
 }      
     }
 })

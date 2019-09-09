@@ -1,5 +1,8 @@
 <?php 
-
+session_start();
+if(!isset($_SESSION["id_admin"])){
+    header("location: ../../pages_error/404.html");
+}
 require_once "../../../entities/class_client.php";
 require_once "../../../entities/class_message.php";
 ?>

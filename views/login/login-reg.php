@@ -67,10 +67,10 @@
     <div class="uv-login-reg-form">
         <div class="container">
             <div class="row">
-                <div class="col-md-8 col-xs-12 uv-login-reg-from-inner">
-                    <div class="login-logo ">
+                <div class="col-md-5 col-xs-12 uv-login-reg-from-inner">
+                    <div class="login-logo" style="margin-top:-20%;">
                         <center>
-                            <a href="../index.php">
+                            <a href="../Frontend/index.php">
                                 <img src="../Frontend/assets/images/logo3.png" alt="" class="img-responsive " style="transform:scale(0.7,0.7)">
                             </a>
                         </center>
@@ -294,20 +294,20 @@
                     cache: false,
                     processData: false,
                     success: function(data) {
-
-                        if (data != "ok") {
+                        if (data != "client" && data != "admin") {
                             $(".erreur").text(data)
                             $(".erreur").fadeIn("fast");
                             setTimeout(function() {
                                 
-                                $(".erreur").fadeOut("fast");
+                                $(".erreur").fadeOut("slow");
                             }, 2000)
-                            if (commentaire == "false")
-                                document.location.href = "../Backoffice/client/index.php";
-                            else 
-                                document.location.href = "../Frontend/blog-single.php?id=" + id + "&commentaire=" + commentaire;
+                            // if (commentaire == "false")
+                            //     document.location.href = "../Backoffice/client/index.php";
+                            // else 
+                            //     document.location.href = "../Frontend/blog-single.php?id=" + id + "&commentaire=" + commentaire;
 
                         } else {
+                            var lien=data;
                             $(".erreur").hide();
                             if ($("[name='remember-me']").prop("checked") == true) {
                                 Cookies.set('username', $("[name='username']").val(), {
@@ -329,6 +329,7 @@
 
                           
 
+                            document.location.href = "../Backoffice/"+lien+"/index.php";
                         }
                     }
                 })
@@ -468,7 +469,11 @@
                             $("[name='phoneNumber']").val("");
 
                         }
-                    });
+                    })
+                    .fail(function(){
+                        toastr.error("Erreur dans l'enregistrement");
+
+                    })
 
                     return false;
                 }

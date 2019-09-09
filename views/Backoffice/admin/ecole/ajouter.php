@@ -1,4 +1,8 @@
 <?php 
+session_start();
+if(!isset($_SESSION["id_admin"])){
+    header("location: ../../../pages_error/404.html");
+}
 include "../../../../entities/class_specialite.php";
 include "../../../../entities/class_ecole.php";
 $titre="";
@@ -40,39 +44,29 @@ $nombre_place=ecole::retourne_valeur("id",$_GET["id"],"nombre_place");
 		</script>
 	</head>
 	<body specialite="<?php echo ($op)?$specialite:"";?>" operation="<?php echo (isset($_GET["id"]))?"modifier":"ajouter";?>">
-		<!-- begin:: Subheader -->
-		<div class="kt-subheader   kt-grid__item" id="kt_subheader">
-			<div class="kt-subheader__main">
-				<h3 class="kt-subheader__title">
-				Blank Page</h3>
-				<span class="kt-subheader__separator kt-hidden">
-				</span>
-				<div class="kt-subheader__breadcrumbs">
-					<a href="#" class="kt-subheader__breadcrumbs-home">
-						<i class="la la-shelter" style="font-size:25px;">
-						</i>
-					</a>
-					<span class="kt-subheader__breadcrumbs-separator">
-					</span>
-					<a href="" class="kt-subheader__breadcrumbs-link">
-					Features                    </a>
-					<span class="kt-subheader__breadcrumbs-separator">
-					</span>
-					<a href="" class="kt-subheader__breadcrumbs-link">
-					Misc                    </a>
-					<span class="kt-subheader__breadcrumbs-separator">
-					</span>
-					<a href="" class="kt-subheader__breadcrumbs-link">
-					Blank Page                    </a>
-					<!-- <span class="kt-subheader__breadcrumbs-link kt-subheader__breadcrumbs-link--active">
-					Active link</span>
-					-->
-				</div>
-				
-			</div>
-		</div>
-		<!-- end:: Subheader -->
-		<!-- begin:: Content -->
+<div class="kt-subheader   kt-grid__item bg-white" style="padding:20px;padding-left:40px;" id="kt_subheader">
+    <div class="kt-subheader__main">
+              <h3 class="kt-subheader__title">
+              Ecoles</h3>
+              <span class="kt-subheader__separator kt-hidden">
+              </span>
+              <div class="kt-subheader__breadcrumbs">
+                <a href="#" class="kt-subheader__breadcrumbs-home">
+                  <i class="la la-shelter" style="font-size:25px;">
+                  </i>
+                </a>
+                <span class="kt-subheader__breadcrumbs-separator">
+                </span>
+                <a href="" class="kt-subheader__breadcrumbs-link">
+                Listes des écoles                 </a>
+                <!-- <span class="kt-subheader__breadcrumbs-link kt-subheader__breadcrumbs-link--active">
+                Active link</span>
+                -->
+              </div>
+              
+            </div>
+</div>
+
 		<div class="kt-content  kt-grid__item kt-grid__item--fluid" id="kt_content">
 			<div class="preload" style="position:fixed;width:100%;height:100%;background:white;left:0;top:0;z-index:100;padding-top:10%;">
 				<center><div class="lds-ring"><div></div><div></div><div></div><div></div></div></center>
@@ -169,7 +163,7 @@ $nombre_place=ecole::retourne_valeur("id",$_GET["id"],"nombre_place");
 								<div class="col-2">
 								</div>
 								<div class="col-10">
-									<button type="submit" class="btn btn-success">Ajouter</button>
+									<button type="submit" class="btn btn-success"><?php echo (isset($_GET["id"]))?"Modifier":"Ajouter";?></button>
 								</div>
 							</div>
 						</div>
@@ -252,8 +246,25 @@ $nombre_place=ecole::retourne_valeur("id",$_GET["id"],"nombre_place");
 };
 			 $("#formulaire").submit(function(e){
 e.preventDefault();
-
+var avatar=$("[name='avatar']").val();
+var titre=$("[name='titre']").val();
+var site=$("[name='site']").val();
+var ville=$("[name='ville']").val();
+var nombre_place=$("[name='nombre_place']").val();
+var specialite="";
+$("[name='specialite[]']").each(function(){
+	if($(this).is(":checked")){
+		specialite+="junior";
+	}
+})
 if($("body").attr("operation")=="ajouter"){
+if(titre=="" || site=="" || ville=="" || nombre_place=="" || specialite==""){
+	toastr.error("remplir tous les champs");
+}else{
+		var regex = new RegExp("^[0-9]+$");
+if (regex.test(nombre_place)==false) {
+toastr.error("Ecrivez le nombre de place en chiffre, pas de carractère")
+}else{
 $.ajax({
     type : 'POST',
     url : '../../../../entities/school.php',
@@ -265,10 +276,24 @@ $.ajax({
 if(data!="ok"){
 toastr.error(data);   
     }else{
+    	$("[name='avatar']").val("")
+$("[name='titre']").val("")
+$("[name='site']").val("")
+$("[name='ville']").val("")
+$("[name='nombre_place']").val("")
  toastr.success("opération terminer");    	
     }
 }
 })
+}
+}
+}else{
+if(titre=="" || site=="" || ville=="" || nombre_place=="" || specialite==""){
+	toastr.error("remplir tous les champs");
+}else{
+		var regex = new RegExp("^[0-9]+$");
+if (regex.test(nombre_place)==false) {
+toastr.error("Ecrivez le nombre de place en chiffre, pas de carractère")
 }else{
 $.ajax({
     type : 'POST',
@@ -285,6 +310,8 @@ toastr.error(data);
     }
 }
 })
+}
+}
 }
 
 })

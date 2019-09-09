@@ -107,7 +107,7 @@ class quizz
 		$tableau = [];
 		$tableaui = [];
 		$o = 0;
-		$requette = config::$bdd->query("select * from qizz where id_concour=" . $id);
+		$requette = config::$bdd->query("select * from qizz where id_concour=".$id);
 		$i = 0;
 		while ($data = $requette->fetch()) {
 			$o = 1;
@@ -298,9 +298,9 @@ class quizz
 			return 'Erreur: ' . $e->getMessage();
 		}
 	}
-	public static function verifierPasserQuizz($idEtudiant, $idConcour)
+	public static function verifierPasserQuizz($idEtudiant)
 	{
-		$req = config::$bdd->prepare("select count(*) as nombre from clientconcour where idEtudiant=" . $idEtudiant . " and idConcour=" . $idConcour);
+		$req = config::$bdd->prepare("select count(*) as nombre from clientconcour where idEtudiant=" . $idEtudiant );
 		try {
 			if ($req->execute()) {
 				$rows = $req->fetchAll();

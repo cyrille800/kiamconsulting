@@ -21,8 +21,24 @@ require_once "../../../entities/class_client.php";
             <ul class="kt-menu__nav ">
 
                 <li class="kt-menu__item  kt-menu__item--open kt-menu__item--here kt-menu__item--submenu kt-menu__item--rel kt-menu__item--open kt-menu__item--here">
+                    <?php
+                    $lien = "";
+                    $resultat = etudiant::retourne_valeur("id_client", $_SESSION["id"], "resultat");
+                    if ($resultat == 1) {
+                        $lien = "dashboard.php";
+                    } else {
+                        if ($resultat == -1) {
+                            $lien = "echec";
+                        } else {
+                            $lien = "bienvenu.php";
+                        }
+                    }
 
-                    <a href="bienvenu.php" target="frame1" class="kt-menu__link ">
+                    if ($_SESSION["type"] == 1) {
+                        $lien = "bienvenu_patient.php";
+                    }
+                    ?>
+                    <a href="<?php echo $lien; ?>" target="frame1" class="kt-menu__link ">
 
                         <span class="kt-menu__link-text">
 
@@ -43,7 +59,8 @@ require_once "../../../entities/class_client.php";
 
 
                 <?php
-                if ($_SESSION["type"] == 0) {
+                $resultat = etudiant::retourne_valeur("id_client", $_SESSION["id"], "resultat");
+                if ($_SESSION["type"] == 0 && $resultat == 0) {
                     echo '                                            <li class="kt-menu__item kt-menu__item--submenu kt-menu__item--rel">
 
                                                 <a  href="liste_ecole.php" target="frame1" class="kt-menu__link ">
@@ -64,28 +81,71 @@ require_once "../../../entities/class_client.php";
 
                                             </li>';
                 }
+                if ($_SESSION["type"] == 1) {
+
+                    $resultat = patient::retourne_valeur("id_client", $_SESSION["id"], "resultat");
+                    if ($resultat == -1 || $resultat == 0) {
+                        if ($resultat == -1) {
+                            echo '                                            <li class="kt-menu__item kt-menu__item--submenu kt-menu__item--rel">
+
+                                                
+
+                                                    <span class="kt-menu__link-text btn btn-sm btn-info envoyer_demande" style="cursor:pointer;">
+
+                                                    <i class="fas fa-arrow-right"></i> Envoyer une demade de services</span>
+
+                                                
+
+                                            </li>';
+                        } else {
+                            echo '                                            <li class="kt-menu__item kt-menu__item--submenu kt-menu__item--rel">
+
+                                                
+
+                                                    <span class="kt-menu__link-text btn btn-sm btn-success">
+
+                                                   <i class="fa fa-stop-circle" aria-hidden="true"></i> Demande envoyer </span>
+                                                
+
+                                            </li>';
+                        }
+                    }
+                }
                 ?>
 
-                <li class="kt-menu__item kt-menu__item--submenu kt-menu__item--rel">
 
-                    <a href="detail.php" target="frame1" class="kt-menu__link ">
+                <?php
+                if ($_SESSION["type"] == 1) {
+                    $resultat = patient::retourne_valeur("id_client", $_SESSION["id"], "resultat");
+                }
+                if ($_SESSION["type"] == 0) {
+                    $resultat = etudiant::retourne_valeur("id_client", $_SESSION["id"], "resultat");
+                }
+                if (intval($resultat) == 1) {
+                    ?>
+                    <li class="kt-menu__item kt-menu__item--submenu kt-menu__item--rel">
 
-                        <span class="kt-menu__link-text">
+                        <a href="detail.php" target="frame1" class="kt-menu__link ">
 
-                            Activités</span>
+                            <span class="kt-menu__link-text">
 
-                        <i class="kt-menu__hor-arrow la la-angle-down">
+                                Services</span>
 
-                        </i>
+                            <i class="kt-menu__hor-arrow la la-angle-down">
 
-                        <i class="kt-menu__ver-arrow la la-angle-right">
+                            </i>
 
-                        </i>
+                            <i class="kt-menu__ver-arrow la la-angle-right">
 
-                    </a>
+                            </i>
 
-                </li>
+                        </a>
 
+                    </li>
+                <?php
+                }
+
+                ?>
                 <li class="kt-menu__item kt-menu__item--submenu kt-menu__item--rel" data-ktmenu-submenu-toggle="click" aria-haspopup="true">
                     <a href="javascript:;" class="kt-menu__link kt-menu__toggle">
                         <span class="kt-menu__link-text">
@@ -106,13 +166,19 @@ require_once "../../../entities/class_client.php";
                     </a>
                     <div class="kt-menu__submenu kt-menu__submenu--classic kt-menu__submenu--left">
                         <ul class="kt-menu__subnav">
-                            <li class="kt-menu__item im ink" aria-haspopup="true">
-                                <a href="message.php" class="kt-menu__link " target="frame1">
-                                    <span class="kt-menu__link-text">
-                                        Inbox message &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kt-badge kt-badge--brand iok">
-                                            0</span></span>
-                                </a>
-                            </li>
+                            <?php
+                            if (intval($resultat) == 1) {
+                                ?>
+                                <li class="kt-menu__item im ink" aria-haspopup="true">
+                                    <a href="message.php" class="kt-menu__link " target="frame1">
+                                        <span class="kt-menu__link-text">
+                                            Inbox message &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kt-badge kt-badge--brand iok">
+                                                0</span></span>
+                                    </a>
+                                </li>
+                            <?php
+                            }
+                            ?>
                             <li class="kt-menu__item im" aria-haspopup="true">
                                 <a href="<?= '../../../views/Frontend/index.php' ?>" class="kt-menu__link " target="_blank">
                                     <span class="kt-menu__link-text">
@@ -126,24 +192,67 @@ require_once "../../../entities/class_client.php";
                         </ul>
                     </div>
                 </li>
+
                 <?php
-                $isEtutiant = client::verifierEtudiant($_SESSION["id"]);
-                if ($isEtutiant == 0) {
+
+                if ($_SESSION["type"] == 0) {
+                    $resultat = etudiant::retourne_valeur("id_client", $_SESSION["id"], "resultat");
+                    if (intval($resultat) == 0) {
+                        ?>
+                        <li class="kt-menu__item kt-menu__item--submenu kt-menu__item--rel">
+                            <?php
+                                    // $lien = "";
+                                    // $temp = concours::concoursLePlusProche();
+                                    // if (isset($_SESSION["id"]) && $temp > 0)
+                                    //     $lien = intval(quizz::verifierPasserQuizz($_SESSION["id"], $temp)) ? "quizzDejaFait.php" : "quizz.php";
+                                    // else
+                                    //     $lien = "quizz.php";
+                                    ?>
+                        <li class="kt-menu__item kt-menu__item--submenu kt-menu__item--rel">
+                            <?php
+                                    // $lien = "";
+                                    // $temp = concours::concoursLePlusProche();
+                                    // if (isset($_SESSION["id"]) && $temp > 0)
+                                    //     $lien = intval(quizz::verifierPasserQuizz($_SESSION["id"], $temp)) ? "quizzDejaFait" : "quizz.php";
+                                    // else
+                                    //     $lien = "quizz.php";
+                                    ?>
+                            <a href="quizz.php" target="frame1" class="kt-menu__link " id="quizz">
+
+                                <span class="kt-menu__link-text">
+
+                                    Quizz</span>
+
+                                <i class="kt-menu__hor-arrow la la-angle-down">
+
+                                </i>
+
+                                <i class="kt-menu__ver-arrow la la-angle-right">
+
+                                </i>
+
+                            </a>
+
+                        </li>
+                    <?php
+                        }
+                        ?>
+
+
+                    </li>
+                <?php
+                }
+
+                if (intval($resultat) == 1) {
                     ?>
+
                     <li class="kt-menu__item kt-menu__item--submenu kt-menu__item--rel">
-                        <?php
-                            $lien = "";
-                            $temp = concours::concoursLePlusProche();
-                            if (isset($_SESSION["id"]) && $temp > 0)
-                                $lien = intval(quizz::verifierPasserQuizz($_SESSION["id"], $temp)) ? "quizzDejaFait" : "quizz.php";
-                            else
-                                $lien = "quizz.php";
-                            ?>
-                        <a href="<?= $lien ?>" target="frame1" class="kt-menu__link " id="quizz">
+
+                        <a href="paiement.php" target="frame1" class="kt-menu__link ">
 
                             <span class="kt-menu__link-text">
 
-                                Quizz</span>
+                                Paiement</span>
 
                             <i class="kt-menu__hor-arrow la la-angle-down">
 
@@ -159,30 +268,6 @@ require_once "../../../entities/class_client.php";
                 <?php
                 }
                 ?>
-
-
-
-                <li class="kt-menu__item kt-menu__item--submenu kt-menu__item--rel">
-
-                    <a href="paiement.php" target="frame1" class="kt-menu__link ">
-
-                        <span class="kt-menu__link-text">
-
-                            Paiement</span>
-
-                        <i class="kt-menu__hor-arrow la la-angle-down">
-
-                        </i>
-
-                        <i class="kt-menu__ver-arrow la la-angle-right">
-
-                        </i>
-
-                    </a>
-
-                </li>
-
-
             </ul>
 
         </div>

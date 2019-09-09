@@ -2,6 +2,7 @@
 require_once "function.php";
 require_once "config.php"; 
 require_once "class_activiter_client.php";
+require_once "class_etudiant.php";
     config::connexion();
 class ecole{
     private $titre;
@@ -69,30 +70,42 @@ function ajouter(){
 }
 public static function verifiers($type,$valeur){
         $i=0;
-            $requette=config::$bdd->query("select * from school where ".$type."='".$valeur."'");
-                        while($data=$requette->fetch()){
+            $requette=config::$bdd->prepare("select * from school where ".$type."=:".$type);
+            $requette->bindValue(":".$type,$valeur);
+            $requette->execute();
+    while($data=$requette->fetch()){
         $i=1;                       
     }
+
     if($i>=1){
         return false;
     }
     else{
         return true;
     }
+
     }
+
+
 public static function verifier($id,$type,$valeur){
         $i=0;
-            $requette=config::$bdd->query("select * from school where ".$type."='".$valeur."' and id!=".$id);
+            $requette=config::$bdd->prepare("select * from school where ".$type."=:".$type." and id!=:id");
+                        $requette->bindValue(":".$type,$valeur);
+                        $requette->bindValue(":id",$id);
+            $requette->execute();
                         while($data=$requette->fetch()){
         $i=1;                       
     }
+
     if($i>=1){
         return false;
     }
     else{
         return true;
     }
+
     }
+
     public static function afficher_liste(){
         $tableau=[];
         $tableaui=[];
@@ -155,13 +168,28 @@ public static function verifier($id,$type,$valeur){
             </div>';
                         }
     }
-    public static function afficher_client(){
+    public static function afficher_client($n,$y){
+        $id_ecole=intval(etudiant::retourne_valeur("id_client",$y,"ecole_choisie"));
+            if($n!=1){
+        if($n==2){
+            $n=4;
+        }else{
+            $n*=2+1;
+        }
+    }
+    if($n==1){
+        $n=0;
+    }
         $tableau=[];
         $tableaui=[];
-            $requette=config::$bdd->query("select * from school");
+            $requette=config::$bdd->query("select * from school limit ".$n.",4");
             $i=0;
                         while($data=$requette->fetch()){
-                    echo '<tr data-row="'.$i.'" class="kt-datatable__row kt-datatable__row--even" style="left: 0px;">
+                    echo '<tr data-row="'.$i.'" class="kt-datatable__row kt-datatable__row--even" style="left: 0px;';
+if($id_ecole==$data["id"]){
+    echo "background-color:rgba(0,0,255,0.1)";
+}
+                    echo '">
                                         <td data-field="first_name" class="kt-datatable__cell">
                                             <span style="width: 200px;">
                                                 <div class="kt-user-card-v2">
@@ -215,8 +243,10 @@ foreach ($tab as $key => $value) {
                                                 
                                             echo '</span>
                                         </td>
-                                        <td data-field="Actions" data-autohide-disabled="false" class="kt-datatable__cell">
-                                            <span style="overflow: visible; position: relative; width: 80px;" class="">
+                                        <td data-field="Actions" data-autohide-disabled="false" class="kt-datatable__cell" style="';
+                                        echo'">';
+if($id_ecole!=$data["id"]){
+    echo '                                            <span style="overflow: visible; position: relative; width: 80px;" class="">
                                                 <div class="dropdown">
                                                     <a data-toggle="dropdown" class="btn btn-sm btn-clean btn-icon btn-icon-md" style="cursor:pointer;">
                                                         <i class="la la-ellipsis-v" style="font-size:25px;">
@@ -238,8 +268,11 @@ foreach ($tab as $key => $value) {
                                                         </ul>
                                                     </div>
                                                 </div>
-                                            </span>
-                                        </td>
+                                            </span>';
+}else{
+    echo '<span class="text-center text-info">Ecole choisie</span>';
+}
+                                        echo '</td>
                                     </tr>';
                                     $i++;
                         }

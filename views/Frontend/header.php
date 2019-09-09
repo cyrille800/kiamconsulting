@@ -183,8 +183,7 @@ require_once "../../entities/class_commentaire.php";
                                                 <img height="30px" src=<?= $imageProfil?>>
                                                 <?= $username ?>
                                             </a>
-                                            <
-                                            ul class="dropdown-menu" >
+                                            <ul class="dropdown-menu" >
                                                 <li><a href="../Backoffice/client/index.php">Page principale</a></li>
                                                 <li><a href=<?="../login/deconnexion.php"?> >Se déconnecter</a></li>
 

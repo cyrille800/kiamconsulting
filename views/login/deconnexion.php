@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(isset($_SESSION["id"])){
+if(isset($_SESSION["id"])|| isset($_SESSION["id_admin"])){
 	$_SESSION=[];
 	session_destroy();
 	header("location:login-reg.php");

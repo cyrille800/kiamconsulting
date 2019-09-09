@@ -1,5 +1,8 @@
 <?php 
-
+session_start();
+if(!isset($_SESSION["id_admin"])){
+    header("location: ../../pages_error/404.html");
+}
 require_once "../../../entities/class_client.php";
 require_once "../../../entities/class_message.php";
 ?>
@@ -64,13 +67,35 @@ require_once "../../../entities/class_message.php";
 
     <!-- begin::Body -->
     <body  class="kt-quick-panel--right kt-demo-panel--right kt-offcanvas-panel--right kt-header--fixed kt-header-mobile--fixed kt-subheader--enabled kt-subheader--fixed kt-subheader--solid kt-aside--enabled kt-aside--fixed kt-page--loading" style="background-color:#e5e4ef;overflow-x:hidden;opacity:0;">
+<div class="kt-subheader   kt-grid__item bg-white mb-4" style="padding:10px;padding-left:40px;position:absolute;left:0;top:0;" id="kt_subheader">
+    <div class="kt-subheader__main">
+                            <h3 class="kt-subheader__title">
+                            Messagerie</h3>
+                            <span class="kt-subheader__separator kt-hidden">
+                            </span>
+                            <div class="kt-subheader__breadcrumbs">
+                                <a href="#" class="kt-subheader__breadcrumbs-home">
+                                    <i class="la la-shelter" style="font-size:25px;">
+                                    </i>
+                                </a>
+                                <span class="kt-subheader__breadcrumbs-separator">
+                                </span>
+                                <a href="" class="kt-subheader__breadcrumbs-link">
+                                liste des clients                   </a>
+                                <!-- <span class="kt-subheader__breadcrumbs-link kt-subheader__breadcrumbs-link--active">
+                                Active link</span>
+                                -->
+                            </div>
+                            
+                        </div>
+</div>
 <!-- end:: Content Head -->                 
                     <!-- begin:: Content -->
     <div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid mt-5 ml-5">
         <!--Begin::Dashboard 1-->
 
 <!--Begin::Row-->
-<div class="row  mx-auto">      
+<div class="row  mx-auto" style="margin-top:50px;">      
 
 <div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid ml-5">
         <!--Begin::Section-->
@@ -100,8 +125,8 @@ require_once "../../../entities/class_message.php";
                     </div>
                 </div>
                 <div class="kt-widget kt-widget--users kt-mt-20">
-                    <div class="kt-scroll kt-scroll--pull ps ps--active-y" style="height: 667px; overflow: hidden;">
-                        <div class="kt-widget__items">
+                    <div class="" style="height: 667px; overflow-y: hidden;">
+                        <div class="kt-widget__items"  style="height: 530px; overflow-y: scroll;">
 <?php 
 client::afficher();
 ?>

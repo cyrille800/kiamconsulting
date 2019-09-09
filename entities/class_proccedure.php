@@ -54,19 +54,23 @@ function ajouter(){
 		  	return 0;
 	  	
 }
-public static function verifiers($type,$valeur,$id){
-		$i=0;
-		  	$requette=config::$bdd->query("select * from proccedure where ".$type."='".$valeur."' && id_active=".$id);
+public static function verifiers($type,$valeur){
+        $i=0;
+            $requette=config::$bdd->prepare("select * from proccedure where ".$type."=:".$type);
+            $requette->bindValue(":".$type,$valeur);
+            $requette->execute();
     while($data=$requette->fetch()){
-		$i=1;                		
-	}
-	if($i>=1){
-		return false;
-	}
-	else{
-		return true;
-	}
-	}
+        $i=1;                       
+    }
+
+    if($i>=1){
+        return false;
+    }
+    else{
+        return true;
+    }
+
+    }
 	public static function nombre($v,$id){
 	$requette=config::$bdd->prepare("select count(*) from proccedure where ".$v."=:".$v);
 	$requette->bindValue(":".$v,$id);
@@ -75,18 +79,23 @@ public static function verifiers($type,$valeur,$id){
 	return $data[0];
 	}
 public static function verifier($id,$type,$valeur){
-		$i=0;
-		  	$requette=config::$bdd->query("select * from proccedure where ".$type."='".$valeur."' and id!=".$id);
-                		while($data=$requette->fetch()){
-		$i=1;                		
-	}
-	if($i>=1){
-		return false;
-	}
-	else{
-		return true;
-	}
-	}
+        $i=0;
+            $requette=config::$bdd->prepare("select * from proccedure where ".$type."=:".$type." and id!=:id");
+                        $requette->bindValue(":".$type,$valeur);
+                        $requette->bindValue(":id",$id);
+            $requette->execute();
+                        while($data=$requette->fetch()){
+        $i=1;                       
+    }
+
+    if($i>=1){
+        return false;
+    }
+    else{
+        return true;
+    }
+
+    }
 	public static function afficher($id){
 		$tableau=[];
 		$tableaui=[];
@@ -188,7 +197,11 @@ $oi=0;
                 <form class="kt-form"  method="post" id="formulaire" enctype="multipart/form-data">
                     
                     <!--begin: Form Wizard Step 1-->
-                    image de demonstration <button type="button" data-target="#simage" class="btn btn-info btn-icon btn-circle ml-5" data-skin="dark" data-toggle="modal" title="" data-original-title="Afficher limage" url="../../assets/Backoffice/media/etapes/'.$data['id'].'.png"><i class="fa fa-tags"></i></button><br><br>
+                    ';
+if(file_exists('../../assets/Backoffice/media/etapes/'.$data['id'].'.png')){
+echo 'image de demonstration <button type="button" data-target="#simage" class="btn btn-info btn-icon btn-circle ml-5" data-skin="dark" data-toggle="modal" title="" data-original-title="Afficher limage" url="../../assets/Backoffice/media/etapes/'.$data['id'].'.png"><i class="fa fa-tags"></i></button><br><br>';
+}
+                    echo'
                     <div class="kt-wizard-v1__content" data-ktwizard-type="step-content" data-ktwizard-state="current">
                         <div class="kt-heading kt-heading--md text-center">
                         ';
