@@ -279,7 +279,16 @@ if (isset($_SESSION["id"]) && isset($_SESSION["type"])) {
                                                     </center>
                                                     <div class="kt-section" id="dashboard" style="display: none;">
                                                         <div class="kt-heading kt-heading--md kt-heading--medium">Le tableau de bord</div>
-                                                        <center><img src="../../assets/backoffice/images/dashboard.jpg"   class="img-fluid"  alt="" width="25%"><br><br>
+                                                        <?php
+                                                        if ($_SESSION["id"]=0) {
+                                                            $lien="../../assets/backoffice/images/dashboard.jpg";
+                                                        } else {
+                                                            $lien="../../assets/backoffice/images/patient.jpg";
+
+                                                        }
+                                                        
+                                                        ?>
+                                                        <center><img src="<?=$lien?>"   class="img-fluid"  alt="" width="25%"><br><br>
                                                             <div class="card-title">
                                                                 kiamconsulting vous souhaite la bienvenue dans votre espace étudiant. Veuiller cliquer sur les différents liens à votre gauche pour avoir une meilleure appréhension du fonctionnement de l'application !
                                                             </div>

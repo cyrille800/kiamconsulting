@@ -242,7 +242,7 @@ require_once "../../entities/class_commentaire.php";
                                     <li class="active"><a class="main-a" href="index.php">Deconnexion</a>
                                 <ul>
                                     <li><a href="../login/deconnexion.php">Se déconnecter</a></li>
-                                    <li class="active"><a class="main-a" href="../Backoffice/client/index.php">Page Principale</a>
+                                                                        <li class="active"><a class="main-a" href="../Backoffice/client/index.php">Page Principale</a>
 
                                 </ul>
                             </li>
