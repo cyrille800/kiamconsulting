@@ -79,11 +79,11 @@ class client
 				$req->bindValue(':password', md5($this->get_password()));
 				$req->bindValue(':type', $this->get_type());
 				$req->bindValue(':numero', $this->get_numero());
-				echo $this->get_numero();
 				if ($req->execute()) {
+					echo "ok";
 					$id = self::retourne_valeur("email", $this->get_email(), "id");
 					copy("../views/assets/backoffice/media/users/inviter.png", "../views/assets/backoffice/media/users/" . $id . ".png");
-					return "true";
+					
 				}
 			} else {
 				return "false";

@@ -211,6 +211,20 @@ include "../../../../entities/class_specialite.php";
 							} else {
 								toastr.success("operation terminée.");
 								$("table tbody").append("<tr><td class='text-center'>" + data + "</td><td class='text-center'>" + $("[name='titre']").val() + "</td><td class='text-center'><button type='button'  id='" + data + "'  class='btn btn-sm btn-clean btn-icon btn-icon-md modifier' ><i class='la la-edit'></i></button>&nbsp;&nbsp;&nbsp;<button type='button' id='" + data + "' title='Delete' class='btn btn-sm btn-clean btn-icon btn-icon-md supprimer'><i class='la la-trash'></i></button></td></tr>")
+
+								$(".supprimer").click(function() {
+				valeur = $(this);
+				$.post("../../../../entities/specialite.php", {
+					operation: "supprimer",
+					id: $(this).attr("id")
+				}, function(data) {
+					if (data != "ok") {
+						toastr.error(data);
+					} else {
+						valeur.parent().parent().hide();
+					}
+				})
+			})
 							}
 						}
 					})

@@ -460,7 +460,8 @@
                         data: $("#register-form").serialize() + "&operation=registration",
 
                         success: function(data) {
-                            toastr.info("Enregistrement terminé veuillez vous connecter");
+if($.trim(data)=="ok"){
+    toastr.info("Enregistrement terminé veuillez vous connecter");
                             $("[name='email']").val("");
                             $("[name='regusername']").val("");
                             $("[name='regpassword']").val("");
@@ -468,6 +469,9 @@
                             $("[name='type']").prop("checked", false);
                             $("[name='email']").val("");
                             $("[name='phoneNumber']").val("");
+                        }else{
+    toastr.info("mauvaise requette");                        
+                        }
 
                         }
                     })

@@ -64,7 +64,7 @@ require_once "../../../entities/class_details_plus.php";
 
 
                     <center>
-                                <div class="element">
+                                <div class="element col-8">
                                     <?php
                                     if(isset($_COOKIE["id_activiter"])){
                                     if(!empty($_COOKIE["id_activiter"])){

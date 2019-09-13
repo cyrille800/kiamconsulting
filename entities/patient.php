@@ -35,7 +35,7 @@ if(verification_post(["nom","prenom","id_client","pays","ville","operation"])==1
 			patient::modifier($id_client,"pays",$pays);
 			patient::modifier($id_client,"ville",$ville);
 			patient::modifier($id_client,"sexe",$sexe);
-			$reponse="ok";
+			$reponse=$id_client."ok";
 		}
 	}
 }

@@ -272,7 +272,7 @@ foreach ($tab as $key => $value) {
         }
     }
         public static function modifier($id,$e,$i){
-        $req=config::$bdd->prepare("update patient set ".$e."=:".$e." where id=:id");
+        $req=config::$bdd->prepare("update patient set ".$e."=:".$e." where id_client=:id_client");
         $req->bindValue(':id',$id);
         $req->bindValue(':'.$e,$i); 
         

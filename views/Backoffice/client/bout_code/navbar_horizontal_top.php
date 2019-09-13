@@ -155,7 +155,7 @@
                                     $resultat = patient::retourne_valeur("id_client", $_SESSION["id"], "resultat");
                                 }
                                 if ($_SESSION["type"] == 0) {
-                                    $resultat = client::retourne_valeur("id_client", $_SESSION["id"], "resultat");
+                                    $resultat = etudiant::retourne_valeur("id_client", $_SESSION["id"], "resultat");
                                 }
                                 if (intval($resultat) == 1) {
                                     ?>

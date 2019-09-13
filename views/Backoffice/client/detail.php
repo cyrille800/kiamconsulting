@@ -103,7 +103,7 @@ echo "none";
                     <span class="alert-text">Vous ne pouvez plus modifier les informations concernant l\'ecole choisi,<br>Vous devez annuler toutes les activitées en cours pour pouvoir faire des modifications .</span>
                 </div>';
                 
-                if($t=="0" || $t==""){
+                if(($t=="0" || $t=="") && $_SESSION["type"]!=1 ){
                 echo '<div class="alert alert-danger fade show specialite" role="alert">
                     <div class="alert-icon"><i class="la la-question-circle"></i></div>
                     <div class="alert-text">Vous devez selectionner une spécialité</div>
