@@ -336,7 +336,6 @@
                                 message:$("[name='message']").val(),
                             },
                             success: function(data) {
-                                alert(data);
                                 toastr.success("reponse envoyé");
                                 setTimeout(() => {
                                     $('#reponse').modal("hide");

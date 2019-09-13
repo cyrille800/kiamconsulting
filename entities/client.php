@@ -2,6 +2,9 @@
 session_start();
 include_once "class_client.php";
 include_once "class_admin.php";
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+require 'phpMailer/vendor/autoload.php';
 function verification_post($tableau)
 {
 

@@ -14,10 +14,15 @@ class Post
 	private $image;
 	private $auteur;
 	private $introduction;
+	private $vues;
 
 	function get_titre()
 	{
 		return $this->titre;
+	}
+	function get_vues()
+	{
+		return $this->vues;
 	}
 	function get_date()
 	{
@@ -59,6 +64,10 @@ class Post
 	{
 		$this->image = $valeur;
 	}
+	function set_vues($valeur)
+	{
+		$this->vues = $valeur;
+	}
 
 
 	function set_auteur($valeur)
@@ -74,7 +83,7 @@ class Post
 		$this->Cateogorie = $valeur;
 	}
 
-	public function __construct($titre, $date, $contenu, $categorie, $image, $auteur, $introduction)
+	public function __construct($titre, $date, $contenu, $categorie, $image, $auteur, $introduction,$vues)
 	{
 		$this->set_titre($titre);
 		$this->set_date($date);
@@ -83,14 +92,15 @@ class Post
 		$this->set_Image($image);
 		$this->set_auteur($auteur);
 		$this->set_introduction($introduction);
+		$this->set_vues($vues);
 	}
 
-	static function ajouter($post)
+	public static function ajouter($post)
 	{
-		$sql = "insert into post (titre,date,contenu,Categorie,image,auteur,introduction) values (:titre,:date,:contenu,:Categorie,:image,:auteur,:introduction)";
+		$sql = "insert into post (titre,date,contenu,Categorie,image,auteur,introduction,vues) values (:titre,:date,:contenu,:Categorie,:image,:auteur,:introduction,:vues)";
 		try {
 			$requette = config::$bdd->prepare($sql);
-			$requette = BindValue($requette, array("titre", "date", "contenu", "Categorie", "image", "auteur", "introduction"), array($post->get_titre(), $post->get_date(), $post->get_contenu(), $post->get_Cateogorie(), $post->get_Image(), $post->get_auteur(), $post->get_introduction()));
+			$requette = BindValue($requette, array("titre", "date", "contenu", "Categorie", "image", "auteur", "introduction","vues"), array($post->get_titre(), $post->get_date(), $post->get_contenu(), $post->get_Cateogorie(), $post->get_Image(), $post->get_auteur(), $post->get_introduction(),$post->get_vues()));
 			if ($requette->execute()) {
 				return  "post ajouté";
 			}
@@ -98,7 +108,19 @@ class Post
 			return 'Erreur: ' . $e->getMessage();
 		}
 	}
-	static function verifier($titre)
+	public static function modifier($post,$idPost){
+		$sql = "update  post set titre=:titre , date=:date , contenu=:contenu , Categorie=:Categorie , image=:image , auteur=:auteur , introduction=:introduction where id=:id";
+		try {
+			$requette = config::$bdd->prepare($sql);
+			$requette = BindValue($requette, array("titre", "date", "contenu", "Categorie", "image", "auteur", "introduction","id"), array($post->get_titre(), $post->get_date(), $post->get_contenu(), $post->get_Cateogorie(), $post->get_Image(), $post->get_auteur(), $post->get_introduction(),$idPost));
+			if ($requette->execute()) {
+				return  "post modifié";
+			}
+		} catch (Exception $e) {
+			return 'Erreur: ' . $e->getMessage();
+		}
+	}
+	public static function verifier($titre)
 	{
 		$sql = "select count(*) as nombre from post where titre=:titre";
 		$requette = config::$bdd->prepare($sql);
@@ -116,7 +138,7 @@ class Post
 			echo 'Erreur: ' . $e->getMessage();
 		}
 	}
-	static function afficherBlog($postDepart, $nombrePostPage, $sql)
+	public static function afficherBlog($postDepart, $nombrePostPage, $sql)
 	{
 
 		$sql .= " order by id desc limit " . $postDepart . "," . $nombrePostPage;
@@ -174,7 +196,7 @@ class Post
 			return 'Erreur: ' . $e->getMessage();
 		}
 	}
-	static function nombreCommentaire($idPost)
+	public static function nombreCommentaire($idPost)
 	{
 		$sql = "select count(*) as nombre from commentaire where idPost=" . $idPost;
 		try {
@@ -187,7 +209,7 @@ class Post
 			return 'Erreur: ' . $e->getMessage();
 		}
 	}
-	static function afficherPost($idPost)
+	public static function afficherPost($idPost)
 	{
 		$sql = "select * from post where id=" . $idPost;
 		try {
@@ -242,7 +264,7 @@ class Post
 		}
 	}
 
-	static function postPopulaire()
+	public static function postPopulaire()
 	{
 		$views = array();
 		$temp = array();
@@ -267,7 +289,7 @@ class Post
 			return 'Erreur: ' . $e->getMessage();
 		}
 	}
-	static function afficherPostPopulaire($post)
+	public static function afficherPostPopulaire($post)
 	{
 		foreach ($post as $key => $post) {
 			$sql = "select * from post where id=" . $post;
@@ -282,7 +304,7 @@ class Post
 			}
 		}
 	}
-	static function parcourirPost($rows)
+	public static function parcourirPost($rows)
 	{
 		foreach ($rows as $key => $rows) {
 			echo '	<li>
@@ -293,7 +315,7 @@ class Post
 		}
 	}
 
-	static function rechercherPost($idPost)
+	public static function rechercherPost($idPost)
 	{
 		$sql = "select * from post where id=" . $idPost;
 		try {
@@ -306,7 +328,7 @@ class Post
 			return 'Erreur: ' . $e->getMessage();
 		}
 	}
-	static function afficherPostAccueil()
+	public static function afficherPostAccueil()
 	{
 		$sql = "select * from post  order by id desc limit 0 , 3";
 		try {
@@ -339,4 +361,6 @@ class Post
 			return 'Erreur: ' . $e->getMessage();
 		}
 	}
+	
+	
 }

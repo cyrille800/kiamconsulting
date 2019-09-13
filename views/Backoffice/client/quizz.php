@@ -25,8 +25,8 @@ function datePublication2()
         $heure = $date0[1];
         $date = explode("-", $date1);
         $annee = $date[0];
-        $jour = $date[1];
-        $mois = $date[2];
+        $mois = $date[1];
+        $jour = $date[2];
         $dateFinal = $mois . "/" . $jour . "/" . $annee . " " . $heure;
         return $dateFinal;
     }
@@ -320,14 +320,14 @@ function datePublication2()
             setTimeout(function() {
                 $("#Suivant").click(function() {
                     var i = 1;
-                    $(".slider-label").not($(".slider-label.slider-label-active")).each(function() {
+                    $(".slider-label").each(function() {
                         if ($(this).find("span").length == 1) {
                             $("[data-radio='option" + i + "']").css({
                                 "background-color": "#FF7069",
                                 "opacity": "1"
                             });
                         } else {
-                            if ($("[data-radio='option" + i + "']").css("background-color") != "#FF7069") {
+                            if ($("[data-radio='option" + i + "']").not(".slider-label-active").css("background-color") != "#FF7069") {
                                 $("[data-radio='option" + i + "']").css({
                                     "opacity": "0.4"
                                 });
@@ -339,14 +339,14 @@ function datePublication2()
                 })
                 $("#Precedent").click(function() {
                     var i = 1;
-                    $(".slider-label").not($(".slider-label.slider-label-active")).each(function() {
+                    $(".slider-label").each(function() {
                         if ($(this).find("span").length == 1) {
                             $("[data-radio='option" + i + "']").css({
                                 "background-color": "#FF7069",
                                 "opacity": "1"
                             });
                         } else {
-                            if ($("[data-radio='option" + i + "']").css("background-color") != "#FF7069") {
+                            if ($("[data-radio='option" + i + "']").not(".slider-label-active").css("background-color") != "#FF7069") {
                                 $("[data-radio='option" + i + "']").css({
                                     "opacity": "0.4"
                                 });
@@ -356,7 +356,7 @@ function datePublication2()
                         i++;
                     })
                 })
-               
+
             }, 3000)
         })
         var questionNumber = 0;
@@ -384,11 +384,21 @@ function datePublication2()
             } else $("#option" + a).next("label").text(b);
         }
 
-        function notAnsweredQuestions2(questionNumber) {
-            for (let index = 0; index < questionNumber; index++) {
-                let c = index + 1;
-                if (answers[index] == null) {
-                    console.log(c,questionNumber);
+        function notAnsweredQuestions2(questionNumber, questionNumber2) {
+            let c;
+            for (let index = 0; index <= questionNumber; index++) {
+                if (questionNumber > questionNumber2) {
+                    c = index + 1;
+                    if (answers[index] == undefined) {
+                        $("#option" + c).css("color", "red");
+                        if ($("#option" + c).next("label").children("span").length == 0)
+                            $("#option" + c).next("label").append("<span>...</span>");
+                    } else $("#option" + c).next("label").text(c);
+                }
+            }
+            if (questionNumber < questionNumber2) {
+                c = questionNumber2 + 1;
+                if (answers[questionNumber2] == null) {
                     $("#option" + c).css("color", "red");
                     if ($("#option" + c).next("label").children("span").length == 0)
                         $("#option" + c).next("label").append("<span></span>");
@@ -554,7 +564,7 @@ function datePublication2()
                     questionNumber = parseInt(value.attr("id").substr(6, 2)) - 1;
                     precedentButton();
                     Answers(questionNumber2);
-                    notAnsweredQuestions2(questionNumber)
+                    notAnsweredQuestions2(questionNumber, questionNumber2)
                     updateQuizz(questionNumber);
                     updateImage();
                     Checkbox(questionNumber);
@@ -581,7 +591,7 @@ function datePublication2()
                                 if ($(this).attr("data-radio") == label.attr("for")) {
                                     if ($(this).css("background-color") != "#FF7069") {
                                         $(this).css({
-                                            "opacity": "0.4"
+                                            "opacity": "0.1"
                                         });
                                     }
                                 }
@@ -622,7 +632,6 @@ function datePublication2()
                         var index4;
                         for (var key in Quizz) {
                             if (Quizz.hasOwnProperty(key)) {
-
                                 array2[0] = Quizz[key].question;
                                 index1 = random(array);
                                 index2 = random(array);
@@ -712,7 +721,6 @@ function datePublication2()
                     if ($("#question").next("button").length) {
                         $("#question").next("button").remove();
                     }
-
                 }
                 indice++;
                 $(".image").each(function(index, element) {
@@ -908,8 +916,6 @@ function datePublication2()
         $(function() {
             var temp = <?= $temp ?>;
             var passe = "<?= $passe ?>";
-
-
             if (temp > 0) {
                 $("#loading").prop('disabled', false);
             } else {

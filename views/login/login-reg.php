@@ -441,6 +441,7 @@
                     regusername: {
                         required: 'ce champ est requis',
                         remote: "username déjà utilisé",
+                        nowhitespace:"pas d'espace svp",
                     },
                     confirmPassword: {
                         equalTo: 'entrer le même mot de passe'

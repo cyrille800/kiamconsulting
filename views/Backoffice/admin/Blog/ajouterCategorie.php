@@ -250,7 +250,7 @@ if(!isset($_SESSION["id_admin"])){
               cache:false,
 
               success: function(data) {
-                alert(data);
+                toastr.success(data);
               }
             })
             .fail(function(){

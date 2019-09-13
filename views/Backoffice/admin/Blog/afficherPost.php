@@ -151,7 +151,6 @@ if(!isset($_SESSION["id_admin"])){
       pageSize: 10,
       pageButtonCount: 5,
       deleteConfirm: "Do you really want to delete data?",
-
       controller: {
         loadData: function(filter) {
           return $.ajax({
@@ -232,22 +231,24 @@ if(!isset($_SESSION["id_admin"])){
       onDataLoaded: function(items) {
         $(".jsgrid-edit-button").click(function() {
           let idPost;
-          idPost = $(".jsgrid-edit-button").parent().parent(".jsgrid-row.jsgrid-selected-row").children("td").first().text();
+          if($(".jsgrid-edit-button").parent().parent(".jsgrid-row.jsgrid-selected-row").length)
+          idPost=$(".jsgrid-edit-button").parent().parent(".jsgrid-row.jsgrid-selected-row").children("td").first().text()
+          else if($(".jsgrid-edit-button").parent().parent(".jsgrid-alt-row.jsgrid-selected-row").length)
+          idPost=$(".jsgrid-edit-button").parent().parent(".jsgrid-alt-row.jsgrid-selected-row").children("td").first().text()
           window.location.href = "modifierPost?idPost=" + idPost;
+          
         })
 
-        console.log($("#grid_table").find("th"));
         $("#grid_table").find("th").css({
           "background-color":"#343a40",
           "border-color":"#454d55",
           "color":"white",
         })
-        
 
       }, // on done of controller.loadData
 
 
-    });
+    }); 
 
 
 

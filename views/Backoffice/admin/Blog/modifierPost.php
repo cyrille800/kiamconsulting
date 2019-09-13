@@ -3,21 +3,31 @@ session_start();
 if(!isset($_SESSION["id_admin"])){
     header("location: ../../../pages_error/404.html");
 }
-  require_once "../../../../entities/class_concour.php";
+  include "../../../../entities/class_concour.php";
   config::connexion();
+
   if (isset($_GET["idPost"])) {
-    extract($_GET);
-    $sql="select * from post where id=".$idPost;
-    $requette = config::$bdd->prepare($sql);
+    $requette = config::$bdd->prepare("select * from post where id=".$_GET["idPost"]);
     $requette->execute();
-    $rows = $requette->fetchAll();
-    $titre=$rows[0]["titre"];
-    $date=$rows[0]["date"];
-    $contenu=$rows[0]["contenu"];
-    $Categorie=$rows[0]["Categorie"];
-    $auteur=$rows[0]["auteur"];
-    $image=$rows[0]["image"];
-    $introduction=$rows[0]["introduction"];
+    $rows=$requette->fetchAll();
+    $date="";
+    $contenu="";
+    $categorie="";
+    $titre="";
+    $auteur="";
+    $image="../../../assets/Backoffice/image/";
+    $introduction="";
+    foreach ($rows as $key => $rows) {
+      $date=$rows["date"];
+      $contenu=$rows["contenu"];
+      $contenu=json_encode($contenu);
+      $categorie=$rows["Categorie"];
+      $titre=$rows["titre"];
+      $auteur=$rows["auteur"];
+      $image.=$rows["image"];
+      $introduction=$rows["introduction"];
+    }
+    // echo $titre,$date,$contenu,$categorie,$titre,$image,$introduction;
   }
   ?>
 
@@ -38,6 +48,8 @@ if(!isset($_SESSION["id_admin"])){
   <link rel="stylesheet" href="../../../assets/Backoffice/css/flag-icon.min.css">
   <link rel="stylesheet" href="../../../assets/Backoffice/css/vendor.bundle.base.css">
   <link rel="stylesheet" href="../../../assets/Backoffice/css/vendor.bundle.addons.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+  
 
   <link rel="stylesheet" href="../../../assets/Backoffice/css/style2.css">
   <!-- endinject -->
@@ -55,50 +67,29 @@ if(!isset($_SESSION["id_admin"])){
   </script>
 </head>
 
-<body operation="<?php echo (isset($_GET["id"])) ? "modifier" : "ajouter"; ?>" id="<?php echo (isset($_GET["id"])) ? $_GET["id"] : ""; ?>">
-
-  <!-- begin:: Subheader -->
-  <div class="kt-subheader   kt-grid__item" id="kt_subheader">
+<body operation="<?php echo (isset($_GET["id"])) ? "modifier" : "ajouter"; ?>" id="<?php echo (isset($_GET["id"])) ? $_GET["id"] : ""; ?>" style="background-color:rgba(0,0,0,0.06);">
+<div class="kt-subheader   kt-grid__item bg-white" style="padding:20px;padding-left:40px;" id="kt_subheader">
     <div class="kt-subheader__main">
-      <h3 class="kt-subheader__title">
-        Blank Page</h3>
-      <span class="kt-subheader__separator kt-hidden">
-      </span>
-      <div class="kt-subheader__breadcrumbs">
-        <a href="#" class="kt-subheader__breadcrumbs-home">
-          <i class="la la-shelter" style="font-size:25px;">
-          </i>
-        </a>
-        <span class="kt-subheader__breadcrumbs-separator">
-        </span>
-        <a href="" class="kt-subheader__breadcrumbs-link">
-          Features </a>
-        <span class="kt-subheader__breadcrumbs-separator">
-        </span>
-        <a href="" class="kt-subheader__breadcrumbs-link">
-          Misc </a>
-        <span class="kt-subheader__breadcrumbs-separator">
-        </span>
-        <a href="" class="kt-subheader__breadcrumbs-link">
-          Blank Page </a>
-        <!-- <span class="kt-subheader__breadcrumbs-link kt-subheader__breadcrumbs-link--active">
-								Active link</span>
-								-->
-      </div>
-
-    </div>
-    <div class="kt-subheader__toolbar">
-      <div class="kt-subheader__wrapper">
-        <div class="dropdown dropdown-inline" data-toggle="kt-tooltip" title="Quick actions" data-placement="top">
-          <a href="#" class="btn btn-icon btn btn-label btn-label-brand btn-bold" data-toggle="dropdown" data-offset="0px,0px" aria-haspopup="true" aria-expanded="false">
-            <i class="la la-plus">
-            </i>
-          </a>
-        </div>
-
-      </div>
-    </div>
-  </div>
+              <h3 class="kt-subheader__title">
+              Post</h3>
+              <span class="kt-subheader__separator kt-hidden">
+              </span>
+              <div class="kt-subheader__breadcrumbs">
+                <a href="#" class="kt-subheader__breadcrumbs-home">
+                  <i class="la la-shelter" style="font-size:25px;">
+                  </i>
+                </a>
+                <span class="kt-subheader__breadcrumbs-separator">
+                </span>
+                <a href="" class="kt-subheader__breadcrumbs-link">
+                Ajouter un post                  </a>
+                <!-- <span class="kt-subheader__breadcrumbs-link kt-subheader__breadcrumbs-link--active">
+                Active link</span>
+                -->
+              </div>
+              
+            </div>
+</div>
   <!-- end:: Subheader -->
   <!-- begin:: Content -->
   <div class="container-fluid page-body-wrapper">
@@ -123,8 +114,8 @@ if(!isset($_SESSION["id_admin"])){
                   </div>
 
                   <div class="form-group">
-                    <label for="Categorie">Catégorie</label>
-                    <select class="form-control"  name="Categorie" id="Categorie">
+                    <label for="Categorie">Categorie</label>
+                    <select class="form-control" name="Categorie" id="Categorie">
                       <?php
                       $sql = "select titre from categorie";
                       $requette = config::$bdd->prepare($sql);
@@ -132,27 +123,31 @@ if(!isset($_SESSION["id_admin"])){
                       $rows = $requette->fetchAll();
                       foreach ($rows as $key => $rows) {
                         ?>
-                      <option><?= $rows["titre"] ?></option>
+                        <option><?= $rows["titre"] ?></option>
                       <?php } ?>
                     </select>
                   </div>
                   <div class="form_group">
                     <label for="image">Image</label>
-                    <input type="file" class="dropify" name="image" id="image">
+                    <input type="file" class="dropify" name="image" id="image" data-default-file="<?=$image?>">
                   </div>
                   <div class="form_group mt-3 ">
                     <label for="introduction">introduction</label>
-                    <input type="text"  class="form-control" name="introduction" id="introduction">
+                    <input type="text" class="form-control" name="introduction" id="introduction">
+                  </div>
+                  <div class="form_group mt-3 ">
+                    <label for="auteur">auteur</label>
+                    <input type="text" class="form-control" name="auteur" id="auteur">
                   </div>
                   <div class="form-group mt-3">
                     <label for="Contenu">Contenu</label>
-                    <textarea id='tinyMceExample' name="Contenu">
+                    <textarea id='tinyMceExample' name="Contenu" value="paler">
                     Edit your content here...
                   </textarea>
                   </div>
 
-                  <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                  <button class="btn btn-light">Cancel</button>
+                  <button type="submit" class="btn btn-primary mr-2">modifier</button>
+                  <button class="btn btn-light">Annuler</button>
                 </form>
               </div>
             </div>
@@ -166,7 +161,7 @@ if(!isset($_SESSION["id_admin"])){
         <!-- partial:../../partials/_footer.php -->
         <footer class="footer">
           <div class="w-100 clearfix">
-            <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © 2018 <a href="http://www.urbanui.com/" target="_blank">Urbanui</a>. All rights reserved.</span>
+            <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright � 2018 <a href="http://www.urbanui.com/" target="_blank">Urbanui</a>. All rights reserved.</span>
             <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted &amp; made with <i class="icon-heart text-danger"></i></span>
           </div>
         </footer>
@@ -201,7 +196,7 @@ if(!isset($_SESSION["id_admin"])){
             "shape": [
               "#f0f3ff",
               "#d9dffa",
-              "#afb4d4",
+              "#afb4d4", - +
               "#646c9a"
             ]
           }
@@ -220,6 +215,8 @@ if(!isset($_SESSION["id_admin"])){
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/additional-methods.js"></script>
     <script src="../../../assets/Backoffice/js/vendor.bundle.base.js"></script>
     <script src="../../../assets/Backoffice/js/vendor.bundle.addons.js"></script>
+    <script src="cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    
     <!-- endinject -->
     <!-- Plugin js for this page-->
     <!-- End plugin js for this page-->
@@ -241,124 +238,169 @@ if(!isset($_SESSION["id_admin"])){
       $(window).on("load", function() {
         $(".preload").fadeOut("fast");
       })
+      var date="<?= $date?>";
+      var contenu=JSON.stringify(<?= $contenu?>);
+      console.log(contenu);   
+       contenu = contenu.replace(/^"|\\n|\\|"$/g, '');
+       var titre="<?= $titre?>";
+      var image="<?= $image?>";
+      var introduction="<?= $introduction?>";
+      var auteur="<?= $auteur?>";
+      var categorie="<?= $categorie?>";
+      console.log(categorie);
+      $("#Titre").val(titre);
+      $("#Date").val(date);
+      $("select").val(categorie);
+      $( "selector" ).find('option[value="'+categorie+'"]').attr('selected','selected');
+
+      $("#introduction").val(introduction);
+      $("#auteur").val(auteur);
+      $('#image').attr("data-default-file", "<?=$image?>");
+      if ($("#tinyMceExample").length) {
+    tinymce.init({
+      selector: '#tinyMceExample',
+      height: 500,
+      theme: 'modern',
+      plugins: [
+        'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+        'searchreplace wordcount visualblocks visualchars code fullscreen',
+        'insertdatetime media nonbreaking save table contextmenu directionality',
+        'emoticons template paste textcolor colorpicker textpattern imagetools codesample toc help responsivefilemanager'
+      ],
+      toolbar1: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+      toolbar2: 'print preview media | forecolor backcolor emoticons | codesample help | responsivefilemanager |',
+      image_advtab: true,
+      external_filemanager_path:"filemanager/",
+      filemanager_title:"Responsive Filemanager" ,
+      external_plugins: { "filemanager" : "filemanager/plugin.min.js"},
+      templates: [{
+          title: 'Test template 1',
+          content: 'Test 1'
+        },
+        {
+          title: 'Test template 2',
+          content: 'Test 2'
+        }
+      ],
+      content_css: []
+    });
+  }
+      setTimeout(() => {
+        tinymce.get('tinyMceExample').setContent(contenu);
+      }, 2000);
+
+
       $(function() {
+        
+        $.validator.setDefaults({
+          errorClass: 'invalid-feedback',
+          highlight: function(element) {
+            $(element).addClass('is-invalid');
+          },
+          unhighlight: function(element) {
+            $(element).removeClass('is-invalid');
+          },
+          errorPlacement: function(error, element) {
+            if (element.prop('type') === 'text' || element.prop('type') === 'mail' || element.prop('type') === 'password'|| element.prop('type') === 'file' ) {
+              element.after(error);
+            } else if (element.prop('type') === 'radio') {
+              // element.closest('[name="username"]').before(error);
+              element.parent().parent().after(error);
+            }
+          }
 
-        var titre="<?=$titre?>";
-        var date="<?=$date?>";
-        var contenu="<?=$contenu?>";
-        var Categorie="<?=$Categorie?>";
-        var auteur="<?=$auteur?>";
-        var image="<?=$image?>";
-        var introduction="<?=$introduction?>";
-        $("#Titre").val(titre);
-        $("#Date").val(Date);
-        $("#Categorie").val(Categorie);
-        $("#introduction").val(introduction);
-        $("#image").val(image);
-        $("Contenu").val(contenu);
-         // formData.append('image',file); 
-                  // formData.append('operation', "inserer");
-                  // formData.append('Titre', $("#Titre").val()); 
-                  // formData.append('Date', $("#Date").val());
-                  //  formData.append('Categorie', $('#Categorie option:selected').val()); 
-                  //  formData.append('introduction', $('#introduction').val()); 
+        });
+       
+        $("#Post").validate({
+          onkeyup: (element) => {
+            $(element).valid();
+          },
+          rules: {
+            Titre: {
+              required: true,
+            },
 
+            Date: {
+              required: true,
+            },
+            Contenu: {
+              required: true,
+            },
+            introduction: {
+              required: true,
+            },
+            auteur: {
+              required: true,
+            },
+            image: {
+              required: true,
+            },
 
-            $.validator.setDefaults({
-              errorClass: 'invalid-feedback',
-              highlight: function(element) {
-                $(element).addClass('is-invalid');
+          },
+          messages: {
+            Titre: {
+              required: 'ce champ est requis.',
+            },
+            Date: {
+              required: 'ce champ est requis',
+            },
+            Contenu: {
+              required: 'ce champ est requis',
+            },
+            introduction: {
+              required: 'ce champ est requis',
+            },
+            auteur: {
+              required: 'ce champ est requis',
+            },
+            image: {
+              required: function(){
+                toastr.warning("vous devez recharger ou renouveler l'image");
               },
-              unhighlight: function(element) {
-                $(element).removeClass('is-invalid');
-              },
-              errorPlacement: function(error, element) {
-                if (element.prop('type') === 'text' || element.prop('type') === 'mail' || element.prop('type') === 'password') {
-                  element.after(error);
-                } else if (element.prop('type') === 'radio') {
-                  // element.closest('[name="username"]').before(error);
-                  element.parent().parent().after(error);
-                }
-              }
+            },
 
+          },
+          submitHandler: function(form, e) {
+            e.preventDefault();
+            var file = $("#image")[0].files[0];
+
+            var formData = new FormData(form);
+            formData.append('operation', "modifier");
+            formData.append('idPost', <?=$_GET["idPost"]?>);
+
+            console.log(Array.from(formData));
+            
+            tinyMCE.activeEditor.getContent();
+            tinyMCE.activeEditor.getContent({
+              format: 'raw'
             });
-            $("#Post").validate({
-                onkeyup: (element) => {
-                  $(element).valid();
+            formData.append('Contenu', tinyMCE.get('tinyMceExample').getContent());
+            formData.append('auteur', "romualdjunior");
+            $.ajax({
+                type: "POST",
+                url: "../../../../entities/Post.php",
+                data: formData,
+                cache: false,
+                processData: false,
+                contentType: false,
+                success: function(data) {
+                  toastr.success(data);
+                  toastr.success(data);
                 },
+              })
+              .fail(function() {
+                toastr.error("Erreur dans la modification");
 
-                rules: {
-                  Titre: {
-                    required: true,
-                  },
+              })
 
-                  Date: {
-                    required: true,
-                  },
-                  Contenu: {
-                    required: true,
-                  },
-                  introduction:{
-                    required:true,
-                  },
-
-                },
-                messages: {
-                  Titre: {
-                    required: 'ce champ est requis.',
-                  },
-                  Date: {
-                    required: 'ce champ est requis',
-                  },
-                  Contenu: {
-                    required: 'ce champ est requis',
-                  },
-                  introduction: {
-                    required: 'ce champ est requis',
-                  },
-
-                },
-                submitHandler: function(form, e) {
-                  e.preventDefault();
-                  var file = $("#image")[0].files[0];
-                  
-                  var formData = new FormData(form);
-                  // formData.append('image',file); 
-                  // formData.append('operation', "inserer");
-                  // formData.append('Titre', $("#Titre").val()); 
-                  // formData.append('Date', $("#Date").val());
-                  //  formData.append('Categorie', $('#Categorie option:selected').val()); 
-                  //  formData.append('introduction', $('#introduction').val()); 
-                   tinyMCE.activeEditor.getContent(); tinyMCE.activeEditor.getContent({
-                      format: 'raw'
-                    }); 
-                    formData.append('Contenu', tinyMCE.get('tinyMceExample').getContent()); 
-                    formData.append('auteur', "romualdjunior"); 
-                    $.ajax({
-                      type: "POST",
-                      url: "../../../../entities/Post.php",
-                      data: formData,
-                      cache: false,
-                      processData: false,
-                       contentType: false,
-                      success: function(data) {
-                        console.log(data);
-                      },
-                    })
-                    .fail(function() {
-                      alert("l'envoi n'a pas marche");
-
-                    })
-
-                    return false;
-                  }
+            return false;
+          }
 
 
-                })
-                // console.log($("#tinyMceExample").width());
-                
+        })
 
-            })
+
+      })
     </script>
 </body>
 

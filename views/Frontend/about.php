@@ -32,7 +32,7 @@
     </div>
 </div>
 
-<div class="uv-single-contest uv-course-details">
+<div class="uv-single-contest uv-course-details wow fadeIn">
     <div class="container">
         <div class="row">
             <div class="bg_white uv_team_border uv_team_padding default_width mb30">
@@ -380,7 +380,7 @@
     <div class="overlay">
         <div class="container">
             <div class="row section-separator">
-                <h2>Visiter la tunisie.</h2>
+                <h2>Etudier en Tunisie.</h2>
                 <p>Lorem ipsum dolor sit amet, consectetur adipi sicing elit.</p>
                 <div class="button">
                     <a data-fancybox href="https://www.youtube.com/watch?v=xfUML-3s7tU"><i class="fa flaticon-play-button"></i></a>

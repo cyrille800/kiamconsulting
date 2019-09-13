@@ -109,6 +109,10 @@ if(!isset($_SESSION["id_admin"])){
                     <label for="introduction">introduction</label>
                     <input type="text" class="form-control" name="introduction" id="introduction">
                   </div>
+                  <div class="form_group mt-3 ">
+                    <label for="auteur">auteur</label>
+                    <input type="text" class="form-control" name="auteur" id="auteur">
+                  </div>
                   <div class="form-group mt-3">
                     <label for="Contenu">Contenu</label>
                     <textarea id='tinyMceExample' name="Contenu">
@@ -116,8 +120,8 @@ if(!isset($_SESSION["id_admin"])){
                   </textarea>
                   </div>
 
-                  <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                  <button class="btn btn-light">Cancel</button>
+                  <button type="submit" class="btn btn-primary mr-2">Ajouter</button>
+                  <button class="btn btn-light">Annuler</button>
                 </form>
               </div>
             </div>
@@ -207,6 +211,63 @@ if(!isset($_SESSION["id_admin"])){
         $(".preload").fadeOut("fast");
       })
       $(function() {
+        if ($("#tinyMceExample").length) {
+    tinymce.init({
+      selector: '#tinyMceExample',
+      height: 500,
+      theme: 'modern',
+      plugins: [
+        'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+        'searchreplace wordcount visualblocks visualchars code fullscreen',
+        'insertdatetime media nonbreaking save table contextmenu directionality',
+        'emoticons template paste textcolor colorpicker textpattern imagetools codesample toc help responsivefilemanager'
+      ],
+      toolbar1: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+      toolbar2: 'print preview media | forecolor backcolor emoticons | codesample help | responsivefilemanager |',
+      image_advtab: true,
+      external_filemanager_path:"filemanager/",
+      filemanager_title:"Responsive Filemanager" ,
+      external_plugins: { "filemanager" : "filemanager/plugin.min.js"},
+      templates: [{
+          title: 'Test template 1',
+          content: 'Test 1'
+        },
+        {
+          title: 'Test template 2',
+          content: 'Test 2'
+        }
+      ],
+      content_css: []
+    });
+  }    if ($("#tinyMceExample").length) {
+    tinymce.init({
+      selector: '#tinyMceExample',
+      height: 500,
+      theme: 'modern',
+      plugins: [
+        'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+        'searchreplace wordcount visualblocks visualchars code fullscreen',
+        'insertdatetime media nonbreaking save table contextmenu directionality',
+        'emoticons template paste textcolor colorpicker textpattern imagetools codesample toc help responsivefilemanager'
+      ],
+      toolbar1: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+      toolbar2: 'print preview media | forecolor backcolor emoticons | codesample help | responsivefilemanager |',
+      image_advtab: true,
+      external_filemanager_path:"filemanager/",
+      filemanager_title:"Responsive Filemanager" ,
+      external_plugins: { "filemanager" : "filemanager/plugin.min.js"},
+      templates: [{
+          title: 'Test template 1',
+          content: 'Test 1'
+        },
+        {
+          title: 'Test template 2',
+          content: 'Test 2'
+        }
+      ],
+      content_css: []
+    });
+  }
         $.validator.setDefaults({
           errorClass: 'invalid-feedback',
           highlight: function(element) {
@@ -253,6 +314,9 @@ if(!isset($_SESSION["id_admin"])){
             introduction: {
               required: true,
             },
+            auteur: {
+              required: true,
+            },
 
           },
           messages: {
@@ -269,25 +333,19 @@ if(!isset($_SESSION["id_admin"])){
             introduction: {
               required: 'ce champ est requis',
             },
-
+            auteur: {
+              required: 'ce champ est requis',
+            },
           },
           submitHandler: function(form, e) {
             e.preventDefault();
-            var file = $("#image")[0].files[0];
-
             var formData = new FormData(form);
-            // formData.append('image',file); 
-            // formData.append('operation', "inserer");
-            // formData.append('Titre', $("#Titre").val()); 
-            // formData.append('Date', $("#Date").val());
-            //  formData.append('Categorie', $('#Categorie option:selected').val()); 
-            //  formData.append('introduction', $('#introduction').val()); 
+            formData.append('operation', "inserer");
             tinyMCE.activeEditor.getContent();
             tinyMCE.activeEditor.getContent({
               format: 'raw'
             });
             formData.append('Contenu', tinyMCE.get('tinyMceExample').getContent());
-            formData.append('auteur', "romualdjunior");
             $.ajax({
                 type: "POST",
                 url: "../../../../entities/Post.php",
@@ -296,20 +354,17 @@ if(!isset($_SESSION["id_admin"])){
                 processData: false,
                 contentType: false,
                 success: function(data) {
-                  console.log(data);
+                  toastr.success(data);
                 },
               })
               .fail(function() {
-                alert("l'envoi n'a pas marche");
-
+                toastr.error("Erreur dans l'ajout");
               })
-
             return false;
           }
 
 
         })
-        console.log($("#tinyMceExample").width());
 
 
       })

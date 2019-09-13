@@ -206,9 +206,9 @@ require_once "../../entities/class_commentaire.php";
                 <div class="mobile-menu">
                     <nav id="mobile-menu-active">
                         <ul class="main">
-                            <li class="active"><a class="main-a" href="index.php">Accueil</a>
+                        <li><a class="main-a" href="index.php">ACCUEIL</a>
                                 <ul>
-                                    <li><a href="index.php">Accueil</a></li>
+                                    <li><a href="index.php">ACCUEIL</a></li>
                                 </ul>
                             </li>
                             <li><a class="main-a" href="about.php">A PROPOS</a>
@@ -228,7 +228,28 @@ require_once "../../entities/class_commentaire.php";
                                     <li><a href="blog-single.php">Blog Single</a></li>
                                 </ul>
                             </li>
-                            <li><a class="main-a" href="contact.php">Contact</a></li>
+                            <?php
+                            if (!isset($_SESSION["id"])) {
+                                ?>
+                                 <li class="active"><a class="main-a" href="index.php">Connexion</a>
+                                <ul>
+                                    <li><a href="../login/login-reg.php">Se connecter</a></li>
+                                </ul>
+                            </li>
+                            <?php
+                            } else {
+                                ?>
+                                    <li class="active"><a class="main-a" href="index.php">Deconnexion</a>
+                                <ul>
+                                    <li><a href="../login/deconnexion.php">Se déconnecter</a></li>
+                                    <li class="active"><a class="main-a" href="../Backoffice/client/index.php">Page Principale</a>
+
+                                </ul>
+                            </li>
+                            <?php
+                            }
+                             ?>
+                            
 
                         </ul>
                     </nav>

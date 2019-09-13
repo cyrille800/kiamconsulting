@@ -7,6 +7,7 @@ require_once "class_paiement_client.php";
 require_once "class_activiter_client.php";
 require_once "class_activiter.php";
 require_once "class_ecole.php";
+require_once "contractedFunctions.php";
 config::connexion();
 
 class client
