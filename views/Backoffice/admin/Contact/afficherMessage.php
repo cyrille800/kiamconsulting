@@ -83,6 +83,9 @@
     </div>
     <!-- end:: Subheader -->
     <!-- begin:: Content -->
+    <div class="alert alert-primary" role="alert">
+  Cliquer sur le bouton editer d'un message pour répondre. Votre boite mail seras automatiqué chargé pour l"envoi du mail
+</div>
     <div class="container-fluid page-body-wrapper">
         <div class="main-panel">
             <div class="content-wrapper">

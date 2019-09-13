@@ -1295,6 +1295,8 @@ ul li {
   line-height: 25px;
   text-transform: capitalize;
   top: 25px;
+    content: url(../images/logo2.png);
+
 }
 .mean-container .mean-nav ul li a.mean-expand {
   background-color: #f26667;

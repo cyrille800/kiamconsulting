@@ -280,7 +280,7 @@ if (isset($_SESSION["id"]) && isset($_SESSION["type"])) {
                                                     <div class="kt-section" id="dashboard" style="display: none;">
                                                         <div class="kt-heading kt-heading--md kt-heading--medium">Le tableau de bord</div>
                                                         <?php
-                                                        if ($_SESSION["id"]=0) {
+                                                        if ($_SESSION["id"]==0) {
                                                             $lien="../../assets/backoffice/images/dashboard.jpg";
                                                         } else {
                                                             $lien="../../assets/backoffice/images/patient.jpg";

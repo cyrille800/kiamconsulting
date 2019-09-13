@@ -30,7 +30,7 @@ if (isset($_GET["id"])) {
             <div class="row">
                 <div class="uv-subhead-content col-xs-12">
                     <h2>Blog & News </h2>
-                    <span>Curricular Responsive Bootstrap Education Template</span>
+                    <span>  At atque, enim veniam tempora quam porro eos dolorem magnam temporibus aliquid eaque.</span>
                 </div>
             </div>
         </div>
@@ -149,7 +149,7 @@ if (isset($_GET["id"])) {
                                         <blockquote>
                                             <div class="row">
                                                 <div class="uv-client-quates">
-                                                    <h3>Sam Andro</h3>
+                                                    <h3>lorem ipsum</h3>
                                                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore</p>
                                                 </div>
                                             </div>
@@ -160,7 +160,7 @@ if (isset($_GET["id"])) {
                                         <blockquote>
                                             <div class="row">
                                                 <div class="uv-client-quates">
-                                                    <h3>Linux Wlis</h3>
+                                                    <h3>lorem ipsum</h3>
                                                     <p>It is a long established fact that a reader will be distracted by the readable content of a page</p>
                                                 </div>
                                             </div>
@@ -171,7 +171,7 @@ if (isset($_GET["id"])) {
                                         <blockquote>
                                             <div class="row">
                                                 <div class="uv-client-quates">
-                                                    <h3>Becky Rand</h3>
+                                                    <h3>lorem ipsum</h3>
                                                     <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered</p>
                                                 </div>
                                             </div>
@@ -182,7 +182,7 @@ if (isset($_GET["id"])) {
                                         <blockquote>
                                             <div class="row">
                                                 <div class="uv-client-quates">
-                                                    <h3>Jenny</h3>
+                                                    <h3>lorem ipsum</h3>
                                                     <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin</p>
                                                 </div>
                                             </div>

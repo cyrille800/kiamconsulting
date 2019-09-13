@@ -309,6 +309,37 @@
 		</ul>
 	</div>
 </li>
+<li class="kt-menu__item kt-menu__item--submenu kt-menu__item--open kt-menu__item--here" aria-haspopup="true" data-ktmenu-submenu-toggle="hover">
+							<a href="javascript:;" class="kt-menu__link kt-menu__toggle">
+								<i class="kt-menu__link-icon la la-cube" style="font-size:25px;">
+								</i>
+								<span class="kt-menu__link-text">
+									Contact</span>
+								<span class="kt-menu__link-badge">
+									<span class="kt-badge kt-badge--brand">
+										2</span>
+								</span>
+								<i class="kt-menu__ver-arrow la la-angle-right">
+								</i>
+							</a>
+							<div class="kt-menu__submenu " kt-hidden-height="40" style="">
+								<span class="kt-menu__arrow">
+								</span>
+								<ul class="kt-menu__subnav">
+									<li class="kt-menu__item kt-menu__item--active" aria-haspopup="true">
+										<a href="Contact/afficherMessage.php" class="kt-menu__link " target="frame1">
+											<i class="kt-menu__link-bullet kt-menu__link-bullet--dot">
+												<span>
+												</span>
+											</i>
+											<span class="kt-menu__link-text">
+												Messages</span>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</li>
+
 																<li class="kt-menu__section ">
 									<h4 class="kt-menu__section-text">
 										Paiement</h4>

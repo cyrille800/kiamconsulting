@@ -341,7 +341,7 @@ require_once "../../entities/class_post.php";
     <div class="overlay">
         <div class="container">
             <div class="row section-separator wow fadeIn" data-wow-delay="0.2s">
-                <h2>Visiter la Tunisie</h2>
+                <h2>Etudier en Tunisie</h2>
                 <div class="button">
                     <a data-fancybox href="https://www.youtube.com/watch?v=99WrONXC3Oo"><i class="fa flaticon-play-button"></i></a>
                 </div>

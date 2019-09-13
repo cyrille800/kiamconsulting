@@ -9,7 +9,7 @@ require_once "../../entities/class_commentaire.php";
 
 <head>
     <!-- TITLE OF SITE -->
-    <title>Curricular - Responsive Bootstrap Education Template</title>
+    <title>Kiam Consulting</title>
 
     <!-- Meta -->
     <meta charset="utf-8">
@@ -101,7 +101,7 @@ require_once "../../entities/class_commentaire.php";
                         <div class="col-sm-2">
                             <div class="uv-logo">
                                 <a href="index.php">
-                                    <img src="assets/images/logo2.png" alt="" class="img-responsive">
+                                    <!-- <img src="assets/images/logo2.png" alt="" class="img-responsive"> -->
                                 </a>
                             </div>
                         </div>
@@ -180,7 +180,7 @@ require_once "../../entities/class_commentaire.php";
                                         
                                         <li class="dropdown xt-drop-nav"  style="float:right;">
                                             <a href="#" class="dropdown-toggle " data-toggle="dropdown" data-hover="dropdown" data-animations="fadeInDown fadeInDown fadeInDown">
-                                                <img height="30px" src=<?= $imageProfil?>>
+                                                <img height="30px" src=<?= $imageProfil?> >
                                                 <?= $username ?>
                                             </a>
                                             <ul class="dropdown-menu" >

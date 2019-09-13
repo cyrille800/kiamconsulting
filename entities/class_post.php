@@ -336,10 +336,10 @@ class Post
 			if ($requette->execute()) {
 				$rows = $requette->fetchAll();
 				foreach ($rows as $key => $rows) {
-					echo ' <div class="item">
-                    <div class="blog-inner">
-                        <div class="blog-banner">
-                            <img src="../assets/Backoffice/image/' . $rows["image"] . '" alt="" class="img-responsive" height="100%">
+					echo ' <div class="item"  >
+                    <div class="blog-inner" >
+                        <div class="blog-banner"  >
+                            <img src="../assets/Backoffice/image/' . $rows["image"] . '" alt="" class="img-responsive" >
                         </div>
                         <div class="blog-content">
                             <h4>' . $rows["titre"] . '</h4>

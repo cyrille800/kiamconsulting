@@ -516,13 +516,14 @@ p.total {
 }
 .mean-container .mean-bar::before {
   color: #fff;
-  /* content: url(../images/logo.png); */
   font-size: 18px;
   font-weight: 700;
   left: 15px;
   position: absolute;
   height: 25px;
-  top: 14px;
+  top: 10px;
+  content: url(../images/logo2.png);
+
 }
 .header {
   width: 300px;
