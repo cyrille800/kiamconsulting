@@ -88,11 +88,11 @@ activiter::controler($_GET["id"]);
                                 <div class="modal-content">
                                     <form method="post" action="">
 <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Liste des fichiers</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel">Liste des paiements</h5>
                                     </div>
                                     <div class="modal-body">
 
-<div class="kt-section__content">
+<div class="kt-section__content" style="height:300px;overflow-y:scroll;">
                         <table class="table">
                             <thead class="thead-dark">
                                 <tr>
@@ -136,7 +136,7 @@ activiter::controler($_GET["id"]);
                                     </div>
                                     <div class="modal-body">
 
-<div class="kt-section__content">
+<div class="kt-section__content" style="height:300px;overflow-y:scroll;">
                         <table class="table">
                             <thead class="thead-dark">
                                 <tr>

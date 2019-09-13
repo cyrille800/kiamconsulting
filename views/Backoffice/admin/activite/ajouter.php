@@ -41,7 +41,7 @@ if (isset($_GET["id"])) {
 		});
 	</script>
 </head>
-
+<body operation="<?php echo (isset($_GET["id"]))?"modifier":"ajouter";?>" id="<?php echo (isset($_GET["id"]))?$_GET["id"]:"";?>">
 <div class="kt-subheader   kt-grid__item bg-white" style="padding:20px;padding-left:40px;" id="kt_subheader">
     <div class="kt-subheader__main">
               <h3 class="kt-subheader__title">

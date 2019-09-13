@@ -118,15 +118,18 @@ if(isset($_GET["avr"])){
 					<div class="dropdown bootstrap-select form-control kt_"><select class="form-control kt_selectpicker" data-size="4" tabindex="-98" name="pays">
 						<?php 
 						if($pays!=""){
-						echo "<option>$pays</option>";
+						echo "<option value='".$pays."'>$pays</option>";
 					}
 ?>
-						<option>Mustard</option>
-						<option>Ketchup</option>
-						<option>Relish</option>
-						<option>Tent</option>
-						<option>Flashlight</option>
-						<option>Toilet Paper</option>
+						<option>Angola</option>
+						<option>cameroun</option>
+						<option>gabon</option>
+						<option>guinée équatoriale</option>
+						<option>République centrafricaine </option>
+						<option>République démocratique du Congo </option>
+						<option>République du Congo</option>
+						<option>Sao Tomé-et-Principe</option>
+						<option>Tchad</option>
 					</select></div>
 						</div>
 					</div>
@@ -140,12 +143,82 @@ if(isset($_GET["avr"])){
 						echo "<option>$ville</option>";
 					}
 ?>
-						<option>Mustard</option>
-						<option>Ketchup</option>
-						<option>Relish</option>
-						<option>Tent</option>
-						<option>Flashlight</option>
-						<option>Toilet Paper</option>
+						<option>Douala</option>
+						<option>Yaoundé</option>
+						<option>Garoua</option>
+						<option>Bamenda</option>
+						<option>Maroua</option>
+						<option>Nkongsamba</option>
+						<option>Bafoussam</option>
+						<option>Ngaoundéré</option>
+						<option>Bertoua</option>
+						<option>Loum</option>
+						<option>Kumba</option>
+						<option>Edéa</option>
+						<option>Kumbo</option>
+						<option>Foumban</option>
+						<option>Mbouda</option>
+						<option>Dschang</option>
+						<option>Limbé</option>
+						<option>Ebolowa</option>
+						<option>Kousséri</option>
+						<option>Guider</option>
+						<option>Meiganga</option>
+						<option>Yagoua</option>
+						<option>Mbalmayo</option>
+						<option>Bafang</option>
+						<option>Tiko</option>
+						<option>Bafia</option>
+						<option>Wum</option>
+						<option>Kribi</option>
+						<option>Buea</option>
+						<option>Sangmélima</option>
+						<option>Foumbot</option>
+						<option>Bangangté</option>
+						<option>Batouri</option>
+						<option>Banyo</option>
+						<option>Nkambé</option>
+						<option>	Bali</option>
+						<option>	Mbanga</option>
+						<option>	Mokolo</option>
+						<option>Melong</option>
+						<option>	Manjo</option>
+						<option>Garoua-Boulaï</option>
+						<option>Mora</option>
+						<option>	Kaélé</option>
+						<option>Tibati</option>
+						<option>Ndop</option>
+						<option>	Akonolinga</option>
+						<option>	Eséka</option>
+						<option>Mamfé</option>
+						<option>Obala</option>
+						<option>Muyuka</option>
+						<option>Nanga-Eboko</option>
+						<option>	Abong-Mbang</option>
+						<option>Fundong</option>
+						<option>Nkoteng</option>
+						<option>Fontem</option>
+						<option>Mbandjock</option>
+						<option>Touboro</option>
+						<option>Ngaoundal</option>
+						<option>Yokadouma</option>
+						<option>Pitoa</option>
+						<option>Tombel</option>
+						<option>	Kékem</option>
+						<option>Magba</option>
+						<option>Bélabo</option>
+						<option>Tonga</option>
+						<option>	Maga</option>
+						<option>Koutaba</option>
+						<option>Blangoua</option>
+						<option>Guidiguis</option>
+						<option>Bogo</option>
+						<option>	Batibo</option>
+						<option>	Yabassi</option>
+						<option>Figuil</option>
+						<option>	Makénéné</option>
+						<option>Gazawa</option>
+						<option>Tcholliré</option>
 					</select></div>
 						</div>
 					</div>
@@ -168,12 +241,12 @@ if($_SESSION["type"]==0){
 						echo "<option>$niveau_scolaire</option>";
 					}
 ?>
-						<option>Mustard</option>
-						<option>Ketchup</option>
-						<option>Relish</option>
-						<option>Tent</option>
-						<option>Flashlight</option>
-						<option>Toilet Paper</option>
+						<option>Bac + 0</option>
+						<option>Bac + 1</option>
+						<option>Bac + 2</option>
+						<option>Bac + 3</option>
+						<option>Bac + 4</option>
+						<option>Bac + 5</option>
 					</select></div>
 						</div>
 					</div>

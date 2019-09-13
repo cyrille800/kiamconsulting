@@ -59,7 +59,7 @@ echo (notification::nombre(0)!=0)?"":"display:none;";
 						<div class="kt-header__topbar-item kt-header__topbar-item--langs">
 							<div class="kt-header__topbar-wrapper" data-toggle="dropdown" data-offset="10px,0px">
 								<span class="kt-header__topbar-icon">
-									<img class="" src="../../assets/Backoffice/media/flags/020-flag.svg" alt="" />
+									<img class="" src="../../assets/Backoffice/media/flags/016-spain.svg" alt="" />
 								</span>
 							</div>
 							<div class="dropdown-menu dropdown-menu-fit dropdown-menu-right dropdown-menu-anim dropdown-menu-top-unround">
@@ -67,19 +67,19 @@ echo (notification::nombre(0)!=0)?"":"display:none;";
 									<li class="kt-nav__item kt-nav__item--active">
 										<a href="#" class="kt-nav__link">
 											<span class="kt-nav__link-icon">
-												<img src="../../assets/Backoffice/media/flags/020-flag.svg" alt="" />
+												<img src="../../assets/Backoffice/media/flags/016-spain.svg" alt="" />
 											</span>
 											<span class="kt-nav__link-text">
-											English</span>
+											Francais</span>
 										</a>
 									</li>
 									<li class="kt-nav__item">
 										<a href="#" class="kt-nav__link">
 											<span class="kt-nav__link-icon">
-												<img src="../../assets/Backoffice/media/flags/016-spain.svg" alt="" />
+												<img src="../../assets/Backoffice/media/flags/020-flag.svg" alt="" />
 											</span>
 											<span class="kt-nav__link-text">
-											Spanish</span>
+											Anglais</span>
 										</a>
 									</li>
 									<li class="kt-nav__item">
@@ -88,7 +88,7 @@ echo (notification::nombre(0)!=0)?"":"display:none;";
 												<img src="../../assets/Backoffice/media/flags/017-germany.svg" alt="" />
 											</span>
 											<span class="kt-nav__link-text">
-											German</span>
+											Allemagne</span>
 										</a>
 									</li>
 								</ul>
