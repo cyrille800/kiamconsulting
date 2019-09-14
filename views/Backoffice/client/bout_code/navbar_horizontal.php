@@ -180,9 +180,9 @@ require_once "../../../entities/class_client.php";
                             }
                             ?>
                             <li class="kt-menu__item im" aria-haspopup="true">
-                                <a href="<?= '../../../views/Frontend/index.php' ?>" class="kt-menu__link " target="_blank">
+                                <a href="<?= '../../../views/Frontend/blog.php' ?>" class="kt-menu__link " target="_blank">
                                     <span class="kt-menu__link-text">
-                                        Revenir à l'acceuil </span>
+                                        Revenir au blog </span>
                                     <i class="kt-menu__hor-arrow la la-angle-down">
                                     </i>
                                     <i class="kt-menu__ver-arrow la la-angle-right">

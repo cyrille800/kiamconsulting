@@ -171,7 +171,6 @@ require_once "../../entities/class_client.php";
                 url: "../../entities/client.php",
                 data: $("#contactForm").serialize() + "&operation=envoyerMessage&repondu=non",
                 success: function(data) {
-                    alert(data);
                     swal.fire({
                             title: 'Email!',
                             type: 'success',

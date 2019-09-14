@@ -31,6 +31,14 @@ if (isset($_GET["id"])) {
                 <div class="uv-subhead-content col-xs-12">
                     <h2>Blog & News </h2>
                     <span>  At atque, enim veniam tempora quam porro eos dolorem magnam temporibus aliquid eaque.</span>
+                    <div class="slide-buttons " style="margin-top:50px;">
+                    <?php
+                        if (!isset($_SESSION["id"])) {
+                            ?>
+                            <a href="../login/login-reg.php" class="slide-btn btn btn-base">Se connecter</a>
+                        <?php
+                        }
+                        ?> </div>
                 </div>
             </div>
         </div>

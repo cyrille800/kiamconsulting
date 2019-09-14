@@ -79,8 +79,8 @@ require_once "../../entities/class_commentaire.php";
                 <div class="row">
                     <div class="row">
                         <div class="col-sm-6 uv-header-contact ">
-                            <a href=""> <i class="fa fa-phone"></i>+44 345 678 903</a>
-                            <a href=""> <i class="fa fa-envelope-o"></i>adobexd@mail.com</a>
+                            <a href=""> <i class="fa fa-phone"></i>+237 694 30 34 23</a>
+                            <a href=""> <i class="fa fa-envelope-o"></i>kiamconsulting2018@gmail.com</a>
                         </div>
                         <div class="col-sm-6">
                             <img class="pull-right img-responsive" src="assets/images/logo.png" width="80.5" height="100%">
@@ -101,7 +101,7 @@ require_once "../../entities/class_commentaire.php";
                         <div class="col-sm-2">
                             <div class="uv-logo">
                                 <a href="index.php">
-                                    <!-- <img src="assets/images/logo2.png" alt="" class="img-responsive"> -->
+                                    <img src="assets/images/logo2.png" alt="" class="img-responsive">
                                 </a>
                             </div>
                         </div>

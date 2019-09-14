@@ -20,6 +20,9 @@
     <link rel="stylesheet" href="../../../assets/Backoffice/css/flag-icon.min.css">
     <link rel="stylesheet" href="../../../assets/Backoffice/css/vendor.bundle.base.css">
     <link rel="stylesheet" href="../../../assets/Backoffice/css/vendor.bundle.addons.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
+    
 
     <link rel="stylesheet" href="../../../assets/Backoffice/css/style2.css">
     <!-- endinject -->
@@ -84,7 +87,7 @@
     <!-- end:: Subheader -->
     <!-- begin:: Content -->
     <div class="alert alert-primary" role="alert">
-  Cliquer sur le bouton editer d'un message pour répondre. Votre boite mail seras automatiqué chargé pour l"envoi du mail
+  Cliquer sur le bouton editer d'un message pour répondre. Votre boite mail seras automatiquement chargé pour l"envoi du mail
 </div>
     <div class="container-fluid page-body-wrapper">
         <div class="main-panel">
@@ -195,6 +198,8 @@
         <script src="../../../assets/Backoffice/js/editorDemo.js"></script>
         <script src="../../../assets/Backoffice/js/js-grid.js"></script>
         <script src="../../../assets/Backoffice/js/db.js"></script>
+        <script src="cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
         <!-- End custom js for this page-->
         <script>
             var idMessage;

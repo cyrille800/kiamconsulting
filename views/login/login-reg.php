@@ -6,7 +6,7 @@
 
 <head>
     <!-- TITLE OF SITE -->
-    <title>Curricular | Login & Registration </title>
+    <title>Kiam Consulting</title>
 
     <!-- Meta -->
     <meta charset="utf-8">

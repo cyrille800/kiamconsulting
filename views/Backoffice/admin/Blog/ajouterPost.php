@@ -26,6 +26,8 @@ if(!isset($_SESSION["id_admin"])){
   <link rel="stylesheet" href="../../../assets/Backoffice/css/vendor.bundle.addons.css">
 
   <link rel="stylesheet" href="../../../assets/Backoffice/css/style2.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
   <!-- endinject -->
   <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js">
   </script>
@@ -204,6 +206,8 @@ if(!isset($_SESSION["id_admin"])){
     <!-- <script src="../../../assets/Backoffice/js/theme.js"></script> -->
     <script src="../../../assets/Backoffice/js/editorDemo.js"></script>
     <script src="../../../assets/Backoffice/js/dropify.js"></script>
+    <script src="cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
 
     <!-- End custom js for this page-->
     <script>
@@ -239,35 +243,7 @@ if(!isset($_SESSION["id_admin"])){
       ],
       content_css: []
     });
-  }    if ($("#tinyMceExample").length) {
-    tinymce.init({
-      selector: '#tinyMceExample',
-      height: 500,
-      theme: 'modern',
-      plugins: [
-        'advlist autolink lists link image charmap print preview hr anchor pagebreak',
-        'searchreplace wordcount visualblocks visualchars code fullscreen',
-        'insertdatetime media nonbreaking save table contextmenu directionality',
-        'emoticons template paste textcolor colorpicker textpattern imagetools codesample toc help responsivefilemanager'
-      ],
-      toolbar1: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
-      toolbar2: 'print preview media | forecolor backcolor emoticons | codesample help | responsivefilemanager |',
-      image_advtab: true,
-      external_filemanager_path:"filemanager/",
-      filemanager_title:"Responsive Filemanager" ,
-      external_plugins: { "filemanager" : "filemanager/plugin.min.js"},
-      templates: [{
-          title: 'Test template 1',
-          content: 'Test 1'
-        },
-        {
-          title: 'Test template 2',
-          content: 'Test 2'
-        }
-      ],
-      content_css: []
-    });
-  }
+  }    
         $.validator.setDefaults({
           errorClass: 'invalid-feedback',
           highlight: function(element) {

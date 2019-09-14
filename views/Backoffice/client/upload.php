@@ -65,10 +65,7 @@ require_once "../../../entities/class_details_plus.php";
 
                     <center>
                                 <div class="element col-8">
-                                    <?php
-                                    if(isset($_COOKIE["id_activiter"])){
-                                    if(!empty($_COOKIE["id_activiter"])){
-                                    ?>
+                                   
                                     <div class="col-md-5 mx-auto">
                                         <!--begin::Portlet-->
                                         <div class="kt-portlet kt-portlet--height-fluid">
@@ -136,13 +133,8 @@ echo "pdf";
                                         <!--end::Portlet-->
                                     </div>
                                     <?php
-                                    }
-                                    }else{
-                                    echo '<div class="alert alert-info fade show col-8 mx-auto" role="alert">
-                                        <div class="alert-icon"><i class="la la-question-circle"></i></div>
-                                        <div class="alert-text">Vous devez selectionner une activiter pour continuer,<br> Pour ce faire consulter la liste des activiter et selectionner l\'activité correspondante puis poursuivre.</div>
-                                    </div>';
-                                    }
+                                    
+                                    
                                     ?>
                                 </div>
                     </center>

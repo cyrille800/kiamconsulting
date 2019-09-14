@@ -313,6 +313,8 @@ function datePublication2()
             }
         };
     </script>
+<script src="http://localhost:1337/socket.io/socket.io.js" type="text/javascript"></script>
+
 
     <script>
         $(window).on("load", function() {
@@ -858,7 +860,20 @@ function datePublication2()
                             $("#seconds").text(seconds);
                             $("#countdownTimer2 h1").text("proclamation des résultats prévus dans");
 
-                        } else {
+                        } else if(distance==0){
+                            $("#days").text("");
+                            $("#hours").text("");
+                            $("#minutes").text("");
+                            $("#seconds").text("");
+                            $("#countdownTimer2 h1").text("Veuillez vous reconnecter");
+                            setTimeout(() => {
+                                window.top.location.href = "index.php";
+                            }, 1000);
+
+                            
+
+                        }
+                        else {
                             $("#days").text("");
                             $("#hours").text("");
                             $("#minutes").text("");
@@ -866,7 +881,17 @@ function datePublication2()
 
                             let passe = "<?= $passe ?>";
                             if (passe == "true")
-                                $("#countdownTimer2 h1").text("veuillez vous reconnecter svp");
+                            {
+                                $("#countdownTimer2 h1").text("les résultats ne sont pas encore disponibles");
+                                var socket = io.connect("http://localhost:1337");
+                                socket.emit("envoyer_notification", {
+                                        type: "info",
+                                        message: "Vous devez selectionner une date de publication des resltats du concour"
+                                    })
+                                    setTimeout(() => {
+                                window.top.location.href = "index.php";
+                            }, 500);
+                            }
                             else $("#countdownTimer2 h1").text("pas de quizz prevue pour le moment");
 
                         }
@@ -914,7 +939,7 @@ function datePublication2()
 
         }
         $(function() {
-            var temp = <?= $temp ?>;
+var temp = <?= $temp ?>;
             var passe = "<?= $passe ?>";
             if (temp > 0) {
                 $("#loading").prop('disabled', false);

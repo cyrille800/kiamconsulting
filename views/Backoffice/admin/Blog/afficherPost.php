@@ -150,7 +150,7 @@ if(!isset($_SESSION["id_admin"])){
       autoload: true,
       pageSize: 10,
       pageButtonCount: 5,
-      deleteConfirm: "Do you really want to delete data?",
+      deleteConfirm: "Voulez vous vraiment supprimer ces données?",
       controller: {
         loadData: function(filter) {
           return $.ajax({
