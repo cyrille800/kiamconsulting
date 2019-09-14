@@ -243,6 +243,9 @@ ecole::afficher_client($nombre,$_SESSION["id"]);
                         toastr.error(data);
                     }else{
                         toastr.success("l'operation s'est terminé avec succès,<br> veuiller patienter un instant");
+                        setTimeout(function(){
+                            document.location.href="liste_ecole.php";
+                        },1000)
                     }
                 })
             })

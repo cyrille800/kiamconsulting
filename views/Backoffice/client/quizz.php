@@ -135,7 +135,6 @@ function datePublication2()
         <!-- quizz -->
         <?php
         if ($ecole == "" || $ecole == 0) {
-            echo $ecole;
             ?>
             <div class="alert alert-primary mx-auto ml-5 mr-5 col-5" style="margin-top:6%;">Avant de participer au concours, vous devez choisir l'école que vous allez faire. choisisser bien, car vous n'auriez plus la possibilité de revenir. </div>
         <?php
@@ -319,7 +318,7 @@ function datePublication2()
     <script>
         $(window).on("load", function() {
             $(".preload").fadeOut("fast");
-            setTimeout(function() {
+            setInterval(function() {
                 $("#Suivant").click(function() {
                     var i = 1;
                     $(".slider-label").each(function() {
@@ -359,7 +358,7 @@ function datePublication2()
                     })
                 })
 
-            }, 3000)
+            },2000)
         })
         var questionNumber = 0;
         var answers = [];

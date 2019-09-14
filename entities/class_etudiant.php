@@ -187,9 +187,9 @@ public static function verifier($id,$type,$valeur){
 	}
 
 	public static function supprimer($id){
-		$req=config::$bdd->prepare("delete from etudiant where id=:id");
+		$req=config::$bdd->prepare("delete from etudiant where id_client=:id_client");
 	  	if($req->execute([
-		':id'=>intval($id)]
+		':id_client'=>intval($id)]
 	  	)){
 	  		return 1;
 	  	}else{
@@ -198,8 +198,8 @@ public static function verifier($id,$type,$valeur){
 	}
 
 		public static function modifier($id,$e,$i){
-		$req=config::$bdd->prepare("update etudiant set ".$e."=:".$e." where id=:id");
-		$req->bindValue(':id',$id);
+		$req=config::$bdd->prepare("update etudiant set ".$e."=:".$e." where id_client=:id_client");
+		$req->bindValue(':id_client',$id);
 		$req->bindValue(':'.$e,$i);	
 	  	if($req->execute()){
 	  		return true;

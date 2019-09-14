@@ -40,56 +40,29 @@
     </script>
 </head>
 
-<body operation="<?php echo (isset($_GET["id"])) ? "modifier" : "ajouter"; ?>" id="<?php echo (isset($_GET["id"])) ? $_GET["id"] : ""; ?>">
-
-    <!-- begin:: Subheader -->
-    <div class="kt-subheader   kt-grid__item" id="kt_subheader">
-        <div class="kt-subheader__main">
-            <h3 class="kt-subheader__title">
-                Blank Page</h3>
-            <span class="kt-subheader__separator kt-hidden">
-            </span>
-            <div class="kt-subheader__breadcrumbs">
+<body operation="<?php echo (isset($_GET["id"])) ? "modifier" : "ajouter"; ?>" id="<?php echo (isset($_GET["id"])) ? $_GET["id"] : ""; ?>"   style="background-color:rgba(0,0,0,0.06);">
+<div class="kt-subheader   kt-grid__item bg-white mb-5" style="padding:20px;padding-left:40px;" id="kt_subheader">
+    <div class="kt-subheader__main">
+              <h3 class="kt-subheader__title">
+              Post</h3>
+              <span class="kt-subheader__separator kt-hidden">
+              </span>
+              <div class="kt-subheader__breadcrumbs">
                 <a href="#" class="kt-subheader__breadcrumbs-home">
-                    <i class="la la-shelter" style="font-size:25px;">
-                    </i>
+                  <i class="la la-shelter" style="font-size:25px;">
+                  </i>
                 </a>
                 <span class="kt-subheader__breadcrumbs-separator">
                 </span>
                 <a href="" class="kt-subheader__breadcrumbs-link">
-                    Features </a>
-                <span class="kt-subheader__breadcrumbs-separator">
-                </span>
-                <a href="" class="kt-subheader__breadcrumbs-link">
-                    Misc </a>
-                <span class="kt-subheader__breadcrumbs-separator">
-                </span>
-                <a href="" class="kt-subheader__breadcrumbs-link">
-                    Blank Page </a>
-                <!-- <span class="kt-subheader__breadcrumbs-link kt-subheader__breadcrumbs-link--active">
-								Active link</span>
-								-->
+                Afficher les postes                  </a>
+              </div>
+              
             </div>
-
-        </div>
-        <div class="kt-subheader__toolbar">
-            <div class="kt-subheader__wrapper">
-                <div class="dropdown dropdown-inline" data-toggle="kt-tooltip" title="Quick actions" data-placement="top">
-                    <a href="#" class="btn btn-icon btn btn-label btn-label-brand btn-bold" data-toggle="dropdown" data-offset="0px,0px" aria-haspopup="true" aria-expanded="false">
-                        <i class="la la-plus">
-                        </i>
-                    </a>
-                </div>
-
-            </div>
-        </div>
-    </div>
-    <!-- end:: Subheader -->
-    <!-- begin:: Content -->
-    <div class="alert alert-primary" role="alert">
-  Cliquer sur le bouton editer d'un message pour répondre. Votre boite mail seras automatiquement chargé pour l"envoi du mail
 </div>
-    <div class="container-fluid page-body-wrapper">
+    <div>
+    <div class="alert alert-primary col-7 mx-auto" role="alert">
+  Cliquer sur le bouton editer d'un message pour répondre. Votre boite mail seras automatiquement chargé pour l'envoi du mail . </div>
         <div class="main-panel">
             <div class="content-wrapper">
                 <div class="row">
@@ -125,14 +98,6 @@
 
                 </div>
 
-                <!-- content-wrapper ends -->
-                <!-- partial:../../partials/_footer.php -->
-                <footer class="footer">
-                    <div class="w-100 clearfix">
-                        <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © 2018 <a href="http://www.urbanui.com/" target="_blank">Urbanui</a>. All rights reserved.</span>
-                        <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted &amp; made with <i class="icon-heart text-danger"></i></span>
-                    </div>
-                </footer>
 
                 <!-- partial -->
             </div>

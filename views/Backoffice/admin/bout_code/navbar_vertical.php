@@ -309,7 +309,7 @@
 		</ul>
 	</div>
 </li>
-<li class="kt-menu__item kt-menu__item--submenu kt-menu__item--open kt-menu__item--here" aria-haspopup="true" data-ktmenu-submenu-toggle="hover">
+<li class="kt-menu__item kt-menu__item--submenu" aria-haspopup="true" data-ktmenu-submenu-toggle="hover">
 							<a href="javascript:;" class="kt-menu__link kt-menu__toggle">
 								<i class="kt-menu__link-icon la la-cube" style="font-size:25px;">
 								</i>
@@ -326,7 +326,7 @@
 								<span class="kt-menu__arrow">
 								</span>
 								<ul class="kt-menu__subnav">
-									<li class="kt-menu__item kt-menu__item--active" aria-haspopup="true">
+									<li class="kt-menu__item" aria-haspopup="true">
 										<a href="Contact/afficherMessage.php" class="kt-menu__link " target="frame1">
 											<i class="kt-menu__link-bullet kt-menu__link-bullet--dot">
 												<span>

@@ -59,8 +59,13 @@ include_once "../../../../entities/class_proccedure.php";
                                         </i>
                                     </div>
                                     <a href="liste.php?id=<?php echo $_GET["id"];?>" class="btn btn-info btn-bold rights" style="cursor:pointer;">
-                                        <i class="fas fa-list"></i>&nbsp;&nbsp; Consulter la liste des personnes ayant fini
-                                    </a>
+                                        <?php 
+                                        $requette=config::$bdd->query("select count(*) from activiter_client where id_activiter=".$_GET["id"]." && etape_actuel=-1");
+                                        $nombre=$requette->fetch();
+                                        $afficher="(".$nombre[0].")";
+                                        ?>
+                                        <i class="fas fa-list"></i>&nbsp;&nbsp; nombre de personnes ayant fini &nbsp;&nbsp;
+                                    <?php echo $afficher; ?></a>
                                 </div>
                                 
                             </div>

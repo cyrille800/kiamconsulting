@@ -262,9 +262,9 @@ foreach ($tab as $key => $value) {
     }
     }
     public static function supprimer($id){
-        $req=config::$bdd->prepare("delete from patient where id=:id");
+        $req=config::$bdd->prepare("delete from patient where id_client=:id_client");
         if($req->execute([
-        ':id'=>intval($id)]
+        ':id_client'=>intval($id)]
         )){
             return 1;
         }else{
@@ -273,7 +273,7 @@ foreach ($tab as $key => $value) {
     }
         public static function modifier($id,$e,$i){
         $req=config::$bdd->prepare("update patient set ".$e."=:".$e." where id_client=:id_client");
-        $req->bindValue(':id',$id);
+        $req->bindValue(':id_client',$id);
         $req->bindValue(':'.$e,$i); 
         
         if($req->execute()){

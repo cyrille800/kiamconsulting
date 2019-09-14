@@ -71,8 +71,7 @@ $reponse="remplir toutes les cases";
 				}
 
 				else if($operation=="modifier_ecle"){
-				$deo=etudiant::retourne_valeur("id_client",$id_client,"id");
-			etudiant::modifier($deo,"ecole_choisie",$id_ecole);
+			etudiant::modifier($id_client,"ecole_choisie",$id_ecole);
 			$reponse="ok";
 	}
 				
