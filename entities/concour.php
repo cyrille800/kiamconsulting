@@ -52,6 +52,9 @@ if (verification_post(["titre", "description", "date", "heure", "duree"]) == 1 &
 			else if($operation=="datePublication"){
 				$reponse=concours::datePublication($date);
 			}
+			elseif ($operation=="rafraichirPage") {
+				$reponse= json_encode(concours::retournerDate($id));
+			}
 		}
 	} else {
 		$reponse = "remplir toutes les case";

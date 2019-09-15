@@ -20,11 +20,12 @@ function differenceDate($date,$a=900)
      return $dates-$chaine_c;
 }
 
-function tester(callable $callback){
-    echo "je veux boire <br>";
-$callback();
-}
+// function tester(callable $callback){
+//     echo "je veux boire <br>";
+// $callback();
+// }
 // tester( function(){
 //     echo"manger";
 // });
+
 ?>

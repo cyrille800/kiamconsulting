@@ -78,9 +78,10 @@ if (verification_post(["id_concour", "question", "reponse", "autre_reponse"]) ==
 				else if ($operation=="quizz") {
 					$reponse=quizz::ajouterResultat($idEtudiant,$idConcour,$resultat);
 				}
-				elseif ($operation=="verifier") {
+				else if ($operation=="verifier") {
 					$reponse=quizz::verifierPasserQuizz($idEtudiant,$idConcour);
 				}
+				
 			}
 		}
 	} else {

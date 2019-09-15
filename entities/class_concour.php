@@ -264,12 +264,41 @@ durée du concour : ' . $data["duree"] . ' minutes
 		$req = config::$bdd->query("select id,date_concour,heure from concours");
 		while ($data = $req->fetch()) {
 			$date .= $data["date_concour"] . " " . $data["heure"];
-			$req2=config::$bdd->prepare("select duree from concours where id=".$data["id"]);
+			$req2 = config::$bdd->prepare("select duree from concours where id=" . $data["id"]);
 			$req2->execute();
-			$rows=$req2->fetchAll();
-			if (differenceDate($date,$rows[0]["duree"]*60) > 0) {
+			$rows = $req2->fetchAll();
+			if (differenceDate($date, $rows[0]["duree"] * 60) > 0) {
 				$ids[$index] = $data["id"];
-				$timeDifference[$index] = differenceDate($date,$rows[0]["duree"]*60);
+				$timeDifference[$index] = differenceDate($date, $rows[0]["duree"] * 60);
+				$index++;
+			}
+			$date = "";
+		}
+		if (count($ids)) {
+			foreach ($timeDifference as $key => $value) {
+				if ($value == min($timeDifference)) {
+					$index = $key;
+					break;
+				}
+			}
+			return $ids[$index];
+		} else return -1;
+	}
+	public static function concoursSuivant($id)
+	{
+		$ids = array();
+		$timeDifference = array();
+		$index = 0;
+		$date = "";
+		$req = config::$bdd->query("select id,date_concour,heure from concours where  not id=" . $id);
+		while ($data = $req->fetch()) {
+			$date .= $data["date_concour"] . " " . $data["heure"];
+			$req2 = config::$bdd->prepare("select duree from concours where id=" . $data["id"]);
+			$req2->execute();
+			$rows = $req2->fetchAll();
+			if (differenceDate($date, $rows[0]["duree"] * 60) > 0) {
+				$ids[$index] = $data["id"];
+				$timeDifference[$index] = differenceDate($date, $rows[0]["duree"] * 60);
 				$index++;
 			}
 			$date = "";
@@ -288,7 +317,7 @@ durée du concour : ' . $data["duree"] . ' minutes
 	{
 		$req = config::$bdd->query("select * from concours where id=" . $id);
 		$data = $req->fetch();
-		echo "<h4> Sujet:" . $data["titre"] . " <h4><br><h4 >Description: " . $data["description"] . "</h4><br> <h4>Date: " . $data["date_concour"] . "</h4><br> <h4>Heure :";
+		echo "<div id='Description'><h4> Sujet:" . $data["titre"] . " <h4><br><h4 >Description: " . $data["description"] . "</h4><br> <h4>Date: " . $data["date_concour"] . "</h4><br> <h4>Heure :";
 		$req = explode(":", $data["heure"]);
 		if (intval($req[0]) < 10) {
 			if (isset($req[0][0])) {
@@ -310,7 +339,7 @@ durée du concour : ' . $data["duree"] . ' minutes
 			}
 		}
 		echo $req[1];
-		echo "</h4><br>";
+		echo "</h4><br></div>";
 		return
 			array(
 				"id" => $id,
@@ -340,7 +369,8 @@ durée du concour : ' . $data["duree"] . ' minutes
 			self::Results($rows, $data);
 		}
 	}
-	public static function afficherEtudiantConcour3($rows){
+	public static function afficherEtudiantConcour3($rows)
+	{
 		$req = config::$bdd->query("select  etudiant.nom, etudiant.prenom,concours.id,clientconcour.idEtudiant,SUM(clientconcour.resultat) as resultat from clientconcour  inner join etudiant on clientconcour.idEtudiant=etudiant.id_client inner join concours on concours.id=clientconcour.idConcour where etudiant.resultat=1 group by etudiant.nom,etudiant.prenom ORDER by resultat desc ");
 		while ($data = $req->fetch()) {
 			echo "<tr><td class='text-center' idEtudiant=" . $data['idEtudiant'] . ">" . $data['nom'] . "  " . $data['prenom'];
@@ -549,15 +579,32 @@ durée du concour : ' . $data["duree"] . ' minutes
 			return 'Erreur: ' . $e->getMessage();
 		}
 	}
-	public static function afficherLaureats(){
+	public static function afficherLaureats()
+	{
 		try {
 			$req = config::$bdd->prepare("select nom,prenom,concours.resultat as nombre  from datepublication");
+			if ($req->execute()) { }
+		} catch (Exception $e) {
+			return 'Erreur: ' . $e->getMessage();
+		}
+	}
+	public static function retournerDate($id)
+	{
+		$req = config::$bdd->prepare("select date_concour,heure,duree from concours where id=" . $id);
+		try {
 			if ($req->execute()) {
+				$rows = $req->fetchAll();
+				foreach ($rows as $key => $rows) {
+					$date = $rows["date_concour"] . " " . $rows["heure"];
+					$duree = $rows["duree"];
+					return array(
+						"date" => $date,
+						"duree" => $duree,
+					);
+				}
 			}
 		} catch (Exception $e) {
 			return 'Erreur: ' . $e->getMessage();
 		}
 	}
-	
-
 }

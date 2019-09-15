@@ -298,9 +298,9 @@ class quizz
 			return 'Erreur: ' . $e->getMessage();
 		}
 	}
-	public static function verifierPasserQuizz($idEtudiant)
+	public static function verifierPasserQuizz($idEtudiant,$idConcour)
 	{
-		$req = config::$bdd->prepare("select count(*) as nombre from clientconcour where idEtudiant=" . $idEtudiant );
+		$req = config::$bdd->prepare("select count(*) as nombre from clientconcour where idEtudiant=" . $idEtudiant." and idConcour=".$idConcour);
 		try {
 			if ($req->execute()) {
 				$rows = $req->fetchAll();
@@ -329,4 +329,5 @@ class quizz
 			return 'Erreur: ' . $e->getMessage();
 		}
 	}
+	
 }

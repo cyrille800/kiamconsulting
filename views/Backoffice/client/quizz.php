@@ -135,6 +135,7 @@ function datePublication2()
         <!-- quizz -->
         <?php
         if ($ecole == "" || $ecole == 0) {
+            echo $ecole;
             ?>
             <div class="alert alert-primary mx-auto ml-5 mr-5 col-5" style="margin-top:6%;">Avant de participer au concours, vous devez choisir l'école que vous allez faire. choisisser bien, car vous n'auriez plus la possibilité de revenir. </div>
         <?php
@@ -148,15 +149,14 @@ function datePublication2()
                             $temp = concours::concoursLePlusProche();
                             if ($temp > 0) {
                                 $concours = concours::afficherProchainConcours($temp);
-                                if (quizz::verifierPasserQuizz($_SESSION["id"])) {
+                                $temp2 = concours::concoursSuivant($temp);
+                                if (quizz::verifierPasserQuizz($_SESSION["id"], $concours["id"])) {
                                     $passe = "true";
                                     $dateFinal = datePublication2();
                                 }
                             } else {
-                                if (quizz::verifierPasserQuizz($_SESSION["id"])) {
-                                    $passe = "true";
-                                    $dateFinal = datePublication2();
-                                }
+                                $passe = "false";
+                                $dateFinal = datePublication2();
                             }
                             ?>
                     </div>
@@ -312,13 +312,13 @@ function datePublication2()
             }
         };
     </script>
-<script src="http://localhost:1337/socket.io/socket.io.js" type="text/javascript"></script>
+    <script src="http://localhost:1337/socket.io/socket.io.js" type="text/javascript"></script>
 
 
     <script>
         $(window).on("load", function() {
             $(".preload").fadeOut("fast");
-            setInterval(function() {
+            setTimeout(function() {
                 $("#Suivant").click(function() {
                     var i = 1;
                     $(".slider-label").each(function() {
@@ -358,7 +358,7 @@ function datePublication2()
                     })
                 })
 
-            },2000)
+            }, 3000)
         })
         var questionNumber = 0;
         var answers = [];
@@ -373,7 +373,6 @@ function datePublication2()
         var Image = [];
         var Image2 = [];
         var page = 0;
-        var temp = [];
 
         function notAnsweredQuestions(questionNumber) {
             let a = questionNumber + 1;
@@ -531,6 +530,44 @@ function datePublication2()
                     })
             }, 1500);
 
+        }
+
+        function refreshPage() {
+            $.ajax({
+                type: "post",
+                url: "../../../entities/concour.php",
+                data: {
+                    operation: "rafraichirPage",
+                    id: <?= $temp ?>,
+                },
+                cache: false,
+                success: function(response) {
+                    let prochainConcour = [];
+                    var response2 = JSON.parse(response);
+                    var countDownDate = new Date(response.date).getTime();
+                    var time = 0;
+                    var bool = false;
+                    var duree = parseInt(response.duree) * 60000;
+                    var x = setInterval(function() {
+                        console.log("oui");
+                            var now = new Date().getTime();
+                            var distance = countDownDate - now;
+                            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                            if (distance <= 0) {
+                                if (Math.abs(distance) < duree) {
+                                    if (Math.floor((duree - Math.abs(distance)) / 60000) == 0 && Math.floor(((duree - Math.abs(distance)) % 60000) / 1000) == 0) {
+                                        window.location.href = "quizz.php";
+                                        clearInterval(x);
+                                    }
+                                }
+                            }
+                        },
+                        1000);
+                }
+            });
         }
 
         function loadingQuizz() {
@@ -815,6 +852,9 @@ function datePublication2()
                                 toastr.error("Magnez vous il vous reste très peu de temps");
                                 toast3 = "error";
 
+                            } else if (Math.floor((duree - Math.abs(distance)) / 60000) == 0 && Math.floor(((duree - Math.abs(distance)) % 60000) / 1000) == 0) {
+                                toastr.error("Quizz termine");
+                                window.location.href = "quizz.php";
                             }
 
                         } else {
@@ -835,7 +875,9 @@ function datePublication2()
 
 
         function entranceCountDown2() {
+            $("#loading").css("display", "none");
             var countDownDate = new Date("<?= isset($dateFinal) ? $dateFinal : "" ?>").getTime();
+            var distance2;
             if (countDownDate > 0) {
                 var time = 0;
                 var toast = "";
@@ -846,8 +888,8 @@ function datePublication2()
                 var x = setInterval(function() {
                         var now = new Date().getTime();
                         var distance = countDownDate - now;
-                        var distance2 = 0;
-                        $("#loading").css("display", "none");
+                        distance2 = distance;
+
                         var days = Math.floor(distance / (1000 * 60 * 60 * 24));
                         var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                         var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
@@ -859,7 +901,7 @@ function datePublication2()
                             $("#seconds").text(seconds);
                             $("#countdownTimer2 h1").text("proclamation des résultats prévus dans");
 
-                        } else if(distance==0){
+                        } else if (distance == 0) {
                             $("#days").text("");
                             $("#hours").text("");
                             $("#minutes").text("");
@@ -869,35 +911,32 @@ function datePublication2()
                                 window.top.location.href = "index.php";
                             }, 1000);
 
-                            
 
-                        }
-                        else {
-                            $("#days").text("");
-                            $("#hours").text("");
-                            $("#minutes").text("");
-                            $("#seconds").text("");
 
-                            let passe = "<?= $passe ?>";
-                            if (passe == "true")
-                            {
-                                $("#countdownTimer2 h1").text("les résultats ne sont pas encore disponibles");
-                                var socket = io.connect("http://localhost:1337");
-                                socket.emit("envoyer_notification", {
+                        } else {
+                            if (distance < 0) {
+                                $("#days").text("");
+                                $("#hours").text("");
+                                $("#minutes").text("");
+                                $("#seconds").text("");
+                                let passe = "<?= $passe ?>";
+                                if (passe == "true") {
+                                    $("#countdownTimer2 h1").text("les résultats ne sont pas encore disponibles");
+                                    var socket = io.connect("http://localhost:1337");
+                                    socket.emit("envoyer_notification", {
                                         type: "info",
                                         message: "Vous devez selectionner une date de publication des resltats du concour"
                                     })
-                                    setTimeout(() => {
-                                window.top.location.href = "index.php";
-                            }, 500);
+                                } else $("#countdownTimer2 h1").text("pas de quizz prevue pour le moment");
                             }
-                            else $("#countdownTimer2 h1").text("pas de quizz prevue pour le moment");
-
+                            clearInterval(x);
                         }
 
                     },
                     1000);
             }
+
+
             let passe = "<?= $passe ?>";
             if (passe == "false") {
                 $("#countdownTimer2 h1").text("pas de quizz prevue pour le moment");
@@ -930,16 +969,18 @@ function datePublication2()
                     if (minutes == 0 && seconds == 0) {
                         toastr.info("le temps est terminé");
                         Results();
-                        document.getElementById("countdownTimer").innerHTML = "TERMINE";
                         clearInterval(x);
                     }
                 }, 1000);
             }
 
         }
+
         $(function() {
-var temp = <?= $temp ?>;
+            var temp = <?= $temp ?>;
+            var temp2 = <?= isset($temp2) ? $temp2 : -1 ?>;
             var passe = "<?= $passe ?>";
+            console.log(temp2);
             if (temp > 0) {
                 $("#loading").prop('disabled', false);
             } else {
@@ -948,14 +989,20 @@ var temp = <?= $temp ?>;
             hidingQuizz();
             if (temp > 0 && passe == "false")
                 entranceCountDown();
-            else
+            else if (temp2 > 0) {
+                $("#Description").css("display", "none");
+                $("#countdownTimer2 h1").text("Veuillez patienter la fin du concour en cours");
+                $("#loading").css("display", "none");
+                refreshPage();
+            } else {
+                $("#Description").css("display", "none");
                 entranceCountDown2();
+            }
             $("#loading").click(function() {
                 page = 1;
                 loadingQuizz();
                 quizzCountdown(<?= isset($concours['duree']) ? $concours["duree"] : 0 ?> * 60000);
                 currentQuestion();
-
             });
 
         })

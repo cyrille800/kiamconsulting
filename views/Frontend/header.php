@@ -171,14 +171,7 @@ require_once "../../entities/class_commentaire.php";
                                                 <li><a href="login-reg.php">Login & Registration</a></li>
                                             </ul>
                                         </li> -->
-                                        <li><a href="contact.php">Contact</a></li>
-                                        <?php 
-                                        if(!isset($_SESSION["id"])){
-                                            ?>
-<li><a href="contact.php"><span class="btn btn-primary" style="padding:1.5%;padding-left:7%;padding-right:7%;border-radius:3px;background-color:#2D89AB;border-color:transparent;color:white;">Se connecter</span></a></li>
-                                            <?php
-                                        }
-                                        ?>
+                                        <li class="dropdown xt-drop-nav"><a href="contact.php">Contact</a></li>
                                     <?php
                                     if (isset($_SESSION["id"])) {
                                         $imageProfil = "../assets/Backoffice/media/users/" . $_SESSION["id"] . ".png";
