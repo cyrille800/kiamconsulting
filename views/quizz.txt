@@ -4,3 +4,7 @@
 4-deux boutons(section classique et section personnalisée)
  section classique=préciser le nombre de personnes qui veut et pour chaque personne sélectionnée mettre les résultats à 1
   section personnalisée=choisir selon les critéres(score des matières) 
+
+
+speed reading
+  visual pacer

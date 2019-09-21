@@ -76,7 +76,7 @@ $config = array(
     | with start and final /
     |
     */
-    'upload_dir' => '/kiamconsulting/views/Backoffice/admin/Blog/uploads/',
+    'upload_dir' => '/romuald/kiamconsulting/views/Backoffice/admin/Blog/uploads/',
     /*
     |--------------------------------------------------------------------------
     | relative path from filemanager folder to upload folder
@@ -211,7 +211,7 @@ $config = array(
     | in Megabytes
     |
     */
-    'MaxSizeUpload' => 150,
+    'MaxSizeUpload' => 100,
 
     /*
     |--------------------------------------------------------------------------

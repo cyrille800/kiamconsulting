@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="../../../assets/Backoffice/css/flag-icon.min.css">
     <link rel="stylesheet" href="../../../assets/Backoffice/css/vendor.bundle.base.css">
     <link rel="stylesheet" href="../../../assets/Backoffice/css/vendor.bundle.addons.css">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
     
 
@@ -163,7 +163,7 @@
         <script src="../../../assets/Backoffice/js/editorDemo.js"></script>
         <script src="../../../assets/Backoffice/js/js-grid.js"></script>
         <script src="../../../assets/Backoffice/js/db.js"></script>
-        <script src="cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
         <!-- End custom js for this page-->
         <script>

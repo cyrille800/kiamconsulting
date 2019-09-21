@@ -48,7 +48,7 @@ if(!isset($_SESSION["id_admin"])){
   <link rel="stylesheet" href="../../../assets/Backoffice/css/flag-icon.min.css">
   <link rel="stylesheet" href="../../../assets/Backoffice/css/vendor.bundle.base.css">
   <link rel="stylesheet" href="../../../assets/Backoffice/css/vendor.bundle.addons.css">
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
   
 
   <link rel="stylesheet" href="../../../assets/Backoffice/css/style2.css">
@@ -215,7 +215,7 @@ if(!isset($_SESSION["id_admin"])){
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/additional-methods.js"></script>
     <script src="../../../assets/Backoffice/js/vendor.bundle.base.js"></script>
     <script src="../../../assets/Backoffice/js/vendor.bundle.addons.js"></script>
-    <script src="cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     
     <!-- endinject -->
     <!-- Plugin js for this page-->
@@ -291,7 +291,6 @@ if(!isset($_SESSION["id_admin"])){
             Titre: {
               required: true,
             },
-
             Date: {
               required: true,
             },

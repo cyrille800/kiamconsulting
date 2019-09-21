@@ -363,7 +363,7 @@ durée du concour : ' . $data["duree"] . ' minutes
 	}
 	public static function afficherEtudiantConcour2($rows, $nombre)
 	{
-		$req = config::$bdd->query("select  etudiant.nom, etudiant.prenom,concours.id,clientconcour.idEtudiant,SUM(clientconcour.resultat) as resultat from clientconcour  inner join etudiant on clientconcour.idEtudiant=etudiant.id_client inner join concours on concours.id=clientconcour.idConcour group by etudiant.nom,etudiant.prenom ORDER by resultat desc limit " . $nombre);
+		$req = config::$bdd->query("select  etudiant.nom, etudiant.prenom,concours.id,clientconcour.idEtudiant,SUM(clientconcour.resultat) as resultat from clientconcour  inner join etudiant on clientconcour.idEtudiant=etudiant.id_client inner join concours on concours.id=clientconcour.idConcour and etudiant.resultat=0 group by etudiant.nom,etudiant.prenom ORDER by resultat desc limit " . $nombre);
 		while ($data = $req->fetch()) {
 			echo "<tr><td class='text-center' idEtudiant=" . $data['idEtudiant'] . ">" . $data['nom'] . "  " . $data['prenom'];
 			self::Results($rows, $data);

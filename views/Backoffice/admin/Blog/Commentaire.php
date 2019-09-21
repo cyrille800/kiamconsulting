@@ -6,9 +6,7 @@
 //fetch_data.php
 
 $connect = new PDO("mysql:host=localhost;dbname=kiam_consulting", "root", "");
-
 $method = $_SERVER['REQUEST_METHOD'];
-
 if($method == 'GET')
 {
  $data = array(
@@ -21,7 +19,6 @@ if($method == 'GET')
  $statement = $connect->prepare($query);
  $statement->execute($data);
  $result = $statement->fetchAll();
- 
  foreach($result as $row)
  {
   $output[] = array(
@@ -37,10 +34,7 @@ if($method == 'GET')
  header("Content-Type: application/json");
  echo json_encode($output);
 //    var_dump($output);
-
 }
-
-
 if($method == 'PUT')
 {
  parse_str(file_get_contents("php://input"), $_PUT);
@@ -53,7 +47,6 @@ if($method == 'PUT')
  $statement = $connect->prepare($query);
  $statement->execute($data);
 }
-
 if($method == "DELETE")
 {
  parse_str(file_get_contents("php://input"), $_DELETE);

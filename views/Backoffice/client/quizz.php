@@ -334,7 +334,6 @@ function datePublication2()
                                 });
                             }
                         }
-
                         i++;
                     })
                 })
@@ -383,7 +382,6 @@ function datePublication2()
                     $("#option" + a).next("label").append("<span></span>");
             } else $("#option" + a).next("label").text(b);
         }
-
         function notAnsweredQuestions2(questionNumber, questionNumber2) {
             let c;
             for (let index = 0; index <= questionNumber; index++) {
@@ -419,7 +417,6 @@ function datePublication2()
                     $(".lead").text("Complété à " + Math.floor(progressBar) + "%");
                     $(this).dequeue();
                 });
-
         }
 
         function precedentButton() {
@@ -428,7 +425,6 @@ function datePublication2()
             } else {
                 $("#Precedent").prop('disabled', false);
             }
-
         }
 
         function Checkbox(questionNumber) {
@@ -522,7 +518,7 @@ function datePublication2()
                         },
                         cache: false,
                         success: function(response) {
-                            window.top.location.href = "index.php";
+                            window.location.href = "quizz.php";
                         }
                     })
                     .fail(function() {
@@ -542,22 +538,23 @@ function datePublication2()
                 },
                 cache: false,
                 success: function(response) {
-                    let prochainConcour = [];
                     var response2 = JSON.parse(response);
-                    var countDownDate = new Date(response.date).getTime();
+                    var countDownDate = new Date(response2.date).getTime();
                     var time = 0;
                     var bool = false;
-                    var duree = parseInt(response.duree) * 60000;
+                    var duree = parseInt(response2.duree) * 60000;
                     var x = setInterval(function() {
-                        console.log("oui");
                             var now = new Date().getTime();
                             var distance = countDownDate - now;
                             var days = Math.floor(distance / (1000 * 60 * 60 * 24));
                             var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                             var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
                             var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                                        console.log(Math.floor((duree - Math.abs(distance)) / 60000), Math.floor(((duree - Math.abs(distance)) % 60000) / 1000));
+                                        
                             if (distance <= 0) {
                                 if (Math.abs(distance) < duree) {
+                                        console.log(distance,duree,"oui");
                                     if (Math.floor((duree - Math.abs(distance)) / 60000) == 0 && Math.floor(((duree - Math.abs(distance)) % 60000) / 1000) == 0) {
                                         window.location.href = "quizz.php";
                                         clearInterval(x);
@@ -642,7 +639,6 @@ function datePublication2()
                 }
 
             });
-
         }
 
         function hidingQuizz() {
@@ -872,8 +868,6 @@ function datePublication2()
                 1000);
 
         }
-
-
         function entranceCountDown2() {
             $("#loading").css("display", "none");
             var countDownDate = new Date("<?= isset($dateFinal) ? $dateFinal : "" ?>").getTime();
@@ -884,7 +878,6 @@ function datePublication2()
                 var toast2 = "";
                 var toast3 = "";
                 var bool = false;
-
                 var x = setInterval(function() {
                         var now = new Date().getTime();
                         var distance = countDownDate - now;
@@ -910,8 +903,6 @@ function datePublication2()
                             setTimeout(() => {
                                 window.top.location.href = "index.php";
                             }, 1000);
-
-
 
                         } else {
                             if (distance < 0) {
@@ -945,8 +936,6 @@ function datePublication2()
 
 
         }
-
-
         function quizzCountdown(dureeConcour) {
             var tempsActuel = new Date().getTime();
             var tempsDepart = new Date("<?= isset($concours['date']) ? $concours['date'] : "" ?>").getTime();
@@ -980,7 +969,6 @@ function datePublication2()
             var temp = <?= $temp ?>;
             var temp2 = <?= isset($temp2) ? $temp2 : -1 ?>;
             var passe = "<?= $passe ?>";
-            console.log(temp2);
             if (temp > 0) {
                 $("#loading").prop('disabled', false);
             } else {

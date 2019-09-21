@@ -310,7 +310,7 @@ class quizz
 			return 'Erreur: ' . $e->getMessage();
 		}
 	}
-
+		
 	public static function nombreQuestion($idConcour)
 	{
 		$req = config::$bdd->prepare("select * from qizz where id_concour=" . $idConcour);

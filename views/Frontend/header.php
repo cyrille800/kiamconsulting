@@ -225,7 +225,6 @@ require_once "../../entities/class_commentaire.php";
                             <li><a class="main-a" href="blog.php">Blog</a>
                                 <ul>
                                     <li><a href="blog.php">Blog Page</a></li>
-                                    <li><a href="blog-single.php">Blog Single</a></li>
                                 </ul>
                             </li>
                             <?php
